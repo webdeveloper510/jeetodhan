@@ -1,0 +1,14 @@
+.products .wcl-progress-meter .max { display: none; }
+.products .wcl-progress-meter .zero {top: -3px; right: 5px; }
+.products .wcl-progress-meter {margin-top: 2em}
+
+.products .lottery-time-countdown.is-wc_lotery_countdown {margin-bottom: 5em}
+
+.products .ticket-info {margin-top: 2em}
+.products .ticket-info div {display: inline-block; }
+
+.products .ticket-info .lottery-days { width: 31%; text-align:center;}
+.products .ticket-info .lottery-remaining {width: 33%; text-align:center;}
+.products .ticket-info .lottery-sold { width: 33%; text-align:center;}
+
+.lottery-days b, .lottery-remaining b, .lottery-sold b {display: block; font-weight: 900}

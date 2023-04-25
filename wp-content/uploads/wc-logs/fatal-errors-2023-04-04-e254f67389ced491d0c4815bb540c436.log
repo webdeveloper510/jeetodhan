@@ -1,0 +1,50 @@
+2023-04-04T11:27:39+00:00 CRITICAL Uncaught Exception: DateTime::__construct(): Failed to parse time string (@) at position 0 (@): Unexpected character in /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php:114
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php(114): DateTime->__construct('@')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): wpgenie_pbinl_show_progress_bar_in_loop('')
+#2 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/content-product.php(109): do_action('woocommerce_aft...')
+#5 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#6 /home/code in /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php on line 114
+
+2023-04-04T11:27:44+00:00 CRITICAL Uncaught Exception: DateTime::__construct(): Failed to parse time string (@) at position 0 (@): Unexpected character in /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php:114
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php(114): DateTime->__construct('@')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): wpgenie_pbinl_show_progress_bar_in_loop('')
+#2 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/content-product.php(109): do_action('woocommerce_aft...')
+#5 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#6 /home/code in /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php on line 114
+
+2023-04-04T11:37:35+00:00 CRITICAL Uncaught Exception: DateTime::__construct(): Failed to parse time string (@) at position 0 (@): Unexpected character in /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php:114
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php(114): DateTime->__construct('@')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): wpgenie_pbinl_show_progress_bar_in_loop('')
+#2 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/content-product.php(109): do_action('woocommerce_aft...')
+#5 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#6 /home/code in /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php on line 114
+
+2023-04-04T11:37:40+00:00 CRITICAL Uncaught Exception: DateTime::__construct(): Failed to parse time string (@) at position 0 (@): Unexpected character in /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php:114
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php(114): DateTime->__construct('@')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): wpgenie_pbinl_show_progress_bar_in_loop('')
+#2 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/content-product.php(109): do_action('woocommerce_aft...')
+#5 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#6 /home/code in /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php on line 114
+
+2023-04-04T11:40:21+00:00 CRITICAL Uncaught Error: Call to a member function diff() on null in /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php:117
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): wpgenie_pbinl_show_progress_bar_in_loop('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/content-product.php(109): do_action('woocommerce_aft...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-s in /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce-lottery-progress-bar-in-loop/woocommerce-lottery-progress-bar-in-loop.php on line 117
+

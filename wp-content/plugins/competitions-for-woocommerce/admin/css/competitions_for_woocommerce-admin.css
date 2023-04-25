@@ -1,0 +1,21 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+#woocommerce-product-data ul.wc-tabs li.competition_tab a::before {
+    content: "\f486";
+}
+.woocommerce_competition_answer_box {padding:5px 20px 5px 162px!important}
+
+.woocommerce_competition_answer_box  table {border:none !important;}
+
+.woocommerce_answer_data .answer_checkbox label{float: none; width: auto; margin:0;}
+
+.remove-answer{text-align: right !important; width: 70px;}
+#wc_competition_answers-tb{width: 100% !important; display: none;}
+
+.relist_competition_dates_fields{display: none;}
+.extend_competition_dates_fields{display: none;}
+
+table.dataTable thead { text-align: left !important; }

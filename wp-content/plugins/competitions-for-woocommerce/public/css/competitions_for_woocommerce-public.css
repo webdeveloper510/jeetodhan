@@ -1,0 +1,302 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+*
+.competitions_for_woocommerce_countdown-rtl {
+    direction: rtl;
+}
+.competitions_for_woocommerce_countdown-holding span {
+    color: #888;
+}
+.competitions_for_woocommerce_countdown-row {
+    clear: both;
+    width: 100%;
+    padding: 0px 2px;
+    text-align: center;
+}
+.competitions_for_woocommerce_countdown-show1 .competitions_for_woocommerce_countdown-section {
+    width: 98%;
+}
+.competitions_for_woocommerce_countdown-show2 .competitions_for_woocommerce_countdown-section {
+    width: 48%;
+}
+.competitions_for_woocommerce_countdown-show3 .competitions_for_woocommerce_countdown-section {
+    width: 32.5%;
+}
+.competitions_for_woocommerce_countdown-show4 .competitions_for_woocommerce_countdown-section {
+    width: 24.5%;
+}
+.competitions_for_woocommerce_countdown-show5 .competitions_for_woocommerce_countdown-section {
+    width: 19.5%;
+}
+.competitions_for_woocommerce_countdown-show6 .competitions_for_woocommerce_countdown-section {
+    width: 16.25%;
+}
+.competitions_for_woocommerce_countdown-show7 .competitions_for_woocommerce_countdown-section {
+    width: 14%;
+}
+.competitions_for_woocommerce_countdown-section {
+    display: block;
+    float: left;
+    font-size: 75%;
+    text-align: center;
+}
+.competitions_for_woocommerce_countdown-amount {
+    font-size: 200%;
+}
+.competitions_for_woocommerce_countdown-period {
+    display: block;
+}
+.competitions_for_woocommerce_countdown-descr {
+    display: block;
+    width: 100%;
+}
+
+
+span.winning {
+    min-height: 52px;
+    min-width: 32px;
+    padding: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+    line-height: 52px;
+    top: -16px;
+    left: -16px;
+    margin: 0;
+    -moz-border-radius: 20px;
+    border-radius: 40px;
+    background: #a2c094;
+    background: -webkit-gradient(linear,left top,left bottom,from(#a2c094),to(#85ad74));
+    background: -webkit-linear-gradient(#a2c094,#85ad74);
+    color:#fff;
+}
+
+.widget .hasCountdown{background: none; border:none;}
+.widget .competitions_for_woocommerce_countdown_amount {font-size:120%}
+.widget .time-left,.widget  .has-finished{display: block}
+.hasCountdown .over {text-align: center; padding:1em;}
+.ajax-working {background: url(../images/ajax-loader.gif) center center no-repeat; width: 100%; height:50px;}
+.competition-bage{ width:24px; height: 24px; position: absolute; right:10px; top:10px; }
+.competition-bage::before{
+    font-family: Dashicons;
+    speak: never;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    content: "\f486";
+    text-decoration: none;
+    font-size: 24px;
+    color: #666666;
+}
+
+.auction_form .ui-spinner-button.ui-spinner-up.ui-corner-tr.ui-button.ui-widget.ui-state-default.ui-button-text-only {
+  bottom: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+.auction_form .ui-spinner-button {
+  position: absolute;
+}
+.auction_form .ui-spinner-button.ui-spinner-down.ui-corner-br.ui-button.ui-widget.ui-state-default.ui-button-text-only {
+  right: 5px;
+  top: 0;
+  cursor: pointer;
+}
+
+.auction_form .ui-spinner {
+  height: 16px;
+  overflow: hidden;
+  padding-right: 20px;
+  position: relative;
+}
+
+.blink{ color:red !important; }
+
+
+progress[value] {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+
+  /* Get rid of default border in Firefox. */
+  border: none;
+
+  /* Dimensions */
+  width: 100%;
+  height: 20px;
+}
+progress[value]::-webkit-progress-bar {
+  background-color: whiteSmoke;
+  border-radius: 2px;
+
+}
+progress[value]::-webkit-progress-value {
+       background-color:#8bcf69;
+    border-radius: 2px;
+
+
+}
+
+.full > progress[value]::-webkit-progress-value{
+  background-color: red;
+}
+
+
+.wcl-progress-meter{
+    position: relative;
+    margin-top: 3em;
+  margin-bottom: 2em;
+}
+.wcl-progress-meter meter {width: 100%; height: 20px;
+ -webkit-appearance: none;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+position: relative;}
+
+.wcl-progress-meter meter::-webkit-meter-bar {
+  background: none; /* Required to get rid of the default background property */
+  background-color: whiteSmoke;
+
+}
+
+.wcl-progress-meter meter::-webkit-meter-optimum-value {
+  box-shadow: 0 5px 5px -5px #999 inset;
+  background: #8bcf69;
+
+}
+
+
+
+.wcl-progress-meter meter::-webkit-meter-suboptimum-value {
+  box-shadow: 0 5px 5px -5px #999 inset;
+  background: #e6d450;
+
+}
+
+
+.wcl-progress-meter .zero {
+  display: block;
+  position: absolute;
+  top: -100%;
+
+}
+
+.wcl-progress-meter .min {
+  display: block;
+  position: absolute;
+  top: -100%;
+}
+
+.wcl-progress-meter .max {
+  display: block;
+  position: absolute;
+  top: -100%;
+  right: 0;
+}
+
+.competition-ajax-change {
+    margin-top: 40px;
+    display: block;
+}
+.competition-time:after{
+  content: "";
+  clear: both;
+  display: table;
+}
+span.sold {
+  position: absolute;
+  bottom: 30px;
+  left: 35%;
+}
+
+ul.tickets_numbers {margin: 0 0 1em 0; padding-top: 0; clear: both;}
+ul.tickets_numbers::after { content: ""; clear: both; display: table;}
+ul.tickets_numbers li.tn{ display: block; list-style: none; border: 1px solid #000; padding:1em; float: left; width: 60px; height:60px; text-align: center; margin: 0.5em; cursor: pointer; font-size: 1em; font-weight: 700; white-space: nowrap;}
+ul.tickets_numbers.working, ul.tickets_numbers.working li{ cursor: wait; }
+ul.tickets_numbers li.taken{ background: #ed6363; background: #ed636380; cursor: not-allowed;}
+ul.tickets_numbers li.working{ opacity: 0.4; }
+ul.tickets_numbers li.in_cart{ background: #f2c84c; background: #f2c84cbd; cursor: not-allowed;}
+ul.tickets_numbers li.reserved{ background: #FCE7E7; background: #FCE7E7; cursor: not-allowed;}
+ul.tickets_numbers li.selected{ background: #8bcf69 !important}
+ul.tickets_numbers li:hover{ background: #8bcf69; background: #8bcf697a;}
+ul.tickets_numbers li.taken:hover{ background: #8bcf69;background: #8bcf698f;}
+
+ul.competition-answers{margin: 0 0 1em 0; padding-top: 0; clear: both; width: 100%}
+ul.competition-answers li{ display: block; list-style: none; border: 1px solid #000; padding:1em;  width: 100%;  margin: 0 0 4px 0; cursor: pointer; font-size: 1em; font-weight: 700;}
+ul.competition-answers li.selected{background: #8bcf69}
+ul.competition-answers li.selected.false{background: #ed6363}
+
+.ticket-tab-bar{ width: 100%; overflow: hidden; }
+.ticket-tab-bar .ticket-tab-bar-item { padding: 8px 16px; float: left; width: auto; border: none; display: block; outline: 0; opacity: 0.6}
+.ticket-tab-bar .ticket-tab-bar-item.ticket-tab-active{opacity: 1}
+.ticketnumber-tab-container{margin:0; padding: 0; list-style: none; display: block;}
+.ticketnumber-tab-container > ul {margin:0; padding: 0;}
+
+.cart.pick-number.hidden-qty .quantity{ display: none; }
+.cart.pick-number.hidden-qty .lucky_dip .quantity{ display: inline-block; }
+div.lucky_dip{ margin-bottom: 10px; }
+div.lucky_dip button:disabled { opacity: 0.5 !important;  cursor: not-allowed !important; }
+
+.lucky-dip-button-second {margin-right: 10px;}
+.lucky-dip-text{margin-bottom: 10px;}
+.alertable .gtc{float: right}
+.alertable-buttons {clear: both; margin-top: 10px;}
+#competition_answer_drop{width: 100%; padding: 10px}
+
+/**
+ * Elementor support
+ */
+ .woocommerce div.product.elementor .elementor-lucky-dip {
+    margin: 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+ }
+.elementor-lucky-dip--align-right .elementor-lucky-dip {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+.elementor-lucky-dip--align-left .elementor-lucky-dip {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start; }
+.elementor-lucky-dip--align-center .elementor-lucky-dip {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+
+.elementor-lucky-dip--align-justify .elementor-lucky-dip button{
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+}
+.woocommerce div.product.elementor .elementor-elementor-lucky-dip--align-justify .lucky_dip {
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.woocommerce div.elementor-widget-woocommerce-product-lucky-dip .lucky_dip  {
+    margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+th.woocommerce-orders-table__header.woocommerce-orders-table__header {min-width: 160px;}
+h4.woocommerce-products-header__title.page-title.mytickets {display: inline-table; margin: 0 15px 0 15px; padding: 5px 25px 5px 25px; }
+header.woocommerce-products-header {margin-bottom: 15px}
+h4.woocommerce-products-header__title.page-title.mytickets a {text-decoration: none;}
+h4.woocommerce-products-header__title.page-title.mytickets.active, h4.woocommerce-products-header__title.page-title.mytickets.active, h4.woocommerce-products-header__title.page-title.mytickets:hover
+{background: #eee}

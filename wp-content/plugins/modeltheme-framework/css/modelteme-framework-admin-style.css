@@ -1,0 +1,29 @@
+.parent_menu img {
+    padding-top: 3px !important;
+    position: relative !important;
+    top: 3px;
+    width: 20px !important;
+}
+.mt_all_possible_answers_wrapper.answers label {
+    margin: 5px 0px;
+}
+.mt_all_possible_answers_wrapper.answers table.options_group {
+    padding: 15px 15px;
+    border: none;
+}
+div#mt_add_question_product_options button {
+    margin: 20px 15px 30px;
+}
+.mt_all_possible_answers_wrapper.answers td.answer_checkbox label {
+    width: 20px;
+}
+.mt_all_possible_answers_wrapper a.mt_remove_row {
+    font-size: 20px;
+    text-decoration: none;
+}
+.mt_all_possible_answers_wrapper.answers table.options_group input.lottery_answer {
+    width: 70%;
+}
+.mt_all_possible_answers_wrapper.answers table.options_group .checkbox {
+    margin: 2px 5px!important;
+}

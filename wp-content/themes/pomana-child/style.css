@@ -1,0 +1,127 @@
+/*
+Theme Name: Pomana Child
+Theme URI: https://pomana.modeltheme.com/
+Template: pomana
+Author: ModelTheme
+Author URI: http://modeltheme.com/
+Description: Lottery & Giveaways WordPress Theme
+Version: 1.0
+Text Domain: pomana
+Tags: custom-header, custom-menu, featured-images, post-formats, sticky-post
+*/
+/* Theme customization starts here
+------------------------------------------------------- */
+a#yith-quick-view-close {
+    color: #000 !important;
+    font-weight: bold;
+}
+a.cus_link {
+    border: 1px solid;
+    padding: 7px 35px;
+    border-radius: 10px;
+}
+div#car_image .vc_column-inner {
+    padding: 20px !important;
+}
+p.lottery-end {
+    display: none;
+}
+.competition-time.countdown {
+    display: none;
+}
+.competition-ajax-change {
+    margin-top: 5px !important;
+}
+input#terms {
+    position: inherit;
+}
+
+#how-to-play .vc_col-sm-12 .vc_inner .vc_column_container {
+    margin-bottom: 40px;
+}
+
+#how-to-play .vc_col-sm-12 .vc_inner .vc_column_container .vc_column-inner .mt-addons-box-shadow{
+    padding: 25px 10px;
+}
+
+#how-to-play .vc_col-sm-12 .vc_inner .vc_column_container a span {
+    color: #ec6623 !important;
+}
+form.cart.pick-number h3:first-child {
+    display: none;
+}
+
+form.cart.pick-number p:nth-child(2) {
+    display: none;
+}
+
+form.cart.pick-number ul.competition-answers:nth-child(3) {
+    display: none;
+}
+
+ul.competition-answers {
+    margin-bottom: 35px !important;
+}
+ul.products.columns-4 table tr th:nth-child(1), ul.products.columns-4 table tr td:nth-child(1) {
+    display: none;
+}
+
+@media only screen and (min-width: 768px){
+    #how-to-play .vc_col-sm-12 .vc_inner .vc_column_container .vc_column-inner h6 {
+        min-height: 96px;
+    }
+    ul.competition-answers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+ul.competition-answers li {
+    text-align: center;
+    margin: 0 5px !important;
+}
+form.cart.pick-number h3 {
+    margin-top: 0px;
+}
+}
+
+@media only screen and (min-width: 992px){
+    #how-to-play .vc_col-sm-12 .vc_inner .vc_column_container .vc_column-inner h6 {
+        min-height: 72px;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    #how-to-play .vc_col-sm-12 .vc_inner .vc_column_container .vc_column-inner h6 {
+        min-height: 53px;
+    }
+}
+
+
+@media only screen and (max-width: 1100px){
+.top-links {
+    display: block !important;
+}
+}
+@media only screen and (min-width: 768px) and (max-width: 991px){
+    span.sold {
+        position: unset !important;
+    }
+}
+
+@media only screen and (max-width: 767px){
+.modeltheme-breadcrumbs .page-title {
+    padding: 60px 0px 5px !important;
+}
+.woocommerce table.cart td.actions .coupon .input-text+.button {
+       float: right;
+}
+}
+
+
+
+@media only screen and (max-width: 440px){
+    span.sold {
+        position: unset !important;
+    }
+}

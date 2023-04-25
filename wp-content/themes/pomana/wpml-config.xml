@@ -1,0 +1,32 @@
+<wpml-config>
+    <custom-fields>
+        <custom-field action="translate">pomana_post_border_button_color</custom-field>
+        <custom-field action="translate">pomana_post_border_color</custom-field>
+        <custom-field action="translate">pomana_post_background_color</custom-field>
+        <custom-field action="translate">pomana_course_featured_image</custom-field>
+        <custom-field action="translate">pomana_related_courses</custom-field>
+        <custom-field action="translate">pomana_contact_latitude</custom-field>
+        <custom-field action="translate">pomana_contact_longitude</custom-field>
+        <custom-field action="translate">pomana_testimonial_border_color</custom-field>
+        <custom-field action="translate">pomana_testimonial_bg_color</custom-field>
+        <custom-field action="translate">pomana_service_badge_background_color</custom-field>
+        <custom-field action="translate">pomana_service_badge_border_color</custom-field>
+        <custom-field action="translate">pomana_service_badge_icon</custom-field>
+        <custom-field action="translate">pomana_service_category</custom-field>
+        <custom-field action="translate">pomana_event_bg_color</custom-field>
+        <custom-field action="translate">pomana_event_border_color</custom-field>
+        <custom-field action="translate">pomana_course_background_color</custom-field>
+        <custom-field action="translate">pomana_course_border_color</custom-field>
+        <custom-field action="translate">pomana_course_badge_icon</custom-field>
+        <custom-field action="translate">pomana_course_layout</custom-field>
+        <custom-field action="translate">pomana_course_sidebar</custom-field>
+    </custom-fields>
+    <custom-types>
+        <custom-type translate="1">contact_locations</custom-type>
+        <custom-type translate="1">testimonial</custom-type>
+        <custom-type translate="1">service</custom-type>
+    </custom-types>    
+    <taxonomies>
+        <taxonomy translate="1">services</taxonomy>
+    </taxonomies>    
+</wpml-config>

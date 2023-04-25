@@ -1,0 +1,9 @@
+2023-02-17 - version 1.2
+* Fix: couple minor errors
+* Fix: cart verification bug
+
+2023-02-09 - version 1.1
+* Fix: fatal error when competition does not have ticket numbers
+
+2022-11-09 - version 1.0
+* Inital release
