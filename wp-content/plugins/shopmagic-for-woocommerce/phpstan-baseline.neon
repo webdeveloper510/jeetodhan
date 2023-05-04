@@ -1,0 +1,152 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method ShopMagicVendor\\\\WPDesk\\\\Forms\\\\Field::#"
+			path: src
+
+		-
+			message: "#^Cannot call method \\w+\\(\\) on WPDesk\\\\ShopMagic\\\\Workflow\\\\Event\\\\DataLayer\\|null\\.$#"
+			paths:
+					- src/Workflow/Action
+					- src/Workflow/Event
+					- src/Workflow/Filter
+					- src/Workflow/Placeholder
+
+		-
+			message: "#^Cannot call method \\w+\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			path: src
+
+		-
+			message: "#^Access to constant STATUS_PENDING on an unknown class ActionScheduler_Store\\.$#"
+			count: 2
+			path: src/Api/Controller/QueueController.php
+
+		-
+			message: "#^Call to static method store\\(\\) on an unknown class ActionScheduler\\.$#"
+			count: 2
+			path: src/Api/Controller/QueueController.php
+
+		-
+			message: "#^Class ActionScheduler_Abstract_Schedule not found\\.$#"
+			count: 1
+			path: src/Api/Controller/QueueController.php
+
+		-
+			message: "#^Parameter \\$queue_action of anonymous function has invalid type ActionScheduler_Action\\.$#"
+			count: 1
+			path: src/Api/Controller/QueueController.php
+
+		-
+			message: "#^Access to constant STATUS_PENDING on an unknown class ActionScheduler_Store\\.$#"
+			count: 1
+			path: src/Api/Controller/StatisticsController.php
+
+		-
+			message: "#^Class WC_Subscription not found\\.$#"
+			count: 2
+			path: src/DataSharing/SubscriptionTestProvider.php
+
+		-
+			message: "#^Parameter \\$integrator of method WPDesk\\\\ShopMagic\\\\Extensions\\\\Builtin\\\\FlexibleCheckoutFieldsExtension\\:\\:__construct\\(\\) has invalid type WPDesk\\\\FCF\\\\Free\\\\Integration\\\\Integrator\\.$#"
+			count: 1
+			path: src/Extensions/Builtin/FlexibleCheckoutFieldsExtension.php
+
+		-
+			message: "#^Class WC_Memberships_User_Membership not found\\.$#"
+			count: 1
+			path: src/Extensions/Elements/Groups.php
+
+		-
+			message: "#^Class WC_Subscription not found\\.$#"
+			count: 1
+			path: src/Extensions/Elements/Groups.php
+
+		-
+			message: "#^Class WPDesk\\\\ShopMagicCart\\\\Cart\\\\Cart not found\\.$#"
+			count: 1
+			path: src/Extensions/Elements/Groups.php
+
+		-
+			message: "#^Access to constant STATUS_PENDING on an unknown class ActionScheduler_Store\\.$#"
+			count: 1
+			path: src/HookEmitter/EventBefore.php
+
+		-
+			message: "#^Class WPDesk\\\\FCF\\\\Free\\\\Integration\\\\FieldInterface not found\\.$#"
+			count: 1
+			path: src/Integration/FlexibleCheckoutFields/Placeholder/OrderCheckoutField.php
+
+		-
+			message: "#^Parameter \\$field of anonymous function has invalid type WPDesk\\\\FCF\\\\Free\\\\Integration\\\\FieldInterface\\.$#"
+			count: 1
+			path: src/Integration/FlexibleCheckoutFields/Placeholder/OrderCheckoutField.php
+
+		-
+			message: "#^Parameter \\$integrator of method WPDesk\\\\ShopMagic\\\\Integration\\\\FlexibleCheckoutFields\\\\Placeholder\\\\OrderCheckoutField\\:\\:__construct\\(\\) has invalid type WPDesk\\\\FCF\\\\Free\\\\Integration\\\\Integrator\\.$#"
+			count: 1
+			path: src/Integration/FlexibleCheckoutFields/Placeholder/OrderCheckoutField.php
+
+		-
+			message: "#^Function fs_get_order_shipments not found\\.$#"
+			count: 1
+			path: src/Integration/FlexibleShipping/Placeholder/OrderShipmentTrackingLinks.php
+
+		-
+			message: "#^Class WPDesk\\\\ShopMagic\\\\Customer\\\\CustomerFactory constructor invoked with 0 parameters, 1 required\\.$#"
+			count: 1
+			path: src/Marketing/Subscribers/Shortcode/FrontendListSubscription.php
+
+		-
+			message: "#^Class WPDesk\\\\ShopMagic\\\\Action\\\\BasicAction not found\\.$#"
+			count: 1
+			path: src/Plugin.php
+
+		-
+			message: "#^Class WPDesk\\\\ShopMagic\\\\Event\\\\BasicEvent not found\\.$#"
+			count: 1
+			path: src/Plugin.php
+
+		-
+			message: "#^Class WPDesk\\\\ShopMagic\\\\Filter\\\\BasicFilter not found\\.$#"
+			count: 1
+			path: src/Plugin.php
+
+		-
+			message: "#^Class WPDesk\\\\ShopMagic\\\\FormField\\\\Field\\\\MultipleInputTextField not found\\.$#"
+			count: 1
+			path: src/Plugin.php
+
+		-
+			message: "#^Class WPDesk\\\\ShopMagic\\\\Placeholder\\\\BasicPlaceholder not found\\.$#"
+			count: 1
+			path: src/Plugin.php
+
+		-
+			message: "#^Class WPDesk\\\\ShopMagic\\\\WPDesk\\\\ShopMagic\\\\Filter\\\\ComparisionType\\\\ComparisionType not found\\.$#"
+			count: 1
+			path: src/Plugin.php
+
+		-
+			message: "#^Call to static method is_initialized\\(\\) on an unknown class ActionScheduler\\.$#"
+			count: 1
+			path: src/Workflow/Queue/ActionSchedulerQueue.php
+
+		-
+			message: "#^Call to static method store\\(\\) on an unknown class ActionScheduler\\.$#"
+			count: 1
+			path: src/Workflow/Queue/ActionSchedulerQueue.php
+
+		-
+			message: "#^Function as_get_scheduled_actions not found\\.$#"
+			count: 1
+			path: src/Workflow/Queue/ActionSchedulerQueue.php
+
+		-
+			message: "#^Function as_schedule_single_action not found\\.$#"
+			count: 1
+			path: src/Workflow/Queue/ActionSchedulerQueue.php
+
+		-
+			message: "#^Function as_unschedule_all_actions not found\\.$#"
+			count: 1
+			path: src/Workflow/Queue/ActionSchedulerQueue.php

@@ -1465,3 +1465,359 @@ Stack trace:
 [20-Apr-2023 09:22:40 UTC] The Automattic\WooCommerce\Admin\API\Options::get_options function is deprecated since version 3.1.
 [20-Apr-2023 12:21:05 UTC] The Automattic\WooCommerce\Admin\API\Options::get_options function is deprecated since version 3.1.
 [20-Apr-2023 12:21:05 UTC] The Automattic\WooCommerce\Admin\API\Options::get_options function is deprecated since version 3.1.
+[25-Apr-2023 10:22:37 UTC] Cron reschedule event error for hook: user_registration_usage_stats_scheduled_events, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"biweekly","args":[],"interval":1296000}
+[02-May-2023 11:29:52 UTC] The Automattic\WooCommerce\Admin\API\Options::get_options function is deprecated since version 3.1.
+[02-May-2023 11:29:52 UTC] The Automattic\WooCommerce\Admin\API\Options::get_options function is deprecated since version 3.1.
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:16.903998+00:00] shopmagic.DEBUG: Trying to extract guest from order #24996 {"id":24996} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:16.936139+00:00] shopmagic.DEBUG: Successfully extracted guest #g_1 from order #24996 {"guest":"g_1","order_id":24996} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:16.936158+00:00] shopmagic.DEBUG: Trying to extract guest from order #25001 {"id":25001} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:16.957920+00:00] shopmagic.DEBUG: Successfully extracted guest #g_2 from order #25001 {"guest":"g_2","order_id":25001} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:16.957935+00:00] shopmagic.DEBUG: Trying to extract guest from order #25009 {"id":25009} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:16.977788+00:00] shopmagic.DEBUG: Successfully extracted guest #g_2 from order #25009 {"guest":"g_2","order_id":25009} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:16.977801+00:00] shopmagic.DEBUG: Trying to extract guest from order #25011 {"id":25011} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:16.998806+00:00] shopmagic.DEBUG: Successfully extracted guest #g_3 from order #25011 {"guest":"g_3","order_id":25011} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:16.998831+00:00] shopmagic.DEBUG: Trying to extract guest from order #25012 {"id":25012} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.020409+00:00] shopmagic.DEBUG: Successfully extracted guest #g_4 from order #25012 {"guest":"g_4","order_id":25012} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.020422+00:00] shopmagic.DEBUG: Trying to extract guest from order #25015 {"id":25015} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.041458+00:00] shopmagic.DEBUG: Successfully extracted guest #g_5 from order #25015 {"guest":"g_5","order_id":25015} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.072752+00:00] shopmagic.DEBUG: Trying to extract guest from order #24996 {"id":24996} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.080063+00:00] shopmagic.ERROR: Guest extraction for order #24996 was impossible. Reason: Failed to save intercepted guest from Order provider {"reason":"Failed to save intercepted guest from Order provider","order_id":24996} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.080738+00:00] shopmagic.DEBUG: Trying to extract guest from order #25001 {"id":25001} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.102291+00:00] shopmagic.DEBUG: Successfully extracted guest #g_2 from order #25001 {"guest":"g_2","order_id":25001} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.102425+00:00] shopmagic.DEBUG: Trying to extract guest from order #25009 {"id":25009} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.121166+00:00] shopmagic.DEBUG: Successfully extracted guest #g_2 from order #25009 {"guest":"g_2","order_id":25009} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.121317+00:00] shopmagic.DEBUG: Trying to extract guest from order #25011 {"id":25011} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.129939+00:00] shopmagic.ERROR: Guest extraction for order #25011 was impossible. Reason: Failed to save intercepted guest from Order provider {"reason":"Failed to save intercepted guest from Order provider","order_id":25011} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.130022+00:00] shopmagic.DEBUG: Trying to extract guest from order #25012 {"id":25012} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.137792+00:00] shopmagic.ERROR: Guest extraction for order #25012 was impossible. Reason: Failed to save intercepted guest from Order provider {"reason":"Failed to save intercepted guest from Order provider","order_id":25012} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.137884+00:00] shopmagic.DEBUG: Trying to extract guest from order #25015 {"id":25015} [], requestId: 64511680b25df4.42144931
+[02-May-2023 13:56:17 UTC] [2023-05-02T13:56:17.144903+00:00] shopmagic.ERROR: Guest extraction for order #25015 was impossible. Reason: Failed to save intercepted guest from Order provider {"reason":"Failed to save intercepted guest from Order provider","order_id":25015} [], requestId: 64511680b25df4.42144931
+[02-May-2023 14:29:31 UTC] Cron reschedule event error for hook: shopmagic/core/cron/one_minute, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"shopmagic\/core\/cron\/one_minute","args":[],"interval":60}
+[02-May-2023 14:30:39 UTC] Cron reschedule event error for hook: shopmagic/core/cron/two_minutes, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"shopmagic\/core\/cron\/two_minutes","args":[],"interval":120}
+[02-May-2023 14:32:01 UTC] Cron reschedule event error for hook: shopmagic/core/cron/five_minutes, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"shopmagic\/core\/cron\/five_minutes","args":[],"interval":300}
+[02-May-2023 14:42:16 UTC] Cron reschedule event error for hook: shopmagic/core/cron/fifteen_minutes, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"shopmagic\/core\/cron\/fifteen_minutes","args":[],"interval":900}
+[02-May-2023 14:58:03 UTC] Cron reschedule event error for hook: shopmagic/core/cron/hourly, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"shopmagic\/core\/cron\/hourly","args":[],"interval":3600}
+[02-May-2023 14:58:03 UTC] Cron reschedule event error for hook: shopmagic/core/cron/thirty_minutes, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"shopmagic\/core\/cron\/thirty_minutes","args":[],"interval":1800}
+[02-May-2023 17:59:04 UTC] Cron reschedule event error for hook: shopmagic/core/cron/four_hours, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"shopmagic\/core\/cron\/four_hours","args":[],"interval":14400}
+[02-May-2023 20:37:33 UTC] PHP Fatal error:  Uncaught Error: Class 'Twilio\Rest\Client' not found in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:683
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): send_verification_code_on_registration('testing', 'kohalsumit@gmai...', Object(WP_Error))
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-user-functions.php(81): do_action('woocommerce_reg...', 'testing', 'kohalsumit@gmai...', Object(WP_Error))
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/class-wc-form-handler.php(1092): wc_create_new_customer('kohalsumit@gmai...', 'testing', 'testing.test@32...')
+#5 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): WC_Form_Handler::process_registration('')
+#6 /home/cod in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 683
+[02-May-2023 20:38:46 UTC] PHP Fatal error:  Uncaught Error: Class 'Twilio\Rest\Client' not found in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:683
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): send_verification_code_on_registration('testing', 'kohalsumit@gmai...', Object(WP_Error))
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-user-functions.php(81): do_action('woocommerce_reg...', 'testing', 'kohalsumit@gmai...', Object(WP_Error))
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/class-wc-form-handler.php(1092): wc_create_new_customer('kohalsumit@gmai...', 'testing', 'testing.test@32...')
+#5 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): WC_Form_Handler::process_registration('')
+#6 /home/cod in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 683
+[02-May-2023 20:47:11 UTC] PHP Parse error:  syntax error, unexpected 'use' (T_USE) in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 683
+[02-May-2023 20:48:00 UTC] PHP Fatal error:  Uncaught Error: Class 'Twilio\Rest\Client' not found in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:689
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): send_verification_code_on_registration('testing', 'kohalsumit@gmai...', Object(WP_Error))
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-user-functions.php(81): do_action('woocommerce_reg...', 'testing', 'kohalsumit@gmai...', Object(WP_Error))
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/class-wc-form-handler.php(1092): wc_create_new_customer('kohalsumit@gmai...', 'testing', 'testing.test@32...')
+#5 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): WC_Form_Handler::process_registration('')
+#6 /home/cod in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 689
+[02-May-2023 21:00:55 UTC] PHP Warning:  require(/home/codenomad/public_html/lottery/wp-content/themes/pomana/twilio-php-main/src/Twilio/autoload.php): failed to open stream: No such file or directory in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 683
+[02-May-2023 21:00:55 UTC] PHP Fatal error:  require(): Failed opening required '/home/codenomad/public_html/lottery/wp-content/themes/pomana/twilio-php-main/src/Twilio/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 683
+[02-May-2023 21:04:07 UTC] PHP Notice:  Undefined variable: twilio_number in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 693
+[02-May-2023 21:07:22 UTC] PHP Notice:  Undefined variable: twilio_number in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 693
+[03-May-2023 05:56:11 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function send_verification_code_on_registration(), 1 passed in /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php on line 308 and exactly 3 expected in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:725
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): send_verification_code_on_registration('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(688): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#5 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#6 /home/codenomad/public_html/lottery/wp-includes/p in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 725
+[03-May-2023 05:56:43 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function send_verification_code_on_registration(), 1 passed in /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php on line 308 and exactly 3 expected in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:725
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): send_verification_code_on_registration('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(688): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#5 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#6 /home/codenomad/public_html/lottery/wp-includes/p in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 725
+[03-May-2023 05:56:46 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function send_verification_code_on_registration(), 1 passed in /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php on line 308 and exactly 3 expected in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:725
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): send_verification_code_on_registration('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(688): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#5 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#6 /home/codenomad/public_html/lottery/wp-includes/p in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 725
+[03-May-2023 06:00:56 UTC] PHP Notice:  Undefined index: billing_phone in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+[03-May-2023 06:00:56 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to Twilio\Rest\Api\V2010\Account\MessageList::create() must be of the type string, null given, called in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 676 and defined in /home/codenomad/public_html/lottery/wp-content/themes/pomana/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php:61
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(676): Twilio\Rest\Api\V2010\Account\MessageList->create(NULL, Array)
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#2 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#5 /home/codenomad/public_html in /home/codenomad/public_html/lottery/wp-content/themes/pomana/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php on line 61
+[03-May-2023 06:02:03 UTC] PHP Notice:  Undefined index: billing_phone in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 714
+[03-May-2023 06:02:03 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to Twilio\Rest\Api\V2010\Account\MessageList::create() must be of the type string, null given, called in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 732 and defined in /home/codenomad/public_html/lottery/wp-content/themes/pomana/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php:61
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(732): Twilio\Rest\Api\V2010\Account\MessageList->create(NULL, Array)
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#2 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#5 /home/codenomad/public_html in /home/codenomad/public_html/lottery/wp-content/themes/pomana/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php on line 61
+[03-May-2023 06:03:26 UTC] PHP Fatal error:  Cannot redeclare send_verification_code_on_registration() (previously declared in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:657) in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 753
+[03-May-2023 06:03:39 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function send_verification_code_on_registration(), 1 passed in /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php on line 308 and exactly 3 expected in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:657
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): send_verification_code_on_registration('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /h in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 657
+[03-May-2023 06:38:36 UTC] PHP Notice:  Undefined index: billing_phone in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+[03-May-2023 06:38:40 UTC] PHP Notice:  Undefined index: billing_phone in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+[03-May-2023 06:39:16 UTC] PHP Notice:  Undefined index: billing_phone in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+[03-May-2023 06:39:24 UTC] PHP Notice:  Undefined index: billing_phone in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+[03-May-2023 06:40:38 UTC] PHP Notice:  Undefined index: billing_phone in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 713
+[03-May-2023 09:36:53 UTC] PHP Notice:  Undefined index: billing_phone in /home/codenomad/public_html/lottery/otpAjax.php on line 4
+[03-May-2023 09:39:21 UTC] PHP Notice:  Undefined index: billing_phone in /home/codenomad/public_html/lottery/otpAjax.php on line 4
+[03-May-2023 09:41:36 UTC] PHP Warning:  require(/home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/autoload.php): failed to open stream: No such file or directory in /home/codenomad/public_html/lottery/otpAjax.php on line 9
+[03-May-2023 09:41:36 UTC] PHP Fatal error:  require(): Failed opening required '/home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/codenomad/public_html/lottery/otpAjax.php on line 9
+[03-May-2023 09:42:35 UTC] PHP Notice:  Undefined index: phoneNumber in /home/codenomad/public_html/lottery/otpAjax.php on line 4
+[03-May-2023 09:42:35 UTC] PHP Warning:  require(/home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/autoload.php): failed to open stream: No such file or directory in /home/codenomad/public_html/lottery/otpAjax.php on line 9
+[03-May-2023 09:42:35 UTC] PHP Fatal error:  require(): Failed opening required '/home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/codenomad/public_html/lottery/otpAjax.php on line 9
+[03-May-2023 09:43:39 UTC] PHP Warning:  require(/home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/autoload.php): failed to open stream: No such file or directory in /home/codenomad/public_html/lottery/otpAjax.php on line 11
+[03-May-2023 09:43:39 UTC] PHP Fatal error:  require(): Failed opening required '/home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/codenomad/public_html/lottery/otpAjax.php on line 11
+[03-May-2023 09:45:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function WC() in /home/codenomad/public_html/lottery/otpAjax.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/codenomad/public_html/lottery/otpAjax.php on line 30
+[03-May-2023 09:48:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function WC() in /home/codenomad/public_html/lottery/otpAjax.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/codenomad/public_html/lottery/otpAjax.php on line 30
+[03-May-2023 09:51:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function WC() in /home/codenomad/public_html/lottery/otpAjax.php:28
+Stack trace:
+#0 {main}
+  thrown in /home/codenomad/public_html/lottery/otpAjax.php on line 28
+[03-May-2023 10:00:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function WC() in /home/codenomad/public_html/lottery/otpAjax.php:28
+Stack trace:
+#0 {main}
+  thrown in /home/codenomad/public_html/lottery/otpAjax.php on line 28
+[03-May-2023 10:15:53 UTC] PHP Fatal error:  Uncaught Twilio\Exceptions\RestException: [HTTP 400] Unable to create record: The 'To' number 9876621252 is not a valid phone number. in /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php:88
+Stack trace:
+#0 /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php(223): Twilio\Version->exception(Object(Twilio\Http\Response), 'Unable to creat...')
+#1 /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php(113): Twilio\Version->create('POST', '/Accounts/AC4c8...', Array, Array)
+#2 /home/codenomad/public_html/lottery/otpAjax.php(22): Twilio\Rest\Api\V2010\Account\MessageList->create('9876621252', Object(Twilio\Values))
+#3 {main}
+  thrown in /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php on line 88
+[03-May-2023 10:15:57 UTC] PHP Fatal error:  Uncaught Twilio\Exceptions\RestException: [HTTP 400] Unable to create record: The 'To' number 9876621252 is not a valid phone number. in /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php:88
+Stack trace:
+#0 /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php(223): Twilio\Version->exception(Object(Twilio\Http\Response), 'Unable to creat...')
+#1 /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php(113): Twilio\Version->create('POST', '/Accounts/AC4c8...', Array, Array)
+#2 /home/codenomad/public_html/lottery/otpAjax.php(22): Twilio\Rest\Api\V2010\Account\MessageList->create('9876621252', Object(Twilio\Values))
+#3 {main}
+  thrown in /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php on line 88
+[03-May-2023 10:47:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+[03-May-2023 10:47:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+[03-May-2023 10:47:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/c in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+[03-May-2023 10:48:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:660
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/c in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 660
+[03-May-2023 10:56:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:663
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 663
+[03-May-2023 10:57:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:663
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/c in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 663
+[03-May-2023 10:58:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:659
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/c in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 659
+[03-May-2023 10:58:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:659
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/c in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 659
+[03-May-2023 11:00:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:659
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 659
+[03-May-2023 11:00:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:659
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 659
+[03-May-2023 11:00:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:659
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/c in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 659
+[03-May-2023 11:01:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:659
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 659
+[03-May-2023 11:03:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+[03-May-2023 11:03:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+[03-May-2023 11:04:39 UTC] PHP Fatal error:  Uncaught Error: Class 'Intl' not found in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/codenomad/public_html/lottery/wp-includes/cla in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+[03-May-2023 11:04:43 UTC] PHP Fatal error:  Uncaught Error: Class 'Intl' not found in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/codenomad/public_html/lottery/wp-includes/cla in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+[03-May-2023 11:05:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Intl' not found in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/codenomad/public_html/lottery/wp-includes/cla in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+[03-May-2023 12:22:03 UTC] PHP Fatal error:  Uncaught Twilio\Exceptions\RestException: [HTTP 400] Unable to create record: The 'To' number 9888838436 is not a valid phone number. in /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php:88
+Stack trace:
+#0 /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php(223): Twilio\Version->exception(Object(Twilio\Http\Response), 'Unable to creat...')
+#1 /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php(113): Twilio\Version->create('POST', '/Accounts/AC4c8...', Array, Array)
+#2 /home/codenomad/public_html/lottery/otpAjax.php(22): Twilio\Rest\Api\V2010\Account\MessageList->create('9888838436', Object(Twilio\Values))
+#3 {main}
+  thrown in /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php on line 88
+[03-May-2023 13:14:43 UTC] PHP Fatal error:  Uncaught Twilio\Exceptions\RestException: [HTTP 400] Unable to create record: The 'To' number  is not a valid phone number. in /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php:88
+Stack trace:
+#0 /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php(223): Twilio\Version->exception(Object(Twilio\Http\Response), 'Unable to creat...')
+#1 /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php(113): Twilio\Version->create('POST', '/Accounts/AC4c8...', Array, Array)
+#2 /home/codenomad/public_html/lottery/otpAjax.php(22): Twilio\Rest\Api\V2010\Account\MessageList->create('wde', Object(Twilio\Values))
+#3 {main}
+  thrown in /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php on line 88
+[03-May-2023 13:14:44 UTC] PHP Fatal error:  Uncaught Twilio\Exceptions\RestException: [HTTP 400] Unable to create record: The 'To' number  is not a valid phone number. in /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php:88
+Stack trace:
+#0 /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php(223): Twilio\Version->exception(Object(Twilio\Http\Response), 'Unable to creat...')
+#1 /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php(113): Twilio\Version->create('POST', '/Accounts/AC4c8...', Array, Array)
+#2 /home/codenomad/public_html/lottery/otpAjax.php(22): Twilio\Rest\Api\V2010\Account\MessageList->create('wde', Object(Twilio\Values))
+#3 {main}
+  thrown in /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php on line 88
+[03-May-2023 13:29:09 UTC] PHP Fatal error:  Uncaught Twilio\Exceptions\RestException: [HTTP 400] Unable to create record: The 'To' number 9888838436 is not a valid phone number. in /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php:88
+Stack trace:
+#0 /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php(223): Twilio\Version->exception(Object(Twilio\Http\Response), 'Unable to creat...')
+#1 /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php(113): Twilio\Version->create('POST', '/Accounts/AC4c8...', Array, Array)
+#2 /home/codenomad/public_html/lottery/otpAjax.php(22): Twilio\Rest\Api\V2010\Account\MessageList->create('9888838436', Object(Twilio\Values))
+#3 {main}
+  thrown in /home/codenomad/public_html/lottery/twilio-php-main/src/Twilio/Version.php on line 88
+[03-May-2023 13:56:42 UTC] Cron reschedule event error for hook: shopmagic/core/cron/daily, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"shopmagic\/core\/cron\/daily","args":[],"interval":86400}

@@ -64,7 +64,89 @@ const anchor = document.querySelector("a[href='#tab-lottery_history']");
 anchor.textContent = "Draw History";
 
 </script>
-
+<script>
+ jQuery(document).ready(function($) {
+     $("#otpAjax").on('click',function() {
+         
+                var phoneNumber =  $('#billing_phone').val();
+                if(phoneNumber != '')
+                {
+                      $.ajax({
+                            url:'http://www.wellspringinfotech.com/lottery/otpAjax.php',
+                            type:'post',
+                            data:{
+                                phoneNumber: phoneNumber,
+                            },
+                            success:function(data)
+                            {
+                               var result = JSON.parse(data);
+                               if(result.status == 'success')
+                               {
+                                   var sOtp = result.verification_code;
+                                  var input = document.createElement("input");
+                                    
+                                    input.setAttribute("type", "hidden");
+                                    
+                                    input.setAttribute("name", "sOtp");
+                                    input.setAttribute("id", "sOtp");
+                                    input.setAttribute("value", sOtp);
+                                    
+                                    //append to form element that you want .
+                                      $('#sotpDiv').html(input);
+                                  $('#registration-popup').fadeIn();
+                               }
+                            }
+                    })
+                }
+                else
+                {
+                     alert('Please fill all the mandatory details first');
+                }
+      
+        });
+       
+         $("#resendOtp").on('click',function() {
+             var phoneNumber =  $('#billing_phone').val();
+                if(phoneNumber != '')
+                {
+                      $.ajax({
+                            url:'http://www.wellspringinfotech.com/lottery/otpAjax.php',
+                            type:'post',
+                            data:{
+                                phoneNumber: phoneNumber,
+                            },
+                            success:function(data)
+                            {
+                               var result = JSON.parse(data);
+                               if(result.status == 'success')
+                               {
+                                   var sOtp = result.verification_code;
+                                   var el = document.getElementById('sOtp');
+                                   if(el)
+                                   {
+                                       $("#sOtp").remove();
+                                   }
+                                   
+                                  var input = document.createElement("input");
+                                  input.setAttribute("type", "hidden");
+                                    input.setAttribute("name", "sOtp");
+                                    input.setAttribute("id", "sOtp");
+                                    input.setAttribute("value", sOtp);
+                                    
+                                    //append to form element that you want .
+                                    $('#sotpDiv').html(input);
+                                  $('#registration-popup').fadeIn();
+                               }
+                            }
+                    })
+                }
+                else
+                {
+                    alert('Please fill all the mandatory details first');
+                }
+        });
+ });
+</script>
 <?php wp_footer(); ?>
 </body>
 </html>

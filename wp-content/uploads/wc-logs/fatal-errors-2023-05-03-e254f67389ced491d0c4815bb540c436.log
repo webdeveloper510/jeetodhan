@@ -1,0 +1,239 @@
+2023-05-03T05:56:11+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function send_verification_code_on_registration(), 1 passed in /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php on line 308 and exactly 3 expected in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:725
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): send_verification_code_on_registration('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(688): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#5 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#6 /home/codenomad/public_html/lottery/wp-includes/p in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 725
+
+2023-05-03T05:56:43+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function send_verification_code_on_registration(), 1 passed in /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php on line 308 and exactly 3 expected in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:725
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): send_verification_code_on_registration('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(688): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#5 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#6 /home/codenomad/public_html/lottery/wp-includes/p in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 725
+
+2023-05-03T05:56:46+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function send_verification_code_on_registration(), 1 passed in /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php on line 308 and exactly 3 expected in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:725
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): send_verification_code_on_registration('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(688): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#5 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#6 /home/codenomad/public_html/lottery/wp-includes/p in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 725
+
+2023-05-03T06:00:56+00:00 CRITICAL Uncaught TypeError: Argument 1 passed to Twilio\Rest\Api\V2010\Account\MessageList::create() must be of the type string, null given, called in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 676 and defined in /home/codenomad/public_html/lottery/wp-content/themes/pomana/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php:61
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(676): Twilio\Rest\Api\V2010\Account\MessageList->create(NULL, Array)
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#2 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#5 /home/codenomad/public_html in /home/codenomad/public_html/lottery/wp-content/themes/pomana/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php on line 61
+
+2023-05-03T06:02:03+00:00 CRITICAL Uncaught TypeError: Argument 1 passed to Twilio\Rest\Api\V2010\Account\MessageList::create() must be of the type string, null given, called in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 732 and defined in /home/codenomad/public_html/lottery/wp-content/themes/pomana/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php:61
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(732): Twilio\Rest\Api\V2010\Account\MessageList->create(NULL, Array)
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#2 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#5 /home/codenomad/public_html in /home/codenomad/public_html/lottery/wp-content/themes/pomana/twilio-php-main/src/Twilio/Rest/Api/V2010/Account/MessageList.php on line 61
+
+2023-05-03T06:03:26+00:00 CRITICAL Cannot redeclare send_verification_code_on_registration() (previously declared in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:657) in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 753
+
+2023-05-03T06:03:39+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function send_verification_code_on_registration(), 1 passed in /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php on line 308 and exactly 3 expected in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:657
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): send_verification_code_on_registration('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /h in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 657
+
+2023-05-03T10:47:22+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+
+2023-05-03T10:47:30+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+
+2023-05-03T10:47:44+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/c in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+
+2023-05-03T10:48:36+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:660
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/c in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 660
+
+2023-05-03T10:56:46+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:663
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 663
+
+2023-05-03T10:57:03+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:663
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/c in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 663
+
+2023-05-03T10:58:01+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:659
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/c in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 659
+
+2023-05-03T10:58:03+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:659
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/c in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 659
+
+2023-05-03T11:00:01+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:659
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 659
+
+2023-05-03T11:00:06+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:659
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 659
+
+2023-05-03T11:00:22+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:659
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/c in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 659
+
+2023-05-03T11:01:51+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:659
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 659
+
+2023-05-03T11:03:06+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+
+2023-05-03T11:03:11+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Countries::get_country_calling_codes() in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php(57): wc_get_template('myaccount/form-...')
+#6 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/clas in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+
+2023-05-03T11:04:39+00:00 CRITICAL Uncaught Error: Class 'Intl' not found in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/codenomad/public_html/lottery/wp-includes/cla in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+
+2023-05-03T11:04:43+00:00 CRITICAL Uncaught Error: Class 'Intl' not found in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/codenomad/public_html/lottery/wp-includes/cla in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+
+2023-05-03T11:05:55+00:00 CRITICAL Uncaught Error: Class 'Intl' not found in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php:658
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): add_phone_number_to_registration_form('')
+#1 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/codenomad/public_html/lottery/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/codenomad/public_html/lottery/wp-content/themes/pomana/woocommerce/myaccount/form-login.php(105): do_action('woocommerce_reg...')
+#4 /home/codenomad/public_html/lottery/wp-includes/template.php(785): require('/home/codenomad...')
+#5 /home/codenomad/public_html/lottery/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/codenomad...', false)
+#6 /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php(626): wc_get_template_part('myaccount/form-...')
+#7 /home/codenomad/public_html/lottery/wp-includes/cla in /home/codenomad/public_html/lottery/wp-content/themes/pomana/functions.php on line 658
+
