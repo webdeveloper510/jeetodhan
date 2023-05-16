@@ -1,0 +1,43 @@
+2023-05-05T11:59:28+00:00 CRITICAL syntax error, unexpected 'display_name' (T_STRING), expecting ')' in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/public/shortcodes/class-shortcode-competition.php on line 470
+
+2023-05-05T12:00:56+00:00 CRITICAL Uncaught Error: Object of class WP_User could not be converted to string in /home/codenomad/public_html/lottery/wp-includes/formatting.php:1098
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/formatting.php(4577): wp_check_invalid_utf8(Object(WP_User))
+#1 /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/public/shortcodes/class-shortcode-competition.php(471): esc_html(Object(WP_User))
+#2 /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/public/shortcodes/class-shortcode-competition.php(109): Shortcode_Competition->product_loop_competition_winners()
+#3 /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/public/shortcodes/class-competitions_for_woocommerce-shortcodes.php(302): Shortcode_Competition->get_content_competition_winners()
+#4 /home/codenomad/public_html/lottery/wp-includes/shortcodes.php(355): Competitions_For_Woocommerce_Shortcodes::competitions_winners(Array, '', 'competitions_wi...')
+ in /home/codenomad/public_html/lottery/wp-includes/formatting.php on line 1098
+
+2023-05-05T12:01:00+00:00 CRITICAL Uncaught Error: Object of class WP_User could not be converted to string in /home/codenomad/public_html/lottery/wp-includes/formatting.php:1098
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/formatting.php(4577): wp_check_invalid_utf8(Object(WP_User))
+#1 /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/public/shortcodes/class-shortcode-competition.php(471): esc_html(Object(WP_User))
+#2 /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/public/shortcodes/class-shortcode-competition.php(109): Shortcode_Competition->product_loop_competition_winners()
+#3 /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/public/shortcodes/class-competitions_for_woocommerce-shortcodes.php(302): Shortcode_Competition->get_content_competition_winners()
+#4 /home/codenomad/public_html/lottery/wp-includes/shortcodes.php(355): Competitions_For_Woocommerce_Shortcodes::competitions_winners(Array, '', 'competitions_wi...')
+ in /home/codenomad/public_html/lottery/wp-includes/formatting.php on line 1098
+
+2023-05-05T12:01:20+00:00 CRITICAL Uncaught Error: Object of class WP_User could not be converted to string in /home/codenomad/public_html/lottery/wp-includes/formatting.php:1098
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/formatting.php(4577): wp_check_invalid_utf8(Object(WP_User))
+#1 /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/public/shortcodes/class-shortcode-competition.php(471): esc_html(Object(WP_User))
+#2 /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/public/shortcodes/class-shortcode-competition.php(109): Shortcode_Competition->product_loop_competition_winners()
+#3 /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/public/shortcodes/class-competitions_for_woocommerce-shortcodes.php(302): Shortcode_Competition->get_content_competition_winners()
+#4 /home/codenomad/public_html/lottery/wp-includes/shortcodes.php(355): Competitions_For_Woocommerce_Shortcodes::competitions_winners(Array, '', 'competitions_wi...')
+ in /home/codenomad/public_html/lottery/wp-includes/formatting.php on line 1098
+
+2023-05-05T12:26:55+00:00 CRITICAL Uncaught Error: Object of class WP_User could not be converted to string in /home/codenomad/public_html/lottery/wp-includes/formatting.php:1098
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/formatting.php(4577): wp_check_invalid_utf8(Object(WP_User))
+#1 /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php(2029): esc_html(Object(WP_User))
+#2 /home/codenomad/public_html/lottery/wp-admin/includes/template.php(1445): Competitions_For_Woocommerce_Admin->woocommerce_simple_competition_meta_callback(Object(WP_Post), Array)
+#3 /home/codenomad/public_html/lottery/wp-admin/edit-form-advanced.php(688): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#4 /home/codenomad/public_html/lottery/wp-admin/post.php(206): require('/home/codenomad...')
+#5 {main}
+  thrown in /home/codenomad/public_html/lottery/wp-includes/formatting.php on line 1098
+
+2023-05-05T12:28:55+00:00 CRITICAL syntax error, unexpected ')', expecting ';' or ',' in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+
+2023-05-05T12:29:06+00:00 CRITICAL syntax error, unexpected ')', expecting ';' or ',' in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+

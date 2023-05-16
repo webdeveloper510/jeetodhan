@@ -20,13 +20,13 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'i2179310_wp2' );
+define( 'DB_NAME', 'jeetodhan' );
 
 /** Database username */
-define( 'DB_USER', 'i2179310_wp2' );
+define( 'DB_USER', 'root' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'G.BEIb0AIUrCNMWcwxN12' );
+define( 'DB_PASSWORD', 'admin@123' );
 
 /** Database hostname */
 define( 'DB_HOST', 'localhost' );
@@ -87,7 +87,7 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/documentation/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', true );
+define( 'WP_DEBUG', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
@@ -99,6 +99,6 @@ define( 'WP_DEBUG', true );
 if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/' );
 }
-
+if ( ! defined( 'FS_METHOD' ) ) define( 'FS_METHOD', 'direct' );
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';

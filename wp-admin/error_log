@@ -126,3 +126,160 @@
 [03-May-2023 13:35:54 UTC] PHP Notice:  Undefined index: share-pinterest in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 415
 [03-May-2023 13:35:54 UTC] PHP Notice:  Undefined index: share-reddit in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 419
 [03-May-2023 13:35:54 UTC] PHP Notice:  Undefined index: share-stumbleupon in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 423
+[04-May-2023 15:03:39 UTC] The woocommerce_get_product_schema function is deprecated since version 3.0.
+[04-May-2023 15:05:59 UTC] The woocommerce_get_product_schema function is deprecated since version 3.0.
+[04-May-2023 15:29:36 UTC] The woocommerce_get_product_schema function is deprecated since version 3.0.
+[04-May-2023 15:32:07 UTC] The woocommerce_get_product_schema function is deprecated since version 3.0.
+[04-May-2023 21:33:32 UTC] The woocommerce_get_product_schema function is deprecated since version 3.0.
+[04-May-2023 21:44:38 UTC] The woocommerce_get_product_schema function is deprecated since version 3.0.
+[05-May-2023 05:46:01 UTC] PHP Notice:  Undefined index: widget_contact_details in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 108
+[05-May-2023 05:46:01 UTC] PHP Notice:  Undefined index: widget_social_icons in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 112
+[05-May-2023 05:46:01 UTC] PHP Notice:  Undefined index: share-facebook in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 395
+[05-May-2023 05:46:01 UTC] PHP Notice:  Undefined index: share-twitter in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 399
+[05-May-2023 05:46:01 UTC] PHP Notice:  Undefined index: share-linkedin in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 403
+[05-May-2023 05:46:01 UTC] PHP Notice:  Undefined index: share-googleplus in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 407
+[05-May-2023 05:46:01 UTC] PHP Notice:  Undefined index: share-digg in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 411
+[05-May-2023 05:46:01 UTC] PHP Notice:  Undefined index: share-pinterest in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 415
+[05-May-2023 05:46:01 UTC] PHP Notice:  Undefined index: share-reddit in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 419
+[05-May-2023 05:46:01 UTC] PHP Notice:  Undefined index: share-stumbleupon in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 423
+[05-May-2023 10:43:15 UTC] The woocommerce_get_product_schema function is deprecated since version 3.0.
+[05-May-2023 10:44:08 UTC] PHP Notice:  Undefined index: widget_contact_details in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 108
+[05-May-2023 10:44:08 UTC] PHP Notice:  Undefined index: widget_social_icons in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 112
+[05-May-2023 10:44:08 UTC] PHP Notice:  Undefined index: share-facebook in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 395
+[05-May-2023 10:44:08 UTC] PHP Notice:  Undefined index: share-twitter in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 399
+[05-May-2023 10:44:08 UTC] PHP Notice:  Undefined index: share-linkedin in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 403
+[05-May-2023 10:44:08 UTC] PHP Notice:  Undefined index: share-googleplus in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 407
+[05-May-2023 10:44:08 UTC] PHP Notice:  Undefined index: share-digg in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 411
+[05-May-2023 10:44:08 UTC] PHP Notice:  Undefined index: share-pinterest in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 415
+[05-May-2023 10:44:08 UTC] PHP Notice:  Undefined index: share-reddit in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 419
+[05-May-2023 10:44:08 UTC] PHP Notice:  Undefined index: share-stumbleupon in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 423
+[05-May-2023 10:45:45 UTC] The woocommerce_get_product_schema function is deprecated since version 3.0.
+[05-May-2023 10:45:49 UTC] The woocommerce_get_product_schema function is deprecated since version 3.0.
+[05-May-2023 12:14:09 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 12:15:21 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 12:18:57 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 12:25:59 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2030
+[05-May-2023 12:26:55 UTC] PHP Fatal error:  Uncaught Error: Object of class WP_User could not be converted to string in /home/codenomad/public_html/lottery/wp-includes/formatting.php:1098
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-includes/formatting.php(4577): wp_check_invalid_utf8(Object(WP_User))
+#1 /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php(2029): esc_html(Object(WP_User))
+#2 /home/codenomad/public_html/lottery/wp-admin/includes/template.php(1445): Competitions_For_Woocommerce_Admin->woocommerce_simple_competition_meta_callback(Object(WP_Post), Array)
+#3 /home/codenomad/public_html/lottery/wp-admin/edit-form-advanced.php(688): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#4 /home/codenomad/public_html/lottery/wp-admin/post.php(206): require('/home/codenomad...')
+#5 {main}
+  thrown in /home/codenomad/public_html/lottery/wp-includes/formatting.php on line 1098
+[05-May-2023 12:28:18 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 12:28:53 UTC] PHP Parse error:  syntax error, unexpected ')', expecting ';' or ',' in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 12:28:55 UTC] PHP Parse error:  syntax error, unexpected ')', expecting ';' or ',' in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 12:29:35 UTC] PHP Warning:  Use of undefined constant get_userdata - assumed 'get_userdata' (this will throw an Error in a future version of PHP) in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 12:30:29 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 12:36:51 UTC] The woocommerce_get_product_schema function is deprecated since version 3.0.
+[05-May-2023 12:37:43 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 12:51:47 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 12:57:22 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 12:57:33 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 13:17:26 UTC] PHP Notice:  Undefined index: widget_contact_details in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 108
+[05-May-2023 13:17:26 UTC] PHP Notice:  Undefined index: widget_social_icons in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 112
+[05-May-2023 13:17:26 UTC] PHP Notice:  Undefined index: share-facebook in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 395
+[05-May-2023 13:17:26 UTC] PHP Notice:  Undefined index: share-twitter in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 399
+[05-May-2023 13:17:26 UTC] PHP Notice:  Undefined index: share-linkedin in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 403
+[05-May-2023 13:17:26 UTC] PHP Notice:  Undefined index: share-googleplus in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 407
+[05-May-2023 13:17:26 UTC] PHP Notice:  Undefined index: share-digg in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 411
+[05-May-2023 13:17:26 UTC] PHP Notice:  Undefined index: share-pinterest in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 415
+[05-May-2023 13:17:26 UTC] PHP Notice:  Undefined index: share-reddit in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 419
+[05-May-2023 13:17:26 UTC] PHP Notice:  Undefined index: share-stumbleupon in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 423
+[05-May-2023 13:17:41 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 13:17:47 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 13:42:07 UTC] PHP Notice:  Undefined index: widget_contact_details in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 108
+[05-May-2023 13:42:07 UTC] PHP Notice:  Undefined index: widget_social_icons in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 112
+[05-May-2023 13:42:07 UTC] PHP Notice:  Undefined index: share-facebook in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 395
+[05-May-2023 13:42:07 UTC] PHP Notice:  Undefined index: share-twitter in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 399
+[05-May-2023 13:42:07 UTC] PHP Notice:  Undefined index: share-linkedin in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 403
+[05-May-2023 13:42:07 UTC] PHP Notice:  Undefined index: share-googleplus in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 407
+[05-May-2023 13:42:07 UTC] PHP Notice:  Undefined index: share-digg in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 411
+[05-May-2023 13:42:07 UTC] PHP Notice:  Undefined index: share-pinterest in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 415
+[05-May-2023 13:42:07 UTC] PHP Notice:  Undefined index: share-reddit in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 419
+[05-May-2023 13:42:07 UTC] PHP Notice:  Undefined index: share-stumbleupon in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 423
+[05-May-2023 13:42:09 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 13:42:15 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 13:44:11 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 13:49:17 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 13:49:44 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 13:52:17 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 13:52:26 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2029
+[05-May-2023 13:53:10 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/codenomad/public_html/lottery/wp-content/plugins/competitions-for-woocommerce/admin/class-competitions_for_woocommerce-admin.php on line 2030
+[06-May-2023 13:10:46 UTC] PHP Notice:  Undefined index: widget_contact_details in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 108
+[06-May-2023 13:10:46 UTC] PHP Notice:  Undefined index: widget_social_icons in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 112
+[06-May-2023 13:10:46 UTC] PHP Notice:  Undefined index: share-facebook in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 395
+[06-May-2023 13:10:46 UTC] PHP Notice:  Undefined index: share-twitter in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 399
+[06-May-2023 13:10:46 UTC] PHP Notice:  Undefined index: share-linkedin in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 403
+[06-May-2023 13:10:46 UTC] PHP Notice:  Undefined index: share-googleplus in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 407
+[06-May-2023 13:10:46 UTC] PHP Notice:  Undefined index: share-digg in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 411
+[06-May-2023 13:10:46 UTC] PHP Notice:  Undefined index: share-pinterest in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 415
+[06-May-2023 13:10:46 UTC] PHP Notice:  Undefined index: share-reddit in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 419
+[06-May-2023 13:10:46 UTC] PHP Notice:  Undefined index: share-stumbleupon in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 423
+[12-May-2023 13:19:13 UTC] PHP Notice:  Undefined index: widget_contact_details in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 108
+[12-May-2023 13:19:13 UTC] PHP Notice:  Undefined index: widget_social_icons in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 112
+[12-May-2023 13:19:13 UTC] PHP Notice:  Undefined index: share-facebook in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 395
+[12-May-2023 13:19:13 UTC] PHP Notice:  Undefined index: share-twitter in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 399
+[12-May-2023 13:19:13 UTC] PHP Notice:  Undefined index: share-linkedin in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 403
+[12-May-2023 13:19:13 UTC] PHP Notice:  Undefined index: share-googleplus in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 407
+[12-May-2023 13:19:13 UTC] PHP Notice:  Undefined index: share-digg in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 411
+[12-May-2023 13:19:13 UTC] PHP Notice:  Undefined index: share-pinterest in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 415
+[12-May-2023 13:19:13 UTC] PHP Notice:  Undefined index: share-reddit in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 419
+[12-May-2023 13:19:13 UTC] PHP Notice:  Undefined index: share-stumbleupon in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 423
+[15-May-2023 07:38:22 UTC] PHP Notice:  Undefined index: Name in /home/codenomad/public_html/lottery/wp-content/plugins/js_composer/include/classes/updaters/class-vc-updater.php on line 129
+[16-May-2023 06:54:26 UTC] PHP Notice:  Undefined index: Name in /home/codenomad/public_html/lottery/wp-content/plugins/js_composer/include/classes/updaters/class-vc-updater.php on line 129
+[16-May-2023 06:55:18 UTC] PHP Notice:  Undefined index: Name in /home/codenomad/public_html/lottery/wp-content/plugins/js_composer/include/classes/updaters/class-vc-updater.php on line 129
+[16-May-2023 06:58:05 UTC] PHP Notice:  Undefined index: Name in /home/codenomad/public_html/lottery/wp-content/plugins/js_composer/include/classes/updaters/class-vc-updater.php on line 129
+[16-May-2023 06:59:31 UTC] PHP Notice:  Undefined index: Name in /home/codenomad/public_html/lottery/wp-content/plugins/js_composer/include/classes/updaters/class-vc-updater.php on line 129
+[16-May-2023 07:00:26 UTC] PHP Notice:  Undefined index: Name in /home/codenomad/public_html/lottery/wp-content/plugins/js_composer/include/classes/updaters/class-vc-updater.php on line 129
+[16-May-2023 07:01:33 UTC] PHP Notice:  Undefined index: Name in /home/codenomad/public_html/lottery/wp-content/plugins/js_composer/include/classes/updaters/class-vc-updater.php on line 129
+[16-May-2023 07:05:36 UTC] PHP Warning:  fopen(/home/codenomad/public_html/lottery/wp-content/uploads/info-html-3kE8ch.tmp): failed to open stream: Disk quota exceeded in /home/codenomad/public_html/lottery/wp-admin/includes/class-wp-filesystem-ftpext.php on line 139
+[16-May-2023 07:05:36 UTC] PHP Warning:  unlink(/home/codenomad/public_html/lottery/wp-content/uploads/info-html-3kE8ch.tmp): No such file or directory in /home/codenomad/public_html/lottery/wp-admin/includes/class-wp-filesystem-ftpext.php on line 142
+[16-May-2023 07:05:37 UTC] PHP Warning:  fopen(/home/codenomad/public_html/lottery/wp-content/uploads/info-html-TEJ2cs.tmp): failed to open stream: Disk quota exceeded in /home/codenomad/public_html/lottery/wp-admin/includes/class-wp-filesystem-ftpext.php on line 139
+[16-May-2023 07:05:37 UTC] PHP Warning:  unlink(/home/codenomad/public_html/lottery/wp-content/uploads/info-html-TEJ2cs.tmp): No such file or directory in /home/codenomad/public_html/lottery/wp-admin/includes/class-wp-filesystem-ftpext.php on line 142
+[16-May-2023 07:05:40 UTC] PHP Warning:  fopen(/home/codenomad/public_html/lottery/wp-content/uploads/info-html-ZyXIfr.tmp): failed to open stream: Disk quota exceeded in /home/codenomad/public_html/lottery/wp-admin/includes/class-wp-filesystem-ftpext.php on line 139
+[16-May-2023 07:05:40 UTC] PHP Warning:  unlink(/home/codenomad/public_html/lottery/wp-content/uploads/info-html-ZyXIfr.tmp): No such file or directory in /home/codenomad/public_html/lottery/wp-admin/includes/class-wp-filesystem-ftpext.php on line 142
+[16-May-2023 07:05:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function dirlist() on null in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/demo-importer-v2/extensions/wbc_importer/extension_wbc_importer.php:107
+Stack trace:
+#0 /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/demo-importer-v2/extensions/wbc_importer/extension_wbc_importer.php(149): ReduxFramework_extension_wbc_importer->demoFiles()
+#1 /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/demo-importer-v2/extensions/wbc_importer/extension_wbc_importer.php(71): ReduxFramework_extension_wbc_importer->getImports()
+#2 /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/demo-importer-v2/wbc907-plugin-example.php(25): ReduxFramework_extension_wbc_importer->__construct(Object(ReduxFramework))
+#3 /home/codenomad/public_html/lottery/wp-includes/class-wp-hook.php(308): wbc907_example_extension_loader(Object(ReduxFramework))
+#4 /home/codenomad/public_html/lottery/wp-i in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/demo-importer-v2/extensions/wbc_importer/extension_wbc_importer.php on line 107
+[16-May-2023 07:14:38 UTC] PHP Notice:  Undefined index: Name in /home/codenomad/public_html/lottery/wp-content/plugins/js_composer/include/classes/updaters/class-vc-updater.php on line 129
+[16-May-2023 07:27:31 UTC] PHP Notice:  Undefined index: Name in /home/codenomad/public_html/lottery/wp-content/plugins/js_composer/include/classes/updaters/class-vc-updater.php on line 129
+[16-May-2023 07:30:03 UTC] PHP Notice:  Undefined index: Name in /home/codenomad/public_html/lottery/wp-content/plugins/js_composer/include/classes/updaters/class-vc-updater.php on line 129
+[16-May-2023 07:36:09 UTC] PHP Notice:  Undefined index: Name in /home/codenomad/public_html/lottery/wp-content/plugins/js_composer/include/classes/updaters/class-vc-updater.php on line 129
+[16-May-2023 07:41:28 UTC] PHP Notice:  Undefined index: Name in /home/codenomad/public_html/lottery/wp-content/plugins/js_composer/include/classes/updaters/class-vc-updater.php on line 129
+[16-May-2023 07:42:43 UTC] PHP Notice:  Undefined index: widget_contact_details in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 108
+[16-May-2023 07:42:43 UTC] PHP Notice:  Undefined index: widget_social_icons in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 112
+[16-May-2023 07:42:43 UTC] PHP Notice:  Undefined index: share-facebook in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 395
+[16-May-2023 07:42:43 UTC] PHP Notice:  Undefined index: share-twitter in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 399
+[16-May-2023 07:42:43 UTC] PHP Notice:  Undefined index: share-linkedin in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 403
+[16-May-2023 07:42:43 UTC] PHP Notice:  Undefined index: share-googleplus in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 407
+[16-May-2023 07:42:43 UTC] PHP Notice:  Undefined index: share-digg in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 411
+[16-May-2023 07:42:43 UTC] PHP Notice:  Undefined index: share-pinterest in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 415
+[16-May-2023 07:42:43 UTC] PHP Notice:  Undefined index: share-reddit in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 419
+[16-May-2023 07:42:43 UTC] PHP Notice:  Undefined index: share-stumbleupon in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 423
+[16-May-2023 07:44:59 UTC] PHP Notice:  Undefined index: widget_contact_details in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 108
+[16-May-2023 07:44:59 UTC] PHP Notice:  Undefined index: widget_social_icons in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 112
+[16-May-2023 07:44:59 UTC] PHP Notice:  Undefined index: share-facebook in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 395
+[16-May-2023 07:44:59 UTC] PHP Notice:  Undefined index: share-twitter in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 399
+[16-May-2023 07:44:59 UTC] PHP Notice:  Undefined index: share-linkedin in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 403
+[16-May-2023 07:44:59 UTC] PHP Notice:  Undefined index: share-googleplus in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 407
+[16-May-2023 07:44:59 UTC] PHP Notice:  Undefined index: share-digg in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 411
+[16-May-2023 07:44:59 UTC] PHP Notice:  Undefined index: share-pinterest in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 415
+[16-May-2023 07:44:59 UTC] PHP Notice:  Undefined index: share-reddit in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 419
+[16-May-2023 07:44:59 UTC] PHP Notice:  Undefined index: share-stumbleupon in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 423
+[16-May-2023 07:45:12 UTC] PHP Notice:  Undefined index: widget_contact_details in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 108
+[16-May-2023 07:45:12 UTC] PHP Notice:  Undefined index: widget_social_icons in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 112
+[16-May-2023 07:45:12 UTC] PHP Notice:  Undefined index: share-facebook in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 395
+[16-May-2023 07:45:12 UTC] PHP Notice:  Undefined index: share-twitter in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 399
+[16-May-2023 07:45:12 UTC] PHP Notice:  Undefined index: share-linkedin in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 403
+[16-May-2023 07:45:12 UTC] PHP Notice:  Undefined index: share-googleplus in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 407
+[16-May-2023 07:45:12 UTC] PHP Notice:  Undefined index: share-digg in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 411
+[16-May-2023 07:45:12 UTC] PHP Notice:  Undefined index: share-pinterest in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 415
+[16-May-2023 07:45:12 UTC] PHP Notice:  Undefined index: share-reddit in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 419
+[16-May-2023 07:45:12 UTC] PHP Notice:  Undefined index: share-stumbleupon in /home/codenomad/public_html/lottery/wp-content/plugins/modeltheme-framework/inc/widgets/widgets-theme.php on line 423

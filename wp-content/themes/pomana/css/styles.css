@@ -1229,9 +1229,6 @@ form#loginform input#wp-submit:hover{
     transition: all 300ms ease;
     -webkit-transition: all 300ms ease;
 }
-.wpcf7-response-output {
-    display: none !important;
-}
 .pomana-contact textarea {
     min-height: 150px;
     padding: 15px 25px 0 55px !important;

@@ -19,7 +19,7 @@
                     $phone,
                     array(
                         'from' => $twilio_number,
-                        'body' => 'Your verification code for the Lottery site registration is: ' . $code
+                        'body' => 'Your verification code to register at Jeeto Dhan: ' . $code
                     )
                 );
 

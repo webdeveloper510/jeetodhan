@@ -466,7 +466,9 @@ class Shortcode_Competition extends WC_Shortcode_Products {
 									?>
 								<?php
 									if ( get_userdata($competition_winers[0]['userid']) ) {
-										echo esc_html( get_userdata($competition_winers[0])->display_name );
+										//echo esc_html( get_userdata($competition_winers[0])->display_name );
+										 $data = get_userdata($competition_winers[0]['userid']);
+										echo esc_html($data->display_name );
 									}
 									?>
 							<?php } ?>

@@ -57,7 +57,7 @@ if (!function_exists('pomana_woocommerce_show_price_and_review')) {
         $args = array();
         global $product;
         global $pomana_redux;
-
+         echo '<a href="'.esc_url(get_the_permalink(get_the_ID())).'">';
         echo '<div class="details-container">';
             echo '<div class="details-price-container details-item">';
                 wc_get_template( 'loop/price.php' );
@@ -66,7 +66,11 @@ if (!function_exists('pomana_woocommerce_show_price_and_review')) {
                     wc_get_template( 'loop/rating.php' );
                 echo '</div>';
             echo '</div>';
+           
         echo '</div>';
+                     echo '<span class="cus_butt">Buy</span>';
+          echo '</a>';
+
     }
     add_action( 'woocommerce_after_shop_loop_item_title', 'pomana_woocommerce_show_price_and_review' );
 }

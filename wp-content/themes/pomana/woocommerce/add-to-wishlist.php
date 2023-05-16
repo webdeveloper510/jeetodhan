@@ -24,7 +24,7 @@ global $product;
     </div>
 
     <div class="yith-wcwl-wishlistexistsbrowse <?php echo esc_attr( $exists && ! $available_multi_wishlist ) ? 'show' : 'hide' ?>" style="display:<?php echo esc_attr( $exists && ! $available_multi_wishlist ) ? 'block' : 'none' ?>">
-        <a href="<?php echo esc_url( $wishlist_url ) ?>" data-tooltip="<?php echo esc_attr__('Check Wishlist', 'pomana'); ?>" class="button">
+        <a href="<?php echo esc_url( $wishlist_url ) ?>" data-tooltip="<?php echo esc_attr__('View Wishlist', 'pomana'); ?>" class="button">
             <?php echo apply_filters( 'yith-wcwl-browse-wishlist-label', '<i class="fa fa-heart-o" aria-hidden="true"></i>' )?>
         </a>
     </div>

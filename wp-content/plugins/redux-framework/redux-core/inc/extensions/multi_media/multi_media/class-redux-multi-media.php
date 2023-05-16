@@ -89,7 +89,7 @@ if ( ! class_exists( 'Redux_Multi_Media' ) ) {
 					type="button"
 					class="redux_upload_button button redux_upload_list"
 					name=""
-					id=""
+					id="' . esc_attr( $field_id ) . '-multi-media-upload"
 					value="' . esc_attr( $button_text ) . '" />';
 
 			// list container.
@@ -143,7 +143,7 @@ if ( ! class_exists( 'Redux_Multi_Media' ) ) {
 
 						// Add file to array.
 						$html  = '<li>';
-						$html .= esc_html__( 'File: ', 'redux-framework' ) . $id_input . '</li>';
+						$html .= esc_html__( 'File: ', 'redux-framework' );
 						$html .= '<strong>' . $title . '</strong>&nbsp;&nbsp;&nbsp;';
 						$html .= '(<a href="' . $url . '" target="_blank" rel="external">' . esc_html__( 'Download', 'redux-framework' ) . '</a> / <a href="#" class="redux_remove_file_button">' . __( 'Remove', 'redux-framework' ) . '</a>)';
 						$html .= $id_input;

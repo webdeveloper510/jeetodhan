@@ -1,0 +1,5 @@
+{
+    "require": {
+        "tomorrow-ideas/plaid-sdk-php": "^1.0"
+    }
+}

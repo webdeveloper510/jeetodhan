@@ -662,7 +662,7 @@ function add_phone_number_to_registration_form() {
                 }
     </style>
     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-        <label for="billing_phone"><?php _e( 'Phone Number', 'woocommerce' ); ?> <span class="required">*</span><span class="phoneee">Ex (+441234567890)</span></label>
+        <label for="billing_phone"><?php _e( 'Phone Number', 'woocommerce' ); ?> <span class="required">*</span><span class="phoneee"></span></label>
         <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="billing_phone" id="billing_phone"  value="<?php if ( ! empty( $_POST['billing_phone'] ) ) esc_attr_e( $_POST['billing_phone'] ); ?>" />
     </p>
      <p class="woocommerce-form-row form-row">
@@ -672,7 +672,7 @@ function add_phone_number_to_registration_form() {
          <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title">Please enter the Otp sent to your number</h5>
+                    <h5 class="modal-title">Please enter the OTP sent to your number</h5>
                     </button>
                   </div>
                   <div class="modal-body">
@@ -738,7 +738,35 @@ function save_phone_number_to_user_meta_data( $customer_id ) {
         update_user_meta( $customer_id, 'billing_phone', sanitize_text_field( $_POST['billing_phone'] ) );
     }
 }
+add_filter( 'gettext', 'change_cart_totals_text', 20, 3 );
+function change_cart_totals_text( $translated, $text, $domain ) {
+    if( is_cart() && $translated == 'Cart totals' ){
+        $translated = __('Cart total', 'woocommerce');
+    }
+    return $translated;
+}
 
+add_filter( 'woocommerce_checkout_fields', 'bbloomer_checkout_fields_custom_attributes', 9999 );
+ 
+function bbloomer_checkout_fields_custom_attributes( $fields ) {
+   $fields['billing']['billing_first_name']['maxlength'] = 25;
+   $fields['billing']['billing_last_name']['maxlength'] = 25;
+   $fields['billing']['billing_company']['maxlength'] = 50;
+   $fields['billing']['billing_address_1']['maxlength'] = 60;
+   $fields['billing']['billing_address_2']['maxlength'] = 60;
+   $fields['billing']['billing_city']['maxlength'] = 25;
+   $fields['billing']['billing_state']['maxlength'] = 25;
+   $fields['billing']['billing_postcode']['maxlength'] = 10;
+   $fields['billing']['billing_phone']['maxlength'] = 10;
+   $fields['billing']['billing_email']['maxlength'] = 50;
+   $fields['billing']['order_comments']['maxlength'] = 100;
+   
+   
+   return $fields;
+}
 
+add_action('woocommerce_update_cart_action_cart_updated','action_cart_updated_quantity', 20, 1 );
+function action_cart_updated_quantity( $cart_updated_quantity ){
 
-
+    // apply action with Your Quantity after updating cart.
+ }

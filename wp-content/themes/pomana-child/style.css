@@ -77,7 +77,7 @@ ul.products.columns-4 table tr th:nth-child(1), ul.products.columns-4 table tr t
     padding: 0;
 }
 ul.competition-answers li {
-    text-align: center;
+    text-align: center;n
     margin: 0 5px !important;
 }
 form.cart.pick-number h3 {
@@ -125,3 +125,140 @@ form.cart.pick-number h3 {
         position: unset !important;
     }
 }
+
+
+/******** CUSTOM CSS *******/
+textarea {resize: none !important;}
+
+.woocommerce ul.order_details {
+    padding-top: 15px;
+    padding-left: 0;
+}
+
+.woocommerce ul.order_details li {
+    font-weight: bold;
+    font-size: 0.85em !important;
+}
+
+.woocommerce ul.order_details li strong {
+    padding-top: 6px;
+    font-weight: normal;
+    font-size: 1.2em !important;
+}
+
+p.woocommerce-thankyou-order-received {
+    color: #ec6623;
+    font-size: 1.5em;
+    padding-bottom: 8px;
+}
+
+td.woocommerce-table__product-name.product-name a {
+    font-size: 1.2em;
+}
+
+ul.wc-item-meta {
+    padding-left: 0;
+    padding-top: 10px;
+}
+
+ul.wc-item-meta li {
+    margin-bottom: 2px;
+    font-size: 0.9em;
+}
+
+ul.wc-item-meta, ul.wc-item-meta li, ul.wc-item-meta strong, ul.wc-item-meta p {
+    line-height: 30px;
+}
+
+td.woocommerce-table__product-total.product-total {
+    display: flex;
+}
+
+.woocommerce-account .addresses .title h3 {
+    margin-top: 0;
+}
+
+header.woocommerce-Address-title.title {
+    margin-top: 20px;
+}
+
+.woocommerce-account .addresses .title .edit {
+    font-size: .8em;
+}
+
+.image-list-item-contact-row .vc_col-sm-6:nth-child(2) .vc_empty_space {
+    display: none;
+}
+
+nav.woocommerce-MyAccount-navigation ul {
+    display: flex;
+    flex-direction: column;
+}
+
+nav.woocommerce-MyAccount-navigation ul li:nth-child(1) {
+    order: 2;
+}
+
+nav.woocommerce-MyAccount-navigation ul li:nth-child(2) {
+    order: 1;
+}
+
+nav.woocommerce-MyAccount-navigation ul li:nth-child(3) {
+    order:3;
+}
+
+nav.woocommerce-MyAccount-navigation ul li:nth-child(4) {
+    order: 4;
+}
+
+nav.woocommerce-MyAccount-navigation ul li:nth-child(5) {
+    order: 5;
+}
+
+nav.woocommerce-MyAccount-navigation ul li:nth-child(6) {
+    order: 6;
+}
+
+nav.woocommerce-MyAccount-navigation ul li:nth-child(7) {
+    order: 7;
+}
+
+nav.woocommerce-MyAccount-navigation ul li:nth-child(8) {
+    order: 8;
+}
+
+.woocommerce-form-login-toggle .woocommerce-info a {
+    color: #ec6623 !important;
+    text-decoration: underline;
+}
+
+body.home {
+    position: realtive;
+}
+
+body.home #yith-wcwl-popup-message {
+    width: 100vw;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    top: 0;
+    left: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body.home #yith-wcwl-popup-message #yith-wcwl-message {
+    background-color: #ec6623 !important;
+    padding: 0 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
