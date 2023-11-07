@@ -4,7 +4,7 @@ declare (strict_types=1);
 namespace ShopMagicVendor\DI\Definition\Exception;
 
 use ShopMagicVendor\DI\Definition\Definition;
-use Psr\Container\ContainerExceptionInterface;
+use ShopMagicVendor\Psr\Container\ContainerExceptionInterface;
 /**
  * Invalid DI definitions.
  *

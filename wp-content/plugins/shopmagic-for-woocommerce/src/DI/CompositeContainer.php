@@ -2,7 +2,7 @@
 
 namespace WPDesk\ShopMagic\DI;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 
 /**
  * A composite container that acts as a normal container, but delegates method calls to one or more internal containers

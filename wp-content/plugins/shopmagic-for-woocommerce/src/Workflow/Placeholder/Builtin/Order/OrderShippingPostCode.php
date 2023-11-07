@@ -16,6 +16,10 @@ final class OrderShippingPostCode extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->get_order()->get_shipping_postcode();
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			return $this->resources->get( \WC_Order::class )->get_shipping_postcode();
+		}
+
+		return '';
 	}
 }

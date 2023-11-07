@@ -23,36 +23,42 @@ class Argument {
 		$this->name = $name;
 	}
 
+	/** @return static */
 	public function required(): self {
 		$this->required = true;
 
 		return $this;
 	}
 
+	/** @return static */
 	public function default( $default ): self {
 		$this->default = $default;
 
 		return $this;
 	}
 
+	/** @return static */
 	public function description( string $description ): self {
 		$this->description = $description;
 
 		return $this;
 	}
 
+	/** @return static */
 	public function type( string $type ): self {
 		$this->type = $type;
 
 		return $this;
 	}
 
+	/** @return static */
 	public function sanitization( callable $sanitization ): self {
 		$this->sanitize_callback = $sanitization;
 
 		return $this;
 	}
 
+	/** @return static */
 	public function validation( callable $validation ): self {
 		$this->validate_callback = $validation;
 

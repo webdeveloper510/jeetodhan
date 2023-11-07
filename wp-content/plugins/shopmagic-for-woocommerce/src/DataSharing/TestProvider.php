@@ -16,7 +16,8 @@ class TestProvider implements DataProvider {
 	}
 
 	public function get_provided_data_domains(): array {
-		$provided_domains = array_reduce( $this->providers,
+		$provided_domains = array_reduce(
+			$this->providers,
 			static function ( array $provided_domains, DataProvider $provider ): array {
 				return array_merge( $provided_domains, $provider->get_provided_data_domains() );
 			},
@@ -27,7 +28,8 @@ class TestProvider implements DataProvider {
 	}
 
 	public function get_provided_data(): DataLayer {
-		$provided_data = array_reduce( $this->providers,
+		$provided_data = array_reduce(
+			$this->providers,
 			function ( DataLayer $layer, DataProvider $provider ) {
 				$inner_layer = $provider->get_provided_data();
 				foreach ( $inner_layer->get_known_entries() as $known_entry ) {

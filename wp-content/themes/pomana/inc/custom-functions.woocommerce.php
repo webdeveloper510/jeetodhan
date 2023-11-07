@@ -52,28 +52,39 @@ if (!function_exists('pomana_woocommerce_show_top_custom_block')) {
 }
 
 
-if (!function_exists('pomana_woocommerce_show_price_and_review')) {
-    function pomana_woocommerce_show_price_and_review() {
-        $args = array();
-        global $product;
-        global $pomana_redux;
-         echo '<a href="'.esc_url(get_the_permalink(get_the_ID())).'">';
-        echo '<div class="details-container">';
-            echo '<div class="details-price-container details-item">';
-                wc_get_template( 'loop/price.php' );
+// if (!function_exists('pomana_woocommerce_show_price_and_review')) {
+//     function pomana_woocommerce_show_price_and_review() {
+//         $args = array();
+//         global $product;
+		
+// 		$productt = wc_get_product( get_the_ID() );
+		
+// 		$stock_quantity = $productt->stock_quantity; 
+// 		$total_sales    = $productt->total_sales;
+		
+// 		$total          = $stock_quantity + $total_sales;
+		
+//         global $pomana_redux;
+//          echo '<a href="'.esc_url(get_the_permalink(get_the_ID())).'">';
+//         echo '<div class="details-container">';
+//             echo '<div class="details-price-container details-item">';
+//                 wc_get_template( 'loop/price.php' );
                    
-                echo '<div class="details-review-container details-item">';
-                    wc_get_template( 'loop/rating.php' );
-                echo '</div>';
-            echo '</div>';
+//                 echo '<div class="details-review-container details-item">';
+//                     wc_get_template( 'loop/rating.php' );
+//                 echo '</div>';
+//             echo '</div>';
            
-        echo '</div>';
-                     echo '<span class="cus_butt">Buy</span>';
-          echo '</a>';
+//         echo '</div>';
+// 		echo '<div class="w3-light-grey outer">
+// 				  <div class="w3-green w3-center" style="width:25%"> '.$total_sales.' </div>
+// 				</div>';
+//                      echo '<span class="cus_butt">Buy</span>';
+//           echo '</a>';
 
-    }
-    add_action( 'woocommerce_after_shop_loop_item_title', 'pomana_woocommerce_show_price_and_review' );
-}
+//     }
+//     add_action( 'woocommerce_after_shop_loop_item_title', 'pomana_woocommerce_show_price_and_review' );
+// }
 
 // always display rating stars
 function pomana_filter_woocommerce_product_get_rating_html( $rating_html, $rating, $count ) { 

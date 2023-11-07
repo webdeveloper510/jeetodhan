@@ -1,6 +1,6 @@
 <?php
 /**
- * Logo template.
+ * Logo template
  *
  * @package NCSUCP
  */
@@ -19,11 +19,9 @@ $logo_url           = nifty_cs_get_option( 'upload_your_logo' );
 		if ( ! empty( $logo_url ) ) {
 			echo '<a href="' . esc_url( home_url( '/' ) ) . '"><img src="' . esc_url( $logo_url ) . '" alt="' . esc_attr( $blog_name ) . '" /></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
-	} else {
+	} elseif ( 'off' !== $display_site_title ) {
 		// Show site title text.
-		if ( 'off' !== $display_site_title ) {
-			echo '<h1 class="nifty-title">' . $blog_name . '</h1>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		}
+		echo '<h1 class="nifty-title">' . $blog_name . '</h1>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 	?>
 </header>

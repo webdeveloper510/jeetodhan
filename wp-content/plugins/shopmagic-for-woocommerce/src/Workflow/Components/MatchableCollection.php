@@ -7,11 +7,16 @@ use WPDesk\ShopMagic\DataSharing\DataProvider;
 use WPDesk\ShopMagic\DataSharing\DataReceiver;
 
 /**
- * @template T
+ * @template T of object
  * @template-extends AbstractCollection<T>
  */
 abstract class MatchableCollection extends AbstractCollection {
 
+	/**
+	 * @param DataProvider $provider
+	 *
+	 * @return static<T>
+	 */
 	public function match_receivers( DataProvider $provider ): self {
 		$provided_data_domains = $provider->get_provided_data_domains();
 

@@ -14,7 +14,7 @@ use ShopMagicVendor\Invoker\ParameterResolver\AssociativeArrayResolver;
 use ShopMagicVendor\Invoker\ParameterResolver\DefaultValueResolver;
 use ShopMagicVendor\Invoker\ParameterResolver\NumericArrayResolver;
 use ShopMagicVendor\Invoker\ParameterResolver\ResolverChain;
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 /**
  * Resolves a factory definition to a value.
  *

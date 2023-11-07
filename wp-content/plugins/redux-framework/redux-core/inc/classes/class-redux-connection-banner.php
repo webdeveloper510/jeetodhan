@@ -80,12 +80,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		private function __construct() {
 			$clean_get = $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			if ( isset( $clean_get['_wpnonce'] ) && wp_verify_nonce( $clean_get['_wpnonce'], $this->nonce ) ) {
-				if ( isset( $clean_get[ $this->register_option ] ) ) {
-					Redux_Functions_Ex::set_activated();
-					return;
-				}
 				if ( isset( $clean_get[ $this->dismiss_option ] ) ) {
-					Redux_Functions_Ex::set_deactivated();
 					update_option( 'redux-framework_extendify_plugin_notice', 'hide' );
 					return;
 				}
@@ -96,7 +91,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		}
 
 		/**
-		 * Get the URL for the current page to fallback if JS is broken.
+		 * Get the URL for the current page to fall back if JS is broken.
 		 *
 		 * @param bool|string $location Used to determine the location of the banner for account creation.
 		 * @since 4.1.21
@@ -266,14 +261,14 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 
 		/**
 		 * Will initialize hooks to display the new (as of 4.4) connection banner if the current user can
-		 * connect Redux, if Redux has not been deactivated, and if the current page is the plugins page.
+		 * connect Redux if Redux has not been deactivated, and if the current page is the plugin page.
 		 *
 		 * This method should not be called if the site is connected to WordPress.com or if the site is in development mode.
 		 *
 		 * @since 4.4.0
 		 * @since 4.5.0 Made the new (as of 4.4) connection banner display to everyone by default.
 		 * @since 5.3.0 Running another split test between 4.4 banner and a new one in 5.3.
-		 * @since 7.2   B test was removed.
+		 * @since 7.2 B test was removed.
 		 *
 		 * @param $current_screen
 		 */
@@ -286,7 +281,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 				return;
 			}
 
-			// Don't show the connect notice anywhere but the plugins.php after activating
+			// Don't show the connection notice anywhere but the plugins.php after activating
 			if ( 'plugins' !== $current_screen->base && 'dashboard' !== $current_screen->base ) {
 				add_action( 'admin_head', array( $this, 'admin_head' ) );
 
@@ -313,12 +308,12 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 			?>
 
 			<link
-				rel='stylesheet' id='redux-banner-css' <?php // phpcs:ignore WordPress.WP.EnqueuedResources ?>
-				href='<?php echo esc_url( Redux_Core::$url ); ?>inc/welcome/css/redux-banner.css'
+				rel='stylesheet' id='redux-banner' <?php // phpcs:ignore WordPress.WP.EnqueuedResources ?>
+				href='<?php echo esc_url( Redux_Core::$url ); ?>inc/welcome/css/redux-banner.min.css'
 				type='text/css' media='all'/>
 			<script
-				id="redux-banner-admin-js"
-				src='<?php echo esc_url( Redux_Core::$url ); ?>inc/welcome/js/redux-banner-admin.js'>
+				id="redux-banner-admin"
+				src='<?php echo esc_url( Redux_Core::$url ); ?>inc/welcome/js/redux-banner-admin.min.js'>
 			</script>
 			<?php
 		}
@@ -326,7 +321,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		/**
 		 * Renders the new connection banner as of 4.4.0.
 		 *
-		 * @since 7.2   Copy and visual elements reduced to show the new focus of Redux on Security and Performance.
+		 * @since 7.2 Copy and visual elements reduced to show the new focus of Redux on Security and Performance.
 		 * @since 4.4.0
 		 */
 		public function render_banner() {
@@ -335,12 +330,6 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 
 			?>
 			<div id="redux-connect-message" class="updated redux-banner-container" data-nonce="<?php echo wp_create_nonce( $this->nonce ); ?>">
-				<!-- <div class="redux-banner-container-top-text">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"/><g><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 15h-2v-2h2v2zm0-4h-2l-.5-6h3l-.5 6z"/></g></svg>
-					<span>
-						<strong><?php // esc_html_e( 'You’re almost done. Finish setting up the Gutenberg pattern and template library to unlock more amazing features.', 'redux-framework' ); ?></strong>
-					</span>
-				</div> -->
 				<div class="redux-banner-inner-container">
 					<a href="<?php echo esc_url( $urls['dismiss'] ); ?>" data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>"
 					   class="notice-dismiss redux-banner-svg-dismiss redux-connection-banner-action"

@@ -93,9 +93,7 @@ class ResourcesController {
 
 	public function placeholders( string $event_slug = '' ): \WP_REST_Response {
 		$filters = $this->placeholders->match_receivers( $this->events[ $event_slug ] )->map(
-			function (
-				Placeholder $placeholder
-			) {
+			function ( Placeholder $placeholder ) {
 				return [
 					'label'       => $placeholder->get_name(),
 					'description' => $placeholder->get_description(),

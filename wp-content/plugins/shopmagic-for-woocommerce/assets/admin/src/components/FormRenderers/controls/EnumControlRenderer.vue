@@ -1,7 +1,7 @@
 <template>
   <control-wrapper
-    :appliedOptions="appliedOptions"
-    :isFocused="isFocused"
+    :applied-options="appliedOptions"
+    :is-focused="isFocused"
     :styles="styles"
     v-bind="controlWrapper"
   >
@@ -30,16 +30,12 @@
 <script lang="ts">
 import type { ControlElement } from "@jsonforms/core";
 import { defineComponent } from "vue";
-import {
-  rendererProps,
-  type RendererProps,
-  useJsonFormsEnumControl,
-} from "@jsonforms/vue";
+import { rendererProps, type RendererProps, useJsonFormsEnumControl } from "@jsonforms/vue";
 import { default as ControlWrapper } from "./ControlWrapper.vue";
 import { useVanillaControl } from "../util";
 
 export default defineComponent({
-  name: "enum-control-renderer",
+  name: "EnumControlRenderer",
   components: {
     ControlWrapper,
   },
@@ -48,7 +44,7 @@ export default defineComponent({
   },
   setup(props: RendererProps<ControlElement>) {
     return useVanillaControl(useJsonFormsEnumControl(props), (target) =>
-      target.selectedIndex === 0 ? undefined : target.value
+      target.selectedIndex === 0 ? undefined : target.value,
     );
   },
 });

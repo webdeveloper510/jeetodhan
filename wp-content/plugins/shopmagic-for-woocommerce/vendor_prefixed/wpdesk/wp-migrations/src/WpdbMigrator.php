@@ -3,7 +3,7 @@
 declare (strict_types=1);
 namespace ShopMagicVendor\WPDesk\Migrations;
 
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use ShopMagicVendor\WPDesk\Migrations\Finder\GlobFinder;
 use ShopMagicVendor\WPDesk\Migrations\Version\AlphabeticalComparator;
 use ShopMagicVendor\WPDesk\Migrations\Version\Comparator;

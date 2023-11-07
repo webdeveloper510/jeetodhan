@@ -12,10 +12,5 @@ defineEmits<{
 }>();
 </script>
 <template>
-  <JsonForm
-    :data="values"
-    :schema="schema"
-    layout="grid"
-    @change="$emit('change', $event)"
-  />
+  <JsonForm :data="values" :schema="schema" layout="grid" @change="$emit('change', $event)" />
 </template>

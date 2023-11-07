@@ -19,23 +19,24 @@ final class ArrayCollection implements Collection, \ArrayAccess {
 		$this->storage = $storage;
 	}
 
-	public function count() {
+	public function count(): int {
 		return count( $this->storage );
 	}
 
-	public function getIterator() {
+	public function getIterator(): \Traversable {
 		return new \ArrayIterator( $this->storage );
 	}
 
-	public function offsetExists( $offset ) {
+	public function offsetExists( $offset ): bool {
 		return isset( $this->storage[ $offset ] );
 	}
 
+	#[\ReturnTypeWillChange]
 	public function offsetGet( $offset ) {
 		return $this->storage[ $offset ];
 	}
 
-	public function offsetSet( $offset, $value ) {
+	public function offsetSet( $offset, $value ): void {
 		if ( $offset === null ) {
 			$this->storage[] = $value;
 		} else {
@@ -43,7 +44,7 @@ final class ArrayCollection implements Collection, \ArrayAccess {
 		}
 	}
 
-	public function offsetUnset( $offset ) {
+	public function offsetUnset( $offset ): void {
 		unset( $this->storage[ $offset ] );
 	}
 

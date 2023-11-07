@@ -6,6 +6,13 @@ import "./assets/base.css";
 import { i18n } from "@/plugins/i18n";
 import "chartjs-adapter-luxon";
 import { modulesKey, proEnabledKey, userKey } from "@/provide";
+import * as log from "@/_utils/log";
+
+window.addEventListener("unhandledrejection", ({ reason }) => {
+  if (reason instanceof Error) {
+    log.error(reason.message, { cause: reason.cause });
+  }
+});
 
 const app = createApp(App);
 

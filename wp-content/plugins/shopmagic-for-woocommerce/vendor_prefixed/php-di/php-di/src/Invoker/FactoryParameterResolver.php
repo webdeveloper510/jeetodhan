@@ -4,7 +4,7 @@ declare (strict_types=1);
 namespace ShopMagicVendor\DI\Invoker;
 
 use ShopMagicVendor\Invoker\ParameterResolver\ParameterResolver;
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use ReflectionFunctionAbstract;
 use ReflectionNamedType;
 /**

@@ -3,7 +3,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\ActionExecution;
 
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use WPDesk\ShopMagic\Components\HookProvider\HookProvider;
 use WPDesk\ShopMagic\Components\HookProvider\HookTrait;
 use WPDesk\ShopMagic\Exception\AutomationNotFound;

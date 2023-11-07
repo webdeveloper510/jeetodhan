@@ -1,7 +1,7 @@
 <template>
   <control-wrapper
-    :appliedOptions="appliedOptions"
-    :isFocused="isFocused"
+    :applied-options="appliedOptions"
+    :is-focused="isFocused"
     :styles="styles"
     v-bind="controlWrapper"
   >
@@ -24,16 +24,12 @@
 <script lang="ts">
 import type { ControlElement } from "@jsonforms/core";
 import { defineComponent } from "vue";
-import {
-  rendererProps,
-  type RendererProps,
-  useJsonFormsControl,
-} from "@jsonforms/vue";
+import { rendererProps, type RendererProps, useJsonFormsControl } from "@jsonforms/vue";
 import { default as ControlWrapper } from "./ControlWrapper.vue";
 import { useVanillaControl } from "../util";
 
 export default defineComponent({
-  name: "number-control-renderer",
+  name: "NumberControlRenderer",
   components: {
     ControlWrapper,
   },
@@ -42,7 +38,7 @@ export default defineComponent({
   },
   setup(props: RendererProps<ControlElement>) {
     return useVanillaControl(useJsonFormsControl(props), (target) =>
-      target.value === "" ? undefined : Number(target.value)
+      target.value === "" ? undefined : Number(target.value),
     );
   },
   computed: {

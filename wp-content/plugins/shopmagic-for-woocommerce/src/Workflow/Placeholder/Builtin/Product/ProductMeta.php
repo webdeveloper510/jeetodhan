@@ -31,11 +31,15 @@ final class ProductMeta extends WooCommerceProductBasedPlaceholder {
 
 	public function get_description(): string {
 		return esc_html__( 'Display meta value from product meta.', 'shopmagic-for-woocommerce' ) . ' ' .
-			   esc_html__( 'You can find more about using this placeholder in ' ) .
-			'<a target="_blank" href="https://docs.shopmagic.app/article/1163-meta-placeholders">' . esc_html__( 'documentation', 'shopmagic-for-woocommerce' ) . '</a>.';
+		       esc_html__( 'You can find more about using this placeholder in ' ) .
+		       '<a target="_blank" href="https://docs.shopmagic.app/article/1163-meta-placeholders">' . esc_html__( 'documentation', 'shopmagic-for-woocommerce' ) . '</a>.';
 	}
 
 	public function value( array $parameters ): string {
+		if ( ! $this->resources->has( \WC_Product::class ) ) {
+			return '';
+		}
+
 		$key = $parameters[ self::PARAM_KEY_NAME ];
 		if ( $key === '' ) {
 			return '';
@@ -44,7 +48,7 @@ final class ProductMeta extends WooCommerceProductBasedPlaceholder {
 			return '';
 		}
 
-		$product    = $this->get_product();
+		$product    = $this->resources->get( \WC_Product::class );
 		$product_id = false;
 		$value      = get_post_meta( $product_id, $key, true );
 

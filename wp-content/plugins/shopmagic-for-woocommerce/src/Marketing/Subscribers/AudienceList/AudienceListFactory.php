@@ -38,9 +38,9 @@ class AudienceListFactory {
 			$form     = new NewsletterForm();
 			$raw_form = $meta->all( '_form_shortcode' );
 			$form->set_agreement( $raw_form['agreement'] ?? '' );
-			$form->set_show_name( filter_var( $raw_form['name'], \FILTER_VALIDATE_BOOL ) );
-			$form->set_show_labels( filter_var( $raw_form['labels'], \FILTER_VALIDATE_BOOL ) );
-			$form->set_double_opt_in( filter_var( $raw_form['double_optin'], \FILTER_VALIDATE_BOOL ) );
+			$form->set_show_name( filter_var( $raw_form['name'], \FILTER_VALIDATE_BOOLEAN ) );
+			$form->set_show_labels( filter_var( $raw_form['labels'], \FILTER_VALIDATE_BOOLEAN ) );
+			$form->set_double_opt_in( filter_var( $raw_form['double_optin'], \FILTER_VALIDATE_BOOLEAN ) );
 			$list->set_newsletter_form( $form );
 		}
 

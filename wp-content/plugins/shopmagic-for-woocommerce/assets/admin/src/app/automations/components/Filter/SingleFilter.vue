@@ -14,9 +14,7 @@ const { getFilter } = useAutomationResourcesStore();
 const { automation } = storeToRefs(useSingleAutomation());
 const { insertFilter } = useSingleAutomation();
 
-const currentFilter = computed<FilterConfig | undefined>(() =>
-  getFilter(filterValue)
-);
+const currentFilter = computed<FilterConfig | undefined>(() => getFilter(filterValue));
 
 const props = defineProps<{
   id: number;
@@ -33,26 +31,19 @@ const filterValue = computed<string>({
 
 function maybeResetCondition() {
   useSingleAutomation().$patch((state) => {
-    const originalFilter = toRaw(
-      state.automation.filters[props.groupId][props.id]
-    );
+    const originalFilter = toRaw(state.automation.filters[props.groupId][props.id]);
     const keys = Object.keys(originalFilter).filter((k) => k !== "id");
     const emptyFilter = keys.reduce((previousValue, currentValue) => {
       originalFilter[currentValue] = null;
       return previousValue;
     }, originalFilter);
-    Object.assign(
-      state.automation.filters[props.groupId][props.id],
-      emptyFilter
-    );
+    Object.assign(state.automation.filters[props.groupId][props.id], emptyFilter);
   });
 }
 
-const filterValues = computed(
-  () => automation.value?.filters[props.groupId][props.id] || {}
-);
+const filterValues = computed(() => automation.value?.filters[props.groupId][props.id] || {});
 
-function updateFilters({ data, errors }) {
+function updateFilters({ data /** errors */ }) {
   useSingleAutomation().$patch((state) => {
     Object.assign(state.automation.filters[props.groupId][props.id], data);
   });
@@ -75,12 +66,7 @@ const { search, renderLabel, renderTag, matches } = useFuzzySearch(filters);
       @update:value="maybeResetCondition"
     >
       <template #empty>
-        {{
-          __(
-            "Select any event to show available filters.",
-            "shopmagic-for-woocommerce"
-          )
-        }}
+        {{ __("Select any event to show available filters.", "shopmagic-for-woocommerce") }}
       </template>
     </NSelect>
     <JsonForm
@@ -90,12 +76,7 @@ const { search, renderLabel, renderTag, matches } = useFuzzySearch(filters);
       layout="horizontal"
       @change="updateFilters"
     />
-    <NButton
-      class="ml-auto"
-      tertiary
-      type="info"
-      @click="insertFilter(groupId)"
-    >
+    <NButton class="ml-auto" tertiary type="info" @click="insertFilter(groupId)">
       {{ __("And", "shopmagic-for-woocommerce") }}
     </NButton>
     <NButton tertiary type="error" @click="emit('remove', props.id)">

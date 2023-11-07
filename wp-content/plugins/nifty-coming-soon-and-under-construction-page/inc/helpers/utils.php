@@ -11,9 +11,9 @@
  * @since 1.0.0
  *
  * @param array $attributes Attributes.
- * @param bool  $echo Whether to echo or not.
+ * @param bool  $display Whether to echo or not.
  */
-function nifty_cs_render_attr( $attributes, $echo = true ) {
+function nifty_cs_render_attr( $attributes, $display = true ) {
 	if ( empty( $attributes ) ) {
 		return;
 	}
@@ -40,7 +40,7 @@ function nifty_cs_render_attr( $attributes, $echo = true ) {
 		}
 	}
 
-	if ( ! empty( $html ) && true === $echo ) {
+	if ( ! empty( $html ) && true === $display ) {
 		echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	} else {
 		return $html;

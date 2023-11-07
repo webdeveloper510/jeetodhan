@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Action\Builtin\SendMail;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use WPDesk\ShopMagic\Components\Mailer\Email;
 use WPDesk\ShopMagic\Components\Mailer\Mailer;
 use WPDesk\ShopMagic\Customer\Customer;

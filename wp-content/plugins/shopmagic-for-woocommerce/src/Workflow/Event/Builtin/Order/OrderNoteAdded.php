@@ -3,6 +3,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Event\Builtin\Order;
 
+use WC_Order;
 use WPDesk\ShopMagic\Customer\Customer;
 use WPDesk\ShopMagic\Customer\NullCustomer;
 use WPDesk\ShopMagic\Exception\CustomerNotFound;
@@ -10,6 +11,7 @@ use WPDesk\ShopMagic\Workflow\Components\Groups;
 use WPDesk\ShopMagic\Workflow\Event\CustomerAwareInterface;
 use WPDesk\ShopMagic\Workflow\Event\CustomerAwareTrait;
 use WPDesk\ShopMagic\Workflow\Event\Event;
+use WP_Comment;
 
 final class OrderNoteAdded extends Event implements CustomerAwareInterface {
 	use CustomerAwareTrait;
@@ -94,21 +96,9 @@ final class OrderNoteAdded extends Event implements CustomerAwareInterface {
 		}
 
 		$this->resources->set( \WC_Order::class, $order );
-		$email = $order->get_billing_email();
-
-		if ( ! empty( $email ) ) {
-			$this->resources->set( Customer::class, $this->get_customer( $email ) );
-		}
+		$this->resources->set( Customer::class, $this->get_customer( $order ) );
 
 		$this->trigger_automation();
-	}
-
-	private function get_customer( string $email ): Customer {
-		try {
-			return $this->customer_repository->find_by_email( $email );
-		} catch ( CustomerNotFound $e ) {
-			return new NullCustomer();
-		}
 	}
 
 	/**
@@ -123,7 +113,7 @@ final class OrderNoteAdded extends Event implements CustomerAwareInterface {
 	}
 
 	/**
-	 * @return array{order_note_id: numeric} Normalized event data required for Queue serialization.
+	 * @return array{order_note_id: string} Normalized event data required for Queue serialization.
 	 */
 	public function jsonSerialize(): array {
 		return [
@@ -137,14 +127,32 @@ final class OrderNoteAdded extends Event implements CustomerAwareInterface {
 	public function set_from_json( array $serialized_json ): void {
 		$this->resources->set( \WP_Comment::class, get_comment( $serialized_json['order_note_id'] ) );
 		$order = $this->get_order();
-		if ( $order instanceof \WC_Order ) {
-			$this->resources->set( \WC_Order::class, $order );
+
+		if ( ! $order instanceof \WC_Order ) {
+			return;
 		}
 
-		$email = $order->get_billing_email();
-		if ( ! empty( $email ) ) {
-			$this->resources->set( Customer::class, $this->get_customer( $email ) );
-		}
+		$this->resources->set( \WC_Order::class, $order );
+		$this->resources->set( Customer::class, $this->get_customer( $order ) );
 	}
 
+	private function get_customer( \WC_Order $order ): Customer {
+		try {
+			return $this->customer_repository->find_by_email( $order->get_billing_email() );
+		} catch ( CustomerNotFound $e ) {
+			try {
+				$user = $order->get_user();
+				if ( $user instanceof \WP_User ) {
+					return $this->customer_repository->find_by_email( $user->user_email );
+				}
+			} catch ( CustomerNotFound $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+				// Fallthrough if not found.
+			}
+		}
+		$this->logger->warning(
+			'There is no customer associated with order #{id}.',
+			[ 'id' => $order->get_id() ]
+		);
+		return new NullCustomer();
+	}
 }

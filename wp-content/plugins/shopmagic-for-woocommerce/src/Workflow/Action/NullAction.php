@@ -3,7 +3,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Action;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use ShopMagicVendor\WPDesk\Persistence\Adapter\ArrayContainer;
 use WPDesk\ShopMagic\Workflow\Event\DataLayer;
 use WPDesk\ShopMagic\Workflow\FieldValuesBag;

@@ -48,10 +48,10 @@ function nifty_cs_is_page_block_active( $key ) {
  *
  * @since 1.0.0
  *
- * @param string|string[] $class Space-separated string or array of class names to add to the class list.
+ * @param string|string[] $css_class Space-separated string or array of class names to add to the class list.
  */
-function nifty_cs_body_class( $class = '' ) {
-	echo 'class="' . esc_attr( implode( ' ', nifty_cs_get_body_class( $class ) ) ) . '"';
+function nifty_cs_body_class( $css_class = '' ) {
+	echo 'class="' . esc_attr( implode( ' ', nifty_cs_get_body_class( $css_class ) ) ) . '"';
 }
 
 /**
@@ -59,26 +59,26 @@ function nifty_cs_body_class( $class = '' ) {
  *
  * @since 1.0.0
  *
- * @param string|string[] $class Space-separated string or array of class names to add to the class list.
+ * @param string|string[] $css_class Space-separated string or array of class names to add to the class list.
  * @return string[] Array of class names.
  */
-function nifty_cs_get_body_class( $class = '' ) {
+function nifty_cs_get_body_class( $css_class = '' ) {
 	$classes = array();
 
 	$classes[] = 'nifty-cs';
 
-	if ( ! empty( $class ) ) {
-		if ( ! is_array( $class ) ) {
-			$class = preg_split( '#\s+#', $class );
+	if ( ! empty( $css_class ) ) {
+		if ( ! is_array( $css_class ) ) {
+			$css_class = preg_split( '#\s+#', $css_class );
 		}
-		$classes = array_merge( $classes, $class );
+		$classes = array_merge( $classes, $css_class );
 	} else {
-		$class = array();
+		$css_class = array();
 	}
 
 	$classes = array_map( 'esc_attr', $classes );
 
-	$classes = apply_filters( 'nifty_cs_body_class', $classes, $class );
+	$classes = apply_filters( 'nifty_cs_body_class', $classes, $css_class );
 
 	return array_unique( $classes );
 }
@@ -119,7 +119,7 @@ function nifty_cs_render_preloader() {
 
 	if ( 'off' !== $preloader ) {
 		echo '<div id="preloader"></div>';
-	};
+	}
 }
 
 /**

@@ -1,17 +1,19 @@
-import {computed, isRef, ref, toRaw, unref} from "vue";
-import type {Automation} from "@/types/automation";
-import {useWpFetch} from "@/composables/useWpFetch";
-import {get} from "@/_utils";
-import {acceptHMRUpdate, defineStore} from "pinia";
-import type {HttpProblem} from "@/types";
-import {useAutomationCache} from "@/app/automations/composables/automationsCache";
-import {revalidateAutomations} from "@/app/automations/store";
+import { computed, isRef, ref, toRaw, unref } from "vue";
+import type { Automation } from "@/types/automation";
+import { ErrorSource, useWpFetch } from "@/composables/useWpFetch";
+import { get } from "@/_utils";
+import { acceptHMRUpdate, defineStore } from "pinia";
+import type { HttpProblem } from "@/types";
+import { useAutomationCache } from "@/app/automations/composables/automationsCache";
+import { revalidateAutomations } from "@/app/automations/store";
+import { __ } from "@/plugins/i18n";
+import * as log from "@/_utils/log";
 
-export function removeAutomation(id: number) {
+export async function removeAutomation(id: number) {
   return useSingleAutomation().remove(id);
 }
 
-export function downloadAutomation(id: number) {
+export async function downloadAutomation(id: number) {
   return useSingleAutomation().download(id);
 }
 
@@ -33,13 +35,32 @@ export const useSingleAutomation = defineStore("singleAutomation", () => {
   // );
 
   async function deleteAutomation(id: number) {
-    await useWpFetch(`/automations/${id}`).delete();
+    const { error } = await useWpFetch(`/automations/${id}`).delete();
+    if (error.value) {
+      switch (error.value.cause.source) {
+        case ErrorSource.WordPress:
+          throw new Error(__("WordPress error", "shopmagic-for-woocommerce"), {
+            cause: error.value.cause.data.message,
+          });
+        case ErrorSource.Server:
+          throw new Error("Failed to delete automation", {
+            cause: __(
+              "Failed to delete automation due to server issues. Enable compatibility mode in plugin settings and try again.",
+              "shopmagic-for-woocommerce",
+            ),
+          });
+        case ErrorSource.Internal: {
+          const errorMessage: HttpProblem = error.value.cause.data;
+          throw new Error(errorMessage.title, { cause: errorMessage.detail });
+        }
+        default:
+          throw new Error("Internet connection error");
+      }
+    }
     try {
       revalidateAutomations();
     } catch (e) {
-      console.warn(
-        "Directly editing single automation. No collection to revalidate."
-      );
+      console.warn("Directly editing single automation. No collection to revalidate.");
     }
   }
 
@@ -80,25 +101,44 @@ export const useSingleAutomation = defineStore("singleAutomation", () => {
     automationCopy.name = `${automationCopy.name} (duplicate)`;
     automation.value = null;
     automation.value = automationCopy;
-    await saveAutomation();
+    saveAutomation();
   }
 
   async function saveAutomation() {
     const cleanAutomation = assign(automation.value, { id: null });
-    const { data: id, error } = await useWpFetch<number | string>(
-      "/automations"
-    ).post(cleanAutomation, "json");
+    const { data: id, error } = await useWpFetch<number | string>("/automations").post(
+      cleanAutomation,
+      "json",
+    );
     if (error.value) {
-      const errorMessage: HttpProblem = JSON.parse(id.value);
-      throw new Error(errorMessage.title, { cause: errorMessage.detail });
+      switch (error.value.cause.source) {
+        case ErrorSource.WordPress:
+          throw new Error(__("WordPress error", "shopmagic-for-woocommerce"), {
+            cause: error.value.cause.data.message,
+          });
+        case ErrorSource.Server:
+          throw new Error("Failed to update automation", {
+            cause: __(
+              "Failed to update automation due to server issues. Enable compatibility mode in plugin settings and try again.",
+              "shopmagic-for-woocommerce",
+            ),
+          });
+        case ErrorSource.Internal: {
+          const errorMessage: HttpProblem = error.value.cause.data;
+          throw new Error(errorMessage.title, { cause: errorMessage.detail });
+        }
+        default:
+          throw new Error("Internet connection error");
+      }
     }
-    automation.value.id = id.value;
+    if (id.value && automation.value) {
+      const newId = id.value;
+      automation.value.id = newId;
+    }
     try {
       revalidateAutomations();
     } catch (e) {
-      console.warn(
-        "Directly editing single automation. No collection to revalidate."
-      );
+      console.warn("Directly editing single automation. No collection to revalidate.");
     }
     return id;
   }
@@ -115,12 +155,48 @@ export const useSingleAutomation = defineStore("singleAutomation", () => {
   };
 
   async function updateAutomation() {
-    const { data, error } = await useWpFetch(
-      `/automations/${automation.value.id}`
-    ).put(automation, "json");
+    if (!automation.value) {
+      throw Error(__("Cannot update. Automation not found.", "shopmagic-for-woocommerce"));
+    }
+
+    const { /** data , */ error } = await useWpFetch(`/automations/${automation.value.id}`).put(
+      automation,
+      "json",
+    );
     if (error.value) {
-      const errorMessage: HttpProblem = JSON.parse(data.value);
-      throw new Error(errorMessage.title, { cause: errorMessage.detail });
+      switch (error.value.cause.source) {
+        case ErrorSource.WordPress:
+          log.error("WordPress error", {
+            url: window.location.href,
+            type: "automation",
+            source: "wordpress",
+            data: error.value.cause.data,
+            id: automation.value.id,
+          });
+          throw new Error(__("WordPress error", "shopmagic-for-woocommerce"), {
+            cause: error.value.cause.data.message,
+          });
+        case ErrorSource.Server:
+          log.error("Server error", {
+            url: window.location.href,
+            type: "automation",
+            source: "server",
+            data: error.value.cause.data,
+            id: automation.value.id,
+          });
+          throw new Error("Failed to update automation", {
+            cause: __(
+              "Failed to update automation due to server issues. Enable compatibility mode in plugin settings and try again.",
+              "shopmagic-for-woocommerce",
+            ),
+          });
+        case ErrorSource.Internal: {
+          const errorMessage: HttpProblem = error.value.cause.data;
+          throw new Error(errorMessage.title, { cause: errorMessage.detail });
+        }
+        default:
+          throw new Error("Internet connection error");
+      }
     }
     // revalidateAutomations();
   }
@@ -199,8 +275,7 @@ export const useSingleAutomation = defineStore("singleAutomation", () => {
   }
 
   const filter = computed(
-    () => (groupId: number, filterId: number) =>
-      automation.value?.filters?.[groupId][filterId]
+    () => (groupId: number, filterId: number) => automation.value?.filters?.[groupId][filterId],
   );
 
   return {

@@ -51,7 +51,7 @@ final class MemberParamsBag {
 	}
 
 	public function is_double_opt_in(): string {
-		return filter_var( $this->double_opt_in, \FILTER_VALIDATE_BOOL ) ? 'yes' : '';
+		return filter_var( $this->double_opt_in, \FILTER_VALIDATE_BOOLEAN ) ? 'yes' : '';
 	}
 
 	public function get_list_id(): string {

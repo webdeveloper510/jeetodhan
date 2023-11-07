@@ -6,6 +6,8 @@ namespace WPDesk\ShopMagic\Workflow\Event\Builtin;
 
 use WC_Order;
 use WPDesk\ShopMagic\Customer\Customer;
+use WPDesk\ShopMagic\Customer\NullCustomer;
+use WPDesk\ShopMagic\Exception\CustomerNotFound;
 use WPDesk\ShopMagic\Exception\ReferenceNoLongerAvailableException;
 use WPDesk\ShopMagic\Workflow\Components\Groups;
 use WPDesk\ShopMagic\Workflow\Event\CustomerAwareInterface;
@@ -43,15 +45,32 @@ abstract class OrderCommonEvent extends Event implements CustomerAwareInterface 
 	protected function process_event( $_, $order ): void {
 		if ( $order instanceof WC_Order ) {
 			$this->resources->set( WC_Order::class, $order );
-		} elseif ($order instanceof \WC_Order_Refund) {
+			$this->resources->set( Customer::class, $this->get_customer( $order ) );
+		} elseif ( $order instanceof \WC_Order_Refund ) {
 			$this->resources->set( \WC_Order_Refund::class, $order );
 		}
 
-		$this->resources->set(
-			Customer::class,
-			$this->customer_repository->find_by_email( $this->get_order()->get_billing_email() )
-		);
 		$this->trigger_automation();
+	}
+
+	protected function get_customer( \WC_Order $order ): Customer {
+		try {
+			return $this->customer_repository->find_by_email( $order->get_billing_email() );
+		} catch ( CustomerNotFound $e ) {
+			try {
+				$user = $order->get_user();
+				if ( $user instanceof \WP_User ) {
+					return $this->customer_repository->find_by_email( $user->user_email );
+				}
+			} catch ( CustomerNotFound $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+				// Fallthrough if not found.
+			}
+		}
+		$this->logger->warning(
+			'There is no customer associated with order #{id}.',
+			[ 'id' => $order->get_id() ]
+		);
+		return new NullCustomer();
 	}
 
 	protected function get_order(): WC_Order {
@@ -59,7 +78,7 @@ abstract class OrderCommonEvent extends Event implements CustomerAwareInterface 
 	}
 
 	/**
-	 * @return array{order_id: numeric-string|int} Normalized event data required for Queue serialization.
+	 * @return array{order_id: numeric-string|int, customer_id: string} Normalized event data required for Queue serialization.
 	 */
 	public function jsonSerialize(): array {
 		return [
@@ -69,7 +88,7 @@ abstract class OrderCommonEvent extends Event implements CustomerAwareInterface 
 	}
 
 	/**
-	 * @param array{order_id: numeric-string} $serialized_json
+	 * @param array{order_id: numeric-string, customer_id: string} $serialized_json
 	 *
 	 * @throws ReferenceNoLongerAvailableException When serialized object reference is no longer valid. i.e. order no
 	 *                                             longer exists.
@@ -79,18 +98,21 @@ abstract class OrderCommonEvent extends Event implements CustomerAwareInterface 
 			$order = wc_get_order( $serialized_json[ self::ORDER_ID ] );
 			if ( $order instanceof \WC_Order ) {
 				$this->resources->set( \WC_Order::class, $order );
+				$this->resources->set( Customer::class, $this->get_customer( $order ) );
 			} elseif ( $order instanceof \WC_Order_Refund ) {
 				$this->resources->set( \WC_Order_Refund::class, $order );
 			}
-			$this->resources->set(
-				Customer::class,
-				$this->customer_repository->find_by_email( $order->get_billing_email() )
+		} catch ( \InvalidArgumentException $e ) {
+			throw new ReferenceNoLongerAvailableException(
+				sprintf(
+					// translators: %d: ID of an order.
+					esc_html__(
+						'Order #%d no longer exists.',
+						'shopmagic-for-woocommerce'
+					),
+					$serialized_json[ self::ORDER_ID ]
+				)
 			);
-		} catch ( \InvalidArgumentException $invalidArgumentException ) {
-			// translators: %d: ID of an order.
-			throw new ReferenceNoLongerAvailableException( sprintf( __( 'Order %d no longer exists.',
-				'shopmagic-for-woocommerce' ),
-				$serialized_json[ self::ORDER_ID ] ) );
 		}
 	}
 }

@@ -8,11 +8,11 @@ use WPDesk\ShopMagic\Workflow\Components\Sortable;
 
 
 /**
- * @extends \WPDesk\ShopMagic\Workflow\Components\MatchableCollection<Filter>
+ * @implements Sortable<Filter>
+ * @extends MatchableCollection<Filter>
  */
 final class FiltersList extends MatchableCollection implements Sortable {
 
-	/** @var string */
 	protected $type = Filter::class;
 
 	public function offsetGet( $offset ): object {
@@ -20,13 +20,14 @@ final class FiltersList extends MatchableCollection implements Sortable {
 			return clone apply_filters( 'shopmagic/core/single_filter', parent::offsetGet( $offset ) );
 		}
 
+		// Sometimes we use string literal 'null'.
+		if ( is_string( $offset ) && $offset !== 'null' ) {
+			return new NullFilter( $offset );
+		}
+
 		return new NullFilter();
 	}
 
-	/**
-	 * @param Filter $a
-	 * @param Filter $b
-	 */
 	public function compare( object $a, object $b ): int {
 		$group_compare = strcmp( $a->get_group_slug(), $b->get_group_slug() );
 		if ( $group_compare === 0 ) {
@@ -35,5 +36,4 @@ final class FiltersList extends MatchableCollection implements Sortable {
 
 		return $group_compare;
 	}
-
 }

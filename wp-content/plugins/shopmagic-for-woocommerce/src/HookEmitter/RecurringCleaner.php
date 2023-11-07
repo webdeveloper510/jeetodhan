@@ -4,9 +4,9 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\HookEmitter;
 
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareTrait;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use ShopMagicVendor\WPDesk\PluginBuilder\Plugin\Hookable;
 use WPDesk\ShopMagic\Components\Database\Abstraction\DAO\ObjectPersister;
 

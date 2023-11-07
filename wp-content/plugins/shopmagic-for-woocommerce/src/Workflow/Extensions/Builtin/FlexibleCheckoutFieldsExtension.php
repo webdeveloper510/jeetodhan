@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace WPDesk\ShopMagic\Workflow\Extensions\Builtin;
 
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use WPDesk\FCF\Free\Integration\Integrator;
 use WPDesk\ShopMagic\Integration\FlexibleCheckoutFields\Placeholder\OrderCheckoutField;
 use WPDesk\ShopMagic\Workflow\Extensions\AbstractExtension;

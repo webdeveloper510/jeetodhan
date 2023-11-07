@@ -1,6 +1,40 @@
 Changelog
 =========
 
+#### 4.9.9 - Oct 3, 2023 
+
+- Fix class "MC4WP_Usage_Tracking" not found error for WP Cron / WP CLI processes.
+
+
+#### 4.9.8 - Oct 3, 2023
+
+- Remove the opt-in usage tracking functionality as we're not really using it for decision making anymore.
+- Add missing label element to the select element for setting the logging level.
+- Our JavaScript assets are now transpiled to support the same set of browsers as WordPress core. 
+This drops support for some very old browsers, but results in smaller bundle sizes for the supported set of browsers.
+- Update third-party JS dependencies to their latest versions.
+
+
+#### 4.9.7 - Aug 29, 2023
+
+- Update third-party JS dependencies.
+- Minor textual improvements.
+- Bump tested WordPress version.
+
+
+#### 4.9.6 - Jul 12, 2023
+
+- Update third-party JS dependencies.
+- Address some minor codestyle issues.
+
+
+#### 4.9.5 - Jun 7, 2023
+
+- Fix generated HTML for list/audience choice fields.
+- Fix deprecation warning in includes/admin/class-review-notice.php.
+- Update JavaScript dependencies.
+
+
 #### 4.9.4 - May 2, 2023
 
 - Fallback to default checkbox label if none given. Thanks to [Shojib Khan](https://github.com/kshojib).

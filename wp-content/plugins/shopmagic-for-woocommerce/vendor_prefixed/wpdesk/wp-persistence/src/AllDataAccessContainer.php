@@ -2,7 +2,7 @@
 
 namespace ShopMagicVendor\WPDesk\Persistence;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 /**
  * Container that allows to get all data stored by container.
  *

@@ -32,6 +32,13 @@ final class ProductLink extends WooCommerceProductBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->utm_builder->append_utm_parameters_to_uri( $parameters, $this->get_product()->get_permalink() );
+		if ( $this->resources->has( \WC_Product::class ) ) {
+			return $this->utm_builder->append_utm_parameters_to_uri(
+				$parameters,
+				$this->resources->get( \WC_Product::class )->get_permalink()
+			);
+		}
+
+		return '';
 	}
 }

@@ -2,30 +2,23 @@ import { useStyles } from "../styles";
 import { computed, ref, unref } from "vue";
 import merge from "lodash/merge";
 import cloneDeep from "lodash/cloneDeep";
-import {
-  composePaths,
-  findUISchema,
-  getFirstPrimitiveProp,
-  Resolve,
-} from "@jsonforms/core";
+import { composePaths, findUISchema, getFirstPrimitiveProp, Resolve } from "@jsonforms/core";
 
 type RawValue = number | string | boolean;
 
 /**
  * Adds styles, isFocused, appliedOptions and onChange
  */
-export const useVanillaControl = <
-  I extends { control: any; handleChange: any }
->(
+export const useVanillaControl = <I extends { control: any; handleChange: any }>(
   input: I,
-  adaptTarget: (target: any) => any = (v) => unref(v)
+  adaptTarget: (target: any) => any = (v) => unref(v),
 ) => {
   const appliedOptions = computed(() =>
     merge(
       {},
       cloneDeep(input.control.value.config),
-      cloneDeep(input.control.value.uischema.options)
-    )
+      cloneDeep(input.control.value.uischema.options),
+    ),
   );
 
   const isFocused = ref(false);
@@ -38,8 +31,7 @@ export const useVanillaControl = <
   };
 
   const controlWrapper = computed(() => {
-    const { id, description, errors, label, visible, required, data } =
-      input.control.value;
+    const { id, description, errors, label, visible, required, data } = input.control.value;
     return { id, description, errors, label, visible, required, data };
   });
 
@@ -58,11 +50,7 @@ export const useVanillaControl = <
  */
 export const useVanillaLayout = <I extends { layout: any }>(input: I) => {
   const appliedOptions = computed(() =>
-    merge(
-      {},
-      cloneDeep(input.layout.value.config),
-      cloneDeep(input.layout.value.uischema.options)
-    )
+    merge({}, cloneDeep(input.layout.value.config), cloneDeep(input.layout.value.uischema.options)),
   );
   return {
     ...input,
@@ -76,11 +64,7 @@ export const useVanillaLayout = <I extends { layout: any }>(input: I) => {
  */
 export const useVanillaLabel = <I extends { label: any }>(input: I) => {
   const appliedOptions = computed(() =>
-    merge(
-      {},
-      cloneDeep(input.label.value.config),
-      cloneDeep(input.label.value.uischema.options)
-    )
+    merge({}, cloneDeep(input.label.value.config), cloneDeep(input.label.value.uischema.options)),
   );
   return {
     ...input,
@@ -92,15 +76,13 @@ export const useVanillaLabel = <I extends { label: any }>(input: I) => {
 /**
  * Adds styles, appliedOptions and childUiSchema
  */
-export const useVanillaArrayControl = <I extends { control: any }>(
-  input: I
-) => {
+export const useVanillaArrayControl = <I extends { control: any }>(input: I) => {
   const appliedOptions = computed(() =>
     merge(
       {},
       cloneDeep(input.control.value.config),
-      cloneDeep(input.control.value.uischema.options)
-    )
+      cloneDeep(input.control.value.uischema.options),
+    ),
   );
 
   const childUiSchema = computed(() =>
@@ -111,8 +93,8 @@ export const useVanillaArrayControl = <I extends { control: any }>(
       input.control.value.path,
       undefined,
       input.control.value.uischema,
-      input.control.value.rootSchema
-    )
+      input.control.value.rootSchema,
+    ),
   );
 
   const childLabelForIndex = (index: number) => {
@@ -124,7 +106,7 @@ export const useVanillaArrayControl = <I extends { control: any }>(
     }
     const labelValue = Resolve.data(
       input.control.value.data,
-      composePaths(`${index}`, childLabelProp)
+      composePaths(`${index}`, childLabelProp),
     );
     if (labelValue === undefined || labelValue === null || isNaN(labelValue)) {
       return "";

@@ -1,5 +1,5 @@
-import {ref} from "vue";
-import {useSingleAutomation} from "@/app/automations/singleAutomation";
+import { ref } from "vue";
+import { useSingleAutomation } from "@/app/automations/singleAutomation";
 
 export function useAutomationEvent() {
   const previousEvent = ref<string | null>(null);

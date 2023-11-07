@@ -4,6 +4,8 @@ declare( strict_types=1 );
 namespace WPDesk\ShopMagic\Workflow\Event\Builtin\Order;
 
 use WPDesk\ShopMagic\Customer\Customer;
+use WPDesk\ShopMagic\Customer\NullCustomer;
+use WPDesk\ShopMagic\Exception\CustomerNotFound;
 use WPDesk\ShopMagic\FormField\Field\CheckboxField;
 use WPDesk\ShopMagic\FormField\Field\SelectField;
 use WPDesk\ShopMagic\Helper\WooCommerceStatusHelper;
@@ -74,10 +76,7 @@ final class OrderStatusChanged extends OrderCommonEvent implements SupportsDefer
 	 */
 	public function status_changed( int $order_id, string $old_status, string $new_status, \WC_Order $order ): void {
 		$this->resources->set( \WC_Order::class, $order );
-		$this->resources->set(
-			Customer::class,
-			$this->customer_repository->find_by_email( $this->get_order()->get_billing_email() )
-		);
+		$this->resources->set( Customer::class, $this->get_customer( $order ) );
 
 		$order_status_from = $this->fields_data->get( self::PARAM_STATUS_FROM );
 		$order_status_to   = $this->fields_data->get( self::PARAM_STATUS_TO );

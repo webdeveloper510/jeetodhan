@@ -3,8 +3,8 @@
 declare (strict_types=1);
 namespace ShopMagicVendor\WPDesk\Migrations;
 
-use Psr\Log\LoggerTrait;
-class WpdbLogger implements \Psr\Log\LoggerInterface
+use ShopMagicVendor\Psr\Log\LoggerTrait;
+class WpdbLogger implements \ShopMagicVendor\Psr\Log\LoggerInterface
 {
     use LoggerTrait;
     private const MAX_LOG_SIZE = 30;

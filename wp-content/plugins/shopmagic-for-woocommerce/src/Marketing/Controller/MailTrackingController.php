@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Marketing\Controller;
 
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use ShopMagicVendor\Ramsey\Uuid\Uuid;
 use WPDesk\ShopMagic\Exception\CannotProvideItemException;
 use WPDesk\ShopMagic\Marketing\MailTracking\TrackedEmail;

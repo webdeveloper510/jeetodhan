@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Event\DeferredStateCheck;
 
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use WPDesk\ShopMagic\Customer\CustomerRepository;
 use WPDesk\ShopMagic\FormField\Field\CheckboxField;
 use WPDesk\ShopMagic\Workflow\Event\Builtin\OrderCommonEvent;

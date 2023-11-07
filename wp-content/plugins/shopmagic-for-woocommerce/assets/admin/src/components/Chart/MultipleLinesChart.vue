@@ -21,7 +21,7 @@ ChartJS.register(
   LinearScale,
   TimeScale,
   PointElement,
-  LineElement
+  LineElement,
 );
 defineProps<{
   labels: string[];

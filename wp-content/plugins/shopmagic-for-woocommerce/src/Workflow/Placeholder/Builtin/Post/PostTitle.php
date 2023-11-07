@@ -16,6 +16,10 @@ final class PostTitle extends PostBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->get_post()->post_title;
+		if ( $this->resources->has( \WP_Post::class ) ) {
+			return $this->resources->get( \WP_Post::class )->post_title;
+		}
+
+		return '';
 	}
 }

@@ -1,12 +1,5 @@
 <script lang="ts" setup>
-import {
-  NButton,
-  NCollapse,
-  NCollapseItem,
-  NFormItem,
-  NInput,
-  NSwitch,
-} from "naive-ui";
+import { NButton, NCollapse, NCollapseItem, NFormItem, NInput, NSwitch } from "naive-ui";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
 import { inject } from "vue";
@@ -31,6 +24,7 @@ defineProps<{
 
 defineEmits<{
   (e: "save"): void;
+  (e: "delete"): void;
   (e: "update:name", value: string): void;
   (e: "update:publish", value: boolean): void;
   (e: "update:language", value: string): void;
@@ -38,18 +32,12 @@ defineEmits<{
 </script>
 <template>
   <NCollapse class="max-w-[264px] pt-2 px-2" default-expanded-names="settings">
-    <NCollapseItem
-      :title="__('Settings', 'shopmagic-for-woocommerce')"
-      name="settings"
-    >
+    <NCollapseItem :title="__('Settings', 'shopmagic-for-woocommerce')" name="settings">
       <NFormItem
         :label="__('Marketing list published', 'shopmagic-for-woocommerce')"
         label-placement="left"
       >
-        <NSwitch
-          :value="publish"
-          @update:value="$emit('update:publish', $event)"
-        />
+        <NSwitch :value="publish" @update:value="$emit('update:publish', $event)" />
       </NFormItem>
       <NFormItem :label="__('Title', 'shopmagic-for-woocommerce')">
         <NInput

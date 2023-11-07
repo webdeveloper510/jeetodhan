@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { NButton, NH1, NPopover } from "naive-ui";
+import { NButton, NIcon, NH1, NPopover } from "naive-ui";
 import { CloseOutline } from "@vicons/ionicons5";
 import DataTable from "@/components/Table/DataTable.vue";
 import { h, reactive } from "vue";
 import { queueTableColumns } from "../data/queueTable";
 import { useQueueStore } from "@/app/logs/queueStore";
 import { storeToRefs } from "pinia";
-import { __ } from "@wordpress/i18n";
+import { __ } from "@/plugins/i18n";
 
 const store = useQueueStore();
 const { getQueue, cancelQueue } = store;
@@ -35,10 +35,10 @@ const columns = [
                 size: "small",
                 onClick: () => cancelQueue(id),
               },
-              { icon: () => h(CloseOutline) }
+              { icon: () => h(NIcon, () => h(CloseOutline)) },
             ),
           default: () => __("Cancel", "shopmagic-for-woocommerce"),
-        }
+        },
       ),
   },
 ];

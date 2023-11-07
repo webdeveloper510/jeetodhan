@@ -24,4 +24,3 @@ require_once NCSUCP_DIR . '/inc/hooks/activation.php';
 
 // Admin page.
 require_once NCSUCP_DIR . '/inc/admin-page/admin-page.php';
-

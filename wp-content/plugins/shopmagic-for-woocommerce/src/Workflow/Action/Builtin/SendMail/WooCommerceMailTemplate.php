@@ -4,10 +4,11 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Action\Builtin\SendMail;
 
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use ShopMagicVendor\Psr\Log\LoggerAwareInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareTrait;
 use ShopMagicVendor\Pelago\Emogrifier\CssInliner;
 use ShopMagicVendor\Symfony\Component\CssSelector\Exception\ParseException;
+use ShopMagicVendor\WPDesk\View\Renderer\Renderer;
 use ShopMagicVendor\WPDesk\View\Renderer\SimplePhpRenderer;
 use WPDesk\ShopMagic\Helper\TemplateResolver;
 
@@ -27,18 +28,24 @@ final class WooCommerceMailTemplate implements MailTemplate, LoggerAwareInterfac
 	 * @var string
 	 */
 	private const TEMPLATE_PATH = '';
-	/**
-	 * @var string
-	 */
-	private const EMAIL_TEMPLATE_DIR = 'emails';
+
 	/** @var string */
 	private $heading_value;
+
 	/** @var string|null */
 	private $unsubscribe_url;
 
-	public function __construct( string $heading_value, string $unsubscribe_url = null ) {
-		$this->heading_value = $heading_value;
+	/** @var Renderer */
+	private $renderer;
+
+	public function __construct(
+		string $heading_value,
+		string $unsubscribe_url = null,
+		?Renderer $renderer = null
+	) {
+		$this->heading_value   = $heading_value;
 		$this->unsubscribe_url = $unsubscribe_url;
+		$this->renderer        = $renderer ?? new SimplePhpRenderer( TemplateResolver::for_public() );
 	}
 
 	/**
@@ -72,8 +79,10 @@ final class WooCommerceMailTemplate implements MailTemplate, LoggerAwareInterfac
 
 		if ( null !== $this->unsubscribe_url ) {
 			$append_unsubscribe_link = function ( $content ): string {
-				return $content . sprintf( " &middot; <a href='%s'>", $this->unsubscribe_url ) . __( 'Unsubscribe',
-						'shopmagic-for-woocommerce' ) . '</a>';
+				return $content . sprintf( " &middot; <a href='%s'>", $this->unsubscribe_url ) . __(
+					'Unsubscribe',
+					'shopmagic-for-woocommerce'
+				) . '</a>';
 			};
 			add_filter( 'woocommerce_email_footer_text', $append_unsubscribe_link );
 		}
@@ -84,7 +93,7 @@ final class WooCommerceMailTemplate implements MailTemplate, LoggerAwareInterfac
 			remove_filter( 'woocommerce_email_footer_text', $append_unsubscribe_link );
 		}
 
-		return ob_get_clean();
+		return (string) ob_get_clean();
 	}
 
 	/**
@@ -121,9 +130,7 @@ final class WooCommerceMailTemplate implements MailTemplate, LoggerAwareInterfac
 	private function render_css(): string {
 		ob_start();
 		$this->print_template_part( 'email-styles.php' );
-		( new SimplePhpRenderer(
-			TemplateResolver::for_public( 'emails' )
-		) )->output_render( 'email-styles' );
+		$this->renderer->output_render( 'emails/email-styles' );
 
 		return /**
 		 * @ignore WooCommerce hook.

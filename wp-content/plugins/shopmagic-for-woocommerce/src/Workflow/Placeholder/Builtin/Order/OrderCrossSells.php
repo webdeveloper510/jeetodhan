@@ -23,7 +23,7 @@ final class OrderCrossSells extends WooCommerceOrderBasedPlaceholder {
 
 	public function get_description(): string {
 		return esc_html__( "Display cross sell products associated with of current order's products.", 'shopmagic-for-woocommerce' ) . '\n' .
-			$this->utm_builder->get_description();
+		       $this->utm_builder->get_description();
 	}
 
 	public function get_slug(): string {
@@ -42,7 +42,7 @@ final class OrderCrossSells extends WooCommerceOrderBasedPlaceholder {
 			return '';
 		}
 
-		$order_items              = $this->get_order()->get_items();
+		$order_items              = $this->resources->get( \WC_Order::class )->get_items();
 		$cross_sell_products_id   = $this->get_cross_sell_products_id( $order_items );
 		$cross_sell_product_names = [];
 		$cross_sell_products      = [];

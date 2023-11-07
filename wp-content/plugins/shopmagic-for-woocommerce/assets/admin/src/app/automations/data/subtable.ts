@@ -1,12 +1,12 @@
-import type {DataTableColumns} from "naive-ui";
-import {NButton, NPopover, NSpace, NTag} from "naive-ui";
-import type {AutomationData} from "@/types/automation";
-import {h} from "vue";
-import {RouterLink} from "vue-router";
-import {DownloadOutline, TrashOutline} from "@vicons/ionicons5";
-import {__} from "@wordpress/i18n";
+import type { DataTableColumns } from "naive-ui";
+import { NButton, NIcon, NPopover, NSpace, NTag } from "naive-ui";
+import type { AutomationData } from "@/types/automation";
+import { h } from "vue";
+import { RouterLink } from "vue-router";
+import { DownloadOutline, TrashOutline } from "@vicons/ionicons5";
+import { __ } from "@/plugins/i18n";
 import DuplicationMessage from "../components/DuplicationMessage.vue";
-import {downloadAutomation, removeAutomation,} from "@/app/automations/singleAutomation";
+import { downloadAutomation, removeAutomation } from "@/app/automations/singleAutomation";
 
 export const automationSubTable: DataTableColumns<AutomationData> = [
   {
@@ -16,7 +16,7 @@ export const automationSubTable: DataTableColumns<AutomationData> = [
       h(
         RouterLink,
         { to: { name: "automation", params: { id } } },
-        () => name || __("(Unnamed)", "shopmagic-for-woocommerce")
+        () => name || __("(Unnamed)", "shopmagic-for-woocommerce"),
       ),
   },
   {
@@ -38,14 +38,14 @@ export const automationSubTable: DataTableColumns<AutomationData> = [
                   tertiary: true,
                   type: "info",
                   size: "small",
-                  onClick: () => downloadAutomation(id),
+                  onClick: () => void downloadAutomation(id),
                 },
                 {
-                  icon: () => h(DownloadOutline),
-                }
+                  icon: () => h(NIcon, () => h(DownloadOutline)),
+                },
               ),
             default: () => __("Export", "shopmagic-for-woocommerce"),
-          }
+          },
         ),
         h(
           NPopover,
@@ -60,12 +60,12 @@ export const automationSubTable: DataTableColumns<AutomationData> = [
                   tertiary: true,
                   type: "error",
                   size: "small",
-                  onClick: () => removeAutomation(id),
+                  onClick: () => void removeAutomation(id),
                 },
-                { icon: () => h(TrashOutline) }
+                { icon: () => h(NIcon, () => h(TrashOutline)) },
               ),
             default: () => __("Delete", "shopmagic-for-woocommerce"),
-          }
+          },
         ),
       ]),
   },
@@ -112,7 +112,7 @@ export const automationSubTable: DataTableColumns<AutomationData> = [
               return __("unknown", "shopmagic-for-woocommerce");
             }
           },
-        }
+        },
       ),
   },
 ];

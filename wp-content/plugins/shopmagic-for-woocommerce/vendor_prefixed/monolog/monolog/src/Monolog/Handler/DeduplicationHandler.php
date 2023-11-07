@@ -12,7 +12,7 @@ declare (strict_types=1);
 namespace ShopMagicVendor\Monolog\Handler;
 
 use ShopMagicVendor\Monolog\Logger;
-use Psr\Log\LogLevel;
+use ShopMagicVendor\Psr\Log\LogLevel;
 /**
  * Simple handler wrapper that deduplicates log records across multiple requests
  *

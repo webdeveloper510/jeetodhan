@@ -6,8 +6,6 @@ namespace WPDesk\ShopMagic\Workflow\Event\Builtin\Order;
 use WC_Order;
 use WPDesk\ShopMagic\Components\HookProvider\HookTrait;
 use WPDesk\ShopMagic\Customer\Customer;
-use WPDesk\ShopMagic\Customer\NullCustomer;
-use WPDesk\ShopMagic\Exception\CustomerNotFound;
 use WPDesk\ShopMagic\Workflow\Event\Builtin\OrderCommonEvent;
 use WPDesk\ShopMagic\Workflow\Event\EventMutex;
 
@@ -66,18 +64,8 @@ final class OrderNew extends OrderCommonEvent {
 	public function process_event( $order_id, $order ): void {
 		if ( $this->event_mutex->check_uniqueness_once( spl_object_hash( $this ), [ 'order_id' => $order_id ] ) ) {
 			$this->resources->set( WC_Order::class, $order );
+			$this->resources->set( Customer::class, $this->get_customer( $order ) );
 
-			try {
-				$customer = $this->customer_repository->find_by_email( $order->get_billing_email() );
-			} catch ( CustomerNotFound $e ) {
-				try {
-					$customer = $this->customer_repository->find_by_email( $order->get_user()->user_email );
-				} catch ( CustomerNotFound $e ) {
-					$customer = new NullCustomer();
-				}
-			}
-
-			$this->resources->set( Customer::class, $customer );
 			$this->trigger_automation();
 		}
 	}

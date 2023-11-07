@@ -2,7 +2,7 @@
 
 namespace ShopMagicVendor\WPDesk\Forms\Form;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use ShopMagicVendor\WPDesk\Forms\ContainerForm;
 use ShopMagicVendor\WPDesk\Forms\Field;
 use ShopMagicVendor\WPDesk\Forms\FieldProvider;

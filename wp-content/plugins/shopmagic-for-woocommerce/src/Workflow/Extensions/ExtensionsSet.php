@@ -4,8 +4,8 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Extensions;
 
-use Psr\Container\ContainerInterface;
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use WPDesk\ShopMagic\Customer\CustomerRepository;
 use WPDesk\ShopMagic\Workflow\Action\Action;
 use WPDesk\ShopMagic\Workflow\Action\ActionList;

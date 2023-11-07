@@ -53,11 +53,4 @@ type AutomationData = Readonly<{
   recipe: boolean;
 }>;
 
-export type {
-  Automation,
-  Automations,
-  AutomationData,
-  Filter,
-  FilterOrGroup,
-  Action,
-};
+export type { Automation, Automations, AutomationData, Filter, FilterOrGroup, Action };

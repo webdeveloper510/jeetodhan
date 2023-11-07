@@ -1,12 +1,11 @@
-=== Coming Soon & Maintenance Mode Page ===
+=== Coming Soon & Maintenance Mode Page & Under Construction ===
 
-Contributors: wpconcern, maneshtimilsina, rabmalin
-Donate link: https://wpconcern.com/plugins/nifty-coming-soon-and-under-construction-page/
+Contributors: wphait
 Tags: coming soon, coming soon page, launch page, maintenance mode, maintenance page, coming soon mode, under construction, maintenance mode page, landing page, offline page, subscribe form, maintenance, maintenance mode with countdown timer, maintenance mode with timer, coming soon plugin, wp coming soon, wordpress under construction, under construction page, wp maintenance, wordpress coming soon page, simple maintenance mode, custom coming soon, custom maintenance mode
-Tested up to: 6.2
+Tested up to: 6.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Stable tag: 3.0.4
+Stable tag: 3.0.7
 Requires PHP: 5.6
 Requires at least: 4.9
 
@@ -18,7 +17,7 @@ Simple and easy to setup Coming soon, Under Construction and Maintenance page pl
 
 Coming Soon and Maintenance Mode plugin features responsive design and will adapt to any device. You can setup background slider with overlay pattern and opacity. Easily alter animated text on the coming soon page and use the built in count down timer, subscription form and more.
 
-[View Demo](https://ncsucp.wpconcern.net/free/) | [View Details](https://wpconcern.com/plugins/nifty-coming-soon-and-under-construction-page/) | [Documentation](https://wpconcern.com/documentation/nifty-coming-soon-and-under-construction-page/) | [View Premium Themes](https://ncsucp.wpconcern.net/) | [Upgrade to Pro](https://wpconcern.com/plugins/nifty-coming-soon-and-under-construction-page/)
+[View Demo](https://dandure.com/ncsucp/free/) | [View Details](https://wphait.com/plugins/nifty-coming-soon-and-under-construction-page/) | [Documentation](https://dandure.com/documentation/nifty-coming-soon-and-under-construction-page/) | [View Premium Themes](https://dandure.com/ncsucp) | [Upgrade to Pro](https://wphait.com/plugins/nifty-coming-soon-and-under-construction-page/)
 
 ### Main Features
 
@@ -96,6 +95,12 @@ Logged in users will NOT see the Coming Soon page. To see and customize the sett
 2. Screenshot 2
 
 == Changelog ==
+
+= 2.0.14 - 28 Jul 2023 =
+- Update Author Info
+
+= 3.0.5 - 25 May 2023 =
+* Update Admin Notice package
 
 = 3.0.4 - 20 Feb 2023 =
 * Fix PHP 8 issue

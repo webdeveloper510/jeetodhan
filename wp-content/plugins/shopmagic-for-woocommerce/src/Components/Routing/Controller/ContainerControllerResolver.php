@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Components\Routing\Controller;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 
 class ContainerControllerResolver extends SimpleControllerResolver {
 

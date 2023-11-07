@@ -18,6 +18,10 @@ final class OrderBillingAddress2 extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->get_order()->get_billing_address_2();
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			return $this->resources->get( \WC_Order::class )->get_billing_address_2();
+		}
+
+		return '';
 	}
 }

@@ -14,7 +14,7 @@ namespace ShopMagicVendor\Monolog\Handler;
 use ShopMagicVendor\Monolog\Logger;
 use ShopMagicVendor\Monolog\ResettableInterface;
 use ShopMagicVendor\Monolog\Formatter\FormatterInterface;
-use Psr\Log\LogLevel;
+use ShopMagicVendor\Psr\Log\LogLevel;
 /**
  * Simple handler wrapper that filters records based on a list of levels
  *

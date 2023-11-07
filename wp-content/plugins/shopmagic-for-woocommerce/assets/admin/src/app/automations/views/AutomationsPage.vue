@@ -1,19 +1,21 @@
 <script lang="ts" setup>
-import { NButton, NH1, NInput, NSelect } from "naive-ui";
-import { reactive, ref } from "vue";
+import { NButton, NH1, NInput, NSelect, useMessage } from "naive-ui";
+import { reactive, ref, h } from "vue";
 import DataTable from "@/components/Table/DataTable.vue";
 import { automationTableColumns } from "../data/table";
 import { useAutomationResourcesStore } from "../resourceStore";
 import { storeToRefs } from "pinia";
 import { elementsAsOptions } from "@/_utils";
 import router from "@/router";
+import NotificationMessage from "@/components/NotificationMessage.vue";
 import StatusSelect from "@/app/automations/components/StatusSelect.vue";
 import { useDebounceFn } from "@vueuse/core";
 import { useAutomationCollectionStore } from "@/app/automations/store";
 import { useSingleAutomation } from "@/app/automations/singleAutomation";
+import { __, sprintf } from "@/plugins/i18n";
 
 const automationStore = useAutomationCollectionStore();
-const { fetchItems, deleteAutomations } = automationStore;
+const { fetchItems, deleteAutomations, downloadAutomations } = automationStore;
 const { loading, toArray, count } = storeToRefs(automationStore);
 const events = ref([]);
 
@@ -21,6 +23,8 @@ const events = ref([]);
 fetchItems().then(() => {
   events.value = useAutomationResourcesStore().events;
 });
+
+const message = useMessage();
 
 const singleAutomationStore = useSingleAutomation();
 
@@ -37,15 +41,61 @@ const filterAutomations = useDebounceFn((v) => (tableFilters.name = v), 500, {
 const bulkAction = ref<string | null>(null);
 const checkedRows = ref([]);
 
-function executeBulkAction() {
+async function executeBulkAction() {
   if (bulkAction.value === "delete") {
-    try {
-      deleteAutomations(checkedRows.value);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      checkedRows.value = [];
-    }
+    bulkDeleteAutomations(checkedRows.value);
+  } else if (bulkAction.value === "export") {
+    bulkExportAutomations(checkedRows.value);
+  }
+  checkedRows.value = [];
+}
+
+async function bulkExportAutomations(ids: number[]) {
+  const m = message.loading(__("Exporting automations...", "shopmagic-for-woocommerce"), {
+    duration: 0,
+    keepAliveOnHover: true,
+  });
+  try {
+    await downloadAutomations(ids);
+    m.content = () =>
+      h(NotificationMessage, {
+        title: __("Automations exported", "shopmagic-for-woocommerce"),
+      });
+    m.type = "info";
+  } finally {
+    setTimeout(m.destroy, 4500);
+  }
+}
+
+async function bulkDeleteAutomations(ids: number[]) {
+  const m = message.loading(__("Deleting automations...", "shopmagic-for-woocommerce"), {
+    duration: 0,
+    keepAliveOnHover: true,
+  });
+  try {
+    const result = await deleteAutomations(ids);
+    const deletedMessage =
+      result.deleted > 0
+        ? sprintf(__("%d automations deleted.", "shopmagic-for-woocommerce"), result.deleted)
+        : "";
+    const errorsMessage =
+      result.errors > 0
+        ? sprintf(
+            __("%d automations failed to delete.", "shopmagic-for-woocommerce"),
+            result.errors,
+          )
+        : "";
+    m.content = () =>
+      h(NotificationMessage, {
+        title:
+          result.deleted > 0
+            ? __("Automations deleted", "shopmagic-for-woocommerce")
+            : __("Failed to delete automations", "shopmagic-for-woocommerce"),
+        message: deletedMessage + " " + errorsMessage,
+      });
+    m.type = "info";
+  } finally {
+    setTimeout(m.destroy, 4500);
   }
 }
 
@@ -72,8 +122,8 @@ function importAutomation() {
   });
 }
 
-async function navigate() {
-  await router.push({
+function navigate() {
+  router.push({
     name: "automation",
     params: { id: "new" },
   });
@@ -94,14 +144,12 @@ async function navigate() {
       {{
         __(
           "If you have an automation in JSON format, you can import it by submitting the form below.",
-          "shopmagic-for-woocommerce"
+          "shopmagic-for-woocommerce",
         )
       }}
     </p>
     <form class="flex justify-between p-8 bg-gray-50">
-      <label class="sr-only" for="automation-file">{{
-        __("JSON automation to import")
-      }}</label>
+      <label class="sr-only" for="automation-file">{{ __("JSON automation to import") }}</label>
       <input id="automation-file" type="file" @change="selectFile" />
       <NButton secondary type="info" @click="importAutomation">
         {{ __("Import automation", "shopmagic-for-woocommerce") }}
@@ -140,6 +188,10 @@ async function navigate() {
           {
             label: __('Delete', 'shopmagic-for-woocommerce'),
             value: 'delete',
+          },
+          {
+            label: __('Export', 'shopmagic-for-woocommerce'),
+            value: 'export',
           },
         ]"
         class="w-[320px]"

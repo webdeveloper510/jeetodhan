@@ -4,9 +4,9 @@ Tags: customize woocommerce emails, follow up emails, woocommerce email customiz
 Author URL: https://shopmagic.app/?utm_source=wporg&utm_medium=readme&utm_campaign=shopmagic-for-woocommerce&utm_term=author-url&utm_content=home
 Donate link: https://shopmagic.app/
 Requires at least: 5.0
-Tested up to: 6.2
+Tested up to: 6.3
 Requires PHP: 7.2
-Stable tag: 3.0.13
+Stable tag: 4.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,8 @@ ShopMagic is a WooCommerce extension, so you own and have total control over you
 
 What’s more, you can also easily extend ShopMagic with your additions to suit all your needs.
 
+Use the best email marketing customizer for WordPress and WooCommerce ⭐!
+
 ### Some of the ShopMagic email marketing features supported out-of-the-box
 
 - **Ready-to-use WooCommerce email marketing recipes** - Pre-made email automation templates you can use right away
@@ -67,6 +69,8 @@ What’s more, you can also easily extend ShopMagic with your additions to suit 
 - **Use ShopMagic for WooCommerce with add-ons** like the integration with Twilio, Gravity Forms, Contact Form 7, Slack, WooCommerce Memberships, WooCommerce Bookings, WooCommerce Subscriptions, and Google Sheets.
 
 [youtube https://www.youtube.com/watch?v=otFW9egNI3U]
+
+★★★★★
 
 **All of this will boost sales and bring more conversions to your WooCommerce store!**
 
@@ -103,6 +107,8 @@ Time for action. The final step of every automation. In other words, what will h
 = Customize with WooCommerce email shortcodes (placeholders) =
 
 ShopMagic supports a variety of WooCommerce email placeholders. This can help you personalize your emails with customers' data or increase conversions with direct links (e.g. pointing to an unfinished order).
+
+★★★★★
 
 ### ShopMagic use cases
 
@@ -158,6 +164,8 @@ ShopMagic is for you if:
 - You want to replace the code-heavy WooCommerce email template system with your custom HTML emails for order notifications to customers and admins using an easy email interface.
 - You want to see no more issues with WooCommerce emails not working, WooCommerce not sending emails to customers!
 - You want to prepare and send automatic newsletters to achieve great marketing results in WooCommerce.
+
+★★★★★
 
 **Yes, ShopMagic is for you!** But do not take our word for it.
 
@@ -224,6 +232,8 @@ The ShopMagic API makes it possible for developers to extend ShopMagic by:
 - Integrating with other plugins and web applications.
 - Overriding default plugin behavior.
 
+★★★★★
+
 ### ShopMagic in a nutshell
 
 - Free WooCommerce marketing automation
@@ -270,6 +280,8 @@ You can also read the [plugin documentation](https://docs.shopmagic.app/).
 
 Of course! You can ask a question on [WordPress forums](https://wordpress.org/support/plugin/shopmagic-for-woocommerce/) or send us a direct support message. No matter if you are a free or PRO version user – we leave no questions unanswered!
 
+[**Upgrade to PRO &rarr;**](https://shopmagic.app/pricing/?utm_source=wporg&utm_medium=readme&utm_campaign=shopmagic-for-woocommerce&utm_term=upgrade-to-shopmagic-pro-now&utm_content=faq) to get priority email support and all PRO add-ons ⭐!
+
 = Who should use ShopMagic? =
 
 Every store owner. It’s a perfect solution whether you want to automate repetitive tasks, create transactional emails or integrate your store with external solutions like Mailchimp, Slack, Postmark, WooCommerce Subscriptions, or Memberships.
@@ -277,6 +289,24 @@ Every store owner. It’s a perfect solution whether you want to automate repeti
 If you want to build successful email marketing automation in WordPress and WooCommerce ShopMagic will help you achieve that. What's more, you can use the plugin to customize WooCommerce emails and send newsletters, notifications, cart reminders, and special offers to your customers.
 
 You should use the plugin if you look for a successful WooCommerce email customizer and marketing automation tool at the same time! ShopMagic will help you boost your sales and run email marketing campaigns effectively.
+
+= How to send custom emails in WordPress and WooCommerce with this email customizer? =
+
+First, you need to create a new automation. Then, you may choose the event for which the automation will be triggered. Next, there are filters to narrow the conditions. Finally, you can pick one of the actions available including the new email template. That's it 😊!
+
+The plugin lets you create, customize, and send personalized emails in WordPress and WooCommerce, for example to:
+
+* Inform about new blog posts (**a free WordPress newsletter plugin**) 📨
+* Send emails to **rescue WooCommerce carts** and lower the abandonment cart rate (with a free add-on) 🛒
+* Improve your communication with WooCommerce customers with **customized follow up emails for order status change** 📣
+* **Offer discount coupons** for your WooCommerce products with the custom email content, layout, and triggers ⭐
+* **Create email lists from WordPress with CF7 free add-on and WooCommerce orders** . Then, save these emails to Mailchimp or Google Sheets (with a free add-on) 💌
+
+These are only a few examples of email marketing automations for your WordPress and WooCommerce stores. See more inspiring [**email marketing ideas on our blog &rarr;**](https://shopmagic.app/blog/?utm_source=wporg&utm_medium=readme&utm_campaign=shopmagic-for-woocommerce&utm_term=blog&utm_content=faq)
+
+= Why customize emails if there are default ones in WordPress or WooCommerce? =
+
+First, there is no easy way to customize emails in WordPress. WooCommerce gives you a way to adjust its email templates in *WooCommerce* &rarr; *Settings* &rarr; *Emails*. You need to know HTML, CSS, and PHP to change the email templates in WooCommerce. However, this option is limited to the statuses and email triggers in WooCommerce. If you need more use the events, filters, and actions in ShopMagic 🚀!
 
 = Is it possible to create an unlimited number of automations and send unlimited emails with your plugin? =
 
@@ -293,6 +323,46 @@ No. Just as WooCommerce, ShopMagic stores everything locally in the database of 
 = Are coding skills needed to use ShopMagic? =
 
 Not at all! No coding skills required. One of our goals is to simplify the creation of every automation. Usually, it only takes a few minutes to create a working automation.
+
+= How to extend the ShopMagic options? =
+
+ShopMagic has many free add-ons that will help you customize your emails and marketing campaigns in WordPress and WooCommerce 🚀.
+
+- [**Recover Abandoned Carts**](https://wordpress.org/plugins/shopmagic-abandoned-carts/) – A completely FREE add-on for ShopMagic to stop cart abandonment and recover your lost revenue.
+- [**WooCoommerce SMS notifications**](https://wordpress.org/plugins/shopmagic-for-twilio/) - Free ShopMagic add-on that lets you scale your revenue by sending SMS to your customers with Twilio.
+- [**ShopMagic for Contact Form 7 and WooCommerce**](https://wordpress.org/plugins/shopmagic-for-contact-form-7/) - use Contact Form 7 submissions directly in email marketing automation in your WooCommerce store or WordPress.
+- [**ShopMagic for Google Sheets**](https://wordpress.org/plugins/shopmagic-for-google-sheets/) - export all the data from WooCommerce orders or WordPress to Google Sheets.
+
+You can also use the ShopMagic PRO containing additional extensions to boost your WordPress and WooCommerce emails 🚀.
+
+**These are paid add-ons for [ShopMagic PRO](https://shopmagic.app/).**
+
+- [**Delayed Actions**](https://shopmagic.app/products/shopmagic-delayed-actions/?utm_source=wporg&utm_medium=readme&utm_campaign=shopmagic-for-woocommerce&utm_term=delayed-actions&utm_content=add-on-delayed-actions) – Create post-purchase emails, i.e. with a 1-week delay or anniversary email 365 days after the initial purchase. Delay WooCommerce emails by minutes, hours, days, or weeks.
+- [**Review Requests**](https://shopmagic.app/products/shopmagic-review-requests/?utm_source=wporg&utm_medium=readme&utm_campaign=shopmagic-for-woocommerce&utm_term=review-requests&utm_content=add-on-review-requests) – Adds review requests with direct links to products purchased for customers to review.
+- [**Personalized Coupons**](https://shopmagic.app/products/shopmagic-customer-coupons/?utm_source=wporg&utm_medium=readme&utm_campaign=shopmagic-for-woocommerce&utm_term=advanced-filters&utm_content=add-on-advanced-filters) – Adds the ability to create personalized coupon codes for customers and send them automatically.
+- [**Advanced Filters**](https://shopmagic.app/products/shopmagic-advanced-filters/?utm_source=wporg&utm_medium=readme&utm_campaign=shopmagic-for-woocommerce&utm_term=delayed-actions&utm_content=add-on-delayed-actions) – Ability to segment your customers with advanced filters, for example, order total, product category, payment or shipping method, and more.
+- [**Manual Actions**](https://shopmagic.app/products/shopmagic-manual-actions/?utm_source=wporg&utm_medium=readme&utm_campaign=shopmagic-for-woocommerce&utm_term=manual-actions&utm_content=add-on-manual-actions) – Manually trigger one-time emails. Perfect for newsletters, product announcements, or any other emails that you want to trigger by yourself.
+- [**WooCommerce Subscriptions Integration**](https://shopmagic.app/products/woocommerce-subscriptions/?utm_source=wporg&utm_medium=readme&utm_campaign=shopmagic-for-woocommerce&utm_term=woocommerce-subscriptions-integration&utm_content=add-on-woocommerce-subscriptions) – Allows creating automations based on subscription events, such as payments or status changes.
+- [**WooCommerce Memberships Integration**](https://shopmagic.app/products/shopmagic-woocommerce-memberships/?utm_source=wporg&utm_medium=readme&utm_campaign=shopmagic-for-woocommerce&utm_term=woocommerce-memberships-integration&utm_content=add-on-woocommerce-memberships) – Allows creating automations based on membership events, such as status changes or before expiry.
+- [**WooCommerce Bookings Integration**](https://shopmagic.app/products/shopmagic-woocommerce-bookings/?utm_source=wporg&utm_medium=readme&utm_campaign=shopmagic-for-woocommerce&utm_term=woocommerce-bookings-integration&utm_content=add-on-woocommerce-bookings) - Let you crate automation based on booking events like status changes or before expiry.
+- [**Gravity Forms**](https://shopmagic.app/products/shopmagic-gravity-forms/?utm_source=wporg&utm_medium=readme&utm_campaign=shopmagic-for-woocommerce&utm_term=gravity-forms&utm_content=add-on-gravity-forms) - Let you create automation based on user or customer form submission. You may use the forms to gather feedback in WordPress or information from WooCommerce customers and send the data to [Google Sheets](https://shopmagic.app/products/woocommerce-google-sheets-integration/).
+- [**Post to Slack**](https://shopmagic.app/products/shopmagic-slack/?utm_source=wporg&utm_medium=readme&utm_campaign=shopmagic-for-woocommerce&utm_term=post-to-slack&utm_content=add-on-slack) – Allows you and your team to stay up to date with what’s happening in your store right in Slack.
+
+= Do you have more free plugins for WooCommerce? =
+
+Yes. Check out our [**free WooCommerce plugins &rarr;**](https://profiles.wordpress.org/wpdesk/#content-plugins)
+
+You can also choose one from the list below based on your needs.
+
+* [**Flexible Invoices**](https://wordpress.org/plugins/flexible-invoices/) - free PDF invoices in WordPress and WooCommerce.
+* [**Custom Price**](https://wordpress.org/plugins/custom-price-for-woocommerce/) - let customers name the WooCommerce product prices. Use this plugin to receive donations and sell products at custom prices.
+* [**Flexible Checkout Fields**](https://wordpress.org/plugins/flexible-checkout-fields/) - customize the WooCommerce checkout page with custom fields. The free WooCommerce checkout field customizer.
+* [**Flexible Product Fields**](https://wordpress.org/plugins/flexible-product-fields/) - customize the WooCommerce product page with custom fields with this free customizer!
+* [**Flexible PDF Coupons**](https://wordpress.org/plugins/flexible-coupons/) - pdf gift cards, vouchers, and tickets in WooCommerce with unlimited card templates.
+* [**Flexible Wishlist**](https://wordpress.org/plugins/flexible-wishlist/) - let customers create product wishlists in WooCommerce, share favorite products, and let customers save their carts for future shopping!
+* [**Dropshipping XML - Import Products**](https://wordpress.org/plugins/dropshipping-xml-for-woocommerce/) - import and update WooCommerce products from any CSV or XML file. Start selling dropshipping products in WooCommerce.
+* [**Flexible Quantity**](https://wordpress.org/plugins/flexible-quantity-measurement-price-calculator-for-woocommerce/) - choose new units of measure for WooCommerce products.
+* [**Flexible Refund**](https://wordpress.org/plugins/flexible-refund-and-return-order-for-woocommerce/) - let customers send refunds, returns, and warranty requests in WooCommerce.
 
 == Screenshots ==
 
@@ -336,22 +406,75 @@ Not at all! No coding skills required. One of our goals is to simplify the creat
 
 == Changelog ==
 
-= 3.0.13 - 2022-04-11 =
+= 4.2.1 - 2023-09-21 =
+* Added sorting automations by name in admin view.
+* Added bulk action to export multiple automations from admin view.
+* Added support for WooCommerce 8.1.
+* Fixed using recipes shows error message, despite the recipe is correctly used.
+* Fixed admin view translations showing mostly in English. Now if ShopMagic is translated to your language, the admin area is also available in your language.
+* Improved ShopMagic translation behavior when admin user sets different language than default site language. ShopMagic now respects user preferred language.
+* Fixed missing customer email in Queue admin view.
+* Fixed fatal error when accessing a tracking link from an email with malicious URL. From now ShopMagic shows a proper message to the user and logs an error.
+
+= 4.2.0 - 2023-09-12 =
+* Added `order.billing_phone` and `order.shipping_phone` placeholders.
+* Improved ShopMagic behavior in unexpected cases: when some critical extension goes down (e.g. Delayed Actions is disabled, or Advanced Filters filter is unavailable), prevent automation from running.
+
+= 4.1.0 - 2023-09-04 =
+* Improved handling of strict server settings, which disable DELETE/PUT/PATCH requests. Now, you can enable compatibility mode in ShopMagic settings.
+* Improved error messages when automation fails to save.
+* Fixed email tracking causes errors in non-customer based automations (e.g. Post Updated event)
+* Fixed automation errors occurring when multilingual module is enabled for automations without customers (e.g. Post Updated event)
+
+= 4.0.3 - 2023-08-16 =
+* Added support for WordPress 6.3
+* Added support for WooCommerce 8.0
+
+= 4.0.2 - 2023-07-03 =
+* Fixed admin not being able to remove guest from guests list.
+
+= 4.0.1 - 2023-06-27 =
+* Fixed an error with resolving template files for checkout opt-in checkbox and email styles in messages.
+
+= 4.0.0 - 2023-06-27 =
+* This major bump affects development part of ShopMagic, with no actual changes to user experience. ShopMagic no longer uses unprefixed version of `Psr` libraries to increase its stability. Instead any `Psr` libraries are now scoped with `ShopMagicVendor` prefix, meaning that extenrnal developers have to change logger or container class references.
+* Added extension for plugin authors to integrate own templates with ShopMagic, i.e. for marketing list confirmation message.
+* Fixed views missing data in admin site when using filters or pagination with plain permalinks setting (e.g. next page of automations or filtering outcomes by status).
+* Improved fault tolerant checking for customer in order related events.
+
+= 3.0.15 - 2023-06-13 =
+* Fixed an issue when automation action is not changed, despite changing action type and saving automation. Now, you can overwrite an existing action.
+* Fixed intercepting non-registered guests, when pre-submit data option is enabled.
+* Improved the way of inferring customer from an order, when the customer is logged in and uses different email for account and billing details.
+
+= 3.0.14 - 2023-05-22 =
+* Fixed displaying error message to users who have successfully signed up for a double opt-in marketing list.
+* Improved safety of misusing placeholders: now, if a non-compatible placeholder is used, it will be ignored, instead of failing the whole automation, i.e. using `{{ product.name }}` in a post-based automation will no longer fail the automation.
+* Edit, duplicate and delete icons are now visible on Safari browser.
+* Guest details no longer misses extra data (i.e. billing details) in admin Guest list view.
+* Improved the method of integration with contact form plugins, e.g. used in ShopMagic for Contact Form 7.
+* Fixed the order or Action Scheduler initialization, which generated notices before.
+* Restored images in "Start here" page.
+* Improved compatibility with PHP 8.1 version.
+* Improved backward compatibility with PHP <7.4 versions.
+* Added support for latest WooCommerce plugin.
+
+= 3.0.13 - 2023-04-11 =
 * Fixed an error leading to either sending all automations or none. From now on, ShopMagic filters will work correctly and predictably.
 * Improved customer's language detection, when multilingual module enabled.
 
-= 3.0.12 - 2022-03-29 =
+= 3.0.12 - 2023-03-29 =
 * Restored backward compatibility with ShopMagic extensions.
 * Fixed an error on double opt-in email confirmation.
 * Fixed an issue with email tracking links leading to an error page.
 
-= 3.0.11 - 2022-03-24 =
+= 3.0.11 - 2023-03-24 =
 * Reapplied automation filters to be validated on an automation run.
 
-= 3.0.10 - 2022-03-24 =
+= 3.0.10 - 2023-03-24 =
 * Improved graceful handling of automation misconfiguration when looking for existing automations.
 
-= 3.0.9 - 2022-03-23 =
+= 3.0.9 - 2023-03-23 =
 * Reworked and improved multilingual support module.
 * Fixed "Customer Opt In" and "Customer Opt Out" events.
 * Fixed emails sometimes not being sent to registered users.
@@ -363,10 +486,10 @@ Not at all! No coding skills required. One of our goals is to simplify the creat
 * Improved handling of incorrect email tracking links.
 * Restored plain text editor support in some actions (i.e. "Send email - Plain text").
 
-= 3.0.8 - 2022-01-12 =
+= 3.0.8 - 2023-01-12 =
 * Improve compatibility with outdated \Psr\Container implementation from WooCommerce plugin
 
-= 3.0.7 - 2022-01-12 =
+= 3.0.7 - 2023-01-12 =
 * Fixed some customer based placeholders (e.g. `customer.first_name`) not displaying any value.
 * Improved ShopMagic settings save -- you can now disable email tracking properly.
 * Fixed issues with marketing lists causing troubles at customer's checkout.

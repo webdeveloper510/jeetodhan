@@ -14,7 +14,7 @@ use ShopMagicVendor\DI\Definition\Source\SourceCache;
 use ShopMagicVendor\DI\Definition\Source\SourceChain;
 use ShopMagicVendor\DI\Proxy\ProxyFactory;
 use InvalidArgumentException;
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 /**
  * Helper to create and configure a Container.
  *

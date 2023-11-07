@@ -3,7 +3,7 @@
 declare (strict_types=1);
 namespace ShopMagicVendor\DI;
 
-use Psr\Container\ContainerExceptionInterface;
+use ShopMagicVendor\Psr\Container\ContainerExceptionInterface;
 /**
  * Exception for the Container.
  */

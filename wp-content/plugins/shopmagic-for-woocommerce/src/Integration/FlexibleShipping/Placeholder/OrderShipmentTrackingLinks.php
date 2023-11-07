@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Integration\FlexibleShipping\Placeholder;
 
@@ -45,7 +45,7 @@ final class OrderShipmentTrackingLinks extends WooCommerceOrderBasedPlaceholder 
 		return $this->renderer->render(
 			'value',
 			[
-				'urls' => $this->get_tracking_urls( $this->get_order() ),
+				'urls' => $this->get_tracking_urls( $this->resources->get( \WC_Order::class ) ),
 			]
 		);
 	}

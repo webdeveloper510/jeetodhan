@@ -82,6 +82,15 @@ final class GeneralSettings extends FieldSettingsTab {
 				->set_label( __( '"From" email', 'shopmagic-for-woocommerce' ) )
 				->set_name( 'shopmagic_email_from_address' ),
 			( new CheckboxField() )
+				->set_label( __( 'Enable compatibility mode', 'shopmagic-for-woocommerce' ) )
+				->set_description(
+					__(
+						'Enables compatibility mode for the plugin to ensure server requests are working as expected.',
+						'shopmagic-for-woocommerce'
+					)
+				)
+				->set_name( 'request_compatibility_mode' ),
+			( new CheckboxField() )
 				->set_label( __( 'Enable logging', 'shopmagic-for-woocommerce' ) )
 				->set_description(
 					__(

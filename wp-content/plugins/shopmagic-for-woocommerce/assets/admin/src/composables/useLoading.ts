@@ -8,12 +8,7 @@ type UseLoadingParameters = {
   initial: boolean;
 };
 
-export function useLoading({
-  data,
-  error,
-  isValidating,
-  initial = true,
-}: UseLoadingParameters) {
+export function useLoading({ data, error, isValidating, initial = true }: UseLoadingParameters) {
   const loading = ref(initial);
   const { state, STATES } = useSwrvState(data, error, isValidating);
 

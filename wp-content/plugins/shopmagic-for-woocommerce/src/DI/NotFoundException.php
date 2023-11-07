@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\DI;
 
-class NotFoundException extends \RuntimeException implements \Psr\Container\NotFoundExceptionInterface {
+class NotFoundException extends \RuntimeException implements \ShopMagicVendor\Psr\Container\NotFoundExceptionInterface {
 	protected static $template = 'There is no entry found in the container for the identifier "{id}".';
 
 	public static function fromPrevious( $id, \Exception $prev = null ) {

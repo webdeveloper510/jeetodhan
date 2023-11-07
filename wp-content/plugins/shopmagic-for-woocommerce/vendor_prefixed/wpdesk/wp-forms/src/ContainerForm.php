@@ -2,7 +2,7 @@
 
 namespace ShopMagicVendor\WPDesk\Forms;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use ShopMagicVendor\WPDesk\Persistence\PersistentContainer;
 /**
  * Persistent container support for forms.

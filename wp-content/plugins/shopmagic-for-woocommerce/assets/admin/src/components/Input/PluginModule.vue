@@ -15,7 +15,7 @@ const pluginData = ref<PluginData | null>(null);
 
 watchEffect(() => {
   fetch(
-    `https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&request[slug]=${props.slug}&request[fields][icons]=true`
+    `https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&request[slug]=${props.slug}&request[fields][icons]=true`,
   )
     .then((res) => res.json())
     .then((data) => (pluginData.value = data));

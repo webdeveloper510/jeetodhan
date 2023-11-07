@@ -3,9 +3,9 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Filter;
 
-use Psr\Container\ContainerInterface;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareTrait;
 use WPDesk\ShopMagic\DataSharing\Traits\DataReceiverAsProtectedField;
 use WPDesk\ShopMagic\Workflow\Components\ComponentIdTrait;
 use WPDesk\ShopMagic\Workflow\Components\GroupableNamedComponent;

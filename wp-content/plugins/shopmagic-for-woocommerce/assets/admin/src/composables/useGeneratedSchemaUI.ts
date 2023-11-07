@@ -1,9 +1,4 @@
-import {
-  isScoped,
-  type JsonSchema,
-  type Layout,
-  RuleEffect,
-} from "@jsonforms/core";
+import { isScoped, type JsonSchema, type Layout, RuleEffect } from "@jsonforms/core";
 import { generateDefaultUISchema } from "@/_utils/uiSchemaGenerator";
 
 export function useGeneratedSchemaUI(jsonSchema: JsonSchema) {

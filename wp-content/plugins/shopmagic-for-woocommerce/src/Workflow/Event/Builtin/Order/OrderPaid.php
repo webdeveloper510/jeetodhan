@@ -28,23 +28,23 @@ final class OrderPaid extends OrderCommonEvent implements SupportsDeferredCheck 
 	public function initialize(): void {
 		add_action(
 			'woocommerce_order_status_changed',
-			function ( $order_id, $old_status, $new_status, $order ) {
-				$this->status_changed( $order_id, $old_status, $new_status, $order );
-			},
+			[ $this, 'status_changed' ],
 			10,
 			4
 		);
 	}
 
 	/**
+	 * @param int $_
+	 * @param string $old_status
+	 * @param string $new_status
+	 * @param \WC_Order $order
+	 *
 	 * @internal
 	 */
 	public function status_changed( $_, $old_status, $new_status, $order ): void {
 		$this->resources->set( \WC_Order::class, $order );
-		$this->resources->set(
-			Customer::class,
-			$this->customer_repository->find_by_email( $this->get_order()->get_billing_email() )
-		);
+		$this->resources->set( Customer::class, $this->get_customer( $order ) );
 
 		if ( \in_array( $old_status, wc_get_is_paid_statuses(), true ) ) {
 			return;

@@ -2,7 +2,7 @@
 
 namespace ShopMagicVendor\WPDesk\Forms\Persistence;
 
-use Psr\Container\NotFoundExceptionInterface;
+use ShopMagicVendor\Psr\Container\NotFoundExceptionInterface;
 use ShopMagicVendor\WPDesk\Forms\FieldProvider;
 use ShopMagicVendor\WPDesk\Persistence\PersistentContainer;
 /**

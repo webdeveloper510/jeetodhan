@@ -3,7 +3,7 @@
 namespace ShopMagicVendor\Invoker\ParameterResolver\Container;
 
 use ShopMagicVendor\Invoker\ParameterResolver\ParameterResolver;
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use ReflectionFunctionAbstract;
 /**
  * Inject entries from a DI container using the parameter names.

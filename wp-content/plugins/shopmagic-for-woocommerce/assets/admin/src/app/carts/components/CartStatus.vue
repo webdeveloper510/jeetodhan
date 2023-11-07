@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import { NPopover, NTag } from "naive-ui";
-import { __ } from "@wordpress/i18n";
+import { __ } from "@/plugins/i18n";
 
 const props = defineProps<{
   status: "abandoned" | "ordered" | "active" | "recovered" | "submitted";
@@ -40,10 +40,7 @@ const cartStatus = computed(() => {
     case "submitted":
       status = {
         name: __("Submitted order", "shopmagic-for-woocommerce"),
-        tooltip: __(
-          "Order is submitted, but not paid",
-          "shopmagic-for-woocommerce"
-        ),
+        tooltip: __("Order is submitted, but not paid", "shopmagic-for-woocommerce"),
         type: "warning",
       };
       break;
@@ -54,7 +51,7 @@ const cartStatus = computed(() => {
       tooltip: __("Unknown", "shopmagic-for-woocommerce"),
       type: "default",
     },
-    status
+    status,
   );
 });
 </script>

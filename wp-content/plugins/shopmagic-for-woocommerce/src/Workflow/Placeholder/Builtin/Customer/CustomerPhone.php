@@ -16,6 +16,10 @@ final class CustomerPhone extends CustomerBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->resources->get( Customer::class )->get_phone();
+		if ( $this->resources->has( Customer::class ) ) {
+			return $this->resources->get( Customer::class )->get_phone();
+		}
+
+		return '';
 	}
 }

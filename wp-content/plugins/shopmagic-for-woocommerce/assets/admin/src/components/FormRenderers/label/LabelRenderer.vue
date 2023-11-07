@@ -12,15 +12,11 @@ import {
   uiTypeIs,
 } from "@jsonforms/core";
 import { defineComponent } from "vue";
-import {
-  rendererProps,
-  type RendererProps,
-  useJsonFormsLabel,
-} from "@jsonforms/vue";
+import { rendererProps, type RendererProps, useJsonFormsLabel } from "@jsonforms/vue";
 import { useVanillaLabel } from "../util";
 
 const labelRenderer = defineComponent({
-  name: "label-renderer",
+  name: "LabelRenderer",
   props: {
     ...rendererProps<LabelElement>(),
   },

@@ -1,12 +1,12 @@
-# Copyright (C) 2023 WP Concern
+# Copyright (C) 2023 WP Hait
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Nifty Coming Soon & Maintenance Page 3.0.4\n"
+"Project-Id-Version: Nifty Coming Soon & Maintenance Page 3.0.6\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/nifty-coming-soon-and-under-"
 "construction-page\n"
-"POT-Creation-Date: 2023-02-20 06:19:38+00:00\n"
+"POT-Creation-Date: 2023-07-28 10:52:56+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -586,7 +586,7 @@ msgid "Nifty Coming Soon & Maintenance Page"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://wpconcern.com/plugins/nifty-coming-soon-and-under-construction-page/"
+msgid "https://wphait.com/plugins/nifty-coming-soon-and-under-construction-page/"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -597,9 +597,9 @@ msgid ""
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "WP Concern"
+msgid "WP Hait"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://wpconcern.com/"
+msgid "https://wphait.com/"
 msgstr ""

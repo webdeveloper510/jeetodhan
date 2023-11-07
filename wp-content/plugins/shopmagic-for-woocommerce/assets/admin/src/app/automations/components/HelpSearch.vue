@@ -18,7 +18,7 @@ const debouncedSearch = useDebounceFn((query: string) => {
           options,
         };
       },
-    }
+    },
   )
     .json()
     .then(({ data }) => {

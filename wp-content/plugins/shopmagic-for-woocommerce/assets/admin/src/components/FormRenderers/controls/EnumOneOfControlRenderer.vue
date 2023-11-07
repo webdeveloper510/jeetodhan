@@ -8,14 +8,12 @@ import { ref } from "vue";
 
 const props = defineProps(rendererProps<ControlElement>());
 const { control, controlWrapper, onChange } = useVanillaControl(
-  useJsonFormsOneOfEnumControl(props)
+  useJsonFormsOneOfEnumControl(props),
 );
 const controlRef = ref(control);
 const renderTag: SelectRenderTag = ({ option }) => {
   // Value may be string or int. Compare loosely
-  const label = controlRef.value.options?.find(
-    (formOption) => formOption.value == option.value
-  );
+  const label = controlRef.value.options?.find((formOption) => formOption.value == option.value);
   return label?.label || option.label;
 };
 </script>

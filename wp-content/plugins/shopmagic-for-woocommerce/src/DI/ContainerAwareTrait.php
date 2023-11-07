@@ -3,7 +3,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\DI;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 
 trait ContainerAwareTrait {
 

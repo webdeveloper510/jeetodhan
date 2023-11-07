@@ -26,7 +26,7 @@ use ShopMagicVendor\Invoker\ParameterResolver\Container\TypeHintContainerResolve
 use ShopMagicVendor\Invoker\ParameterResolver\DefaultValueResolver;
 use ShopMagicVendor\Invoker\ParameterResolver\NumericArrayResolver;
 use ShopMagicVendor\Invoker\ParameterResolver\ResolverChain;
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 /**
  * Dependency Injection Container.
  *

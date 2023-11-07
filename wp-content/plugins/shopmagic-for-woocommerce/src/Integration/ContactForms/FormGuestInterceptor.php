@@ -28,9 +28,9 @@ final class FormGuestInterceptor implements GuestInterceptor {
 	private $factory;
 
 	/**
-	 * @param ObjectRepository       $customer_repository
-	 * @param ObjectPersister<Guest> $guest_manager
-	 * @param GuestFactory           $guest_factory
+	 * @param ObjectRepository<Customer> $customer_repository
+	 * @param ObjectPersister<Guest>     $guest_manager
+	 * @param GuestFactory               $guest_factory
 	 */
 	public function __construct(
 		ObjectRepository $customer_repository,

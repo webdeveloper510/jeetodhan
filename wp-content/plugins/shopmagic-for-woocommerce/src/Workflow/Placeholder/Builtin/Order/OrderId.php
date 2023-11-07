@@ -17,6 +17,10 @@ final class OrderId extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return (string) $this->get_order()->get_id();
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			return (string) $this->resources->get( \WC_Order::class )->get_id();
+		}
+
+		return '';
 	}
 }

@@ -6,7 +6,7 @@ if (window.ShopMagic.modules.includes("shopmagic-abandoned-carts")) {
   routes.push({
     name: "carts",
     path: "/carts",
-    component: () => import("./views/CartsPage.vue"),
+    component: async () => import("./views/CartsPage.vue"),
   });
 }
 

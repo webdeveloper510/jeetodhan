@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Components\Database\Abstraction;
 
-use Psr\Log\LoggerAwareTrait;
+use ShopMagicVendor\Psr\Log\LoggerAwareTrait;
 use WPDesk\ShopMagic\Components\Collections\Collection;
 use WPDesk\ShopMagic\Components\Database\Abstraction\DAO\ObjectDehydrator;
 use WPDesk\ShopMagic\Components\Database\Collections\LazyObjectCollection;
@@ -40,6 +40,9 @@ abstract class ObjectRepository implements DAO\ObjectRepository {
 		return $wpdb;
 	}
 
+	/**
+	 * @return T
+	 */
 	public function find( $id ): object {
 		$sql    = sprintf(
 			'SELECT * FROM %s WHERE %s LIMIT 1',
@@ -90,10 +93,16 @@ abstract class ObjectRepository implements DAO\ObjectRepository {
 		return [ 'id' ];
 	}
 
+	/**
+	 * @return Collection<T>
+	 */
 	public function find_all(): Collection {
 		return $this->find_by( [] );
 	}
 
+	/**
+	 * @return Collection<T>
+	 */
 	public function find_by( array $criteria, array $order = [], int $offset = 0, ?int $limit = null ): Collection {
 		$where_sql = $this->where_array_to_sql( $criteria );
 		$order_sql = $this->order_array_to_sql( $order );
@@ -161,6 +170,9 @@ abstract class ObjectRepository implements DAO\ObjectRepository {
 		return '1=1';
 	}
 
+	/**
+	 * @return T
+	 */
 	public function find_one_by( array $criteria, ?array $order = null ): object {
 		$where_sql = $this->where_array_to_sql( $criteria );
 		$order_sql = $order ? $this->order_array_to_sql( $order ) : '';

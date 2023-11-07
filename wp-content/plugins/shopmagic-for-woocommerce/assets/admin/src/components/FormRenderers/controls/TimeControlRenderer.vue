@@ -18,17 +18,13 @@
 import { NTimePicker } from "naive-ui";
 import type { ControlElement } from "@jsonforms/core";
 import { defineComponent } from "vue";
-import {
-  rendererProps,
-  type RendererProps,
-  useJsonFormsControl,
-} from "@jsonforms/vue";
+import { rendererProps, type RendererProps, useJsonFormsControl } from "@jsonforms/vue";
 import { useVanillaControl } from "../util";
 import FieldWrapper from "./FieldWrapper.vue";
 import { DateTime } from "luxon";
 
 export default defineComponent({
-  name: "time-control-renderer",
+  name: "TimeControlRenderer",
   components: {
     FieldWrapper,
     NTimePicker,
@@ -39,9 +35,7 @@ export default defineComponent({
   setup(props: RendererProps<ControlElement>) {
     return useVanillaControl(
       useJsonFormsControl(props),
-      (target) =>
-        DateTime.fromMillis(target).toSQLTime({ includeOffset: false }) ||
-        undefined
+      (target) => DateTime.fromMillis(target).toSQLTime({ includeOffset: false }) || undefined,
     );
   },
   computed: {

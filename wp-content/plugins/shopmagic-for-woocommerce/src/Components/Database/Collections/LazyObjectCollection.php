@@ -39,7 +39,7 @@ class LazyObjectCollection implements Collection {
 		return $this->raw_data === [];
 	}
 
-	public function getIterator() {
+	public function getIterator(): \Traversable {
 		if ( $this->initialized === false ) {
 			$this->initialize();
 		}

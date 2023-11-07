@@ -35,9 +35,7 @@ function executeBulkAction() {
 </script>
 <template>
   <div class="flex flex-wrap items-center gap-4">
-    <NH1 class="m-0">{{
-      __("Marketing Lists", "shopmagic-for-woocommerce")
-    }}</NH1>
+    <NH1 class="m-0">{{ __("Marketing Lists", "shopmagic-for-woocommerce") }}</NH1>
     <RouterLink :to="{ name: 'marketing-list', params: { id: 'new' } }">
       <NButton type="primary">
         {{ __("Add new", "shopmagic-for-woocommerce") }}

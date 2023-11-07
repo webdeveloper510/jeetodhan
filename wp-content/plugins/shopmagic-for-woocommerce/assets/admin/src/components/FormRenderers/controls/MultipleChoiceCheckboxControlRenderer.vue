@@ -20,16 +20,12 @@
 import { NCheckbox, NCheckboxGroup } from "naive-ui";
 import type { ControlElement } from "@jsonforms/core";
 import { defineComponent } from "vue";
-import {
-  rendererProps,
-  type RendererProps,
-  useJsonFormsOneOfEnumControl,
-} from "@jsonforms/vue";
+import { rendererProps, type RendererProps, useJsonFormsOneOfEnumControl } from "@jsonforms/vue";
 import { useVanillaControl } from "../util";
 import FieldWrapper from "./FieldWrapper.vue";
 
 export default defineComponent({
-  name: "multiple-choice-checkbox-control-renderer",
+  name: "MultipleChoiceCheckboxControlRenderer",
   components: {
     FieldWrapper,
     NCheckbox,
@@ -39,10 +35,7 @@ export default defineComponent({
     ...rendererProps<ControlElement>(),
   },
   setup(props: RendererProps<ControlElement>) {
-    return useVanillaControl(
-      useJsonFormsOneOfEnumControl(props),
-      (target) => target
-    );
+    return useVanillaControl(useJsonFormsOneOfEnumControl(props), (target) => target);
   },
 });
 </script>

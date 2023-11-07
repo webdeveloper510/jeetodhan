@@ -64,10 +64,7 @@ export const createControlElement = (ref: string): ControlElement => ({
  * @param layoutType The type of the layout to create.
  * @returns the wrapped uiSchema.
  */
-const wrapInLayoutIfNecessary = (
-  uischema: UISchemaElement,
-  layoutType: string
-): Layout => {
+const wrapInLayoutIfNecessary = (uischema: UISchemaElement, layoutType: string): Layout => {
   if (!isEmpty(uischema) && !isLayout(uischema)) {
     const verticalLayout: Layout = createLayout(layoutType);
     verticalLayout.elements.push(uischema);
@@ -109,9 +106,7 @@ const addLabel = (layout: Layout, labelName: string) => {
 const isCombinator = (jsonSchema: JsonSchema): boolean => {
   return (
     !isEmpty(jsonSchema) &&
-    (!isEmpty(jsonSchema.oneOf) ||
-      !isEmpty(jsonSchema.anyOf) ||
-      !isEmpty(jsonSchema.allOf))
+    (!isEmpty(jsonSchema.oneOf) || !isEmpty(jsonSchema.anyOf) || !isEmpty(jsonSchema.allOf))
   );
 };
 
@@ -121,7 +116,7 @@ const generateUISchema = (
   currentRef: string,
   schemaName: string,
   layoutType: string,
-  rootSchema?: JsonSchema
+  rootSchema?: JsonSchema,
 ): UISchemaElement => {
   if (!isEmpty(jsonSchema) && jsonSchema.$ref !== undefined) {
     return generateUISchema(
@@ -130,7 +125,7 @@ const generateUISchema = (
       currentRef,
       schemaName,
       layoutType,
-      rootSchema
+      rootSchema,
     );
   }
 
@@ -153,9 +148,7 @@ const generateUISchema = (
   }
 
   if (types[0] === "object") {
-    const layout: Layout = createLayout(
-      currentRef === "#" ? layoutType : "Group"
-    );
+    const layout: Layout = createLayout(currentRef === "#" ? layoutType : "Group");
     if (currentRef !== "#") {
       (layout as Scopable).scope = currentRef;
     }
@@ -174,14 +167,7 @@ const generateUISchema = (
         if (value.$ref !== undefined) {
           value = resolveSchema(rootSchema, value.$ref, rootSchema);
         }
-        generateUISchema(
-          value,
-          layout.elements,
-          ref,
-          propName,
-          layoutType,
-          rootSchema
-        );
+        generateUISchema(value, layout.elements, ref, propName, layoutType, rootSchema);
       });
     }
 
@@ -190,21 +176,17 @@ const generateUISchema = (
 
   switch (types[0]) {
     case "object": // object items will be handled by the object control itself
-    /* falls through */
     case "array": // array items will be handled by the array control itself
-    /* falls through */
     case "string":
-    /* falls through */
     case "number":
-    /* falls through */
     case "integer":
     case "null":
-    /* falls through */
-    case "boolean":
+    case "boolean": {
       const controlObject: ControlElement = createControlElement(currentRef);
       schemaElements.push(controlObject);
 
       return controlObject;
+    }
     default:
       throw new Error("Unknown type: " + JSON.stringify(jsonSchema));
   }
@@ -220,9 +202,9 @@ export const generateDefaultUISchema = (
   jsonSchema: JsonSchema,
   layoutType = "VerticalLayout",
   prefix = "#",
-  rootSchema = jsonSchema
+  rootSchema = jsonSchema,
 ): UISchemaElement =>
   wrapInLayoutIfNecessary(
     generateUISchema(jsonSchema, [], prefix, "", layoutType, rootSchema),
-    layoutType
+    layoutType,
   );

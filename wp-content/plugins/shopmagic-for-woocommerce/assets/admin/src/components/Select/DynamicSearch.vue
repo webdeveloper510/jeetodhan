@@ -4,7 +4,10 @@ import { NSelect } from "naive-ui";
 import { ref, watchEffect } from "vue";
 import { useDebounceFn } from "@vueuse/core";
 
-defineEmits<{ e: "update:value"; value: string }>();
+defineEmits<{
+  (e: "update:value", value: string): void;
+}>();
+
 const props = defineProps<{
   defaultOptions?: SelectOption[];
   loadOptions: (query: string) => SelectOption[] | Promise<SelectOption[]>;
@@ -36,7 +39,7 @@ const debouncedSearch = useDebounceFn(
     }
   },
   600,
-  { maxWait: 5000 }
+  { maxWait: 5000 },
 );
 
 const search = (query: string) => {

@@ -1,23 +1,23 @@
-import type {DataTableColumn, DataTableColumns} from "naive-ui";
-import {h} from "vue";
+import type { DataTableColumn, DataTableColumns } from "naive-ui";
+import { h } from "vue";
 import dayjs from "dayjs";
-import type {Cart} from "@/app/carts/types";
-import {__} from "@wordpress/i18n";
+import type { Cart } from "@/app/carts/types";
+import { __ } from "@/plugins/i18n";
 import CartProducts from "../components/CartProducts.vue";
 import CartStatus from "../components/CartStatus.vue";
+import SimpleTime from "@/components/SimpleTime.vue";
 
 const customerColumn: DataTableColumn<Readonly<Cart>> = {
   key: "customer",
   title: __("Customer", "shopmagic-for-woocommerce"),
   render: ({ customer }) =>
-    customer?.email ||
-    __("A customer does not exist", "shopmagic-for-woocommerce"),
+    customer?.email || __("A customer does not exist", "shopmagic-for-woocommerce"),
 };
 
 export const cartColumns: DataTableColumns<Readonly<Cart>> = [
-  // {
-  //   type: "selection",
-  // },
+  {
+    type: "selection",
+  },
   customerColumn,
   {
     key: "products",
@@ -38,7 +38,7 @@ export const cartColumns: DataTableColumns<Readonly<Cart>> = [
   {
     key: "last_modified",
     title: __("Last active", "shopmagic-for-woocommerce"),
-    render: ({ updated }) => dayjs(updated).format("D MMM, YYYY"),
+    render: ({ updated }) => h(SimpleTime, { time: updated }),
     sorter: (a, b) => dayjs(a.updated).diff(b.updated),
   },
   {

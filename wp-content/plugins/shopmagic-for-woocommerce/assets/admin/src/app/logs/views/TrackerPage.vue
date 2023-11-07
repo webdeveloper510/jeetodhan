@@ -1,9 +1,6 @@
 <script lang="ts" setup>
 import { NH1, NTabPane, NTabs } from "naive-ui";
-import {
-  trackerPerAutomation,
-  trackerPerCustomer,
-} from "@/data/tables/tracker";
+import { trackerPerAutomation, trackerPerCustomer } from "@/data/tables/tracker";
 import { reactive } from "vue";
 import type { Filters } from "@/composables/useFilter";
 import DataTable from "@/components/Table/DataTable.vue";
@@ -22,10 +19,7 @@ const tableFilters = reactive<Filters>({
 <template>
   <NH1>{{ __("Tracked emails", "shopmagic-for-woocommerce") }}</NH1>
   <NTabs>
-    <NTabPane
-      :tab="__('Per Automation', 'shopmagic-for-woocommerce')"
-      name="automation"
-    >
+    <NTabPane :tab="__('Per Automation', 'shopmagic-for-woocommerce')" name="automation">
       <DataTable
         :columns="trackerPerAutomation"
         :data="automations || []"
@@ -35,10 +29,7 @@ const tableFilters = reactive<Filters>({
         :total-count="automations?.length || 0"
       />
     </NTabPane>
-    <NTabPane
-      :tab="__('Per Customer', 'shopmagic-for-woocommerce')"
-      name="customer"
-    >
+    <NTabPane :tab="__('Per Customer', 'shopmagic-for-woocommerce')" name="customer">
       <DataTable
         :columns="trackerPerCustomer"
         :data="customers || []"

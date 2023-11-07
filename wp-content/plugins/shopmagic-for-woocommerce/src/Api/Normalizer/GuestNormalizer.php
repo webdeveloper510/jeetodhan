@@ -24,7 +24,7 @@ class GuestNormalizer implements Normalizer {
 		               ->to_array();
 
 		return [
-			'id'         => $object->get_id(),
+			'id'         => $object->get_raw_id(),
 			'object'     => 'customer',
 			'email'      => $object->get_email(),
 			'created'    => $object->get_created()->format( \DateTimeInterface::ATOM ),

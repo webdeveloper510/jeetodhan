@@ -12,10 +12,8 @@ use WPDesk\ShopMagic\Helper\WordPressFormatHelper;
  * Removes outcomes from database.
  */
 final class OutcomeCleaner extends RecurringCleaner implements Conditional {
-	const CLEANER_ENABLED = '1';
-
 	public static function is_needed(): bool {
-		return in_array( GeneralSettings::get_option( GeneralSettings::OUTCOMES_PURGE ), [true, self::CLEANER_ENABLED, CheckboxField::VALUE_TRUE] );
+		return \filter_var( GeneralSettings::get_option( GeneralSettings::OUTCOMES_PURGE ), \FILTER_VALIDATE_BOOLEAN );
 	}
 
 	protected function get_items_to_clean(): iterable {

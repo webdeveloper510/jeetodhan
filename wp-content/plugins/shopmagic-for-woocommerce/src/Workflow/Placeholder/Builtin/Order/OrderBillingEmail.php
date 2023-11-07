@@ -18,6 +18,10 @@ final class OrderBillingEmail extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->get_order()->get_billing_email();
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			return $this->resources->get( \WC_Order::class )->get_billing_email();
+		}
+
+		return '';
 	}
 }

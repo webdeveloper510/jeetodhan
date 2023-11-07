@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Frontend\Interceptor;
 
-use Psr\Log\LoggerAwareTrait;
+use ShopMagicVendor\Psr\Log\LoggerAwareTrait;
 use ShopMagicVendor\WPDesk\PluginBuilder\Plugin\Hookable;
 use WPDesk\ShopMagic\Admin\Settings\GeneralSettings;
 use WPDesk\ShopMagic\Components\HookProvider\Conditional;
@@ -29,17 +29,23 @@ final class CurrentCustomer implements Hookable, CustomerProvider, Conditional {
 	/** @var string */
 	private const USER_ID = 'user_id';
 	/** @var string */
-	private const EMAIL            = 'email';
+	private const EMAIL = 'email';
+
 	/** @var GuestDataAccess */
 	private $guest_manager;
+
 	/** @var GuestFactory */
 	private $guest_factory;
+
 	/** @var string */
 	private $cookie_name;
+
 	/** @var int */
 	private $days_to_expire_cookie;
+
 	/** @var array{user_id?: numeric-string, hash: string, email?: string, meta: string[]} */
 	private $tracking_data = [];
+
 	/** @var CustomerRepository */
 	private $customer_repository;
 
@@ -56,7 +62,7 @@ final class CurrentCustomer implements Hookable, CustomerProvider, Conditional {
 			return;
 		}
 
-		$this->cookie_name           =
+		$this->cookie_name =
 			/**
 			 * Cookie name for customer tracking. Used to properly identify the same guest users.
 			 *
@@ -84,7 +90,7 @@ final class CurrentCustomer implements Hookable, CustomerProvider, Conditional {
 
 	public static function is_needed(): bool {
 		$enabled = WordPressPluggableHelper::is_plugin_active( 'woocommerce/woocommerce.php' ) &&
-		           filter_var( GeneralSettings::get_option( 'enable_session_tracking', true ), \FILTER_VALIDATE_BOOLEAN );
+					filter_var( GeneralSettings::get_option( 'enable_session_tracking', true ), \FILTER_VALIDATE_BOOLEAN );
 
 		if ( is_admin() && ! wp_doing_ajax() ) {
 			$request_valid = false;
@@ -273,9 +279,11 @@ final class CurrentCustomer implements Hookable, CustomerProvider, Conditional {
 			WC()->session->set( self::SESSION_TRACKING_DATA_KEY, $encoded_tracking_data );
 		}
 		if ( $this->can_save_cookie( $this->cookie_name, $encoded_tracking_data ) ) {
-			WooCommerceCookies::set( $this->cookie_name,
+			WooCommerceCookies::set(
+				$this->cookie_name,
 				$encoded_tracking_data,
-				time() + $this->days_to_expire_cookie * DAY_IN_SECONDS );
+				time() + $this->days_to_expire_cookie * DAY_IN_SECONDS
+			);
 		}
 	}
 
@@ -307,7 +315,7 @@ final class CurrentCustomer implements Hookable, CustomerProvider, Conditional {
 			return false;
 		}
 
-		if ( empty( $this->tracking_data['email'] ) || empty( $this->tracking_data['user_id'] ) ) {
+		if ( empty( $this->tracking_data['email'] ) && empty( $this->tracking_data['user_id'] ) ) {
 			return false;
 		}
 

@@ -67,7 +67,14 @@ final class ConfirmedSubscriptionSaver implements Hookable {
 		$hash = isset( $_GET['hash'] ) ? sanitize_text_field( wp_unslash( $_GET['hash'] ) ) : '';
 		if ( ! $this->email_hasher->valid( $customer->get_email(), $hash ) ) {
 			wp_safe_redirect(
-				$this->url_generator->generate( PreferencesRoute::get_slug(), [ 'success' => 0 ] )
+				$this->url_generator->generate(
+					PreferencesRoute::get_slug(),
+					[
+						'hash'    => $hash,
+						'success' => 0,
+						'id'      => $customer->get_id(),
+					]
+				)
 			);
 			die;
 		}
@@ -76,7 +83,14 @@ final class ConfirmedSubscriptionSaver implements Hookable {
 		$this->subscriber_service->subscribe( $customer->get_email(), $target_list );
 
 		wp_safe_redirect(
-			$this->url_generator->generate( PreferencesRoute::get_slug(), [ 'success' => 1 ] )
+			$this->url_generator->generate(
+				PreferencesRoute::get_slug(),
+				[
+					'hash'    => $hash,
+					'success' => 1,
+					'id'      => $customer->get_id(),
+				]
+			)
 		);
 		die;
 		// phpcs:enable

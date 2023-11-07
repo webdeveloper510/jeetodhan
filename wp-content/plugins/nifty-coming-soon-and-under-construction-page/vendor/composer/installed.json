@@ -2,24 +2,23 @@
     "packages": [
         {
             "name": "ernilambar/ns-customizer-utilities",
-            "version": "1.0.12",
-            "version_normalized": "1.0.12.0",
+            "version": "1.1.0",
+            "version_normalized": "1.1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ernilambar/ns-customizer-utilities.git",
-                "reference": "8bfdd2dcb094472496e618c2d0a18045e72131a6"
+                "reference": "a1438a4a7fc8f1bfe3cf74d5c84d5495b519184f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ernilambar/ns-customizer-utilities/zipball/8bfdd2dcb094472496e618c2d0a18045e72131a6",
-                "reference": "8bfdd2dcb094472496e618c2d0a18045e72131a6",
+                "url": "https://api.github.com/repos/ernilambar/ns-customizer-utilities/zipball/a1438a4a7fc8f1bfe3cf74d5c84d5495b519184f",
+                "reference": "a1438a4a7fc8f1bfe3cf74d5c84d5495b519184f",
                 "shasum": ""
             },
             "require": {
-                "kirki-framework/url-getter": "^1.0",
                 "php": ">=5.6"
             },
-            "time": "2023-02-17T17:17:03+00:00",
+            "time": "2023-04-05T11:40:06+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -47,29 +46,29 @@
             ],
             "support": {
                 "issues": "https://github.com/ernilambar/ns-customizer-utilities/issues",
-                "source": "https://github.com/ernilambar/ns-customizer-utilities/tree/1.0.12"
+                "source": "https://github.com/ernilambar/ns-customizer-utilities/tree/1.1.0"
             },
             "install-path": "../ernilambar/ns-customizer-utilities"
         },
         {
             "name": "ernilambar/wp-admin-notice",
-            "version": "1.0.0",
-            "version_normalized": "1.0.0.0",
+            "version": "1.0.2",
+            "version_normalized": "1.0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ernilambar/wp-admin-notice.git",
-                "reference": "1fd14ff6d79994750d25b4f529284a6942e117eb"
+                "reference": "626e4685775bdd06085e7af76f9ae9380c68c9f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ernilambar/wp-admin-notice/zipball/1fd14ff6d79994750d25b4f529284a6942e117eb",
-                "reference": "1fd14ff6d79994750d25b4f529284a6942e117eb",
+                "url": "https://api.github.com/repos/ernilambar/wp-admin-notice/zipball/626e4685775bdd06085e7af76f9ae9380c68c9f0",
+                "reference": "626e4685775bdd06085e7af76f9ae9380c68c9f0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.6"
             },
-            "time": "2022-06-27T07:08:52+00:00",
+            "time": "2023-05-29T05:53:39+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -97,29 +96,29 @@
             ],
             "support": {
                 "issues": "https://github.com/ernilambar/wp-admin-notice/issues/",
-                "source": "https://github.com/ernilambar/wp-admin-notice/tree/1.0.0"
+                "source": "https://github.com/ernilambar/wp-admin-notice/tree/1.0.2"
             },
             "install-path": "../ernilambar/wp-admin-notice"
         },
         {
             "name": "ernilambar/wp-welcome",
-            "version": "1.0.4",
-            "version_normalized": "1.0.4.0",
+            "version": "1.0.5",
+            "version_normalized": "1.0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ernilambar/wp-welcome.git",
-                "reference": "f3cf2f82d2b5d4701d7c2b95417d2c2a1fdc061e"
+                "reference": "ff1371a36e335ac94ff9acc5285325ae1760da40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ernilambar/wp-welcome/zipball/f3cf2f82d2b5d4701d7c2b95417d2c2a1fdc061e",
-                "reference": "f3cf2f82d2b5d4701d7c2b95417d2c2a1fdc061e",
+                "url": "https://api.github.com/repos/ernilambar/wp-welcome/zipball/ff1371a36e335ac94ff9acc5285325ae1760da40",
+                "reference": "ff1371a36e335ac94ff9acc5285325ae1760da40",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.6"
             },
-            "time": "2023-02-13T07:42:14+00:00",
+            "time": "2023-03-17T10:08:36+00:00",
             "type": "library",
             "installation-source": "dist",
             "notification-url": "https://packagist.org/downloads/",
@@ -143,56 +142,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ernilambar/wp-welcome/issues",
-                "source": "https://github.com/ernilambar/wp-welcome/tree/1.0.4"
+                "source": "https://github.com/ernilambar/wp-welcome/tree/1.0.5"
             },
             "install-path": "../ernilambar/wp-welcome"
-        },
-        {
-            "name": "kirki-framework/url-getter",
-            "version": "v1.0.5",
-            "version_normalized": "1.0.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kirki-framework/url-getter.git",
-                "reference": "cfe7ea5b51c5e9b5e7d706ed56694f54a972fae2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kirki-framework/url-getter/zipball/cfe7ea5b51c5e9b5e7d706ed56694f54a972fae2",
-                "reference": "cfe7ea5b51c5e9b5e7d706ed56694f54a972fae2",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0"
-            },
-            "time": "2021-12-29T16:27:31+00:00",
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "Kirki\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kirki Framework",
-                    "email": "connect@mapsteps.com"
-                }
-            ],
-            "description": "Helper component to get the URL of a file in WordPress.",
-            "homepage": "https://kirki.org/",
-            "keywords": [
-                "wordpress"
-            ],
-            "support": {
-                "issues": "https://github.com/kirki-framework/url-getter/issues",
-                "source": "https://github.com/kirki-framework/url-getter/tree/v1.0.5"
-            },
-            "install-path": "../kirki-framework/url-getter"
         },
         {
             "name": "wptt/webfont-loader",

@@ -11,7 +11,7 @@ use ShopMagicVendor\DI\DependencyException;
 use ShopMagicVendor\DI\Proxy\ProxyFactory;
 use Exception;
 use ShopMagicVendor\ProxyManager\Proxy\LazyLoadingInterface;
-use Psr\Container\NotFoundExceptionInterface;
+use ShopMagicVendor\Psr\Container\NotFoundExceptionInterface;
 use ReflectionClass;
 use ReflectionProperty;
 /**

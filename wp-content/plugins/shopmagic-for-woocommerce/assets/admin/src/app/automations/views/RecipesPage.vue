@@ -33,10 +33,7 @@ const columns: DataTableColumns<Recipe> = [
     key: "recipe",
     title: () => __("Recipe", "shopmagic-for-woocommerce"),
     render: ({ name, description }) =>
-      h("div", [
-        h(NText, { strong: true }, { default: () => name }),
-        h(NP, () => description),
-      ]),
+      h("div", [h(NText, { strong: true }, { default: () => name }), h(NP, () => description)]),
   },
   {
     key: "action",
@@ -49,7 +46,7 @@ const columns: DataTableColumns<Recipe> = [
           type: "info",
           onClick: () => createRecipe(name),
         },
-        { default: () => __("Use recipe", "shopmagic-for-woocommerce") }
+        { default: () => __("Use recipe", "shopmagic-for-woocommerce") },
       ),
     width: 150,
   },

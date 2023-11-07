@@ -1,7 +1,7 @@
-import {defineStore} from "pinia";
-import type {Automation} from "@/types/automation";
+import { defineStore } from "pinia";
+import type { Automation } from "@/types/automation";
 import useSWRV from "@/_utils/swrv";
-import {useSingleAutomation} from "@/app/automations/singleAutomation";
+import { useSingleAutomation } from "@/app/automations/singleAutomation";
 import useSwrvState from "@/composables/useSwrvState";
 
 type LegacyRecipe = {
@@ -24,11 +24,7 @@ type LegacyRecipe = {
 export type Recipe = (Automation & { description: string }) | LegacyRecipe;
 
 export const useRecipesStore = defineStore("recipes", () => {
-  const {
-    data: recipes,
-    error,
-    isValidating,
-  } = useSWRV<Recipe[]>("/automations/recipes");
+  const { data: recipes, error, isValidating } = useSWRV<Recipe[]>("/automations/recipes");
 
   const { isAwating } = useSwrvState(recipes, error, isValidating);
 
@@ -38,7 +34,7 @@ export const useRecipesStore = defineStore("recipes", () => {
     const recipe = recipes.value?.find((r) => r.name === name);
     if (!recipe) return;
     addAutomation(recipe);
-    return await save();
+    return save();
   }
 
   return {

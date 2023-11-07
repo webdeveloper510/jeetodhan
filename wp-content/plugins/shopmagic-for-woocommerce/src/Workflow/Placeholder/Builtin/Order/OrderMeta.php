@@ -7,7 +7,6 @@ use WPDesk\ShopMagic\FormField\Field\InputTextField;
 use WPDesk\ShopMagic\Workflow\Placeholder\Builtin\WooCommerceOrderBasedPlaceholder;
 
 
-
 final class OrderMeta extends WooCommerceOrderBasedPlaceholder {
 	/**
 	 * @var string
@@ -20,14 +19,14 @@ final class OrderMeta extends WooCommerceOrderBasedPlaceholder {
 
 	public function get_description(): string {
 		return esc_html__(
-			'Display any meta value associated with current order.',
-			'shopmagic-for-woocommerce'
-		) . ' ' .
-			   esc_html__( 'You can find more about using this placeholder in ' ) .
-			'<a target="_blank" href="https://docs.shopmagic.app/article/1163-meta-placeholders">' . esc_html__(
-				'documentation',
-				'shopmagic-for-woocommerce'
-			) . '</a>.';
+			       'Display any meta value associated with current order.',
+			       'shopmagic-for-woocommerce'
+		       ) . ' ' .
+		       esc_html__( 'You can find more about using this placeholder in ' ) .
+		       '<a target="_blank" href="https://docs.shopmagic.app/article/1163-meta-placeholders">' . esc_html__(
+			       'documentation',
+			       'shopmagic-for-woocommerce'
+		       ) . '</a>.';
 	}
 
 	/**
@@ -43,6 +42,10 @@ final class OrderMeta extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
+		if ( ! $this->resources->has( \WC_Order::class ) ) {
+			return '';
+		}
+
 		$key = $parameters[ self::PARAM_KEY_NAME ];
 		if ( $key === '' ) {
 			return '';
@@ -51,10 +54,10 @@ final class OrderMeta extends WooCommerceOrderBasedPlaceholder {
 			return '';
 		}
 
-		$value = $this->get_order()->get_meta( $key, true );
+		$value = $this->resources->get( \WC_Order::class )->get_meta( $key, true );
 
 		if ( empty( $value ) ) {
-			$value = get_post_meta( $this->get_order()->get_id(), $key, true );
+			$value = get_post_meta( $this->resources->get( \WC_Order::class )->get_id(), $key, true );
 		}
 
 		return (string) $value;

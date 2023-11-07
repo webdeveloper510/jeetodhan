@@ -3,7 +3,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\DataSharing\Traits;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use WPDesk\ShopMagic\Workflow\FieldValuesBag;
 
 /**

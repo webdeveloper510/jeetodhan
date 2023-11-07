@@ -69,7 +69,7 @@ final class ConfirmationDispatcher {
 
 	private function get_message_content( Customer $customer, AudienceList $target_list ): string {
 		return $this->renderer->render(
-			'sign_up_confirmation',
+			'emails/sign_up_confirmation',
 			[
 				'customer'          => $customer,
 				'list_id'           => $target_list->get_id(),
@@ -81,12 +81,12 @@ final class ConfirmationDispatcher {
 
 	private function get_confirmation_link( Customer $customer, AudienceList $target_list ): string {
 		return admin_url( 'admin-post.php' ) . '?' . http_build_query(
-				[
-					'action'  => ConfirmedSubscriptionSaver::ACTION,
-					'hash'    => $this->email_hasher->hash( $customer->get_email() ),
-					'id'      => $customer->get_id(),
-					'list_id' => $target_list->get_id(),
-				]
-			);
+			[
+				'action'  => ConfirmedSubscriptionSaver::ACTION,
+				'hash'    => $this->email_hasher->hash( $customer->get_email() ),
+				'id'      => $customer->get_id(),
+				'list_id' => $target_list->get_id(),
+			]
+		);
 	}
 }

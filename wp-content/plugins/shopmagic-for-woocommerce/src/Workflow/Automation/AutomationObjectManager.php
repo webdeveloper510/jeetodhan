@@ -114,10 +114,8 @@ class AutomationObjectManager extends PostObjectManager {
 		return array_map(
 			static function ( Action $action ) {
 				return array_merge(
-					[
-						'_action' => $action->get_id(),
-					],
-					$action->get_parameters()->all()
+					$action->get_parameters()->all(),
+					[ '_action' => $action->get_id() ]
 				);
 			},
 			array_values( $actions )

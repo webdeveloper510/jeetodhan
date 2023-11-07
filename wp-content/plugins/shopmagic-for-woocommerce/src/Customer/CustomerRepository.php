@@ -53,18 +53,23 @@ final class CustomerRepository implements ObjectRepository {
 		if ( $limit && ( $limit - count( $users ) ) > 0 ) {
 			foreach (
 				$this->guest_repository->find_by(
-					$criteria, $order, $offset, $limit - count( $users )
+					$criteria,
+					$order,
+					$offset,
+					$limit - count( $users )
 				) as $guest
 			) {
 				$result[] = $guest;
 			}
-
 		}
 
 		return new ArrayCollection( $result );
 	}
 
-	public function find_by_email( string $email ): Customer {
+	public function find_by_email(
+		#[\SensitiveParameter]
+		string $email
+	): Customer {
 		try {
 			return $this->find_one_by( [ 'email' => $email ] );
 		} catch ( \Exception $e ) {
@@ -72,14 +77,17 @@ final class CustomerRepository implements ObjectRepository {
 		}
 	}
 
-	/** @param \WP_User|numeric $user */
+	/**
+	 * @param \WP_User|numeric $user
+	 * @throws CustomerNotFound
+	 */
 	public function fetch_user( $user ): Customer {
 		$wp_user = new \WP_User( $user );
 		if ( $wp_user->exists() ) {
 			return new UserAsCustomer( $wp_user );
 		}
 
-		throw new CustomerNotFound( sprintf( 'Failed to fetch user with ID `%d`.', $user->ID ) );
+		throw new CustomerNotFound( sprintf( 'Failed to fetch user with ID `%d`.', $user instanceof \WP_User ? $user->ID : $user ) );
 	}
 
 	/**
@@ -89,6 +97,7 @@ final class CustomerRepository implements ObjectRepository {
 	 * @param string|int $id ID in guest form `g_1` or integer
 	 *
 	 * @return Customer
+	 * @throws CustomerNotFound
 	 */
 	public function find( $id ): object {
 		if ( CustomerFactory::is_customer_guest_id( $id ) ) {

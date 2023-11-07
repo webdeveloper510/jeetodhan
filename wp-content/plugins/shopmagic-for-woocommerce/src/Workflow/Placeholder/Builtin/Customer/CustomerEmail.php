@@ -22,6 +22,10 @@ final class CustomerEmail extends CustomerBasedPlaceholder {
 			$fallback = '';
 		}
 
-		return $this->resources->get( Customer::class )->get_email() ?: $fallback;
+		if ( $this->resources->has( Customer::class ) ) {
+			return $this->resources->get( Customer::class )->get_email() ?: $fallback;
+		}
+
+		return $fallback;
 	}
 }

@@ -18,13 +18,7 @@
       >
         ↓
       </button>
-      <button
-        :class="styles.arrayList.itemDelete"
-        type="button"
-        @click="deleteClicked"
-      >
-        🗙
-      </button>
+      <button :class="styles.arrayList.itemDelete" type="button" @click="deleteClicked">🗙</button>
     </div>
     <div :class="contentClasses">
       <slot></slot>
@@ -37,7 +31,7 @@ import { defineComponent, type PropType } from "vue";
 import { classes, type Styles } from "../styles";
 
 const listItem = defineComponent({
-  name: "array-list-element",
+  name: "ArrayListElement",
   props: {
     initiallyExpanded: {
       required: false,

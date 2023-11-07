@@ -19,7 +19,7 @@ import type { Styles } from "../styles";
 import type { Options } from "../util";
 
 export default defineComponent({
-  name: "control-wrapper",
+  name: "ControlWrapper",
   props: {
     id: {
       required: true as const,
@@ -71,15 +71,11 @@ export default defineComponent({
         this.visible,
         this.description,
         this.isFocused,
-        !!this.appliedOptions?.showUnfocusedDescription
+        !!this.appliedOptions?.showUnfocusedDescription,
       );
     },
     computedLabel(): string {
-      return computeLabel(
-        this.label,
-        this.required,
-        !!this.appliedOptions?.hideRequiredAsterisk
-      );
+      return computeLabel(this.label, this.required, !!this.appliedOptions?.hideRequiredAsterisk);
     },
   },
 });

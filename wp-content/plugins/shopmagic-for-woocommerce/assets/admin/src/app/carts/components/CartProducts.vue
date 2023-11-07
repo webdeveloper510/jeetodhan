@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import {NImage, NPopover} from "naive-ui";
-import type {CartProduct} from "@/app/carts/types";
+import { NImage, NPopover } from "naive-ui";
+import type { CartProduct } from "@/app/carts/types";
 
 defineProps<{
   products: CartProduct[];

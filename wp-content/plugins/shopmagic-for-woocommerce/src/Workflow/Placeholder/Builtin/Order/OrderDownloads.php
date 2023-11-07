@@ -12,6 +12,7 @@ final class OrderDownloads extends WooCommerceOrderBasedPlaceholder {
 	 * @var string
 	 */
 	private const PLAINTEXT = 'plaintext';
+
 	public function get_slug(): string {
 		return 'downloads';
 	}
@@ -41,10 +42,14 @@ final class OrderDownloads extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
+		if ( ! $this->resources->has( \WC_Order::class ) ) {
+			return '';
+		}
+
 		ob_start();
 
 		\WC_Emails::instance()->order_downloads(
-			$this->get_order(),
+			$this->resources->get( \WC_Order::class ),
 			false,
 			isset( $parameters[ self::PLAINTEXT ] ) && $parameters[ self::PLAINTEXT ] === 'yes'
 		);

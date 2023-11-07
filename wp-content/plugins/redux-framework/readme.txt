@@ -3,18 +3,18 @@ Contributors: kprovance, dovyp, redux
 Tags: admin, admin interface, options, theme options, plugin options, options framework, settings, web fonts, google fonts, metaboxes, settings
 Requires at least: 5.0
 Requires PHP: 7.1
-Tested up to: 6.2
-Stable tag: 4.4.1
+Tested up to: 6.3
+Stable tag: 4.4.6
 License: GPL-3.0+
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
 Redux is a simple, truly extensible and fully responsive options framework for WordPress themes and plugins. It ships with an integrated demo.
 
 == Description ==
-Redux was built by developers for developers. We save you months, if not years in your development time. Everything we do is to help innovation in the industry.
+Redux was built by developers for developers. We save you months if not years in your development time. Everything we do is to help innovation in the industry.
 
 <h4>♥️ What the Plugin does?</h4>
-Redux is a simple, genuinely extensible, and fully responsive options framework for WordPress themes and plugins. Built on the WordPress Settings API, Redux supports many field types, custom error handling, custom fields & validation types, and import/export functionality.
+Redux is a simple, genuinely extensible, and fully responsive options framework for WordPress themes and plugins. Built on the WordPress Settings API; Redux supports many field types, custom error handling, custom fields & validation types, and import/export functionality.
 
 But what does Redux actually DO? We don't believe that theme and plugin developers should have to reinvent the wheel every time they start work on a project. Redux simplifies the development cycle by providing a streamlined, extensible framework for developers to build on. Through a simple, well-documented config file, third-party developers can build out an options panel limited only by their imagination in a fraction of the time it would take to build from the ground up!
 
@@ -24,7 +24,7 @@ But what does Redux actually DO? We don't believe that theme and plugin develope
 <li>ACE Editor</li>
 <li>Background</li>
 <li>Border</li>
-<li>Bow Shadow</li>
+<li>Box Shadow</li>
 <li>Button Set</li>
 <li>Checkbox / Multi-Check</li>
 <li>Color (WordPress Native)</li>
@@ -40,6 +40,7 @@ But what does Redux actually DO? We don't believe that theme and plugin develope
 <li>Editor (WordPress Native)</li>
 <li>Gallery (WordPress Native)</li>
 <li>Google Maps</li>
+<li>Icon Select</li>
 <li>Image Select (Patterns/Presets)</li>
 <li>Import/Export</li>
 <li>Info (Header/Notice)</li>
@@ -69,6 +70,7 @@ But what does Redux actually DO? We don't believe that theme and plugin develope
 <li>Textarea</li>
 <li>Typography</li>
  * The most advanced typography module complete with preview, Google fonts, and auto-css output!
+<li>User Profile Metaboxes</li>
 <li>Widget Areas (Classic Widgets only)</li>
 </ul>
 
@@ -76,7 +78,7 @@ But what does Redux actually DO? We don't believe that theme and plugin develope
 <ul>
 <li>Full value escaping</li>
 <li>Required - Link visibility from parent fields. Set this to affect the visibility of the field on the parent's value. Fully nested with multiple required parents possible.</li>
-<li>Output CSS Automatically - Redux generates CSS and the appropriate Google Fonts stylesheets for you on select fields. You need only specify the CSS selector to apply the CSS to (limited to certain fields).</li>
+<li>Output CSS Automatically - Redux generates CSS and the appropriate Google Fonts stylesheets for you on select fields. You need to only specify the CSS selector to apply the CSS to (limited to certain fields).</li>
 <li>Compiler integration! A custom hook runs when any fields with the argument `compile => true` are changed.</li>
 <li>Field validation and sanitization</li>
 <li>Field and section disabling</li>
@@ -102,7 +104,7 @@ You can also contribute code via our <a href="https://github.com/reduxframework/
 </ul>
 
 <h4>🔐 Privacy</h4>
-Redux does not interact with end users on your website. If a product is using Redux the option panel will cease to function without Redux.
+Redux does not interact with end users on your website. If a product is using Redux, the option panel will cease to function without Redux.
 
 For more details on our privacy policy: [https://redux.io/privacy](https://redux.io/privacy)
 For more details on our terms and conditions: [https://redux.io/terms](https://redux.io/terms)
@@ -114,9 +116,59 @@ NOTE: Redux is not intended to be used on its own. It requires a config file pro
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 
 == Changelog ==
+= 4.4.6 =
+* New: Global arg `fontawesome_frontend` to enqueue the internal Font Awesome CSS on the front end.
+* New: Taxonomy Metaboxes Extension [https://devs.redux.io/core-extensions/taxonomy.html](https://devs.redux.io/core-extensions/taxonomy.html)
+* Fixed: Font Awesome not enqueueing on the frontend for `social_profiles` field.
+* Fixed: HTML Output for User Profile Metaboxes.
+* Fixed: Admin panel CSS.
+* Fixed: Adjusted translation for Google Font update message.
+* Fixed: Continuing effort to combat old CDN code because some devs aren't updating their code.
+* Fixed: REDUX_PLUGIN_FILE failed with embedded installed.  WE NO LONGER SUPPORT EMBEDDED. IT'S FOR LEGACY INSTALLS ONLY.
+
+= 4.4.5 =
+* Fixed: Redux catches error when Google Fonts JSON cannot be read/written due to server misconfiguration.
+* Fixed: Output HTML in the admin panel now complies with W3C standards.
+* Fixed: `typography` letter-spacing and word-spacing stuck on zero value.
+* Fixed: Field classes were disregarded when using `hidden` or `disable` arguments.
+* Fixed: Added class alias for the old version of Redux Vendor Support so Redux doesn't crash.
+* Fixed: Added additional shim to fix Vendor Support code embedded by themes that are doing it incorrectly.
+* Fixed: Add `wp-util` dependency to `icon_select` since, in some cases, WordPress does not.
+* Added: Error trapping for panel template loading for missing or unreadable files to avoid crashing the site.
+* Updated: Default Google Fonts.
+* Updated: Font Awesome 6.4.2
+* Release date: August 07, 2023
+
+= 4.4.4 =
+* Fixed: Revert `redux-admin` CSS handle to previous handle.
+* Fixed: `color_rgba` field not rendering properly due to misspelled CSS enqueue handle.
+* Fixed: jQuery deprecation notices in `typography` JavaScript.
+* Fixed: Error in connection banner on first-time activation.
+* Fixed: Missing redux-banner-admin.min.js file.
+* Fixed: Added extra check for the existence of the function name with callbacks. Some themes are not doing it correctly and crashing WordPress.
+* Release date: July 02, 2023
+
+= 4.4.3 =
+* Fixed: Typo in JavaScript enqueue handle broke `typography` and `slider` fields.
+* Release date: June 29, 2023
+
+= 4.4.2 =
+* New: Icon Select Extension. Please review notes in README.md. [https://devs.redux.io/core-extensions/icon-select.html](https://devs.redux.io/core-extensions/icon-select.html)
+* Added: `init_empty` argument for `repeater` field.
+* Added: Class alias for customizer extension for Redux 3.x backward compatibility.
+* Modified: Unused code cleanup.
+* Modified: Moved `font-display` to Google font API enqueue and out of `output` CSS string.
+* Updated: Default Google font list.
+* Updated: ACE Editor 1.23.0
+* Fixed: jQuery deprecation notices in `typography` field.
+* Fixed: Special characters validation not catching special characters.
+* Fixed: Validation routines not working complete with multiple metaboxes
+* Improved: Redux no longer enqueues resources for each field instance.
+* Release date: June 29, 2023
+
 = 4.4.1 =
 * New: User Metaboxes Extensions [https://devs.redux.io/core-extensions/user-metaboxes.html](https://devs.redux.io/core-extensions/user-metaboxes.html)
-* Fixed: Multiple `multi_media` fields in same section not respecting `max_upload_count`.
+* Fixed: Multiple `multi_media` fields in the same section not respecting `max_upload_count`.
 * Fixed: Glitch in validation causing color pickers to fail in rare use case.
 * Fixed: Google Maps JavaScript.
 * Updated: Minimum WordPress version to 5.0
@@ -126,7 +178,7 @@ NOTE: Redux is not intended to be used on its own. It requires a config file pro
 * Fixed: `Invalid argument` error inside `custom_fonts` on certain setups.
 * Fixed: Deprecated Google Map API broke `google_maps` extension.
 * Removed: Extendify Template Library
-* Added: Connection banner to display Extendify removal notice with plugin download option.
+* Added: Connection banner to display Extendify removal notice with a plugin download option.
 * Release date: March 29, 2023
 
 = 4.3.26 =
@@ -141,7 +193,7 @@ NOTE: Redux is not intended to be used on its own. It requires a config file pro
 * Release date: January 20, 2023
 
 = 4.3.23 =
-* Tweaked Custom Fonts extension to avoid conflicts with older standalone extension.
+* Tweaked Custom Fonts extension to avoid conflicts with the older standalone extension.
 * Update: Extendify Library 1.2.4
 * Release date: January 20, 2023
 
@@ -172,7 +224,7 @@ NOTE: Redux is not intended to be used on its own. It requires a config file pro
 
 = 4.3.19 =
 * Fixed: Extendify menu item appearing when it should not.
-* Fixed: Blank page template would cause fatal error.
+* Fixed: Blank page template would cause a fatal error.
 * Release date: September 30, 2022
 
 = 4.3.18 =
@@ -190,7 +242,7 @@ NOTE: Redux is not intended to be used on its own. It requires a config file pro
 
 = 4.3.17 =
 * Added: Social Profiles extension. [https://devs.redux.io/core-extensions/social-profiles.html](https://devs.redux.io/core-extensions/social-profiles.html)
-* Fixed: Metabox post types and templates selection inoperative on new posts.
+* Fixed: Metabox post-types and templates selection inoperative on new posts.
 * Updated: Extendify Library.
 * Release date: August 22, 2002
 
@@ -283,7 +335,7 @@ NOTE: Redux is not intended to be used on its own. It requires a config file pro
 * Release date: December 01, 2021
 
 = 4.3.4 =
-* Fixed: CSS and JS not loading when embedding Redux due to malformed path.
+* Fixed: CSS and JS not loading when embedding Redux due to a malformed path.
 * Modified: Update to the Extendify template library.
 * Release date: November, 24 2021
 
@@ -318,7 +370,7 @@ NOTE: Redux is not intended to be used on its own. It requires a config file pro
 
 = Why doesn't this plugin do anything? =
 
-Redux is an options framework... in other words, it's not designed to do anything on its own! You can however activate a demo mode to see how it works.
+Redux is an option framework... in other words, it's not designed to do anything on its own! You can, however, activate a demo mode to see how it works.
 
 = How can I learn more about Redux? =
 

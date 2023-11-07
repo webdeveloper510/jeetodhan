@@ -21,8 +21,10 @@ if (!\class_exists('ShopMagicVendor\\WPDesk_Basic_Requirement_Checker')) {
         const PLUGIN_INFO_VERSION = 'version';
         const PLUGIN_INFO_FAKE_REQUIRED_MINIMUM_VERSION = '0.0';
         const PLUGIN_INFO_APPEND_PLUGIN_DATA = 'required_version';
-        const PLUGIN_INFO_TRANSIENT_NAME = 'require_plugins_data';
-        const PLUGIN_INFO_TRANSIENT_EXPIRATION_TIME = 16;
+        const PLUGIN_INFO_TRANSIENT_NAME = 'wpdesk_requirements_plugins_data';
+        const CACHE_TIME = 16;
+        const EXPIRATION_TIME = 'expiration_time';
+        const PLUGINS = 'plugins';
         /** @var string */
         protected $plugin_name;
         /** @var string */
@@ -48,17 +50,23 @@ if (!\class_exists('ShopMagicVendor\\WPDesk_Basic_Requirement_Checker')) {
         /** @var @string */
         private $text_domain;
         /**
+         * @var mixed|true
+         */
+        private $use_transients;
+        /**
          * @param string $plugin_file
          * @param string $plugin_name
          * @param string $text_domain
          * @param string $php_version
          * @param string $wp_version
+         * @param bool   $use_transients
          */
-        public function __construct($plugin_file, $plugin_name, $text_domain, $php_version, $wp_version)
+        public function __construct($plugin_file, $plugin_name, $text_domain, $php_version, $wp_version, $use_transients = \true)
         {
             $this->plugin_file = $plugin_file;
             $this->plugin_name = $plugin_name;
             $this->text_domain = $text_domain;
+            $this->use_transients = $use_transients;
             $this->set_min_php_require($php_version);
             $this->set_min_wp_require($wp_version);
             $this->plugin_require = array();
@@ -273,7 +281,7 @@ if (!\class_exists('ShopMagicVendor\\WPDesk_Basic_Requirement_Checker')) {
             $required_plugins = $this->retrieve_required_plugins_data();
             if (\count($required_plugins) > 0) {
                 foreach ($required_plugins as $plugin) {
-                    if (\version_compare($plugin['Version'], $plugin[self::PLUGIN_INFO_APPEND_PLUGIN_DATA], '<')) {
+                    if (\version_compare($plugin['Version'], $plugin[self::PLUGIN_INFO_APPEND_PLUGIN_DATA], '<=')) {
                         $notices[] = $this->prepare_notice_message(\sprintf(__('The &#8220;%1$s&#8221; plugin requires at least %2$s version of %3$s to work correctly. Please update it to its latest release.', $this->get_text_domain()), \esc_html($this->plugin_name), $plugin[self::PLUGIN_INFO_APPEND_PLUGIN_DATA], $plugin['Name']));
                     }
                 }
@@ -283,30 +291,64 @@ if (!\class_exists('ShopMagicVendor\\WPDesk_Basic_Requirement_Checker')) {
         /**
          * Check the plugins directory and retrieve all plugin files with plugin data.
          *
+         * @param bool $use_transients
+         *
          * @return array In format [ 'plugindir/pluginfile.php' => ['Name' => 'Plugin Name', 'Version' => '1.0.1', ...],  ]
          */
-        private static function retrieve_plugins_data_in_transient()
+        private static function retrieve_plugins_data_in_transient($use_transients = \true)
         {
-            static $never_executed = \true;
-            if ($never_executed) {
-                $never_executed = \false;
-                /** Required when WC starts later and these data should be in cache */
-                add_filter('extra_plugin_headers', function ($headers = array()) {
-                    $headers[] = 'WC tested up to';
-                    $headers[] = 'WC requires at least';
-                    $headers[] = 'Woo';
-                    return \array_unique($headers);
-                });
-            }
-            $plugins = get_transient(self::PLUGIN_INFO_TRANSIENT_NAME);
+            $current_time = \time();
+            $plugins = self::get_plugins_data_from_cache($use_transients, $current_time);
             if ($plugins === \false) {
+                static $never_executed = \true;
+                if ($never_executed) {
+                    $never_executed = \false;
+                    /** Required when WC starts later and these data should be in cache */
+                    add_filter('extra_plugin_headers', function ($headers = array()) {
+                        $headers[] = 'WC tested up to';
+                        $headers[] = 'WC requires at least';
+                        $headers[] = 'Woo';
+                        return \array_unique($headers);
+                    });
+                }
                 if (!\function_exists('ShopMagicVendor\\get_plugins')) {
                     require_once \ABSPATH . '/wp-admin/includes/plugin.php';
                 }
                 $plugins = \function_exists('ShopMagicVendor\\get_plugins') ? get_plugins() : array();
-                set_transient(self::PLUGIN_INFO_TRANSIENT_NAME, $plugins, self::PLUGIN_INFO_TRANSIENT_EXPIRATION_TIME);
+                self::update_plugins_data_in_cache($plugins, $use_transients, $current_time);
             }
             return $plugins;
+        }
+        /**
+         * @param bool $use_transients
+         * @param int $current_time
+         *
+         * @return array|false
+         */
+        private static function get_plugins_data_from_cache($use_transients, $current_time)
+        {
+            if ($use_transients) {
+                return get_transient(self::PLUGIN_INFO_TRANSIENT_NAME);
+            } else {
+                $plugins_option_value = get_option(self::PLUGIN_INFO_TRANSIENT_NAME);
+                if (\is_array($plugins_option_value) && isset($plugins_option_value[self::EXPIRATION_TIME], $plugins_option_value[self::PLUGINS]) && (int) $plugins_option_value[self::EXPIRATION_TIME] > $current_time) {
+                    return $plugins_option_value[self::PLUGINS];
+                }
+            }
+            return \false;
+        }
+        /**
+         * @param array $plugins
+         * @param bool $use_transients
+         * @param int $current_time
+         */
+        private static function update_plugins_data_in_cache($plugins, $use_transients, $current_time)
+        {
+            if ($use_transients) {
+                set_transient(self::PLUGIN_INFO_TRANSIENT_NAME, $plugins, self::CACHE_TIME);
+            } else {
+                update_option(self::PLUGIN_INFO_TRANSIENT_NAME, array(self::EXPIRATION_TIME => $current_time + self::CACHE_TIME, self::PLUGINS => $plugins));
+            }
         }
         /**
          * Check the plugins directory and retrieve all required plugin files with plugin data.
@@ -316,7 +358,7 @@ if (!\class_exists('ShopMagicVendor\\WPDesk_Basic_Requirement_Checker')) {
         private function retrieve_required_plugins_data()
         {
             $require_plugins = array();
-            $plugins = self::retrieve_plugins_data_in_transient();
+            $plugins = self::retrieve_plugins_data_in_transient($this->use_transients);
             if (\is_array($plugins)) {
                 if (\count($plugins) > 0) {
                     if (!empty($this->plugin_require)) {
@@ -393,7 +435,7 @@ if (!\class_exists('ShopMagicVendor\\WPDesk_Basic_Requirement_Checker')) {
             $name = $plugin_info[self::PLUGIN_INFO_KEY_NAME];
             $nice_name = $plugin_info[self::PLUGIN_INFO_KEY_NICE_NAME];
             if (!self::is_wp_plugin_active($name)) {
-                if (!self::is_wp_plugin_installed($name)) {
+                if (!self::is_wp_plugin_installed($name, $this->use_transients)) {
                     $install_url = $this->prepare_plugin_repository_install_url($plugin_info);
                     return $this->prepare_notice_message(\sprintf(wp_kses(__('The &#8220;%s&#8221; plugin requires free %s plugin. <a href="%s">Install %s</a>', $this->get_text_domain()), array('a' => array('href' => array()))), $this->plugin_name, $nice_name, esc_url($install_url), $nice_name));
                 }
@@ -424,12 +466,13 @@ if (!\class_exists('ShopMagicVendor\\WPDesk_Basic_Requirement_Checker')) {
          * Checks if plugin is installed. Needs to be enabled in deferred way.
          *
          * @param string $plugin_file
+         * @param bool   $use_transients
          *
          * @return bool
          */
-        public static function is_wp_plugin_installed($plugin_file)
+        public static function is_wp_plugin_installed($plugin_file, $use_transients = \false)
         {
-            $plugins_data = self::retrieve_plugins_data_in_transient();
+            $plugins_data = self::retrieve_plugins_data_in_transient($use_transients);
             return \array_key_exists($plugin_file, (array) $plugins_data);
         }
         /**
@@ -519,7 +562,7 @@ if (!\class_exists('ShopMagicVendor\\WPDesk_Basic_Requirement_Checker')) {
         {
             if (isset($this->plugin_file)) {
                 deactivate_plugins(plugin_basename($this->plugin_file));
-                delete_transient(self::PLUGIN_INFO_TRANSIENT_NAME);
+                $this->clear_plugin_info_data();
             }
         }
         /**
@@ -529,17 +572,18 @@ if (!\class_exists('ShopMagicVendor\\WPDesk_Basic_Requirement_Checker')) {
          */
         public function transient_delete_on_plugin_version_changed()
         {
-            \add_action(self::HOOK_PLUGIN_DEACTIVATED_ACTION, array($this, 'handle_transient_delete_action'));
-            \add_action(self::HOOK_PLUGIN_ACTIVATED_ACTION, array($this, 'handle_transient_delete_action'));
+            \add_action(self::HOOK_PLUGIN_DEACTIVATED_ACTION, array($this, 'clear_plugin_info_data'));
+            \add_action(self::HOOK_PLUGIN_ACTIVATED_ACTION, array($this, 'clear_plugin_info_data'));
         }
         /**
          * Handles the transient delete
          *
          * @return void
          */
-        public function handle_transient_delete_action()
+        public function clear_plugin_info_data()
         {
             delete_transient(self::PLUGIN_INFO_TRANSIENT_NAME);
+            delete_option(self::PLUGIN_INFO_TRANSIENT_NAME);
         }
         /**
          * Should be called as WordPress action

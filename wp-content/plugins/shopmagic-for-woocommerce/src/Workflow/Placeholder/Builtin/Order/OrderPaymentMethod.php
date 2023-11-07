@@ -17,7 +17,7 @@ final class OrderPaymentMethod extends WooCommerceOrderBasedPlaceholder {
 
 	public function value( array $parameters ): string {
 		if ( $this->resources->has( \WC_Order::class ) ) {
-			return $this->get_order()->get_payment_method_title();
+			return $this->resources->get( \WC_Order::class )->get_payment_method_title();
 		}
 
 		return '';

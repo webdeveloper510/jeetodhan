@@ -3,7 +3,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Event;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use ShopMagicVendor\WPDesk\Forms\Field\InputNumberField;
 use ShopMagicVendor\WPDesk\Forms\Field\TimepickerField;
 use WPDesk\ShopMagic\Helper\WordPressFormatHelper;

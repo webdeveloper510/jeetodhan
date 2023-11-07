@@ -16,6 +16,10 @@ final class OrderAdminUrl extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->get_order()->get_edit_order_url();
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			return $this->resources->get( \WC_Order::class )->get_edit_order_url();
+		}
+
+		return '';
 	}
 }

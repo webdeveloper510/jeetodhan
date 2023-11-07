@@ -16,6 +16,10 @@ final class PostId extends PostBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return (string) $this->get_post()->ID;
+		if ( $this->resources->has( \WP_Post::class ) ) {
+			return (string) $this->resources->get( \WP_Post::class )->ID;
+		}
+
+		return '';
 	}
 }

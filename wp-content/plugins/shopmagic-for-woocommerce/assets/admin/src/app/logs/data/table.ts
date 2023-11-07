@@ -5,8 +5,9 @@ import dayjs from "dayjs";
 import { h } from "vue";
 import { RouterLink } from "vue-router";
 import { DateTime, Interval } from "luxon";
+import SimpleTime from "@/components/SimpleTime.vue";
 import OutcomeError from "../components/OutcomeError.vue";
-import { __ } from "@wordpress/i18n";
+import { __ } from "@/plugins/i18n";
 
 const rtf = new Intl.RelativeTimeFormat(navigator.languages);
 
@@ -22,7 +23,7 @@ const automationColumn: DataTableColumn<ReadOutcome> = {
       ? h(
           RouterLink,
           { to: { name: "automation", params: { id: automation.id } } },
-          () => automation.name || __("(Unnamed)", "shopmagic-for-woocommerce")
+          () => automation.name || __("(Unnamed)", "shopmagic-for-woocommerce"),
         )
       : __("Automation does not exists", "shopmagic-for-woocommerce"),
 };
@@ -31,8 +32,7 @@ const customerColumn: DataTableColumn<ReadOutcome> = {
   key: "customer",
   title: () => __("Customer", "shopmagic-for-woocommerce"),
   render: ({ customer }) =>
-    customer?.email ||
-    __("A customer does not exist", "shopmagic-for-woocommerce"),
+    customer?.email || __("A customer does not exist", "shopmagic-for-woocommerce"),
 };
 
 export const shortOutcomeColumns: DataTableColumns<ReadOutcome> = [
@@ -49,7 +49,7 @@ export const shortOutcomeColumns: DataTableColumns<ReadOutcome> = [
         () =>
           status === "completed"
             ? __("Completed", "shopmagic-for-woocommerce")
-            : __("Failed", "shopmagic-for-woocommerce")
+            : __("Failed", "shopmagic-for-woocommerce"),
       ),
   },
   {
@@ -60,10 +60,7 @@ export const shortOutcomeColumns: DataTableColumns<ReadOutcome> = [
       const run = DateTime.fromISO(updated);
       const i = Interval.fromDateTimes(run, now);
       if (i.length("minutes") <= 60) {
-        return rtf.format(
-          toAbsoluteNegativeValue(i.length("minutes")),
-          "minutes"
-        );
+        return rtf.format(toAbsoluteNegativeValue(i.length("minutes")), "minutes");
       } else if (i.length("hours") <= 24) {
         return rtf.format(toAbsoluteNegativeValue(i.length("hours")), "hours");
       } else if (i.length("days") <= 7) {
@@ -97,7 +94,7 @@ export const outcomeColumns: DataTableColumns<ReadOutcome> = [
         () =>
           status === "completed"
             ? __("Success", "shopmagic-for-woocommerce")
-            : __("Failure", "shopmagic-for-woocommerce")
+            : __("Failure", "shopmagic-for-woocommerce"),
       ),
   },
   automationColumn,
@@ -109,7 +106,7 @@ export const outcomeColumns: DataTableColumns<ReadOutcome> = [
   {
     key: "updated",
     title: () => __("Date", "shopmagic-for-woocommerce"),
-    render: ({ updated }) => dayjs(updated).format("D MMM, YYYY HH:mm:ss"),
+    render: ({ updated }) => h(SimpleTime, { time: updated }),
     sorter: (a, b) => dayjs(a.updated).diff(b.updated),
   },
   {
@@ -117,7 +114,6 @@ export const outcomeColumns: DataTableColumns<ReadOutcome> = [
     title: () => __("Errors", "shopmagic-for-woocommerce"),
     minWidth: 65,
     expandable: ({ error }) => !!error,
-    renderExpand: ({ error }) =>
-      h(OutcomeError, { note: error.note, trace: error.context.Trace }),
+    renderExpand: ({ error }) => h(OutcomeError, { note: error.note, trace: error.context.Trace }),
   },
 ];

@@ -16,6 +16,10 @@ final class OrderBillingState extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->get_order()->get_billing_state();
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			return $this->resources->get( \WC_Order::class )->get_billing_state();
+		}
+
+		return '';
 	}
 }

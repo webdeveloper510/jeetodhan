@@ -16,13 +16,14 @@ use WPDesk\ShopMagic\Workflow\Automation\Automation;
 
 /**
  * @implements ObjectHydrator<TrackedEmail>
+ * @implements ObjectDehydrator<TrackedEmail>
  */
 class TrackedEmailHydrator implements ObjectHydrator, ObjectDehydrator {
 
 	/** @var CustomerRepository */
 	private $customer_repository;
 
-	public function __construct(CustomerRepository $customer_repository) {
+	public function __construct( CustomerRepository $customer_repository ) {
 		$this->customer_repository = $customer_repository;
 	}
 
@@ -84,13 +85,18 @@ class TrackedEmailHydrator implements ObjectHydrator, ObjectDehydrator {
 		return count( array_intersect( array_keys( $data ), $required_keys ) ) === count( $required_keys );
 	}
 
-	/** @param TrackedEmail|object $object */
+	/** @param TrackedEmail $object */
 	public function normalize( object $object ): array {
+		$customer_id = null;
+		$customer    = $object->get_customer();
+		if ( $customer instanceof Customer && ! $customer->is_guest() ) {
+			$customer_id = $customer->get_id();
+		}
 		return [
 			'id'              => $object->get_id(),
 			'message_id'      => $object->get_message_id(),
 			'automation_id'   => $object->get_automation_id(),
-			'customer_id'     => $object->get_customer()->is_guest() ? null : $object->get_customer()->get_id(),
+			'customer_id'     => $customer_id,
 			'recipient_email' => $object->get_recipient_email(),
 			'dispatched_at'   => $object->get_dispatched_at()->format( WordPressFormatHelper::MYSQL_DATETIME_FORMAT ),
 			'opened_at'       => $object->get_opened_at() ? $object->get_opened_at()->format( WordPressFormatHelper::MYSQL_DATETIME_FORMAT ) : null,

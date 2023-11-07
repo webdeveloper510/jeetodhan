@@ -5,5 +5,5 @@ namespace WPDesk\ShopMagic\Exception;
 
 use LogicException;
 
-final class ResourceNotFound extends LogicException implements ShopMagicException, \Psr\Container\NotFoundExceptionInterface {
+final class ResourceNotFound extends LogicException implements ShopMagicException, \ShopMagicVendor\Psr\Container\NotFoundExceptionInterface {
 }

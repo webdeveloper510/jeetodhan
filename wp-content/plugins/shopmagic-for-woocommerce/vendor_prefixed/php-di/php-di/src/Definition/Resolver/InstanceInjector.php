@@ -6,7 +6,7 @@ namespace ShopMagicVendor\DI\Definition\Resolver;
 use ShopMagicVendor\DI\Definition\Definition;
 use ShopMagicVendor\DI\Definition\InstanceDefinition;
 use ShopMagicVendor\DI\DependencyException;
-use Psr\Container\NotFoundExceptionInterface;
+use ShopMagicVendor\Psr\Container\NotFoundExceptionInterface;
 /**
  * Injects dependencies on an existing instance.
  *

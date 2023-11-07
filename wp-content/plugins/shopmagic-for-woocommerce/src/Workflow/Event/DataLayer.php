@@ -4,7 +4,7 @@ declare( strict_types=1 );
 namespace WPDesk\ShopMagic\Workflow\Event;
 
 use ArrayAccess;
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use WPDesk\ShopMagic\Exception\ResourceNotFound;
 
 final class DataLayer implements ContainerInterface, ArrayAccess {

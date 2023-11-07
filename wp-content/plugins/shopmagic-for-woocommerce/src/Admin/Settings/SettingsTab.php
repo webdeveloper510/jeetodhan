@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace WPDesk\ShopMagic\Admin\Settings;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 
 /**
  * Tab than can be rendered on settings page.

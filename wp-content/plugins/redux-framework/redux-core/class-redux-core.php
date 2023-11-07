@@ -101,7 +101,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		public static $pro_loaded = false;
 
 		/**
-		 * Pointer to updated google fonts array.
+		 * Pointer to an updated Google fonts array.
 		 *
 		 * @var array
 		 */
@@ -158,15 +158,12 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		/**
 		 * Things to run after pluggable.php had loaded.
 		 */
-		public static function plugins_loaded() {
-			Redux_Functions_Ex::pro_to_ext();
-		}
+		public static function plugins_loaded() {}
 
 		/**
 		 * Class init.
 		 */
 		private function init() {
-
 			self::$server = array(
 				'SERVER_SOFTWARE' => '',
 				'REMOTE_ADDR'     => Redux_Helpers::is_local_host() ? '127.0.0.1' : '',
@@ -243,15 +240,14 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		}
 
 		/**
-		 * Code to execute on framework __construct.
+		 * Code to execute on a framework __construct.
 		 *
-		 * @param object $parent Pointer to ReduxFramework object.
+		 * @param object $redux Pointer to ReduxFramework object.
 		 */
-		public static function core_construct( $parent ) {
-			self::$third_party_fixes = new Redux_ThirdParty_Fixes( $parent );
+		public static function core_construct( $redux ) {
+			self::$third_party_fixes = new Redux_ThirdParty_Fixes( $redux );
 
 			Redux_ThemeCheck::get_instance();
-
 		}
 
 		/**
@@ -264,22 +260,20 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 				self::$pro_loaded = true;
 			}
 
-			require_once dirname( __FILE__ ) . '/inc/classes/class-redux-path.php';
-			require_once dirname( __FILE__ ) . '/inc/classes/class-redux-functions-ex.php';
-			require_once dirname( __FILE__ ) . '/inc/classes/class-redux-helpers.php';
-			require_once dirname( __FILE__ ) . '/inc/classes/class-redux-instances.php';
+			require_once __DIR__ . '/inc/classes/class-redux-path.php';
+			require_once __DIR__ . '/inc/classes/class-redux-functions-ex.php';
+			require_once __DIR__ . '/inc/classes/class-redux-helpers.php';
+			require_once __DIR__ . '/inc/classes/class-redux-instances.php';
 
-			Redux_Functions_Ex::register_class_path( 'Redux', dirname( __FILE__ ) . '/inc/classes' );
-			Redux_Functions_Ex::register_class_path( 'Redux', dirname( __FILE__ ) . '/inc/welcome' );
+			Redux_Functions_Ex::register_class_path( 'Redux', __DIR__ . '/inc/classes' );
+			Redux_Functions_Ex::register_class_path( 'Redux', __DIR__ . '/inc/welcome' );
 			Redux_Functions_Ex::load_extendify_css();
 
 			spl_autoload_register( array( $this, 'register_classes' ) );
 
 			self::$welcome = new Redux_Welcome();
-			new Redux_Rest_Api_Builder();
 
 			add_action( 'admin_init', array( $this, 'admin_init' ) );
-
 			add_filter( 'debug_information', array( $this, 'add_debug_info' ) );
 		}
 
@@ -289,7 +283,6 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 * @param array $debug_info Debug data.
 		 *
 		 * @return array
-		 * @noinspection PhpIncludeInspection
 		 * @throws ReflectionException Exception.
 		 */
 		public function add_debug_info( array $debug_info ): array {

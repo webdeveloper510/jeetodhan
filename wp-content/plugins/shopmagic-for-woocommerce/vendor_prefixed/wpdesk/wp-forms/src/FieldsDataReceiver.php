@@ -2,7 +2,7 @@
 
 namespace ShopMagicVendor\WPDesk\Forms;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 /**
  * Some field owners can receive and process field data.
  * Probably should be used with FieldProvider interface.

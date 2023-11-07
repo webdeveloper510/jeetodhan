@@ -74,11 +74,7 @@ export const controlRenderers: JsonFormsRendererRegistryEntry[] = [
     renderer: PluginModuleRenderer,
     tester: rankWith(3, (uischema, schema, context) => {
       if (!isScoped(uischema)) return false;
-      const elementSchema = resolveSchema(
-        schema,
-        uischema.scope,
-        context.rootSchema
-      );
+      const elementSchema = resolveSchema(schema, uischema.scope, context.rootSchema);
       return elementSchema?.format === "plugin-module";
     }),
   },
@@ -88,13 +84,9 @@ export const controlRenderers: JsonFormsRendererRegistryEntry[] = [
       3,
       or(isBooleanControl, (uischema, schema, context) => {
         if (!isScoped(uischema)) return false;
-        const elementSchema = resolveSchema(
-          schema,
-          uischema.scope,
-          context.rootSchema
-        );
+        const elementSchema = resolveSchema(schema, uischema.scope, context.rootSchema);
         return elementSchema?.extendedCoerce === true;
-      })
+      }),
     ),
   },
   {
@@ -103,16 +95,9 @@ export const controlRenderers: JsonFormsRendererRegistryEntry[] = [
       3,
       and(isOneOfEnumControl, (uischema, schema, context) => {
         if (!isScoped(uischema)) return false;
-        const elementSchema = resolveSchema(
-          schema,
-          uischema.scope,
-          context.rootSchema
-        );
-        return (
-          (elementSchema.uniqueItems && elementSchema?.format !== "select") ||
-          false
-        );
-      })
+        const elementSchema = resolveSchema(schema, uischema.scope, context.rootSchema);
+        return (elementSchema.uniqueItems && elementSchema?.format !== "select") || false;
+      }),
     ),
   },
   {
@@ -121,13 +106,9 @@ export const controlRenderers: JsonFormsRendererRegistryEntry[] = [
       2,
       and(isStringControl, (uischema, schema, context) => {
         if (!isScoped(uischema)) return false;
-        const elementSchema = resolveSchema(
-          schema,
-          uischema.scope,
-          context.rootSchema
-        );
+        const elementSchema = resolveSchema(schema, uischema.scope, context.rootSchema);
         return elementSchema?.format === "file";
-      })
+      }),
     ),
   },
   {
@@ -136,17 +117,12 @@ export const controlRenderers: JsonFormsRendererRegistryEntry[] = [
       2,
       and(isStringControl, (uischema, schema, context) => {
         if (!isScoped(uischema)) return false;
-        const elementSchema = resolveSchema(
-          schema,
-          uischema.scope,
-          context.rootSchema
-        );
+        const elementSchema = resolveSchema(schema, uischema.scope, context.rootSchema);
         return (
-          (elementSchema?.format === "textarea" &&
-            elementSchema?.presentation?.type === "plain") ||
+          (elementSchema?.format === "textarea" && elementSchema?.presentation?.type === "plain") ||
           false
         );
-      })
+      }),
     ),
   },
   {
@@ -155,17 +131,12 @@ export const controlRenderers: JsonFormsRendererRegistryEntry[] = [
       2,
       and(isStringControl, (uischema, schema, context) => {
         if (!isScoped(uischema)) return false;
-        const elementSchema = resolveSchema(
-          schema,
-          uischema.scope,
-          context.rootSchema
-        );
+        const elementSchema = resolveSchema(schema, uischema.scope, context.rootSchema);
         return (
-          (elementSchema?.format === "textarea" &&
-            elementSchema?.presentation?.type === "rich") ||
+          (elementSchema?.format === "textarea" && elementSchema?.presentation?.type === "rich") ||
           false
         );
-      })
+      }),
     ),
   },
   {
@@ -176,18 +147,14 @@ export const controlRenderers: JsonFormsRendererRegistryEntry[] = [
         if (!isScoped(ui)) return false;
         const element = resolveSchema(schema, ui.scope, rootSchema);
         return element?.format === "error";
-      })
+      }),
     ),
   },
   {
     renderer: ActionControlRenderer,
     tester: rankWith(5, (uischema, schema, context) => {
       if (!isScoped(uischema)) return false;
-      const elementSchema = resolveSchema(
-        schema,
-        uischema.scope,
-        context.rootSchema
-      );
+      const elementSchema = resolveSchema(schema, uischema.scope, context.rootSchema);
       return (
         elementSchema?.format === "action" &&
         typeof elementSchema.presentation.callback !== "undefined"
@@ -202,51 +169,31 @@ export const controlRenderers: JsonFormsRendererRegistryEntry[] = [
         if (!isScoped(uischema)) return false;
         const elementSchema = resolveSchema(schema, uischema.scope, rootSchema);
         return elementSchema?.format === "google-sheets";
-      })
+      }),
     ),
   },
   {
     renderer: ManualActionControlRenderer,
     tester: rankWith(7, (uischema, schema, context) => {
       if (!isScoped(uischema)) return false;
-      const elementSchema = resolveSchema(
-        schema,
-        uischema.scope,
-        context.rootSchema
-      );
-      return (
-        elementSchema?.format === "manual-action" &&
-        elementSchema.type === "null"
-      );
+      const elementSchema = resolveSchema(schema, uischema.scope, context.rootSchema);
+      return elementSchema?.format === "manual-action" && elementSchema.type === "null";
     }),
   },
   {
     renderer: RawHtmlControlRenderer,
     tester: rankWith(5, (uischema, schema, context) => {
       if (!isScoped(uischema)) return false;
-      const elementSchema = resolveSchema(
-        schema,
-        uischema.scope,
-        context.rootSchema
-      );
-      return (
-        elementSchema?.format === "advertisement" ||
-        elementSchema.type === "null"
-      );
+      const elementSchema = resolveSchema(schema, uischema.scope, context.rootSchema);
+      return elementSchema?.format === "advertisement" || elementSchema.type === "null";
     }),
   },
   {
     renderer: ButtonControlRenderer,
     tester: rankWith(6, (uischema, schema, context) => {
       if (!isScoped(uischema)) return false;
-      const elementSchema = resolveSchema(
-        schema,
-        uischema.scope,
-        context.rootSchema
-      );
-      return (
-        elementSchema?.format === "button" && elementSchema.type === "null"
-      );
+      const elementSchema = resolveSchema(schema, uischema.scope, context.rootSchema);
+      return elementSchema?.format === "button" && elementSchema.type === "null";
     }),
   },
 ];

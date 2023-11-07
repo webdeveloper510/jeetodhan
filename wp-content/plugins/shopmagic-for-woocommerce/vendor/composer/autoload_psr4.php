@@ -8,6 +8,4 @@ $baseDir = dirname($vendorDir);
 return array(
     'WPDesk\\ShopMagic\\' => array($baseDir . '/src'),
     'WPDesk\\Dashboard\\' => array($vendorDir . '/wpdesk/ltv-dashboard-widget/src'),
-    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
-    'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
 );

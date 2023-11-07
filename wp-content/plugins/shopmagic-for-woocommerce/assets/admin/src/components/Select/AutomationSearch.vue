@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { fetchAutomations } from "@/app/automations/store";
+import { findAutomationsBy } from "@/app/automations/store";
 import DynamicSearch from "@/components/Select/DynamicSearch.vue";
 import type { SelectOption } from "naive-ui";
 
@@ -7,7 +7,7 @@ defineProps<{
   defaultOptions?: SelectOption[];
 }>();
 const loadOptions = async (query: string) => {
-  const automations = await fetchAutomations({ filters: { name: query } });
+  const automations = await findAutomationsBy({ filters: { name: query } });
 
   return automations.map((automation) => ({
     label: automation?.name,

@@ -31,6 +31,12 @@ final class OrderDateCreated extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->date_format_helper->format_date( $this->get_order()->get_date_created(), $parameters );
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			return $this->date_format_helper->format_date(
+				$this->resources->get( \WC_Order::class )->get_date_created(), $parameters
+			);
+		}
+
+		return '';
 	}
 }

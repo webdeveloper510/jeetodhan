@@ -1,11 +1,5 @@
 <script lang="ts" setup>
-import {
-  NButton,
-  NNumberAnimation,
-  NSpace,
-  NStatistic,
-  NTooltip,
-} from "naive-ui";
+import { NButton, NNumberAnimation, NSpace, NStatistic, NTooltip } from "naive-ui";
 import { InformationCircleOutline } from "@vicons/ionicons5";
 import MultipleLinesChart from "@/components/Chart/MultipleLinesChart.vue";
 import type { ChartDataset } from "chart.js";
@@ -25,10 +19,7 @@ defineProps<{
             <div class="flex items-center align-center gap-1">
               <div
                 :style="{
-                  backgroundColor:
-                    header?.labelMarkColor ||
-                    header.backgroundColor ||
-                    '#50C878',
+                  backgroundColor: header?.labelMarkColor || header.backgroundColor || '#50C878',
                 }"
                 class="w-[8px] h-[8px] rounded-full"
               ></div>

@@ -15,8 +15,8 @@ final class OrderShippingCompany extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		if ( $this->is_order_provided() ) {
-			return $this->get_order()->get_shipping_company();
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			return $this->resources->get( \WC_Order::class )->get_shipping_company();
 		}
 
 		return '';

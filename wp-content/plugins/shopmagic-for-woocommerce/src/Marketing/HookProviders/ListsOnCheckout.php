@@ -48,7 +48,7 @@ final class ListsOnCheckout implements HookProvider, Conditional {
 		$viewable_items = $this->repository->find_checkout_viewable_items();
 		foreach ( $viewable_items as $type ) {
 			$this->renderer->output_render(
-				'checkout_optin',
+				'marketing-lists/checkout_optin',
 				[
 					'type'     => $type,
 					'opted_in' => $this->subscribers_repository->is_subscribed_to_list(

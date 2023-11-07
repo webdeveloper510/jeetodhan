@@ -3,7 +3,7 @@
 declare (strict_types=1);
 namespace ShopMagicVendor\DI;
 
-use Psr\Container\NotFoundExceptionInterface;
+use ShopMagicVendor\Psr\Container\NotFoundExceptionInterface;
 /**
  * Exception thrown when a class or a value is not found in the container.
  */

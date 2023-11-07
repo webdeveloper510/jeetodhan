@@ -18,6 +18,10 @@ final class CustomerUsername extends CustomerBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
+		if ( ! $this->resources->has( Customer::class ) ) {
+			return '';
+		}
+
 		$customer = $this->resources->get( Customer::class );
 		if ( $customer->is_guest() ) {
 			return '';

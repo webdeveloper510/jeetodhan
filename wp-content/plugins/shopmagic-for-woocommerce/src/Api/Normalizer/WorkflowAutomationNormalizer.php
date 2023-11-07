@@ -76,15 +76,17 @@ class WorkflowAutomationNormalizer implements Normalizer {
 				static function ( Action $action ) {
 					return [
 						'name'     => $action->get_id(),
-						'settings' => array_filter( $action->get_parameters()->all(), static function (
-							$item, $key
-						) {
-							if ( $key === 'attachment' && empty( $item ) ) {
-								return false;
-							}
+						'settings' => array_filter(
+							$action->get_parameters()->all(),
+							static function ( $item, $key ) {
+								if ( $key === 'attachment' && empty( $item ) ) {
+									return false;
+								}
 
-							return true;
-						}, ARRAY_FILTER_USE_BOTH ),
+								return true;
+							},
+							ARRAY_FILTER_USE_BOTH
+						),
 					];
 				},
 				array_values( $object->get_actions() )

@@ -11,10 +11,9 @@ interface ObjectHydrator {
 	/**
 	 * @param T $object
 	 *
-	 * @return array<string, int|string|bool>
+	 * @return array<string, scalar|null>
 	 */
 	public function normalize( object $object ): array;
 
 	public function supports_normalization( object $object ): bool;
-
 }

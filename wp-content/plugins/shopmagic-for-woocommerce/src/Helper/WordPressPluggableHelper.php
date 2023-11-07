@@ -19,5 +19,4 @@ final class WordPressPluggableHelper {
 	public static function is_plugin_active( string $plugin ): bool {
 		return \in_array( $plugin, (array) get_option( 'active_plugins', [] ), true ) || self::is_plugin_active_for_network( $plugin );
 	}
-
 }

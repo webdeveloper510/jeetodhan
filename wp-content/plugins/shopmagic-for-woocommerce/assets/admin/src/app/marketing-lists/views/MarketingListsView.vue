@@ -2,7 +2,7 @@
 import RouterWrapper from "@/components/Layout/TabbedWrapper.vue";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { __ } from "@wordpress/i18n";
+import { __ } from "@/plugins/i18n";
 
 const tabs = {
   lists: __("Lists", "shopmagic-for-woocommerce"),

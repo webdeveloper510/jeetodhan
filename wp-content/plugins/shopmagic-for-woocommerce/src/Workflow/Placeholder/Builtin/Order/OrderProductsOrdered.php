@@ -22,7 +22,7 @@ class OrderProductsOrdered extends WooCommerceOrderBasedPlaceholder {
 
 	public function get_description(): string {
 		return esc_html__( 'Display current ordered products.', 'shopmagic-for-woocommerce' ) . '\n' .
-		$this->utm_builder->get_description();
+		       $this->utm_builder->get_description();
 	}
 
 	public function get_slug(): string {
@@ -37,7 +37,11 @@ class OrderProductsOrdered extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		$items         = $this->resources->has( \WC_Order::class ) ? $this->get_order()->get_items() : [];
+		if ( ! $this->resources->has( \WC_Order::class ) ) {
+			return '';
+		}
+
+		$items         = $this->resources->get( \WC_Order::class )->get_items();
 		$products      = [];
 		$product_names = [];
 

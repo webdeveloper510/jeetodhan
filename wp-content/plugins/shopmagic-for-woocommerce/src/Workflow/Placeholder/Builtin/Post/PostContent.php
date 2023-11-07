@@ -16,7 +16,11 @@ final class PostContent extends PostBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		// TODO: Wrap in WP functions to enable content formatting and shortcodes
-		return $this->get_post()->post_content;
+		if ( $this->resources->has( \WP_Post::class ) ) {
+			// TODO: Wrap in WP functions to enable content formatting and shortcodes
+			return $this->resources->get( \WP_Post::class )->post_content;
+		}
+
+		return '';
 	}
 }

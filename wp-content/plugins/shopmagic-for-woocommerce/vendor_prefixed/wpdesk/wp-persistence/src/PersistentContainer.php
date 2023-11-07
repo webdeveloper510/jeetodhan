@@ -2,8 +2,8 @@
 
 namespace ShopMagicVendor\WPDesk\Persistence;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerExceptionInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 /**
  * Container that you can use to save some values.
  * When class require only read capabilities use ContainerInterface. When requires to write use this interface.

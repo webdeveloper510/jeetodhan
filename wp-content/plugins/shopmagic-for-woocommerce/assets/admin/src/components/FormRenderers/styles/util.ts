@@ -20,7 +20,7 @@ export const classes = (strings: TemplateStringsArray, ...variables: any[]) => {
  */
 export const mergeStyles = (
   stylesA: Partial<Styles>,
-  stylesB: Partial<Styles>
+  stylesB: Partial<Styles>,
 ): Partial<Styles> => {
   const styles = cloneDeep(stylesA);
   mergeWith(styles, stylesB, (aValue, bValue) => {

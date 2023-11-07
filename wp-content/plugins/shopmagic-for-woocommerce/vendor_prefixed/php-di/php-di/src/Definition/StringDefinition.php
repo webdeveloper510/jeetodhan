@@ -4,8 +4,8 @@ declare (strict_types=1);
 namespace ShopMagicVendor\DI\Definition;
 
 use ShopMagicVendor\DI\DependencyException;
-use Psr\Container\ContainerInterface;
-use Psr\Container\NotFoundExceptionInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\NotFoundExceptionInterface;
 /**
  * Definition of a string composed of other strings.
  *

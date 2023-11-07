@@ -16,6 +16,10 @@ final class PostLink extends PostBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return get_permalink( $this->get_post() );
+		if ( $this->resources->has( \WP_Post::class ) ) {
+			return get_permalink( $this->resources->get( \WP_Post::class ) );
+		}
+
+		return '';
 	}
 }

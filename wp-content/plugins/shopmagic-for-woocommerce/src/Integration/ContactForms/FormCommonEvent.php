@@ -71,7 +71,7 @@ abstract class FormCommonEvent extends Event implements CustomerAwareInterface {
 			->set_options( $options );
 
 		if ( count( $options ) === 1 ) {
-			$select_field->set_default_value( array_values( $options )[0] );
+			$select_field->set_default_value( (string) array_keys( $options )[0] );
 		}
 
 		return [ $select_field ];

@@ -9,7 +9,7 @@ import { useMarketingStore } from "@/app/marketing-lists/store";
 import JsonForm from "@/components/JsonForm.vue";
 import { useMarketingResources } from "@/app/marketing-lists/resourceStore";
 import { computed } from "vue";
-import { __ } from "@wordpress/i18n";
+import { __ } from "@/plugins/i18n";
 import MarketingListSidebar from "@/app/marketing-lists/components/MarketingListSidebar.vue";
 
 const store = useMarketingStore();
@@ -39,10 +39,9 @@ const message = useMessage();
 const router = useRouter();
 
 async function saveList() {
-  const m = message.loading(
-    __("Saving marketing list", "shopmagic-for-woocommerce"),
-    { duration: 0 }
-  );
+  const m = message.loading(__("Saving marketing list", "shopmagic-for-woocommerce"), {
+    duration: 0,
+  });
   try {
     if (!isNaN(parseInt(route.params.id))) {
       await update();
@@ -114,9 +113,7 @@ function deleteAutomation() {
         :name="list?.name"
         :publish="list?.status === 'publish'"
         @save="saveList"
-        @update:name="
-          (name) => store.$patch((state) => (state.list.name = name))
-        "
+        @update:name="(name) => store.$patch((state) => (state.list.name = name))"
         @update:publish="updatePublish"
       />
     </NLayoutHeader>

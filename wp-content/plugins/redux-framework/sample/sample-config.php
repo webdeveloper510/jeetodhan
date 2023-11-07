@@ -18,7 +18,7 @@ $opt_name = 'redux_demo';  // YOU MUST CHANGE THIS.  DO NOT USE 'redux_demo' IN 
 // Uncomment to disable demo mode.
 /* Redux::disable_demo(); */  // phpcs:ignore Squiz.PHP.CommentedOutCode
 
-$dir = dirname( __FILE__ ) . DIRECTORY_SEPARATOR;
+$dir = __DIR__ . DIRECTORY_SEPARATOR;
 
 /*
  * --> Used within different fields. Simply examples. Search for ACTUAL DECLARATION for field examples
@@ -209,7 +209,7 @@ $args = array(
 	),
 
 	// FUTURE -> Not in use yet, but reserved or partially implemented. Use at your own risk.
-	// possible: options, theme_mods, theme_mods_expanded, transient. Not fully functional, warning!
+	// Possible: options, theme_mods, theme_mods_expanded, transient. Not fully functional, warning!
 	'database'                  => '',
 	'network_admin'             => true,
 	'search'                    => true,
@@ -217,7 +217,7 @@ $args = array(
 
 
 // ADMIN BAR LINKS -> Setup custom links in the admin bar menu as external items.
-// PLEASE CHANGE THEME BEFORE RELEASING YOUR PRODUCT!!
+// PLEASE CHANGE THESE SETTINGS IN YOUR THEME BEFORE RELEASING YOUR PRODUCT!!
 // If these are left unchanged, they will not display in your panel!
 $args['admin_bar_links'][] = array(
 	'id'    => 'redux-docs',
@@ -238,7 +238,7 @@ $args['admin_bar_links'][] = array(
 );
 
 // SOCIAL ICONS -> Setup custom links in the footer for quick links in your panel footer icons.
-// PLEASE CHANGE THEME BEFORE RELEASING YOUR PRODUCT!!
+// PLEASE CHANGE THESE SETTINGS IN YOUR THEME BEFORE RELEASING YOUR PRODUCT!!
 // If these are left unchanged, they will not display in your panel!
 $args['share_icons'][] = array(
 	'url'   => '//github.com/ReduxFramework/ReduxFramework',
@@ -509,8 +509,7 @@ Redux::set_section(
 require_once Redux_Core::$dir . '../sample/sections/disabling/disable-field.php';
 require_once Redux_Core::$dir . '../sample/sections/disabling/disable-section.php';
 
-// -> START Pro Fields.
-
+// -> START Extensions.
 Redux::set_section(
 	$opt_name,
 	array(
@@ -525,19 +524,18 @@ Redux::set_section(
 require_once Redux_Core::$dir . '../sample/sections/extensions/accordion.php';
 require_once Redux_Core::$dir . '../sample/sections/extensions/custom-fonts.php';
 require_once Redux_Core::$dir . '../sample/sections/extensions/google-maps.php';
+require_once Redux_Core::$dir . '../sample/sections/extensions/icon-select.php';
 require_once Redux_Core::$dir . '../sample/sections/extensions/js-button.php';
 require_once Redux_Core::$dir . '../sample/sections/extensions/repeater.php';
 require_once Redux_Core::$dir . '../sample/sections/extensions/search.php';
 require_once Redux_Core::$dir . '../sample/sections/extensions/shortcodes.php';
 require_once Redux_Core::$dir . '../sample/sections/extensions/social-profiles.php';
 require_once Redux_Core::$dir . '../sample/sections/extensions/widget-areas.php';
+require_once Redux_Core::$dir . '../sample/sections/extensions/taxonomy.php';
 require_once Redux_Core::$dir . '../sample/sections/extensions/users.php';
 
 if ( class_exists( 'Redux_Pro' ) ) {
 	require_once Redux_Core::$dir . '../sample/sections/extensions/color-scheme.php';
-	require_once Redux_Core::$dir . '../sample/sections/extensions/icon-select.php';
-	require_once Redux_Core::$dir . '../sample/sections/extensions/taxonomy.php';
-	require_once Redux_Core::$dir . '../sample/sections/extensions/users.php';
 }
 
 /**
@@ -557,7 +555,7 @@ if ( file_exists( $dir . '/../README.md' ) ) {
 				'id'           => 'opt-raw-documentation',
 				'type'         => 'raw',
 				'markdown'     => true,
-				'content_path' => dirname( __FILE__ ) . '/../README.md', // FULL PATH, not relative please.
+				'content_path' => __DIR__ . '/../README.md', // FULL PATH, not relative, please.
 			),
 		),
 	);
@@ -604,7 +602,7 @@ Redux::set_section(
  */
 
 // Function to test the compiler hook and demo CSS output.
-// Above 10 is a priority, but 2 in necessary to include the dynamically generated CSS to be sent to the function.
+// Above 10 is a priority, but 2 is necessary to include the dynamically generated CSS to be sent to the function.
 // add_filter('redux/options/' . $opt_name . '/compiler', 'compiler_action', 10, 3);
 //
 // Change the arguments after they've been declared, but before the panel is created.
@@ -613,7 +611,8 @@ Redux::set_section(
 // Change the default value of a field after it's been set, but before it's been used.
 // add_filter('redux/options/' . $opt_name . '/defaults', 'change_defaults' );
 //
-// Dynamically add a section. Can be also used to modify sections/fields.
+// Dynamically add a section.
+// It can be also used to modify sections/fields.
 // add_filter('redux/options/' . $opt_name . '/sections', 'dynamic_section');
 // .
 if ( ! function_exists( 'compiler_action' ) ) {
@@ -633,7 +632,7 @@ if ( ! function_exists( 'compiler_action' ) ) {
 		// echo '<br/>';
 		// print_r($options); //Option values.
 		// echo '<br/>';
-		// print_r($css); // Compiler selector CSS values  compiler => array( CSS SELECTORS ).
+		// print_r($css); // Compiler selector CSS values compiler => array( CSS SELECTORS ).
 		echo '</pre>';
 	}
 }
@@ -680,9 +679,10 @@ if ( ! function_exists( 'redux_validate_callback_function' ) ) {
 
 if ( ! function_exists( 'dynamic_section' ) ) {
 	/**
-	 * Custom function for filtering the sections array. Good for child themes to override or add to the sections.
+	 * Custom function for filtering the section array.
+	 * Good for child themes to override or add to the sections.
 	 * Simply include this function in the child themes functions.php file.
-	 * NOTE: the defined constants for URLs, and directories will NOT be available at this point in a child theme,
+	 * NOTE: the defined constants for URLs and directories will NOT be available at this point in a child theme,
 	 * so you must use get_template_directory_uri() if you want to use any of the built-in icons.
 	 *
 	 * @param array $sections Section array.
@@ -706,7 +706,8 @@ if ( ! function_exists( 'dynamic_section' ) ) {
 if ( ! function_exists( 'change_arguments' ) ) {
 	/**
 	 * Filter hook for filtering the args.
-	 * Good for child themes to override or add to the args array. Can also be used in other functions.
+	 * Good for child themes to override or add to the args array.
+	 * It can also be used in other functions.
 	 *
 	 * @param array $args Global arguments array.
 	 *
@@ -736,8 +737,8 @@ if ( ! function_exists( 'change_defaults' ) ) {
 
 if ( ! function_exists( 'redux_custom_sanitize' ) ) {
 	/**
-	 * Function to be used if the field sanitize argument.
-	 * Return value MUST be the formatted or cleaned text to display.
+	 * Function to be used if the field sanitizes argument.
+	 * Return value MUST be formatted or cleaned text to display.
 	 *
 	 * @param string $value Value to evaluate or clean.  Required.
 	 *

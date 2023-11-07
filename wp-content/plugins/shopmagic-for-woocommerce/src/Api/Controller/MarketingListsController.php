@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Api\Controller;
 
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use WPDesk\ShopMagic\Admin\CommunicationList\CommunicationListSettingsMetabox;
 use WPDesk\ShopMagic\Admin\CommunicationList\FormShortcodeMetabox;
 use WPDesk\ShopMagic\Admin\Form\FieldsCollection;

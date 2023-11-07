@@ -1,6 +1,6 @@
-import {useAutomationCollectionStore} from "@/app/automations/store";
-import {storeToRefs} from "pinia";
-import type {Automation} from "@/types/automation";
+import { useAutomationCollectionStore } from "@/app/automations/store";
+import { storeToRefs } from "pinia";
+import type { Automation } from "@/types/automation";
 
 export function useAutomationCache(id: number): Automation | null {
   const { automations } = storeToRefs(useAutomationCollectionStore());

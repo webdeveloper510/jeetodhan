@@ -4,8 +4,8 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\ActionExecution;
 
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use ShopMagicVendor\Psr\Log\LoggerAwareInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareTrait;
 use WPDesk\ShopMagic\Exception\ActionDisabledAfterStatusRecheckException;
 use WPDesk\ShopMagic\Workflow\Action\Action;
 use WPDesk\ShopMagic\Workflow\Automation\Automation;

@@ -9,12 +9,13 @@ import type { Ref } from "vue";
 import { computed, ref, unref } from "vue";
 import useSWRV, { cache } from "@/_utils/swrv";
 import { get } from "@/_utils";
+import { appendSearchParams } from "@/composables/useSearchParams";
 
 type MaybeRef<T> = Ref<T> | T;
 
 export const useAutomationResourcesStore = defineStore("automation", () => {
   const eventQuery = ref<string | null>(null);
-  const { data: events } = useSWRV<EventConfig>("/resources/events", get, {
+  const { data: events } = useSWRV<EventConfig[]>("/resources/events", get, {
     cache,
     revalidateOnFocus: false,
   });
@@ -23,14 +24,24 @@ export const useAutomationResourcesStore = defineStore("automation", () => {
     revalidateOnFocus: false,
   });
   const { data: filters } = useSWRV<FilterConfig[]>(
-    () => `/resources/filters?event_slug=${eventQuery.value}`,
+    () =>
+      eventQuery.value
+        ? appendSearchParams("/resources/filters", {
+            event_slug: eventQuery.value,
+          })
+        : null,
     get,
-    { cache, revalidateOnFocus: false }
+    { cache, revalidateOnFocus: false },
   );
   const { data: placeholders } = useSWRV<PlaceholderConfig[]>(
-    () => `/resources/placeholders?event_slug=${eventQuery.value}`,
+    () =>
+      eventQuery.value
+        ? appendSearchParams("/resources/placeholders", {
+            event_slug: eventQuery.value,
+          })
+        : null,
     get,
-    { cache, revalidateOnFocus: false }
+    { cache, revalidateOnFocus: false },
   );
 
   function fetchAvailableFilters(event: string | null) {
@@ -41,12 +52,10 @@ export const useAutomationResourcesStore = defineStore("automation", () => {
   }
 
   const getFilter = computed(
-    () => (search: MaybeRef<string>) =>
-      filters.value?.find((f) => f.value === unref(search))
+    () => (search: MaybeRef<string>) => filters.value?.find((f) => f.value === unref(search)),
   );
   const getAction = computed(
-    () => (name: MaybeRef<string>) =>
-      actions.value?.find((a) => a.value === unref(name))
+    () => (name: MaybeRef<string>) => actions.value?.find((a) => a.value === unref(name)),
   );
 
   return {

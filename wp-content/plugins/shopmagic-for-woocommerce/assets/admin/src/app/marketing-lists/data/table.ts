@@ -4,7 +4,7 @@ import { h } from "vue";
 import { RouterLink } from "vue-router";
 import type { List } from "@/app/marketing-lists/types";
 import { TrashOutline } from "@vicons/ionicons5";
-import { __ } from "@wordpress/i18n";
+import { __ } from "@/plugins/i18n";
 import { removeList } from "@/app/marketing-lists/store";
 
 export const marketingListsTableColumns: DataTableColumns<List> = [
@@ -18,7 +18,7 @@ export const marketingListsTableColumns: DataTableColumns<List> = [
       h(
         RouterLink,
         { to: { name: "marketing-list", params: { id } } },
-        () => name || __("(Unnamed)", "shopmagic-for-woocommerce")
+        () => name || __("(Unnamed)", "shopmagic-for-woocommerce"),
       ),
   },
   {
@@ -33,9 +33,9 @@ export const marketingListsTableColumns: DataTableColumns<List> = [
             tertiary: true,
             type: "error",
             size: "small",
-            onClick: () => removeList(id),
+            onClick: () => void removeList(id),
           },
-          { icon: () => h(TrashOutline) }
+          { icon: () => h(TrashOutline) },
         ),
       ]),
   },
@@ -45,10 +45,7 @@ export const marketingListsTableColumns: DataTableColumns<List> = [
     width: 400,
     render: ({ id, type }) => {
       return type === "opt_out"
-        ? __(
-            "Subscription form is not supported for opt-out lists.",
-            "shopmagic-for-woocommerce"
-          )
+        ? __("Subscription form is not supported for opt-out lists.", "shopmagic-for-woocommerce")
         : h(NInput, { value: `[shopmagic_form id="${id}"]`, readonly: true });
     },
   },
@@ -76,7 +73,7 @@ export const marketingListsTableColumns: DataTableColumns<List> = [
         },
         {
           default: () => subscribersCount || 0,
-        }
+        },
       ),
   },
   ...(window.ShopMagic.modules.includes("multilingual-module")
@@ -124,7 +121,7 @@ export const marketingListsTableColumns: DataTableColumns<List> = [
               return __("unknown", "shopmagic-for-woocommerce");
             }
           },
-        }
+        },
       ),
   },
 ];

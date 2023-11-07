@@ -74,12 +74,6 @@ type PlaceholderConfig = {
   fields: JsonSchema;
 } & Groupable;
 
-export type {
-  EventConfig,
-  FilterConfig,
-  ActionConfig,
-  PlaceholderConfig,
-  EventConfigOption,
-};
+export type { EventConfig, FilterConfig, ActionConfig, PlaceholderConfig, EventConfigOption };
 
 export type { InputType, InputTextType, InputSelectType, InputCheckboxType };

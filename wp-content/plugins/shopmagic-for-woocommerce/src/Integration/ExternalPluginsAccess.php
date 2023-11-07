@@ -4,8 +4,9 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Integration;
 
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use ShopMagicVendor\DI\Container;
+use ShopMagicVendor\WPDesk\View\Resolver\Resolver;
 use WPDesk\ShopMagic\Admin\Settings\SettingsCollection;
 use WPDesk\ShopMagic\Admin\Settings\SettingTab;
 use WPDesk\ShopMagic\Components\Routing\RoutesConfigurator;
@@ -13,6 +14,7 @@ use WPDesk\ShopMagic\DataSharing\DataProvider;
 use WPDesk\ShopMagic\DataSharing\TestProvider;
 use WPDesk\ShopMagic\DI\CompositeContainer;
 use WPDesk\ShopMagic\Helper\PluginBag;
+use WPDesk\ShopMagic\Helper\TemplateResolver;
 use WPDesk\ShopMagic\Workflow\ActionExecution\ExecutionCreator\ExecutionCreator;
 use WPDesk\ShopMagic\Workflow\ActionExecution\ExecutionCreator\ExecutionCreatorContainer;
 use WPDesk\ShopMagic\Workflow\Extensions\Extension;
@@ -43,13 +45,17 @@ final class ExternalPluginsAccess {
 	/** @var SettingsCollection */
 	private $settings;
 
+	/** @var TemplateResolver */
+	private $resolver;
+
 	public function __construct(
 		PluginBag $plugin_bag,
 		WorkflowInitializer $automation_factory,
 		ExecutionCreatorContainer $executor_factory,
 		ExtensionsSet $extensions_set,
 		SettingsCollection $settings,
-		Container $container
+		Container $container,
+		TemplateResolver $resolver
 	) {
 		$this->version            = $plugin_bag->get_version();
 		$this->automation_factory = $automation_factory;
@@ -57,6 +63,7 @@ final class ExternalPluginsAccess {
 		$this->extensions_set     = $extensions_set;
 		$this->settings           = $settings;
 		$this->container          = $container;
+		$this->resolver           = $resolver;
 	}
 
 	/**
@@ -110,6 +117,24 @@ final class ExternalPluginsAccess {
 
 	public function get_routes_configurator(): RoutesConfigurator {
 		return $this->container->make( 'routesConfigurator.api' );
+	}
+
+	/**
+	 * Allow external plugins to add own templates via custom template
+	 * resolver.
+	 *
+	 * The order or resolvers is always the following:
+	 *  1. Theme template resolver
+	 *  2. External template resolver (attached here)
+	 *  3. Default template resolver (ShopMagic own templates)
+	 *
+	 * @param Resolver $resolver The easiest way to attach own template
+	 *  resolver is to use `\ShopMagicVendor\WPDesk\View\Resolver\DirResolver`,
+	 *  which takes a base directory path,
+	 *  i.e. `new DirResolver('<my-plugin>/templates')`.
+	 */
+	public function add_template_resolver( Resolver $resolver ): void {
+		$this->resolver->add_resolver( $resolver );
 	}
 
 }

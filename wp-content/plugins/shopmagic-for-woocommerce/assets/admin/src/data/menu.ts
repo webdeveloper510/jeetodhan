@@ -3,7 +3,7 @@ import { NIcon } from "naive-ui";
 import { h } from "vue";
 import { RouterLink } from "vue-router";
 import { ChevronDownOutline } from "@vicons/ionicons5";
-import { __ } from "@wordpress/i18n";
+import { __ } from "@/plugins/i18n";
 
 const automationsGroup: MenuOption = {
   key: "automations",
@@ -16,7 +16,7 @@ const automationsGroup: MenuOption = {
           h("span", __("Automations", "shopmagic-for-woocommerce")),
           h(NIcon, { class: "ml-1" }, { default: () => h(ChevronDownOutline) }),
         ],
-      }
+      },
     ),
   children: [
     {
@@ -30,9 +30,8 @@ const automationsGroup: MenuOption = {
             class: ["flex", "gap-2", "items-center"],
           },
           {
-            default: () =>
-              h("span", __("All automations", "shopmagic-for-woocommerce")),
-          }
+            default: () => h("span", __("All automations", "shopmagic-for-woocommerce")),
+          },
         ),
       key: "all-automations",
     },
@@ -46,7 +45,7 @@ const automationsGroup: MenuOption = {
               params: { id: "new" },
             },
           },
-          { default: () => __("Add automation", "shopmagic-for-woocommerce") }
+          { default: () => __("Add automation", "shopmagic-for-woocommerce") },
         ),
       key: "new-automation",
     },
@@ -59,7 +58,7 @@ const automationsGroup: MenuOption = {
               name: "recipes",
             },
           },
-          { default: () => __("Recipes", "shopmagic-for-woocommerce") }
+          { default: () => __("Recipes", "shopmagic-for-woocommerce") },
         ),
       key: "recipes",
     },
@@ -77,7 +76,7 @@ const marketingGroup: MenuOption = {
           h("span", __("Marketing", "shopmagic-for-woocommerce")),
           h(NIcon, { class: "ml-1" }, { default: () => h(ChevronDownOutline) }),
         ],
-      }
+      },
     ),
   children: [
     {
@@ -92,7 +91,7 @@ const marketingGroup: MenuOption = {
           },
           {
             default: () => __("Lists", "shopmagic-for-woocommerce"),
-          }
+          },
         ),
       key: "lists",
     },
@@ -105,7 +104,7 @@ const marketingGroup: MenuOption = {
               name: "subscribers",
             },
           },
-          { default: () => __("Subscribers", "shopmagic-for-woocommerce") }
+          { default: () => __("Subscribers", "shopmagic-for-woocommerce") },
         ),
       key: "subscribers",
     },
@@ -118,7 +117,7 @@ const marketingGroup: MenuOption = {
               name: "transfer",
             },
           },
-          { default: () => __("Transfer", "shopmagic-for-woocommerce") }
+          { default: () => __("Transfer", "shopmagic-for-woocommerce") },
         ),
       key: "transfer",
     },
@@ -136,7 +135,7 @@ const logsGroup: MenuOption = {
           h("span", __("Logs", "shopmagic-for-woocommerce")),
           h(NIcon, { class: "ml-1" }, { default: () => h(ChevronDownOutline) }),
         ],
-      }
+      },
     ),
   children: [
     {
@@ -151,7 +150,7 @@ const logsGroup: MenuOption = {
           },
           {
             default: () => __("Outcomes", "shopmagic-for-woocommerce"),
-          }
+          },
         ),
       key: "outcomes",
     },
@@ -164,11 +163,11 @@ const logsGroup: MenuOption = {
               name: "queue",
             },
           },
-          { default: () => __("Queue", "shopmagic-for-woocommerce") }
+          { default: () => __("Queue", "shopmagic-for-woocommerce") },
         ),
       key: "queue",
     },
-    ...(window.ShopMagic.emailTrackingEnabled !== ""
+    ...(window.ShopMagic.emailTrackingEnabled == "1"
       ? [
           {
             label: () =>
@@ -180,9 +179,8 @@ const logsGroup: MenuOption = {
                   },
                 },
                 {
-                  default: () =>
-                    __("Email tracker", "shopmagic-for-woocommerce"),
-                }
+                  default: () => __("Email tracker", "shopmagic-for-woocommerce"),
+                },
               ),
             key: "tracker",
           },
@@ -200,7 +198,7 @@ const menu: MenuOption[] = [
         {
           label: () =>
             h(RouterLink, { to: { name: "carts" } }, () =>
-              __("Carts", "shopmagic-for-woocommerce")
+              __("Carts", "shopmagic-for-woocommerce"),
             ),
           key: "carts",
         },
@@ -221,14 +219,14 @@ const menu: MenuOption[] = [
             name: "guests",
           },
         },
-        () => __("Guests", "shopmagic-for-woocommerce")
+        () => __("Guests", "shopmagic-for-woocommerce"),
       ),
     key: "guests",
   },
   {
     label: () =>
       h(RouterLink, { to: { name: "settings" } }, () =>
-        __("Settings", "shopmagic-for-woocommerce")
+        __("Settings", "shopmagic-for-woocommerce"),
       ),
     key: "settings",
   },
@@ -243,9 +241,8 @@ const menu: MenuOption[] = [
                 href: "https://shopmagic.app/?utm_source=plugin&utm_medium=pro-button&utm_campaign=upgrade-pro",
               },
               {
-                default: () =>
-                  __("Upgrade to PRO", "shopmagic-for-woocommerce"),
-              }
+                default: () => __("Upgrade to PRO", "shopmagic-for-woocommerce"),
+              },
             ),
           key: "pro",
         },

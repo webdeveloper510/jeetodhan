@@ -21,10 +21,7 @@ export const useSorter =
     return sorterFn(a, b) * getOrderFlag(order);
   };
 
-function getSortFunction({
-  sorter,
-  columnKey,
-}: Pick<SortOptions, "sorter" | "columnKey">) {
+function getSortFunction({ sorter, columnKey }: Pick<SortOptions, "sorter" | "columnKey">) {
   if (typeof sorter === "function") {
     return sorter;
   }

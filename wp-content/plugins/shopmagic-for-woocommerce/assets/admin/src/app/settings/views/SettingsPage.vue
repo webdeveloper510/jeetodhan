@@ -1,10 +1,19 @@
 <script lang="ts" setup>
-import {NButton, NH1, NLayout, NLayoutSider, NMenu, NSkeleton, NSpace, useMessage,} from "naive-ui";
-import {__} from "@wordpress/i18n";
-import {storeToRefs} from "pinia";
-import {useSettingsStore} from "../store";
-import {computed, toRefs} from "vue";
-import {useRoute} from "vue-router";
+import {
+  NButton,
+  NH1,
+  NLayout,
+  NLayoutSider,
+  NMenu,
+  NSkeleton,
+  NSpace,
+  useMessage,
+} from "naive-ui";
+import { __ } from "@/plugins/i18n";
+import { storeToRefs } from "pinia";
+import { useSettingsStore } from "../store";
+import { computed, toRefs } from "vue";
+import { useRoute } from "vue-router";
 import DefaultRenderer from "../components/DefaultRenderer.vue";
 import ModulesRenderer from "../components/ModulesRenderer.vue";
 
@@ -16,11 +25,9 @@ const message = useMessage();
 
 const { params } = toRefs(useRoute());
 
-const currentTab = computed(
-  () => (params.value.page as string) || (tab() as string)
-);
+const currentTab = computed(() => (params.value.page as string) || (tab() as string));
 
-function updateData({ data, errors }) {
+function updateData({ data /* errors */ }) {
   updateSettings((state) => (state.values[currentTab.value] = data));
 }
 
@@ -30,19 +37,19 @@ const determinedRenderer = computed(() => {
 });
 
 async function saveSettings() {
-  const m = message.loading(
-    __("Saving settings", "shopmagic-for-woocommerce"),
-    { duration: 0 }
-  );
+  const m = message.loading(__("Saving settings", "shopmagic-for-woocommerce"), { duration: 0 });
   try {
     await save(values.value);
-    m.content = __("Settings saved", "shopmagic-for-woocommerce");
+    m.content = __(
+      "Settings saved. Yom may need to reload the page to apply the changes.",
+      "shopmagic-for-woocommerce",
+    );
     m.type = "success";
   } catch (e) {
     m.content = e.message;
     m.type = "error";
   } finally {
-    setTimeout(m.destroy, 1500);
+    setTimeout(m.destroy, 2500);
   }
 }
 </script>
@@ -66,14 +73,7 @@ async function saveSettings() {
     </NLayoutSider>
     <NLayout class="bg-gray-50" content-style="padding: 1rem 2rem">
       <NSpace v-if="loading" vertical>
-        <NSkeleton
-          v-for="i in 8"
-          :key="i"
-          :sharp="false"
-          height="32px"
-          text
-          width="65%"
-        />
+        <NSkeleton v-for="i in 8" :key="i" :sharp="false" height="32px" text width="65%" />
       </NSpace>
       <div v-else>
         <component

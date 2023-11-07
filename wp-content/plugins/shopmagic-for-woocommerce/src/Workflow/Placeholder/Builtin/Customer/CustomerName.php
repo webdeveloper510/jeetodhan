@@ -17,15 +17,19 @@ final class CustomerName extends CustomerBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		if ($this->resources->has( \WC_Order::class ) ) {
-			$order = $this->resources->get( \WC_Order::class );
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			$order    = $this->resources->get( \WC_Order::class );
 			$fallback = $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
-		} else if ( $this->resources->has( \WP_Comment::class) ) {
+		} elseif ( $this->resources->has( \WP_Comment::class ) ) {
 			$fallback = $this->resources->get( \WP_Comment::class )->comment_author ?: '';
 		} else {
 			$fallback = '';
 		}
 
-		return $this->resources->get( Customer::class )->get_full_name() ?: $fallback;
+		if ( $this->resources->has( Customer::class ) ) {
+			return $this->resources->get( Customer::class )->get_full_name() ?: $fallback;
+		}
+
+		return $fallback;
 	}
 }

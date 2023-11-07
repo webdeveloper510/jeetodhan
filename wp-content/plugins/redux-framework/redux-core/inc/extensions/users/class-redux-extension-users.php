@@ -2,7 +2,7 @@
 /**
  * Redux User Meta Extension Class
  *
- * @package Redux Pro
+ * @package Redux
  * @author  Dovy Paukstys
  * @class   Redux_Extension_Users
  * @version 4.4.1
@@ -164,19 +164,21 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 		/**
 		 * Redux_Extension_Users constructor.
 		 *
-		 * @param object $parent ReduxFramework pointer.
+		 * @param object $redux ReduxFramework pointer.
 		 */
-		public function __construct( $parent ) {
+		public function __construct( $redux ) {
 			global $pagenow;
 
-			parent::__construct( $parent, __FILE__ );
+			parent::__construct( $redux, __FILE__ );
 
-			$this->parent = $parent;
+			$this->parent = $redux;
 
 			$this->add_field( 'users' );
 			$this->parent->extensions['users'] = $this;
 
 			$this->pagenows = array( 'user-new.php', 'profile.php', 'user-edit.php' );
+
+			require_once __DIR__ . '/redux-users-helpers.php';
 
 			add_action( 'admin_notices', array( $this, 'meta_profiles_show_errors' ), 0 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ), 20 );
@@ -386,21 +388,6 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 		}
 
 		/**
-		 * Can CSS Output override.
-		 *
-		 * @param array $field Field array.
-		 *
-		 * @return array
-		 */
-		public function override_can_output_css( array $field ): array {
-			if ( isset( $this->output[ $field['id'] ] ) ) {
-				$field['force_output'] = true;
-			}
-
-			return $field;
-		}
-
-		/**
 		 * Output CSS.
 		 *
 		 * @param array $field Field array.
@@ -554,10 +541,10 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 				 */
 				if ( true === $this->parent->args['dev_mode'] ) {
 					wp_enqueue_style(
-						'redux-extension-users-css',
+						'redux-extension-users',
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
 						apply_filters( "redux/users/{$this->parent->args['opt_name']}/enqueue/redux-extension-users-css", $this->extension_url . 'redux-extension-users.css' ),
-						array( 'redux-admin-css' ),
+						array(),
 						self::$version
 					);
 				}
@@ -567,7 +554,7 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 				 * filter 'redux/page/{opt_name}/enqueue/redux-extension-users-js
 				 */
 				wp_enqueue_script(
-					'redux-extension-users-js',
+					'redux-extension-users',
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
 					apply_filters( "redux/users/{$this->parent->args['opt_name']}/enqueue/redux-extension-users-js", $this->extension_url . 'redux-extension-users' . Redux_Functions::is_min() . '.js' ),
 					array( 'jquery', 'redux-js' ),
@@ -576,7 +563,7 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 				);
 
 				// Values used by the javascript.
-				wp_localize_script( 'redux-extension-users-js', 'reduxUsers', $this->users_roles );
+				wp_localize_script( 'redux-extension-users', 'reduxUsers', $this->users_roles );
 
 			}
 		}
@@ -608,7 +595,7 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 									continue;
 								}
 
-								if ( $field['type'] === 'ace_editor' && isset( $field['options'] ) ) {
+								if ( 'ace_editor' === $field['type'] && isset( $field['options'] ) ) {
 									$this->profiles[ $key ]['sections'][ $sk ]['fields'][ $k ]['args'] = $field['options'];
 									unset( $this->profiles[ $key ]['sections'][ $sk ]['fields'][ $k ]['options'] );
 								}
@@ -654,18 +641,6 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 				);
 
 				$profile = wp_parse_args( $profile, $defaults );
-
-				if ( isset( $profile['title'] ) ) {
-					$title = $profile['title'];
-				} else {
-					if ( isset( $profile['sections'] ) && 1 === count( $profile['sections'] ) && isset( $profile['sections'][0]['fields'] ) && 1 === count( $profile['sections'][0]['fields'] ) && isset( $profile['sections'][0]['fields'][0]['title'] ) ) {
-
-						// If only one field in this term.
-						$title = $profile['sections'][0]['fields'][0]['title'];
-					} else {
-						$title = __( 'Options', 'redux-framework' );
-					}
-				}
 
 				// Override the parent args on a meta-term level.
 				if ( empty( $this->orig_args ) ) {
@@ -843,29 +818,27 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 		/**
 		 * Check Edit Visibility.
 		 *
-		 * @param array $array Array.
+		 * @param array $params Array.
 		 *
 		 * @return bool
 		 */
-		private function check_edit_visibility( array $array = array() ): bool {
+		private function check_edit_visibility( array $params = array() ): bool {
 			global $pagenow;
 
 			// Edit page visibility.
 			if ( strpos( $pagenow, 'edit-' ) !== false ) {
-				if ( isset( $array['fields'] ) ) {
-					foreach ( $array['fields'] as $field ) {
+				if ( isset( $params['fields'] ) ) {
+					foreach ( $params['fields'] as $field ) {
 						if ( in_array( $field['id'], $this->parent->fields_hidden, true ) ) {
 							// Not visible.
-						} else {
-							if ( isset( $field['add_visibility'] ) && $field['add_visibility'] ) {
-								return true;
-							}
+						} elseif ( isset( $field['add_visibility'] ) && $field['add_visibility'] ) {
+							return true;
 						}
 					}
 
 					return false;
 				}
-				if ( isset( $array['add_visibility'] ) && $array['add_visibility'] ) {
+				if ( isset( $params['add_visibility'] ) && $params['add_visibility'] ) {
 					return true;
 				}
 
@@ -895,7 +868,7 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 			}
 
 			$class = implode( ' ', $metaterm['args']['class'] );
-			echo '<div class=' . esc_attr( $class ) . '>';
+			echo '<div class="' . esc_attr( $class ) . '">';
 
 			$sections = $metaterm['args']['sections'];
 
@@ -943,7 +916,7 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 								}
 
 								// phpcs:ignore WordPress.Security.EscapeOutput
-								echo $this->parent->section_menu( $s_key, $section, '_' . $metaterm['args']['id'], $sections );
+								echo $this->parent->render_class->section_menu( $s_key, $section, '_' . $metaterm['args']['id'], $sections );
 							}
 							?>
 						</ul>
@@ -1047,8 +1020,9 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 				</div>
 				<div class="clear"></div>
 			</div>
-
 			<?php
+
+			echo '</div>';
 		}
 
 		/**
@@ -1224,26 +1198,3 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 		}
 	}
 }
-
-// Helper function to bypass WordPress hook priorities.  ;).
-if ( ! function_exists( 'create_term_redux_users' ) ) {
-
-	/**
-	 * Create_term_redux_users.
-	 *
-	 * @param string $profile_id Profile ID.
-	 * @param int    $tt_id      ID.
-	 * @param string $users      Users.
-	 */
-	function create_term_redux_users( string $profile_id, int $tt_id = 0, string $users = '' ) {
-		$instances = Redux::all_instances();
-
-		foreach ( $_POST as $key => $value ) {
-			if ( is_array( $value ) && isset( $instances[ $key ] ) ) {
-				$instances[ $key ]->extensions['users']->user_meta_save( $profile_id );
-			}
-		}
-	}
-}
-
-add_action( 'create_term', 'create_term_redux_users', 4 );

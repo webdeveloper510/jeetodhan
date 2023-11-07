@@ -33,11 +33,11 @@ class CommunicationPreferencesRenderer {
 	}
 
 	public function render_wrap_start(): string {
-		return $this->renderer->render( 'communication_preferences_wrap_start' );
+		return $this->renderer->render( 'marketing-lists/communication_preferences_wrap_start' );
 	}
 
 	public function render_wrap_end(): string {
-		return $this->renderer->render( 'communication_preferences_wrap_end' );
+		return $this->renderer->render( 'marketing-lists/communication_preferences_wrap_end' );
 	}
 
 	/**
@@ -50,17 +50,20 @@ class CommunicationPreferencesRenderer {
 	 * @return string
 	 */
 	public function render( Customer $customer, array $params = [] ): string {
-		$params = array_merge( [
-			'obfuscate' => true,
-			'success'   => null,
-		], $params );
+		$params = array_merge(
+			[
+				'obfuscate' => true,
+				'success'   => null,
+			],
+			$params
+		);
 
 		$email = $params['obfuscate'] === true
 			? $this->obfuscator->obfuscate( $customer->get_email() )
 			: $customer->get_email();
 
 		return $this->renderer->render(
-			'communication_preferences',
+			'marketing-lists/communication_preferences',
 			[
 				'success'       => $params['success'],
 				'email'         => $customer->get_email(),

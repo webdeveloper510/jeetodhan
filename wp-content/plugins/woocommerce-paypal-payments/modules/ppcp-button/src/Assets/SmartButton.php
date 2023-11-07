@@ -11,18 +11,21 @@ namespace WooCommerce\PayPalCommerce\Button\Assets;
 
 use Exception;
 use Psr\Log\LoggerInterface;
+use WC_Order;
 use WC_Product;
 use WC_Product_Variation;
 use WooCommerce\PayPalCommerce\ApiClient\Entity\PaymentToken;
 use WooCommerce\PayPalCommerce\ApiClient\Factory\PayerFactory;
 use WooCommerce\PayPalCommerce\ApiClient\Helper\DccApplies;
 use WooCommerce\PayPalCommerce\Button\Endpoint\ApproveOrderEndpoint;
+use WooCommerce\PayPalCommerce\Button\Endpoint\ApproveSubscriptionEndpoint;
 use WooCommerce\PayPalCommerce\Button\Endpoint\CartScriptParamsEndpoint;
 use WooCommerce\PayPalCommerce\Button\Endpoint\ChangeCartEndpoint;
 use WooCommerce\PayPalCommerce\Button\Endpoint\CreateOrderEndpoint;
 use WooCommerce\PayPalCommerce\Button\Endpoint\DataClientIdEndpoint;
 use WooCommerce\PayPalCommerce\Button\Endpoint\RequestData;
 use WooCommerce\PayPalCommerce\Button\Endpoint\SaveCheckoutFormEndpoint;
+use WooCommerce\PayPalCommerce\Button\Endpoint\SimulateCartEndpoint;
 use WooCommerce\PayPalCommerce\Button\Endpoint\StartPayPalVaultingEndpoint;
 use WooCommerce\PayPalCommerce\Button\Endpoint\ValidateCheckoutEndpoint;
 use WooCommerce\PayPalCommerce\Button\Helper\ContextTrait;
@@ -66,13 +69,6 @@ class SmartButton implements SmartButtonInterface {
 	 * @var string
 	 */
 	private $version;
-
-	/**
-	 * The Session Handler.
-	 *
-	 * @var SessionHandler
-	 */
-	private $session_handler;
 
 	/**
 	 * The settings.
@@ -166,13 +162,6 @@ class SmartButton implements SmartButtonInterface {
 	protected $early_validation_enabled;
 
 	/**
-	 * The logger.
-	 *
-	 * @var LoggerInterface
-	 */
-	private $logger;
-
-	/**
 	 * Cached payment tokens.
 	 *
 	 * @var PaymentToken[]|null
@@ -180,11 +169,39 @@ class SmartButton implements SmartButtonInterface {
 	private $payment_tokens = null;
 
 	/**
+	 * The contexts that should have the Pay Now button.
+	 *
+	 * @var string[]
+	 */
+	private $pay_now_contexts;
+
+	/**
+	 * The sources that do not cause issues about redirecting (on mobile, ...) and sometimes not returning back.
+	 *
+	 * @var string[]
+	 */
+	private $funding_sources_without_redirect;
+
+	/**
+	 * The logger.
+	 *
+	 * @var LoggerInterface
+	 */
+	private $logger;
+
+	/**
+	 * Session handler.
+	 *
+	 * @var SessionHandler
+	 */
+	private $session_handler;
+
+	/**
 	 * SmartButton constructor.
 	 *
 	 * @param string                 $module_url The URL to the module.
-	 * @param string                 $version                            The assets version.
-	 * @param SessionHandler         $session_handler The Session Handler.
+	 * @param string                 $version The assets version.
+	 * @param SessionHandler         $session_handler The Session handler.
 	 * @param Settings               $settings The Settings.
 	 * @param PayerFactory           $payer_factory The Payer factory.
 	 * @param string                 $client_id The client ID.
@@ -199,6 +216,8 @@ class SmartButton implements SmartButtonInterface {
 	 * @param array                  $all_funding_sources All existing funding sources.
 	 * @param bool                   $basic_checkout_validation_enabled Whether the basic JS validation of the form iss enabled.
 	 * @param bool                   $early_validation_enabled Whether to execute WC validation of the checkout form.
+	 * @param array                  $pay_now_contexts The contexts that should have the Pay Now button.
+	 * @param string[]               $funding_sources_without_redirect The sources that do not cause issues about redirecting (on mobile, ...) and sometimes not returning back.
 	 * @param LoggerInterface        $logger The logger.
 	 */
 	public function __construct(
@@ -219,6 +238,8 @@ class SmartButton implements SmartButtonInterface {
 		array $all_funding_sources,
 		bool $basic_checkout_validation_enabled,
 		bool $early_validation_enabled,
+		array $pay_now_contexts,
+		array $funding_sources_without_redirect,
 		LoggerInterface $logger
 	) {
 
@@ -239,6 +260,8 @@ class SmartButton implements SmartButtonInterface {
 		$this->all_funding_sources               = $all_funding_sources;
 		$this->basic_checkout_validation_enabled = $basic_checkout_validation_enabled;
 		$this->early_validation_enabled          = $early_validation_enabled;
+		$this->pay_now_contexts                  = $pay_now_contexts;
+		$this->funding_sources_without_redirect  = $funding_sources_without_redirect;
 		$this->logger                            = $logger;
 	}
 
@@ -251,10 +274,6 @@ class SmartButton implements SmartButtonInterface {
 		if ( $this->settings->has( 'enabled' ) && $this->settings->get( 'enabled' ) ) {
 			$this->render_button_wrapper_registrar();
 			$this->render_message_wrapper_registrar();
-		}
-
-		if ( ! $this->can_save_vault_token() && $this->has_subscriptions() ) {
-			return false;
 		}
 
 		if (
@@ -283,7 +302,7 @@ class SmartButton implements SmartButtonInterface {
 			add_filter(
 				'woocommerce_credit_card_form_fields',
 				function ( array $default_fields, $id ) use ( $subscription_helper ) : array {
-					if ( is_user_logged_in() && $this->settings->has( 'vault_enabled' ) && $this->settings->get( 'vault_enabled' ) && CreditCardGateway::ID === $id ) {
+					if ( is_user_logged_in() && $this->settings->has( 'vault_enabled_dcc' ) && $this->settings->get( 'vault_enabled_dcc' ) && CreditCardGateway::ID === $id ) {
 
 						$default_fields['card-vault'] = sprintf(
 							'<p class="form-row form-row-wide"><label for="ppcp-credit-card-vault"><input class="ppcp-credit-card-vault" type="checkbox" id="ppcp-credit-card-vault" name="vault">%s</label></p>',
@@ -353,6 +372,8 @@ class SmartButton implements SmartButtonInterface {
 				}
 			);
 		}
+
+		$this->sanitize_woocommerce_filters();
 
 		return true;
 	}
@@ -441,7 +462,7 @@ class SmartButton implements SmartButtonInterface {
 						return;
 					}
 
-					$this->button_renderer( PayPalGateway::ID );
+					$this->button_renderer( PayPalGateway::ID, 'woocommerce_paypal_payments_single_product_button_render' );
 				},
 				31
 			);
@@ -454,18 +475,14 @@ class SmartButton implements SmartButtonInterface {
 			add_action(
 				$this->mini_cart_button_renderer_hook(),
 				function () {
-					if ( ! $this->can_save_vault_token() && $this->has_subscriptions() ) {
-						return;
-					}
-
 					if ( $this->is_cart_price_total_zero() || $this->is_free_trial_cart() ) {
 						return;
 					}
 
-					echo '<p
-                                id="ppc-button-minicart"
-                                class="woocommerce-mini-cart__buttons buttons"
-                          ></p>';
+					echo '<p class="woocommerce-mini-cart__buttons buttons">';
+					echo '<span id="ppc-button-minicart"></span>';
+					do_action( 'woocommerce_paypal_payments_minicart_button_render' );
+					echo '</div>';
 				},
 				30
 			);
@@ -477,7 +494,7 @@ class SmartButton implements SmartButtonInterface {
 			add_action(
 				$this->pay_order_renderer_hook(),
 				function (): void {
-					$this->button_renderer( PayPalGateway::ID );
+					$this->button_renderer( PayPalGateway::ID, 'woocommerce_paypal_payments_payorder_button_render' );
 					$this->button_renderer( CardButtonGateway::ID );
 				},
 				20
@@ -485,7 +502,7 @@ class SmartButton implements SmartButtonInterface {
 			add_action(
 				$this->checkout_button_renderer_hook(),
 				function (): void {
-					$this->button_renderer( PayPalGateway::ID );
+					$this->button_renderer( PayPalGateway::ID, 'woocommerce_paypal_payments_checkout_button_render' );
 					$this->button_renderer( CardButtonGateway::ID );
 				}
 			);
@@ -498,7 +515,7 @@ class SmartButton implements SmartButtonInterface {
 						return;
 					}
 
-					$this->button_renderer( PayPalGateway::ID );
+					$this->button_renderer( PayPalGateway::ID, 'woocommerce_paypal_payments_cart_button_render' );
 				},
 				20
 			);
@@ -508,77 +525,101 @@ class SmartButton implements SmartButtonInterface {
 	}
 
 	/**
-	 * Whether the scripts should be loaded.
+	 * Whether any of our scripts (for DCC or product, mini-cart, non-block cart/checkout) should be loaded.
 	 */
-	public function should_load(): bool {
+	public function should_load_ppcp_script(): bool {
 		$buttons_enabled = $this->settings->has( 'enabled' ) && $this->settings->get( 'enabled' );
-		if ( ! is_checkout() && ! $buttons_enabled ) {
+		if ( ! $buttons_enabled ) {
 			return false;
 		}
 
-		return true;
+		if ( in_array( $this->context(), array( 'checkout-block', 'cart-block' ), true ) ) {
+			return false;
+		}
+
+		return $this->should_load_buttons() || $this->can_render_dcc();
 	}
 
 	/**
-	 * Enqueues the scripts.
+	 * Determines whether the button component should be loaded.
+	 */
+	public function should_load_buttons() : bool {
+		$buttons_enabled = $this->settings->has( 'enabled' ) && $this->settings->get( 'enabled' );
+		if ( ! $buttons_enabled ) {
+			return false;
+		}
+
+		$smart_button_enabled_for_current_location = $this->settings_status->is_smart_button_enabled_for_location( $this->context() );
+		$smart_button_enabled_for_mini_cart        = $this->settings_status->is_smart_button_enabled_for_location( 'mini-cart' );
+		$messaging_enabled_for_current_location    = $this->settings_status->is_pay_later_messaging_enabled_for_location( $this->context() );
+
+		switch ( $this->context() ) {
+			case 'checkout':
+			case 'cart':
+			case 'pay-now':
+				return $smart_button_enabled_for_current_location || $messaging_enabled_for_current_location;
+			case 'checkout-block':
+			case 'cart-block':
+				return $smart_button_enabled_for_current_location;
+			case 'product':
+				return $smart_button_enabled_for_current_location || $messaging_enabled_for_current_location || $smart_button_enabled_for_mini_cart;
+			default:
+				return $smart_button_enabled_for_mini_cart;
+		}
+	}
+
+	/**
+	 * Whether DCC fields can be rendered.
+	 */
+	public function can_render_dcc() : bool {
+		return $this->settings->has( 'dcc_enabled' ) && $this->settings->get( 'dcc_enabled' )
+			&& $this->settings->has( 'client_id' ) && $this->settings->get( 'client_id' )
+			&& $this->dcc_applies->for_country_currency()
+			&& in_array( $this->context(), array( 'checkout', 'pay-now' ), true );
+	}
+
+	/**
+	 * Enqueues our scripts/styles (for DCC and product, mini-cart and non-block cart/checkout)
 	 */
 	public function enqueue(): void {
-		if ( ! $this->should_load() ) {
-			return;
-		}
-
-		$load_script = false;
-		if ( is_checkout() && $this->settings->has( 'dcc_enabled' ) && $this->settings->get( 'dcc_enabled' ) ) {
-			$load_script = true;
-		}
-		if ( $this->load_button_component() ) {
-			$load_script = true;
-		}
-
-		if ( in_array( $this->context(), array( 'pay-now', 'checkout' ), true ) ) {
+		if ( $this->can_render_dcc() ) {
 			wp_enqueue_style(
-				'gateway',
-				untrailingslashit( $this->module_url ) . '/assets/css/gateway.css',
+				'ppcp-hosted-fields',
+				untrailingslashit( $this->module_url ) . '/assets/css/hosted-fields.css',
 				array(),
 				$this->version
 			);
-
-			if ( $this->can_render_dcc() ) {
-				wp_enqueue_style(
-					'ppcp-hosted-fields',
-					untrailingslashit( $this->module_url ) . '/assets/css/hosted-fields.css',
-					array(),
-					$this->version
-				);
-			}
 		}
-		if ( $load_script ) {
-			wp_enqueue_script(
-				'ppcp-smart-button',
-				untrailingslashit( $this->module_url ) . '/assets/js/button.js',
-				array( 'jquery' ),
-				$this->version,
-				true
-			);
 
-			wp_localize_script(
-				'ppcp-smart-button',
-				'PayPalCommerceGateway',
-				$this->script_data()
-			);
-		}
+		wp_enqueue_style(
+			'gateway',
+			untrailingslashit( $this->module_url ) . '/assets/css/gateway.css',
+			array(),
+			$this->version
+		);
+
+		wp_enqueue_script(
+			'ppcp-smart-button',
+			untrailingslashit( $this->module_url ) . '/assets/js/button.js',
+			array( 'jquery' ),
+			$this->version,
+			true
+		);
+
+		wp_localize_script(
+			'ppcp-smart-button',
+			'PayPalCommerceGateway',
+			$this->script_data()
+		);
 	}
 
 	/**
 	 * Renders the HTML for the buttons.
 	 *
-	 * @param string $gateway_id The gateway ID, like 'ppcp-gateway'.
+	 * @param string      $gateway_id The gateway ID, like 'ppcp-gateway'.
+	 * @param string|null $action_name The action name to be called.
 	 */
-	public function button_renderer( string $gateway_id ) {
-
-		if ( ! $this->can_save_vault_token() && $this->has_subscriptions() ) {
-			return;
-		}
+	public function button_renderer( string $gateway_id, string $action_name = null ) {
 
 		$available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 
@@ -588,16 +629,20 @@ class SmartButton implements SmartButtonInterface {
 
 		// The wrapper is needed for the loading spinner,
 		// otherwise jQuery block() prevents buttons rendering.
-		echo '<div class="ppc-button-wrapper"><div id="ppc-button-' . esc_attr( $gateway_id ) . '"></div></div>';
+		echo '<div class="ppc-button-wrapper">';
+		echo '<div id="ppc-button-' . esc_attr( $gateway_id ) . '"></div>';
+
+		if ( null !== $action_name ) {
+			do_action( $action_name );
+		}
+
+		echo '</div>';
 	}
 
 	/**
 	 * Renders the HTML for the credit messaging.
 	 */
 	public function message_renderer() {
-		if ( ! $this->can_save_vault_token() && $this->has_subscriptions() ) {
-			return false;
-		}
 
 		$product = wc_get_product();
 
@@ -647,6 +692,7 @@ class SmartButton implements SmartButtonInterface {
 
 		return array(
 			'wrapper'   => '#ppcp-messages',
+			'is_hidden' => ! $this->is_pay_later_filter_enabled_for_location( $this->context() ),
 			'amount'    => $amount,
 			'placement' => $placement,
 			'style'     => array(
@@ -663,18 +709,6 @@ class SmartButton implements SmartButtonInterface {
 			),
 		);
 
-	}
-
-	/**
-	 * Whether DCC fields can be rendered.
-	 *
-	 * @return bool
-	 * @throws NotFoundException When a setting was not found.
-	 */
-	private function can_render_dcc() : bool {
-
-		$can_render = $this->settings->has( 'dcc_enabled' ) && $this->settings->get( 'dcc_enabled' ) && $this->settings->has( 'client_id' ) && $this->settings->get( 'client_id' ) && $this->dcc_applies->for_country_currency();
-		return $can_render;
 	}
 
 	/**
@@ -709,7 +743,6 @@ class SmartButton implements SmartButtonInterface {
 	 * Whether we can store vault tokens or not.
 	 *
 	 * @return bool
-	 * @throws NotFoundException If a setting hasn't been found.
 	 */
 	public function can_save_vault_token(): bool {
 
@@ -744,6 +777,21 @@ class SmartButton implements SmartButtonInterface {
 	}
 
 	/**
+	 * Whether PayPal subscriptions is enabled or not.
+	 *
+	 * @return bool
+	 */
+	private function paypal_subscriptions_enabled(): bool {
+		try {
+			$subscriptions_mode = $this->settings->get( 'subscriptions_mode' );
+		} catch ( NotFoundException $exception ) {
+			return false;
+		}
+
+		return $subscriptions_mode === 'subscriptions_api';
+	}
+
+	/**
 	 * Retrieves the 3D Secure contingency settings.
 	 *
 	 * @return string
@@ -763,69 +811,82 @@ class SmartButton implements SmartButtonInterface {
 	 * The configuration for the smart buttons.
 	 *
 	 * @return array
-	 * @throws NotFoundException If a setting hasn't been found.
 	 */
 	public function script_data(): array {
-		global $wp;
-
 		$is_free_trial_cart = $this->is_free_trial_cart();
 
 		$url_params = $this->url_params();
 
 		$this->request_data->enqueue_nonce_fix();
 		$localize = array(
-			'url'                               => add_query_arg( $url_params, 'https://www.paypal.com/sdk/js' ),
-			'url_params'                        => $url_params,
-			'script_attributes'                 => $this->attributes(),
-			'data_client_id'                    => array(
-				'set_attribute'     => ( is_checkout() && $this->dcc_is_enabled() ) || $this->can_save_vault_token(),
-				'endpoint'          => \WC_AJAX::get_endpoint( DataClientIdEndpoint::ENDPOINT ),
-				'nonce'             => wp_create_nonce( DataClientIdEndpoint::nonce() ),
-				'user'              => get_current_user_id(),
-				'has_subscriptions' => $this->has_subscriptions(),
+			'url'                                     => add_query_arg( $url_params, 'https://www.paypal.com/sdk/js' ),
+			'url_params'                              => $url_params,
+			'script_attributes'                       => $this->attributes(),
+			'client_id'                               => $this->client_id,
+			'currency'                                => $this->currency,
+			'data_client_id'                          => array(
+				'set_attribute'                => ( is_checkout() && $this->dcc_is_enabled() ) || $this->can_save_vault_token(),
+				'endpoint'                     => \WC_AJAX::get_endpoint( DataClientIdEndpoint::ENDPOINT ),
+				'nonce'                        => wp_create_nonce( DataClientIdEndpoint::nonce() ),
+				'user'                         => get_current_user_id(),
+				'has_subscriptions'            => $this->has_subscriptions(),
+				'paypal_subscriptions_enabled' => $this->paypal_subscriptions_enabled(),
 			),
-			'redirect'                          => wc_get_checkout_url(),
-			'context'                           => $this->context(),
-			'ajax'                              => array(
-				'change_cart'        => array(
+			'redirect'                                => wc_get_checkout_url(),
+			'context'                                 => $this->context(),
+			'ajax'                                    => array(
+				'simulate_cart'        => array(
+					'endpoint' => \WC_AJAX::get_endpoint( SimulateCartEndpoint::ENDPOINT ),
+					'nonce'    => wp_create_nonce( SimulateCartEndpoint::nonce() ),
+				),
+				'change_cart'          => array(
 					'endpoint' => \WC_AJAX::get_endpoint( ChangeCartEndpoint::ENDPOINT ),
 					'nonce'    => wp_create_nonce( ChangeCartEndpoint::nonce() ),
 				),
-				'create_order'       => array(
+				'create_order'         => array(
 					'endpoint' => \WC_AJAX::get_endpoint( CreateOrderEndpoint::ENDPOINT ),
 					'nonce'    => wp_create_nonce( CreateOrderEndpoint::nonce() ),
 				),
-				'approve_order'      => array(
+				'approve_order'        => array(
 					'endpoint' => \WC_AJAX::get_endpoint( ApproveOrderEndpoint::ENDPOINT ),
 					'nonce'    => wp_create_nonce( ApproveOrderEndpoint::nonce() ),
 				),
-				'vault_paypal'       => array(
+				'approve_subscription' => array(
+					'endpoint' => \WC_AJAX::get_endpoint( ApproveSubscriptionEndpoint::ENDPOINT ),
+					'nonce'    => wp_create_nonce( ApproveSubscriptionEndpoint::nonce() ),
+				),
+				'vault_paypal'         => array(
 					'endpoint' => \WC_AJAX::get_endpoint( StartPayPalVaultingEndpoint::ENDPOINT ),
 					'nonce'    => wp_create_nonce( StartPayPalVaultingEndpoint::nonce() ),
 				),
-				'save_checkout_form' => array(
+				'save_checkout_form'   => array(
 					'endpoint' => \WC_AJAX::get_endpoint( SaveCheckoutFormEndpoint::ENDPOINT ),
 					'nonce'    => wp_create_nonce( SaveCheckoutFormEndpoint::nonce() ),
 				),
-				'validate_checkout'  => array(
+				'validate_checkout'    => array(
 					'endpoint' => \WC_AJAX::get_endpoint( ValidateCheckoutEndpoint::ENDPOINT ),
 					'nonce'    => wp_create_nonce( ValidateCheckoutEndpoint::nonce() ),
 				),
-				'cart_script_params' => array(
+				'cart_script_params'   => array(
 					'endpoint' => \WC_AJAX::get_endpoint( CartScriptParamsEndpoint::ENDPOINT ),
 				),
 			),
-			'enforce_vault'                     => $this->has_subscriptions(),
-			'can_save_vault_token'              => $this->can_save_vault_token(),
-			'is_free_trial_cart'                => $is_free_trial_cart,
-			'vaulted_paypal_email'              => ( is_checkout() && $is_free_trial_cart ) ? $this->get_vaulted_paypal_email() : '',
-			'bn_codes'                          => $this->bn_codes(),
-			'payer'                             => $this->payerData(),
-			'button'                            => array(
-				'wrapper'           => '#ppc-button-' . PayPalGateway::ID,
-				'mini_cart_wrapper' => '#ppc-button-minicart',
-				'cancel_wrapper'    => '#ppcp-cancel',
-				'mini_cart_style'   => array(
+			'subscription_plan_id'                    => $this->subscription_helper->paypal_subscription_id(),
+			'variable_paypal_subscription_variations' => $this->subscription_helper->variable_paypal_subscription_variations(),
+			'subscription_product_allowed'            => $this->subscription_helper->checkout_subscription_product_allowed(),
+			'enforce_vault'                           => $this->has_subscriptions(),
+			'can_save_vault_token'                    => $this->can_save_vault_token(),
+			'is_free_trial_cart'                      => $is_free_trial_cart,
+			'vaulted_paypal_email'                    => ( is_checkout() && $is_free_trial_cart ) ? $this->get_vaulted_paypal_email() : '',
+			'bn_codes'                                => $this->bn_codes(),
+			'payer'                                   => $this->payerData(),
+			'button'                                  => array(
+				'wrapper'               => '#ppc-button-' . PayPalGateway::ID,
+				'is_disabled'           => $this->is_button_disabled(),
+				'mini_cart_wrapper'     => '#ppc-button-minicart',
+				'is_mini_cart_disabled' => $this->is_button_disabled( 'mini-cart' ),
+				'cancel_wrapper'        => '#ppcp-cancel',
+				'mini_cart_style'       => array(
 					'layout'  => $this->style_for_context( 'layout', 'mini-cart' ),
 					'color'   => $this->style_for_context( 'color', 'mini-cart' ),
 					'shape'   => $this->style_for_context( 'shape', 'mini-cart' ),
@@ -833,7 +894,7 @@ class SmartButton implements SmartButtonInterface {
 					'tagline' => $this->style_for_context( 'tagline', 'mini-cart' ),
 					'height'  => $this->settings->has( 'button_mini-cart_height' ) && $this->settings->get( 'button_mini-cart_height' ) ? $this->normalize_height( (int) $this->settings->get( 'button_mini-cart_height' ) ) : 35,
 				),
-				'style'             => array(
+				'style'                 => array(
 					'layout'  => $this->style_for_context( 'layout', $this->context() ),
 					'color'   => $this->style_for_context( 'color', $this->context() ),
 					'shape'   => $this->style_for_context( 'shape', $this->context() ),
@@ -841,7 +902,7 @@ class SmartButton implements SmartButtonInterface {
 					'tagline' => $this->style_for_context( 'tagline', $this->context() ),
 				),
 			),
-			'separate_buttons'                  => array(
+			'separate_buttons'                        => array(
 				'card' => array(
 					'id'      => CardButtonGateway::ID,
 					'wrapper' => '#ppc-button-' . CardButtonGateway::ID,
@@ -851,12 +912,16 @@ class SmartButton implements SmartButtonInterface {
 					),
 				),
 			),
-			'hosted_fields'                     => array(
+			'hosted_fields'                           => array(
 				'wrapper'     => '#ppcp-hosted-fields',
 				'labels'      => array(
 					'credit_card_number'       => '',
 					'cvv'                      => '',
 					'mm_yy'                    => __( 'MM/YY', 'woocommerce-paypal-payments' ),
+					'fields_empty'             => __(
+						'Card payment details are missing. Please fill in all required fields.',
+						'woocommerce-paypal-payments'
+					),
 					'fields_not_valid'         => __(
 						'Unfortunately, your credit card details are not valid.',
 						'woocommerce-paypal-payments'
@@ -870,8 +935,8 @@ class SmartButton implements SmartButtonInterface {
 				'valid_cards' => $this->dcc_applies->valid_cards(),
 				'contingency' => $this->get_3ds_contingency(),
 			),
-			'messages'                          => $this->message_values(),
-			'labels'                            => array(
+			'messages'                                => $this->message_values(),
+			'labels'                                  => array(
 				'error'          => array(
 					'generic'  => __(
 						'Something went wrong. Please try again or choose another payment source.',
@@ -898,11 +963,12 @@ class SmartButton implements SmartButtonInterface {
 				// phpcs:ignore WordPress.WP.I18n
 				'shipping_field' => _x( 'Shipping %s', 'checkout-validation', 'woocommerce' ),
 			),
-			'order_id'                          => 'pay-now' === $this->context() ? absint( $wp->query_vars['order-pay'] ) : 0,
-			'single_product_buttons_enabled'    => $this->settings_status->is_smart_button_enabled_for_location( 'product' ),
-			'mini_cart_buttons_enabled'         => $this->settings_status->is_smart_button_enabled_for_location( 'mini-cart' ),
-			'basic_checkout_validation_enabled' => $this->basic_checkout_validation_enabled,
-			'early_checkout_validation_enabled' => $this->early_validation_enabled,
+			'order_id'                                => 'pay-now' === $this->context() ? $this->get_order_pay_id() : 0,
+			'single_product_buttons_enabled'          => $this->settings_status->is_smart_button_enabled_for_location( 'product' ),
+			'mini_cart_buttons_enabled'               => $this->settings_status->is_smart_button_enabled_for_location( 'mini-cart' ),
+			'basic_checkout_validation_enabled'       => $this->basic_checkout_validation_enabled,
+			'early_checkout_validation_enabled'       => $this->early_validation_enabled,
+			'funding_sources_without_redirect'        => $this->funding_sources_without_redirect,
 		);
 
 		if ( $this->style_for_context( 'layout', 'mini-cart' ) !== 'horizontal' ) {
@@ -910,6 +976,15 @@ class SmartButton implements SmartButtonInterface {
 		}
 		if ( $this->style_for_context( 'layout', $this->context() ) !== 'horizontal' ) {
 			$localize['button']['style']['tagline'] = false;
+		}
+
+		if ( $this->is_paypal_continuation() ) {
+			$order = $this->session_handler->order();
+			assert( $order !== null );
+
+			$localize['continuation'] = array(
+				'order_id' => $order->id(),
+			);
 		}
 
 		$this->request_data->dequeue_nonce_fix();
@@ -934,29 +1009,45 @@ class SmartButton implements SmartButtonInterface {
 	 * The JavaScript SDK url parameters.
 	 *
 	 * @return array
-	 * @throws NotFoundException If a setting was not found.
 	 */
 	private function url_params(): array {
-		$intent               = ( $this->settings->has( 'intent' ) ) ? $this->settings->get( 'intent' ) : 'capture';
-		$product_intent       = $this->subscription_helper->current_product_is_subscription() ? 'authorize' : $intent;
-		$other_context_intent = $this->subscription_helper->cart_contains_subscription() ? 'authorize' : $intent;
+		$context = $this->context();
+		try {
+			$intent = $this->intent();
+		} catch ( NotFoundException $exception ) {
+			$intent = 'capture';
+		}
 
-		$params = array(
+		$subscription_mode = $this->settings->has( 'subscriptions_mode' ) ? $this->settings->get( 'subscriptions_mode' ) : '';
+		$params            = array(
 			'client-id'        => $this->client_id,
 			'currency'         => $this->currency,
 			'integration-date' => PAYPAL_INTEGRATION_DATE,
 			'components'       => implode( ',', $this->components() ),
-			'vault'            => $this->can_save_vault_token() ? 'true' : 'false',
-			'commit'           => is_checkout() ? 'true' : 'false',
-			'intent'           => $this->context() === 'product' ? $product_intent : $other_context_intent,
+			'vault'            => ( $this->can_save_vault_token() || $this->subscription_helper->need_subscription_intent( $subscription_mode ) ) ? 'true' : 'false',
+			'commit'           => in_array( $context, $this->pay_now_contexts, true ) ? 'true' : 'false',
+			'intent'           => $intent,
 		);
 		if (
 			$this->environment->current_environment_is( Environment::SANDBOX )
-			&& defined( 'WP_DEBUG' ) && \WP_DEBUG && is_user_logged_in()
+			&& defined( 'WP_DEBUG' ) && \WP_DEBUG
 			&& WC()->customer instanceof \WC_Customer && WC()->customer->get_billing_country()
 			&& 2 === strlen( WC()->customer->get_billing_country() )
 		) {
 			$params['buyer-country'] = WC()->customer->get_billing_country();
+		}
+
+		if ( 'pay-now' === $this->context() ) {
+			$wc_order_id = $this->get_order_pay_id();
+			if ( $wc_order_id ) {
+				$wc_order = wc_get_order( $wc_order_id );
+				if ( $wc_order instanceof WC_Order ) {
+					$currency = $wc_order->get_currency();
+					if ( $currency ) {
+						$params['currency'] = $currency;
+					}
+				}
+			}
 		}
 
 		$disable_funding = $this->settings->has( 'disable_funding' )
@@ -979,6 +1070,13 @@ class SmartButton implements SmartButtonInterface {
 			}
 		}
 
+		if ( in_array( $context, array( 'checkout-block', 'cart-block' ), true ) ) {
+			$disable_funding = array_diff(
+				array_keys( $this->all_funding_sources ),
+				array( 'venmo', 'paylater' )
+			);
+		}
+
 		if ( $this->is_free_trial_cart() ) {
 			$all_sources = array_keys( $this->all_funding_sources );
 			if ( $is_dcc_enabled || $is_separate_card_enabled ) {
@@ -989,9 +1087,7 @@ class SmartButton implements SmartButtonInterface {
 
 		$enable_funding = array( 'venmo' );
 
-		if ( $this->settings_status->is_pay_later_button_enabled_for_location( $this->context() ) ||
-			$this->settings_status->is_pay_later_messaging_enabled_for_location( $this->context() )
-		) {
+		if ( $this->is_pay_later_button_enabled_for_location( $context ) ) {
 			$enable_funding[] = 'paylater';
 		} else {
 			$disable_funding[] = 'paylater';
@@ -1059,7 +1155,7 @@ class SmartButton implements SmartButtonInterface {
 	private function components(): array {
 		$components = array();
 
-		if ( $this->load_button_component() ) {
+		if ( $this->should_load_buttons() ) {
 			$components[] = 'buttons';
 			$components[] = 'funding-eligibility';
 		}
@@ -1072,37 +1168,21 @@ class SmartButton implements SmartButtonInterface {
 		if ( $this->dcc_is_enabled() ) {
 			$components[] = 'hosted-fields';
 		}
-		return $components;
-	}
-
-	/**
-	 * Determines whether the button component should be loaded.
-	 *
-	 * @return bool
-	 * @throws NotFoundException If a setting has not been found.
-	 */
-	private function load_button_component() : bool {
-		$smart_button_enabled_for_current_location = $this->settings_status->is_smart_button_enabled_for_location( $this->context() );
-		$smart_button_enabled_for_mini_cart        = $this->settings_status->is_smart_button_enabled_for_location( 'mini-cart' );
-		$messaging_enabled_for_current_location    = $this->settings_status->is_pay_later_messaging_enabled_for_location( $this->context() );
-
-		switch ( $this->context() ) {
-			case 'checkout':
-			case 'cart':
-			case 'pay-now':
-				return $smart_button_enabled_for_current_location || $messaging_enabled_for_current_location;
-			case 'product':
-				return $smart_button_enabled_for_current_location || $messaging_enabled_for_current_location || $smart_button_enabled_for_mini_cart;
-			default:
-				return $smart_button_enabled_for_mini_cart;
-		}
+		/**
+		 * Filter to add further components from the extensions.
+		 *
+		 * @internal Matches filter name in APM extension.
+		 * @since TODO
+		 *
+		 * @param array $components The array of components already registered.
+		 */
+		return apply_filters( 'woocommerce_paypal_payments_sdk_components_hook', $components );
 	}
 
 	/**
 	 * Whether DCC is enabled or not.
 	 *
 	 * @return bool
-	 * @throws NotFoundException If a setting has not been found.
 	 */
 	private function dcc_is_enabled(): bool {
 		if ( ! is_checkout() ) {
@@ -1131,9 +1211,11 @@ class SmartButton implements SmartButtonInterface {
 	 * @param string $context The context.
 	 *
 	 * @return string
-	 * @throws NotFoundException When a setting hasn't been found.
 	 */
 	private function style_for_context( string $style, string $context ): string {
+		// Use the cart/checkout styles for blocks.
+		$context = str_replace( '-block', '', $context );
+
 		$defaults = array(
 			'layout'  => 'vertical',
 			'size'    => 'responsive',
@@ -1302,6 +1384,114 @@ class SmartButton implements SmartButtonInterface {
 	}
 
 	/**
+	 * Fills and returns the product context_data array to be used in filters.
+	 *
+	 * @param array $context_data The context data for this filter.
+	 * @return array
+	 */
+	private function product_filter_context_data( array $context_data = array() ): array {
+		if ( ! isset( $context_data['product'] ) ) {
+			$context_data['product'] = wc_get_product();
+		}
+		if ( ! $context_data['product'] ) {
+			return array();
+		}
+		if ( ! isset( $context_data['order_total'] ) && ( $context_data['product'] instanceof WC_Product ) ) {
+			$context_data['order_total'] = (float) $context_data['product']->get_price( 'raw' );
+		}
+
+		return $context_data;
+	}
+
+	/**
+	 * Checks if PayPal buttons/messages should be rendered for the current page.
+	 *
+	 * @param string|null $context The context that should be checked, use default otherwise.
+	 * @param array       $context_data The context data for this filter.
+	 * @return bool
+	 */
+	public function is_button_disabled( string $context = null, array $context_data = array() ): bool {
+		if ( null === $context ) {
+			$context = $this->context();
+		}
+
+		if ( 'product' === $context ) {
+			/**
+			 * Allows to decide if the button should be disabled for a given product.
+			 */
+			return apply_filters(
+				'woocommerce_paypal_payments_product_buttons_disabled',
+				false,
+				$this->product_filter_context_data( $context_data )
+			);
+		}
+
+		/**
+		 * Allows to decide if the button should be disabled globally or on a given context.
+		 */
+		return apply_filters(
+			'woocommerce_paypal_payments_buttons_disabled',
+			false,
+			$context
+		);
+	}
+
+	/**
+	 * Checks a filter if pay_later/messages should be rendered on a given location / context.
+	 *
+	 * @param string $location The location.
+	 * @param array  $context_data The context data for this filter.
+	 * @return bool
+	 */
+	private function is_pay_later_filter_enabled_for_location( string $location, array $context_data = array() ): bool {
+
+		if ( 'product' === $location ) {
+			/**
+			 * Allows to decide if the button should be disabled for a given product.
+			 */
+			return ! apply_filters(
+				'woocommerce_paypal_payments_product_buttons_paylater_disabled',
+				false,
+				$this->product_filter_context_data( $context_data )
+			);
+		}
+
+		/**
+		 * Allows to decide if the button should be disabled on a given context.
+		 */
+		return ! apply_filters(
+			'woocommerce_paypal_payments_buttons_paylater_disabled',
+			false,
+			$location
+		);
+	}
+
+	/**
+	 * Check whether Pay Later button is enabled for a given location.
+	 *
+	 * @param string $location The location.
+	 * @param array  $context_data The context data for this filter.
+	 * @return bool true if is enabled, otherwise false.
+	 */
+	public function is_pay_later_button_enabled_for_location( string $location, array $context_data = array() ): bool {
+		return $this->is_pay_later_filter_enabled_for_location( $location, $context_data )
+			&& $this->settings_status->is_pay_later_button_enabled_for_location( $location );
+
+	}
+
+	/**
+	 * Check whether Pay Later message is enabled for a given location.
+	 *
+	 * @param string $location The location setting name.
+	 * @param array  $context_data The context data for this filter.
+	 * @return bool true if is enabled, otherwise false.
+	 */
+	public function is_pay_later_messaging_enabled_for_location( string $location, array $context_data = array() ): bool {
+		return $this->is_pay_later_filter_enabled_for_location( $location, $context_data )
+			&& $this->settings_status->is_pay_later_messaging_enabled_for_location( $location );
+	}
+
+	/**
 	 * Retrieves all payment tokens for the user, via API or cached if already queried.
 	 *
 	 * @return PaymentToken[]
@@ -1349,4 +1539,66 @@ class SmartButton implements SmartButtonInterface {
 
 		return false;
 	}
+
+	/**
+	 * Returns the intent.
+	 *
+	 * @return string
+	 * @throws NotFoundException If intent is not found.
+	 */
+	private function intent(): string {
+		$subscription_mode = $this->settings->has( 'subscriptions_mode' ) ? $this->settings->get( 'subscriptions_mode' ) : '';
+		if ( $this->subscription_helper->need_subscription_intent( $subscription_mode ) ) {
+			return 'subscription';
+		}
+
+		$intent = $this->settings->has( 'intent' ) ? $this->settings->get( 'intent' ) : 'capture';
+
+		return strtolower( apply_filters( 'woocommerce_paypal_payments_order_intent', $intent ) );
+	}
+
+	/**
+	 * Returns the ID of WC order on the order-pay page, or 0.
+	 *
+	 * @return int
+	 */
+	protected function get_order_pay_id(): int {
+		global $wp;
+
+		if ( ! isset( $wp->query_vars['order-pay'] ) ) {
+			return 0;
+		}
+
+		return absint( $wp->query_vars['order-pay'] );
+	}
+
+	/**
+	 * Sanitize woocommerce filter on unexpected states.
+	 *
+	 * @return void
+	 */
+	private function sanitize_woocommerce_filters(): void {
+
+		add_filter(
+			'woocommerce_widget_cart_is_hidden',
+			/**
+			 * Sometimes external plugins like "woocommerce-one-page-checkout" set the $value to null, handle that case here.
+			 * Here we also disable the mini-cart on cart-block and checkout-block pages where our buttons aren't supported yet.
+			 *
+			 * @psalm-suppress MissingClosureParamType
+			 */
+			function ( $value ) {
+				if ( null === $value ) {
+					if ( is_product() ) {
+						return false;
+					}
+					return in_array( $this->context(), array( 'cart', 'checkout', 'cart-block', 'checkout-block' ), true );
+				}
+				return in_array( $this->context(), array( 'cart-block', 'checkout-block' ), true ) ? true : $value;
+			},
+			11
+		);
+
+	}
+
 }

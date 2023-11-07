@@ -92,9 +92,7 @@ final class Admin {
 
 		wp_register_script(
 			self::SCRIPT_HANDLE,
-			getenv( 'DEVELOPMENT' )
-				? 'http://localhost:5173/src/main.ts'
-				: $this->manifest->get( 'src/main.ts' ),
+			getenv( 'SM_ASSETS_URL' ) ? getenv( 'SM_ASSETS_URL' ) . 'src/main.ts' : $this->manifest->get( 'src/main.ts' ),
 			[ 'wp-i18n' ],
 			SHOPMAGIC_VERSION,
 			false
@@ -106,22 +104,22 @@ final class Admin {
 			self::SCRIPT_HANDLE,
 			'ShopMagic',
 			[
-				'pluginUrl'            => $this->plugin_bag->get_url(),
-				'baseUrl'              => $this->url_generator->generate(),
-				'nonce'                => wp_create_nonce( 'wp_rest' ),
-				'user'                 => [
-					'name'  => wp_get_current_user()->first_name,
-					'email' => wp_get_current_user()->user_email,
+				'pluginUrl'                => $this->plugin_bag->get_url(),
+				'baseUrl'                  => $this->url_generator->generate(),
+				'nonce'                    => wp_create_nonce( 'wp_rest' ),
+				'user'                     => [
+					'name'   => wp_get_current_user()->first_name,
+					'email'  => wp_get_current_user()->user_email,
+					'locale' => get_user_locale(),
 				],
-				'proEnabled'           => $this->plugin_bag->pro_enabled(),
-				'emailTrackingEnabled' => ! in_array(
-					GeneralSettings::get_option( 'enable_email_tracking' ),
-					[ '', false ]
-				),
-				'modules'              => $this->find_active_modules(),
+				'proEnabled'               => $this->plugin_bag->pro_enabled(),
+				'emailTrackingEnabled'     => filter_var( GeneralSettings::get_option( 'enable_email_tracking', true ), FILTER_VALIDATE_BOOLEAN ) ? 1 : 0,
+				'modules'                  => $this->find_active_modules(),
+				// If permalink structure is plain, option is empty, i.e. falsy.
+				'permalinkStructure'       => get_option( 'permalink_structure', '' ) ? 'slug' : 'plain',
+				'requestCompatibilityMode' => GeneralSettings::get_option( 'request_compatibility_mode', false ),
 			]
 		);
-
 
 		wp_enqueue_script( self::SCRIPT_HANDLE );
 		wp_enqueue_style( 'shopmagic-admin-spa' );
@@ -153,5 +151,4 @@ final class Admin {
 
 		return $tag;
 	}
-
 }

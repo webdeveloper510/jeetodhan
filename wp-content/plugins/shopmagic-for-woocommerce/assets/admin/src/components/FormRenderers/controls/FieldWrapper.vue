@@ -18,7 +18,9 @@ const props = withDefaults(
     showLabel: true,
     required: false,
     description: "",
-  }
+    label: "",
+    data: undefined,
+  },
 );
 
 const rule = ref({});

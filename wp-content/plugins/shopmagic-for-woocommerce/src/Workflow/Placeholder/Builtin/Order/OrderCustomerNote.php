@@ -16,6 +16,10 @@ final class OrderCustomerNote extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->get_order()->get_customer_note();
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			return $this->resources->get( \WC_Order::class )->get_customer_note();
+		}
+
+		return '';
 	}
 }

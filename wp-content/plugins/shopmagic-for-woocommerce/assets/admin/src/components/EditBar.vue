@@ -15,12 +15,7 @@ defineEmits<{
   (e: "save"): void;
 }>();
 
-function switchStyle({
-  checked,
-}: {
-  focused: boolean;
-  checked: boolean;
-}): CSSProperties | string {
+function switchStyle({ checked }: { focused: boolean; checked: boolean }): CSSProperties | string {
   const style: CSSProperties = {};
   if (!checked) {
     style["--n-text-color"] = "#676666";
@@ -38,19 +33,14 @@ function switchStyle({
       </NButton>
       <NInput
         :autofocus="name === null"
-        :placeholder="
-          namePlaceholder ||
-          __('New awesome creation', 'shopmagic-for-woocommerce')
-        "
+        :placeholder="namePlaceholder || __('New awesome creation', 'shopmagic-for-woocommerce')"
         :value="name"
         class="min-w-[520px]"
         @update:value="$emit('update:name', $event)"
       />
     </div>
     <div class="items-center flex gap-4">
-      <NButton ghost @click="$emit('save')">{{
-        __("Save", "shopmagic-for-woocommerce")
-      }}</NButton>
+      <NButton ghost @click="$emit('save')">{{ __("Save", "shopmagic-for-woocommerce") }}</NButton>
       <NSwitch
         :rail-style="switchStyle"
         :value="publish"

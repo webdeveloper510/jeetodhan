@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import useSWRV from "@/_utils/swrv";
 import { ref, unref, watch } from "vue";
 import type { Query } from "@/_utils";
-import { useSearchParams } from "@/composables/useSearchParams";
+import { appendSearchParams } from "@/composables/useSearchParams";
 import { useWpFetch } from "@/composables/useWpFetch";
 
 export const useOutcomesStore = defineStore("outcomesStore", () => {
@@ -23,10 +23,9 @@ export const useOutcomesStore = defineStore("outcomesStore", () => {
     loading.value = true;
     const previousUrl = unref(url);
     if (query) {
-      const queryString = useSearchParams(query);
-      url.value = `/outcomes/?${queryString}`;
-      if (queryString.includes("filters")) {
-        countUrl.value = `/outcomes/count/?${queryString}`;
+      url.value = appendSearchParams("/outcomes/", query);
+      if (query.filters) {
+        countUrl.value = appendSearchParams("/outcomes/count/", query);
       }
     } else {
       url.value = `/outcomes`;
@@ -40,7 +39,10 @@ export const useOutcomesStore = defineStore("outcomesStore", () => {
   function deleteOutcomes(ids: number[]) {
     loading.value = true;
     Promise.all(ids.map((id) => useWpFetch(`/outcomes/${id}`).delete()))
-      .then(() => mutate())
+      .then(
+        async () => mutate(),
+        () => {},
+      )
       .finally(() => (loading.value = false));
   }
 

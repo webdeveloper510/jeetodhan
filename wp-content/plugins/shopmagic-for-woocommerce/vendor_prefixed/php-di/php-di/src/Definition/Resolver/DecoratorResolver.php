@@ -6,7 +6,7 @@ namespace ShopMagicVendor\DI\Definition\Resolver;
 use ShopMagicVendor\DI\Definition\DecoratorDefinition;
 use ShopMagicVendor\DI\Definition\Definition;
 use ShopMagicVendor\DI\Definition\Exception\InvalidDefinition;
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 /**
  * Resolves a decorator definition to a value.
  *

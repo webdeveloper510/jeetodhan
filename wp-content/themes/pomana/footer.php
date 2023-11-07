@@ -146,6 +146,8 @@ anchor.textContent = "Draw History";
                 }
         });
  });
+ 
+
 </script>
 <?php wp_footer(); ?>
 </body>

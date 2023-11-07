@@ -12,7 +12,7 @@ declare (strict_types=1);
 namespace ShopMagicVendor\Monolog\Processor;
 
 use ShopMagicVendor\Monolog\Logger;
-use Psr\Log\LogLevel;
+use ShopMagicVendor\Psr\Log\LogLevel;
 /**
  * Injects line/file:class/function where the log message came from
  *

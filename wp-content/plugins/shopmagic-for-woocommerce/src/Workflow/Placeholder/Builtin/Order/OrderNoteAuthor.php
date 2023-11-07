@@ -17,6 +17,10 @@ final class OrderNoteAuthor extends WooCommerceOrderNoteBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->get_order_note()->comment_author;
+		if ( $this->resources->has( \WP_Comment::class ) ) {
+			return $this->resources->get( \WP_Comment::class )->comment_author;
+		}
+
+		return '';
 	}
 }

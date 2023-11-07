@@ -17,6 +17,12 @@ final class OrderShippingCountry extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return WooCommerceFormatHelper::country_full_name( $this->get_order()->get_shipping_country() );
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			return WooCommerceFormatHelper::country_full_name(
+				$this->resources->get( \WC_Order::class )->get_shipping_country()
+			);
+		}
+
+		return '';
 	}
 }

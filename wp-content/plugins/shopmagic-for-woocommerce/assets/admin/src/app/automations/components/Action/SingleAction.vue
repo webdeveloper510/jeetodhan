@@ -1,13 +1,5 @@
 <script lang="ts" setup>
-import {
-  NButton,
-  NCard,
-  NFormItem,
-  NIcon,
-  NInput,
-  NModal,
-  NSelect,
-} from "naive-ui";
+import { NButton, NCard, NFormItem, NIcon, NInput, NModal, NSelect } from "naive-ui";
 import { CloseOutline } from "@vicons/ionicons5";
 import { computed, inject, ref } from "vue";
 import type { ActionConfig } from "@/types/automationConfig";
@@ -21,7 +13,7 @@ import { useFuzzySearch } from "@/composables/useFuzzySearch";
 const automationStore = useSingleAutomation();
 const { automation } = storeToRefs(automationStore);
 
-function updateData({ data, errors }) {
+function updateData({ data /** errors */ }) {
   automationStore.$patch((state) => {
     state.automation.actions[props.id].settings = data;
   });
@@ -44,9 +36,7 @@ const currentAction = computed(() => {
   return props.actions?.find((action) => action.value === selectedAction.value);
 });
 
-const actionValues = computed(
-  () => automation.value?.actions[props.id].settings || {}
-);
+const actionValues = computed(() => automation.value?.actions[props.id].settings || {});
 
 const emit = defineEmits<{ (e: "remove", id: number): void }>();
 const editing = ref(false);
@@ -59,7 +49,7 @@ async function dispatchTest() {
   testSuccess.value = null;
   testFailure.value = null;
   const { data, error } = await useWpFetch(
-    `/resources/actions/${currentAction.value?.value}/test`
+    `/resources/actions/${currentAction.value?.value}/test`,
   ).post({
     automation: automation.value?.id,
     config: {
@@ -81,9 +71,7 @@ async function dispatchTest() {
 const showModal = ref(false);
 const emailRecipent = ref<string | null>(inject(userKey)?.email || null);
 
-const { search, renderLabel, renderTag, matches } = useFuzzySearch(
-  props.actions
-);
+const { search, renderLabel, renderTag, matches } = useFuzzySearch(props.actions);
 </script>
 
 <template>
@@ -141,22 +129,12 @@ const { search, renderLabel, renderTag, matches } = useFuzzySearch(
           />
         </NFormItem>
         <template #action>
-          <NButton
-            :loading="testLoading"
-            primary
-            type="primary"
-            @click="dispatchTest"
-          >
+          <NButton :loading="testLoading" primary type="primary" @click="dispatchTest">
             {{ __("Send test", "shopmagic-for-woocommerce") }}
           </NButton>
           <div v-if="testSuccess !== null">
             <p v-if="testSuccess">
-              {{
-                __(
-                  "Test executed successfully! Check your inbox.",
-                  "shopmagic-for-woocommerce"
-                )
-              }}
+              {{ __("Test executed successfully! Check your inbox.", "shopmagic-for-woocommerce") }}
             </p>
             <div v-else>
               <p>{{ testFailure.title }}</p>

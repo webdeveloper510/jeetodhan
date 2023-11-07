@@ -3,8 +3,8 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Automation;
 
-use Psr\Container\ContainerInterface;
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use WPDesk\ShopMagic\Exception\AutomationNotFound;
 use WPDesk\ShopMagic\Helper\PostMetaContainer;
 use WPDesk\ShopMagic\Workflow\Action\Action;

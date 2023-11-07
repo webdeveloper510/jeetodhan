@@ -3,8 +3,8 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Automation;
 
-use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\NullLogger;
 use WPDesk\ShopMagic\Workflow\Event\DataLayer;
 use WPDesk\ShopMagic\Workflow\Filter\Filter;
 use WPDesk\ShopMagic\Workflow\Filter\FilterLogic;

@@ -25,16 +25,12 @@ import { NA, NButton, NSpace } from "naive-ui";
 import { CloseOutline } from "@vicons/ionicons5";
 import type { ControlElement } from "@jsonforms/core";
 import { defineComponent } from "vue";
-import {
-  rendererProps,
-  type RendererProps,
-  useJsonFormsOneOfEnumControl,
-} from "@jsonforms/vue";
+import { rendererProps, type RendererProps, useJsonFormsOneOfEnumControl } from "@jsonforms/vue";
 import { useVanillaControl } from "../util";
 import FieldWrapper from "./FieldWrapper.vue";
 
 export default defineComponent({
-  name: "media-picker-control-renderer",
+  name: "MediaPickerControlRenderer",
   components: {
     FieldWrapper,
     NA,
@@ -57,10 +53,7 @@ export default defineComponent({
     };
   },
   setup(props: RendererProps<ControlElement>) {
-    return useVanillaControl(
-      useJsonFormsOneOfEnumControl(props),
-      (target) => target
-    );
+    return useVanillaControl(useJsonFormsOneOfEnumControl(props), (target) => target);
   },
   computed: {
     selectedMedia(): string[] {
@@ -77,11 +70,7 @@ export default defineComponent({
   },
   created() {
     this.mediaFrame.on("select", () => {
-      const { url, name } = this.mediaFrame
-        .state()
-        .get("selection")
-        .first()
-        .toJSON();
+      const { url /* name */ } = this.mediaFrame.state().get("selection").first().toJSON();
       this.onChange([...this.selectedMedia, url]);
     });
   },

@@ -40,21 +40,16 @@ onChange((_, prev) => {
   }
 });
 
-function updateData({ data, errors }) {
+function updateData({ data /** errors */ }) {
   store.$patch((state) => {
     state.automation.event.settings = data;
   });
 }
 
-const { search, matches, renderLabel, renderTag } = useFuzzySearch(
-  props.events
-);
+const { search, matches, renderLabel, renderTag } = useFuzzySearch(props.events);
 </script>
 <template>
-  <EditableCard
-    :hide-default="false"
-    :title="__('Event', 'shopmagic-for-woocommerce')"
-  >
+  <EditableCard :hide-default="false" :title="__('Event', 'shopmagic-for-woocommerce')">
     <NSelect
       v-model:value="eventName"
       :loading="events.length === 0"

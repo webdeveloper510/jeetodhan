@@ -37,11 +37,7 @@ export const useFuzzySearch = (options: readonly string[]) => {
     if (option.type === "group") return option.label;
     return h("div", { className: "flex flex-col my-2 gap-1" }, [
       h("div", option?.label),
-      h(
-        NText,
-        { depth: 3, tag: "div" },
-        { default: () => option?.description }
-      ),
+      h(NText, { depth: 3, tag: "div" }, { default: () => option?.description }),
     ]);
   };
 

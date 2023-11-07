@@ -4,6 +4,7 @@
  *
  * @author Nilambar Sharma <nilambar@outlook.com>
  * @copyright 2022 Nilambar Sharma
+ * @license MIT
  * @package WPAdminNotice
  */
 
@@ -148,10 +149,20 @@ class Notice {
 		return $notices[ $slug ];
 	}
 
+	/**
+	 * Attach hooks.
+	 *
+	 * @since 1.0.0
+	 */
 	public function hooks() {
-		add_action('admin_notices', array( $this, 'hook_notice' ) );
+		add_action( 'admin_notices', array( $this, 'hook_notice' ) );
 	}
 
+	/**
+	 * Render notice.
+	 *
+	 * @since 1.0.0
+	 */
 	public function hook_notice() {
 		$this->render();
 	}
@@ -188,20 +199,30 @@ class Notice {
 	 * @since 1.0.0
 	 */
 	public function render_links() {
+		echo '<div class="wp-admin-notice-links" style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px;">';
+
+		do_action( $this->prefix . '_before_admin_notice_link_items' );
+
 		// Review link.
 		if ( ! empty( $this->action_labels['review'] ) ) {
-			echo '<p><a href="' . esc_url( $this->get_review_url() ) . '" target="_blank">' . esc_html( $this->action_labels['review'] ) . '</a></p>';
+			echo '<span><a href="' . esc_url( $this->get_review_url() ) . '" target="_blank">' . esc_html( $this->action_labels['review'] ) . '</a></span>';
 		}
 
 		// Later link.
 		if ( ! empty( $this->action_labels['later'] ) ) {
-			echo '<p><a href="' . esc_url( add_query_arg( $this->key( 'action' ), 'later' ) ) . '">' . esc_html( $this->action_labels['later'] ) . '</a></p>';
+			$later_url = add_query_arg( $this->key( 'action' ), 'later' );
+			echo '<span><a href="' . esc_url( wp_nonce_url( $later_url, $this->key( 'action' ) . '-later' ) ) . '">' . esc_html( $this->action_labels['later'] ) . '</a></span>';
 		}
 
 		// Dismiss link.
 		if ( ! empty( $this->action_labels['dismiss'] ) ) {
-			echo '<p><a href="' . esc_url( add_query_arg( $this->key( 'action' ), 'dismiss' ) ) . '">' . esc_html( $this->action_labels['dismiss'] ) . '</a></p>';
+			$dismiss_url = add_query_arg( $this->key( 'action' ), 'dismiss' );
+			echo '<span><a href="' . esc_url( wp_nonce_url( $dismiss_url, $this->key( 'action' ) . '-dismiss' ) ) . '">' . esc_html( $this->action_labels['dismiss'] ) . '</a></span>';
 		}
+
+		do_action( $this->prefix . '_after_admin_notice_link_items' );
+
+		echo '</div>';
 	}
 
 	/**
@@ -229,7 +250,7 @@ class Notice {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return bool
+	 * @return bool True if it's time to show notice.
 	 */
 	protected function is_time() {
 		// Get the notice time.
@@ -254,7 +275,7 @@ class Notice {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return bool
+	 * @return bool True if notice is dismissed.
 	 */
 	protected function is_dismissed() {
 		// Get current user.
@@ -273,7 +294,7 @@ class Notice {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return bool
+	 * @return bool True if user has required capability.
 	 */
 	protected function is_capable() {
 		return current_user_can( $this->capability );
@@ -284,7 +305,7 @@ class Notice {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return bool
+	 * @return bool True if the current screen is in the list of allowed screens.
 	 */
 	protected function in_screen() {
 		// If not screen ID is set, show everywhere.
@@ -304,11 +325,11 @@ class Notice {
 	}
 
 	/**
-	 * Get the class names for notice div.
+	 * Return class names for notice div.
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return string
+	 * @return string Classes.
 	 */
 	protected function get_classes() {
 		// Required classes.
@@ -328,7 +349,7 @@ class Notice {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return string
+	 * @return string Message.
 	 */
 	protected function get_message() {
 		$message = sprintf(
@@ -343,9 +364,12 @@ class Notice {
 
 	/**
 	 * Check if we can show the notice.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return bool True if notice should be shown.
 	 */
 	protected function can_show() {
-		// return true;
 		return (
 			$this->in_screen() &&
 			$this->is_capable() &&
@@ -375,30 +399,36 @@ class Notice {
 
 		$action = '';
 
-		if ( isset( $_REQUEST[ $this->key( 'action' ) ] ) && ! empty( $_REQUEST[ $this->key( 'action' ) ] ) && in_array( $_REQUEST[ $this->key( 'action' ) ], $action_list, true ) ) {
-			$action = $_REQUEST[ $this->key( 'action' ) ];
+		$current_action = isset( $_GET[ $this->key( 'action' ) ] ) ? sanitize_text_field( wp_unslash( $_GET[ $this->key( 'action' ) ] ) ) : '';
+
+		if ( in_array( $current_action, $action_list, true ) ) {
+			$action = $current_action;
 		}
 
-		switch ( $action ) {
-			case 'later':
-				// Show after 7 days.
-				$time = time() + ( $this->days * DAY_IN_SECONDS + 7 * DAY_IN_SECONDS );
-				update_site_option( $this->key( 'time' ), $time );
-				break;
-			case 'dismiss':
-				// Do not show again to this user.
-				update_user_meta( get_current_user_id(), $this->key( 'dismissed' ), true );
-				break;
+		$nonce = isset( $_GET['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ) : '';
+
+		if ( wp_verify_nonce( $nonce, $this->key( 'action' ) . '-' . $action ) ) {
+			switch ( $action ) {
+				case 'later':
+					// Show after 7 days.
+					$time = time() + ( $this->days * DAY_IN_SECONDS + 7 * DAY_IN_SECONDS );
+					update_site_option( $this->key( 'time' ), $time );
+					break;
+
+				case 'dismiss':
+					// Do not show again to this user.
+					update_user_meta( get_current_user_id(), $this->key( 'dismissed' ), true );
+					break;
+			}
 		}
 	}
 
 	/**
 	 * Configure notice.
 	 *
-	 * @param array $args Arguments.
-	 *
 	 * @since 1.0.0
 	 *
+	 * @param array $args Arguments.
 	 * @return void
 	 */
 	private function configure( $args ) {
@@ -450,11 +480,10 @@ class Notice {
 	/**
 	 * Create prefixed key.
 	 *
-	 * @param string $key Key.
-	 *
 	 * @since 1.0.0
 	 *
-	 * @return string
+	 * @param string $key Key.
+	 * @return string Prefixed key.
 	 */
 	private function key( $key ) {
 		return $this->prefix . '_wpan_' . $key;

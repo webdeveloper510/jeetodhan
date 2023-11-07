@@ -2,7 +2,7 @@
 
 namespace ShopMagicVendor\WPDesk\Persistence;
 
-use Psr\Container\NotFoundExceptionInterface;
+use ShopMagicVendor\Psr\Container\NotFoundExceptionInterface;
 /**
  * @package WPDesk\Persistence
  */

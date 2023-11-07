@@ -17,6 +17,10 @@ final class OrderBillingFormattedAddress extends WooCommerceOrderBasedPlaceholde
 	}
 
 	public function value( array $parameters ): string {
-		return $this->get_order()->get_formatted_billing_address();
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			return $this->resources->get( \WC_Order::class )->get_formatted_billing_address();
+		}
+
+		return '';
 	}
 }

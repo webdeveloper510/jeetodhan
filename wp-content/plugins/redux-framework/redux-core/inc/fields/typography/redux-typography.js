@@ -566,6 +566,14 @@
 		weights      = that.find( '.typography-style' );
 		baseUnits    = that.data( 'units' );
 
+		if ( undefined === word ) {
+			word = '0';
+		}
+
+		if ( undefined === letter ) {
+			letter = '0';
+		}
+
 		if ( weights.length > 0 ) {
 			defaultFontWeights = JSON.parse( decodeURIComponent( weights.data( 'weights' ) ) );
 		}
@@ -906,13 +914,17 @@
 				that.find( '.typography-preview' ).css( 'font-family', 'inherit' );
 			}
 
-			that.find( '.typography-preview' ).css(
-				{
-					'line-height': height + lineHeightUnit,
-					'word-spacing': word + wordSpacingUnit,
-					'letter-spacing': letter + letterSpacingUnit
-				}
-			);
+			if ( height ) {
+				that.find( '.typography-preview' ).css( 'line-height', height + lineHeightUnit );
+			}
+
+			if ( word ) {
+				that.find( '.typography-preview' ).css( 'word-spacing', word + wordSpacingUnit );
+			}
+
+			if ( letter ) {
+				that.find( '.typography-preview' ).css( 'letter-spacing', letter + letterSpacingUnit );
+			}
 
 			if ( color ) {
 				that.find( '.typography-preview' ).css( 'color', color );

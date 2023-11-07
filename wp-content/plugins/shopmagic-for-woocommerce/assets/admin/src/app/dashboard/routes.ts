@@ -2,6 +2,6 @@ export default [
   {
     name: "dashboard",
     path: "/",
-    component: () => import("./views/MainDashboard.vue"),
+    component: async () => import("./views/MainDashboard.vue"),
   },
-]
+];

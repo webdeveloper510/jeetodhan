@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import EditableCard from "./EditableCard.vue";
-import {NButton, NIcon, NText} from "naive-ui";
-import {AddCircleOutline} from "@vicons/ionicons5";
+import { NButton, NIcon, NText } from "naive-ui";
+import { AddCircleOutline } from "@vicons/ionicons5";
 import SingleFilter from "./Filter/SingleFilter.vue";
-import {storeToRefs} from "pinia";
-import {useAutomationResourcesStore} from "../resourceStore";
-import {useAutomationEvent} from "@/composables/useAutomationEvent";
-import {useSingleAutomation} from "@/app/automations/singleAutomation";
+import { storeToRefs } from "pinia";
+import { useAutomationResourcesStore } from "../resourceStore";
+import { useAutomationEvent } from "@/composables/useAutomationEvent";
+import { useSingleAutomation } from "@/app/automations/singleAutomation";
 
 const store = useSingleAutomation();
 const { removeFilter, addOrFilterGroup } = store;
@@ -25,10 +25,7 @@ onChange(fetchAvailableFilters);
     </template>
     {{ __("Add filters", "shopmagic-for-woocommerce") }}
   </NButton>
-  <EditableCard
-    v-if="hasFilters"
-    :title="__('Filters', 'shopmagic-for-woocommerce')"
-  >
+  <EditableCard v-if="hasFilters" :title="__('Filters', 'shopmagic-for-woocommerce')">
     <div v-for="(filtersGroup, groupId) in automation?.filters" :key="groupId">
       <NText v-if="hasFilters && groupId < 1">
         {{ __("Run actions only if...", "shopmagic-for-woocommerce") }}

@@ -17,7 +17,7 @@ final class OrderNumber extends WooCommerceOrderBasedPlaceholder {
 
 	public function value( array $parameters ): string {
 		if ( $this->resources->has( \WC_Order::class ) ) {
-			return $this->get_order()->get_order_number();
+			return $this->resources->get( \WC_Order::class )->get_order_number();
 		}
 
 		return '';

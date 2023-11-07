@@ -17,6 +17,10 @@ final class CustomerFirstName extends CustomerBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->resources->get( Customer::class )->get_first_name();
+		if ( $this->resources->has( Customer::class ) ) {
+			return $this->resources->get( Customer::class )->get_first_name();
+		}
+
+		return '';
 	}
 }

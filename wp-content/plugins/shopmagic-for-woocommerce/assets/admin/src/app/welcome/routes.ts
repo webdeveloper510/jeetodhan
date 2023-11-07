@@ -2,6 +2,6 @@ export default [
   {
     name: "welcome",
     path: "/welcome",
-    component: () => import("./views/WelcomePage.vue"),
+    component: async () => import("./views/WelcomePage.vue"),
   },
 ];

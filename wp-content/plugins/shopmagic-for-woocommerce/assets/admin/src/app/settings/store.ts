@@ -28,10 +28,7 @@ export const useSettingsStore = defineStore("settingsStore", () => {
   const values = ref({});
 
   watchEffect(() => {
-    if (
-      settings.value !== undefined &&
-      Object.keys(values.value).length === 0
-    ) {
+    if (settings.value !== undefined && Object.keys(values.value).length === 0) {
       Object.entries(settings.value).forEach(([tab, { data }]) => {
         values.value[tab] = data;
       });
@@ -53,15 +50,15 @@ export const useSettingsStore = defineStore("settingsStore", () => {
         h(
           RouterLink,
           { to: { name: "settings", params: { page: setting } } },
-          () => settings.value[setting].label
+          () => settings.value[setting].label,
         ),
       key: setting,
-    }))
+    })),
   );
 
   async function save(values) {
-    const { data, error } = await useWpFetch("/settings").post(values, "json");
-    mutate();
+    await useWpFetch("/settings").post(values, "json");
+    void mutate();
   }
 
   return {

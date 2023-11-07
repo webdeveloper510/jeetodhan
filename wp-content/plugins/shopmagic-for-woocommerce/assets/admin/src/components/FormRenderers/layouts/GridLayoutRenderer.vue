@@ -25,7 +25,7 @@ import {
 import { useVanillaLayout } from "../util";
 
 export default defineComponent({
-  name: "layout-renderer",
+  name: "LayoutRenderer",
   components: {
     DispatchRenderer,
   },

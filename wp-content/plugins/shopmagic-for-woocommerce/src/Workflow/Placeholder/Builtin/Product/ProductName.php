@@ -16,6 +16,10 @@ final class ProductName extends WooCommerceProductBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->get_product()->get_name();
+		if ( $this->resources->has( \WC_Product::class ) ) {
+			return $this->resources->get( \WC_Product::class )->get_name();
+		}
+
+		return '';
 	}
 }

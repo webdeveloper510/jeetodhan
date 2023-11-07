@@ -13,7 +13,7 @@ namespace ShopMagicVendor\Monolog\Handler;
 
 use ShopMagicVendor\Monolog\Logger;
 use ShopMagicVendor\Monolog\Utils;
-use Psr\Log\LogLevel;
+use ShopMagicVendor\Psr\Log\LogLevel;
 /**
  * Sends notifications through the pushover api to mobile phones
  *

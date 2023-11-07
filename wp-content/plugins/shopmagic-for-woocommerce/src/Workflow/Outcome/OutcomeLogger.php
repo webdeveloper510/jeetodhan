@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace WPDesk\ShopMagic\Workflow\Outcome;
 
-use Psr\Log\LoggerInterface;
-use Psr\Log\LoggerTrait;
-use Psr\Log\LogLevel;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerTrait;
+use ShopMagicVendor\Psr\Log\LogLevel;
 use WPDesk\ShopMagic\Workflow\Outcome\Meta\OutcomeMeta;
 use WPDesk\ShopMagic\Workflow\Outcome\Meta\OutcomeMetaManager;
 

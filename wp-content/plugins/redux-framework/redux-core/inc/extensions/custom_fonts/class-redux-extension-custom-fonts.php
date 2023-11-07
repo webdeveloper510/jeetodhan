@@ -2,10 +2,10 @@
 /**
  * Redux Custom Font Extension Class
  *
- * @package Redux Pro
+ * @package Redux
  * @author  Kevin Provance <kevin.provance@gmail.com> & Dovy Paukstys <dovy@reduxframework.com>
  * @class   Redux_Extension_Custom_Fonts
- * @version 2.0.0
+ * @version 4.4.2
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -22,7 +22,7 @@ if ( ! class_exists( 'Redux_Extension_Custom_Fonts' ) ) {
 		 *
 		 * @var string
 		 */
-		public static $version = '4.3.25';
+		public static $version = '4.4.2';
 
 		/**
 		 * Extension friendly name.
@@ -60,14 +60,7 @@ if ( ! class_exists( 'Redux_Extension_Custom_Fonts' ) ) {
 		public static $instance = null;
 
 		/**
-		 * Is field in use.
-		 *
-		 * @var bool
-		 */
-		private $is_field;
-
-		/**
-		 * Is font conversation service available.
+		 * Is font conversation service available?
 		 *
 		 * @var bool
 		 */
@@ -76,14 +69,14 @@ if ( ! class_exists( 'Redux_Extension_Custom_Fonts' ) ) {
 		/**
 		 * Class Constructor. Defines the args for the extensions class
 		 *
-		 * @param object $parent ReduxFramework pointer.
+		 * @param object $redux ReduxFramework pointer.
 		 *
 		 * @return      void
 		 * @since       1.0.0
 		 * @access      public
 		 */
-		public function __construct( $parent ) {
-			parent::__construct( $parent, __FILE__ );
+		public function __construct( $redux ) {
+			parent::__construct( $redux, __FILE__ );
 
 			self::$instance = parent::get_instance();
 
@@ -161,7 +154,8 @@ if ( ! class_exists( 'Redux_Extension_Custom_Fonts' ) ) {
 		}
 
 		/**
-		 * Adds FontMeister fonts to the TinyMCE drop-down. Typekit fonts don't render properly in the drop-down and in the editor,
+		 * Adds FontMeister fonts to the TinyMCE drop-down.
+		 * Typekit's fonts don't render properly in the drop-down and in the editor,
 		 * because Typekit needs JS and TinyMCE doesn't support that.
 		 *
 		 * @param array $opt Option array.
@@ -204,7 +198,7 @@ if ( ! class_exists( 'Redux_Extension_Custom_Fonts' ) ) {
 		public function enqueue_output() {
 			if ( file_exists( $this->upload_dir . 'fonts.css' ) ) {
 				wp_enqueue_style(
-					'redux-custom-fonts-css',
+					'redux-custom-fonts',
 					$this->upload_url . 'fonts.css',
 					array(),
 					time()
@@ -338,7 +332,7 @@ if ( ! class_exists( 'Redux_Extension_Custom_Fonts' ) ) {
 				$_POST['filename'] = '';
 			}
 
-			if ( isset( $_POST['attachment_id'] ) && ! empty( $_POST['attachment_id'] ) ) {
+			if ( ! empty( $_POST['attachment_id'] ) ) {
 				if ( isset( $_POST['title'] ) || isset( $_POST['mime'] ) ) {
 					$msg = $this->process_web_font( sanitize_key( wp_unslash( $_POST['attachment_id'] ) ), sanitize_text_field( wp_unslash( $_POST['title'] ) ), sanitize_text_field( wp_unslash( $_POST['filename'] ) ), sanitize_text_field( wp_unslash( $_POST['mime'] ) ) );
 
@@ -767,7 +761,7 @@ if ( ! class_exists( 'Redux_Extension_Custom_Fonts' ) ) {
 
 			$fonts = $this->parent->filesystem->execute( 'dirlist', $this->upload_dir . 'custom/', $params );
 
-			if ( empty( $fonts ) || ! is_array( $fonts) ) {
+			if ( empty( $fonts ) || ! is_array( $fonts ) ) {
 				return;
 			}
 
@@ -870,9 +864,10 @@ if ( ! class_exists( 'Redux_Extension_Custom_Fonts' ) ) {
 		}
 
 		/**
-		 * Custom function for filtering the sections array. Good for child themes to override or add to the sections.
+		 * Custom function for filtering the section array.
+		 * Good for child themes to override or add to the sections.
 		 * Simply include this function in the child themes functions.php file.
-		 * NOTE: the defined constants for URLs, and directories will NOT be available at this point in a child theme,
+		 * NOTE: the defined constants for URLs and directories will NOT be available at this point in a child theme,
 		 * so you must use get_template_directory_uri() if you want to use any of the built-in icons
 		 */
 		public function add_section() {
@@ -886,7 +881,7 @@ if ( ! class_exists( 'Redux_Extension_Custom_Fonts' ) ) {
 					'fields' => array(),
 				);
 
-				for ( $i = count( $this->parent->sections ); $i >= 1; $i -- ) {
+				for ( $i = count( $this->parent->sections ); $i >= 1; $i-- ) {
 					if ( isset( $this->parent->sections[ $i ] ) && isset( $this->parent->sections[ $i ]['title'] ) && esc_html__( 'Font Control', 'redux-framework' ) === $this->parent->sections[ $i ]['title'] ) {
 						$this->parent->fontControl                                        = $i;
 						$this->parent->sections[ $this->parent->fontControl ]['fields'][] = array(

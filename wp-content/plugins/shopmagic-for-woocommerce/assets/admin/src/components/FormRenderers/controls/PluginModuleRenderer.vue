@@ -8,10 +8,7 @@ import ShadyCard from "@/components/ShadyCard.vue";
 
 const props = defineProps(rendererProps<ControlElement>());
 
-const { control, onChange } = useVanillaControl(
-  useJsonFormsControl(props),
-  (target) => target
-);
+const { control, onChange } = useVanillaControl(useJsonFormsControl(props), (target) => target);
 
 type PluginData = {
   name: string;
@@ -26,7 +23,7 @@ watchEffect(() => {
   const slug = control.value.schema.presentation.pluginSlug;
   if (!slug) return;
   fetch(
-    `https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&request[slug]=${slug}&request[fields][icons]=true`
+    `https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&request[slug]=${slug}&request[fields][icons]=true`,
   )
     .then((res) => res.json())
     .then((data) => (pluginData.value = data));

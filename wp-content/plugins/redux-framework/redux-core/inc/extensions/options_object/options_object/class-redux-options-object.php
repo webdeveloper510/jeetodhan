@@ -129,7 +129,7 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 		 */
 		public function enqueue() {
 			wp_enqueue_script(
-				'redux-extension-options-object-js',
+				'redux-extension-options-object',
 				$this->url . 'redux-options-object' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'redux-js' ),
 				Redux_Extension_Options_Object::$version,

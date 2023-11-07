@@ -21,11 +21,7 @@ export const useTrackerStore = defineStore("tracker", () => {
 
   function getAutomationStats() {
     loading.value = true;
-    const {
-      data: automationStats,
-      error,
-      isValidating,
-    } = useSWRV("/automations/stats");
+    const { data: automationStats, error, isValidating } = useSWRV("/automations/stats");
     const { isAwating } = useSwrvState(automationStats, error, isValidating);
 
     watchEffect(() => {

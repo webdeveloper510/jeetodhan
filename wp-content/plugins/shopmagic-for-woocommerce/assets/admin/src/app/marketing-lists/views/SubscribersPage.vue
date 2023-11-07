@@ -14,7 +14,7 @@ import { useRoute } from "vue-router";
 const store = useSubscribersStore();
 const { subscribers, subscribersTotal, error, loading } = storeToRefs(store);
 const { getSubscribers, deleteSubscribers } = store;
-const { getListsByName, getList } = useMarketingStore();
+const { getListsByName } = useMarketingStore();
 
 const tableFilters = reactive<Filters>({
   email: null,

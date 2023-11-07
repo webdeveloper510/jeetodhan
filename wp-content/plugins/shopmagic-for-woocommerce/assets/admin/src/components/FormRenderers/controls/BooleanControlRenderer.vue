@@ -19,16 +19,12 @@
 import { NCheckbox } from "naive-ui";
 import type { ControlElement } from "@jsonforms/core";
 import { defineComponent } from "vue";
-import {
-  rendererProps,
-  type RendererProps,
-  useJsonFormsControl,
-} from "@jsonforms/vue";
+import { rendererProps, type RendererProps, useJsonFormsControl } from "@jsonforms/vue";
 import { useVanillaControl } from "../util";
 import FieldWrapper from "./FieldWrapper.vue";
 
 export default defineComponent({
-  name: "boolean-control-renderer",
+  name: "BooleanControlRenderer",
   components: {
     FieldWrapper,
     NCheckbox,

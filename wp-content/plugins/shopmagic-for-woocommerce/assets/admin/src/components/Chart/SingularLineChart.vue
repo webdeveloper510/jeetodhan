@@ -20,7 +20,7 @@ ChartJS.register(
   LinearScale,
   TimeScale,
   PointElement,
-  LineElement
+  LineElement,
 );
 defineProps<{ labels: string[]; plot: number[] }>();
 </script>

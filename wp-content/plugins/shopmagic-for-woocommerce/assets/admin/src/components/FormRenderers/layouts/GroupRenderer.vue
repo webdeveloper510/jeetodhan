@@ -32,7 +32,7 @@ import {
 import { useVanillaLayout } from "../util";
 
 export default defineComponent({
-  name: "group-renderer",
+  name: "GroupRenderer",
   components: {
     DispatchRenderer,
   },

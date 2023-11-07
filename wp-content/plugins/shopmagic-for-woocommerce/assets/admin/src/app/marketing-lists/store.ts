@@ -3,7 +3,7 @@ import { get, type Query } from "@/_utils";
 import { ref, unref, watch } from "vue";
 import type { List } from "./types";
 import { useWpFetch } from "@/composables/useWpFetch";
-import { useSearchParams } from "@/composables/useSearchParams";
+import { appendSearchParams } from "@/composables/useSearchParams";
 import useSWRV from "@/_utils/swrv";
 
 function createNullList(): List {
@@ -21,7 +21,7 @@ function createNullList(): List {
   };
 }
 
-export function removeList(id: number) {
+export async function removeList(id: number) {
   const store = useMarketingStore();
   return store.remove(id).finally(store.revalidate);
 }
@@ -43,7 +43,7 @@ export const useMarketingStore = defineStore("marketingStore", () => {
 
   function revalidate() {
     loading.value = true;
-    mutate().finally(() => {
+    void mutate().finally(() => {
       loading.value = false;
     });
   }
@@ -52,10 +52,9 @@ export const useMarketingStore = defineStore("marketingStore", () => {
     loading.value = true;
     const prevUrl = unref(url);
     if (queryArgs) {
-      const searchQuery = useSearchParams(queryArgs);
-      url.value = `/lists?${searchQuery}`;
-      if (searchQuery.includes("filters")) {
-        countUrl.value = `/lists/count?${searchQuery}`;
+      url.value = appendSearchParams("/lists", queryArgs);
+      if (queryArgs.filters) {
+        countUrl.value = appendSearchParams("/lists/count", queryArgs);
       }
     } else {
       url.value = "/lists";
@@ -67,9 +66,7 @@ export const useMarketingStore = defineStore("marketingStore", () => {
   }
 
   async function getListsByName(name: string) {
-    return await get<List[]>(
-      `/lists?${useSearchParams({ filters: { name } })}`
-    );
+    return get<List[]>(appendSearchParams("/lists", { filters: { name } }));
   }
 
   async function getList(id: number) {
@@ -80,7 +77,7 @@ export const useMarketingStore = defineStore("marketingStore", () => {
         return list;
       }
     }
-    return await get<List>(`/lists/${id}`);
+    return get<List>(`/lists/${id}`);
   }
 
   async function useList(id: number) {
@@ -106,30 +103,29 @@ export const useMarketingStore = defineStore("marketingStore", () => {
       return;
     }
 
-    const { data, error } = await useWpFetch("/lists")
-      .post(list, "json")
-      .json();
+    const { data /* error */ } = await useWpFetch("/lists").post(list, "json");
     await mutate();
     return unref(data);
   }
 
   async function update() {
-    const { data, error } = await useWpFetch(`/lists/${list.value.id}`)
-      .put(list, "json")
-      .json();
+    const { data /* error */ } = await useWpFetch(`/lists/${list.value.id}`).put(list, "json");
     await mutate();
     return unref(data);
   }
 
   async function remove(id: number) {
-    const { data, error } = await useWpFetch(`/lists/${id}`).delete();
+    const { data /* error */ } = await useWpFetch(`/lists/${id}`).delete();
     return unref(data);
   }
 
   function removeMultiple(ids: number[]) {
     loading.value = true;
     Promise.allSettled(ids.map(remove))
-      .then(() => mutate())
+      .then(
+        async () => mutate(),
+        () => {},
+      )
       .finally(() => (loading.value = false));
   }
 

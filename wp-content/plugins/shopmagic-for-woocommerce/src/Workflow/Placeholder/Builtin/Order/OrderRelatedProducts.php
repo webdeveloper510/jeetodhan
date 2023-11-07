@@ -23,7 +23,7 @@ final class OrderRelatedProducts extends WooCommerceOrderBasedPlaceholder {
 
 	public function get_description(): string {
 		return esc_html__( 'Display the billing state of current order.', 'shopmagic-for-woocommerce' ) . '\n' .
-			$this->utm_builder->get_description();
+		       $this->utm_builder->get_description();
 	}
 
 	public function get_slug(): string {
@@ -42,7 +42,7 @@ final class OrderRelatedProducts extends WooCommerceOrderBasedPlaceholder {
 			return '';
 		}
 
-		$order_items            = $this->get_order()->get_items();
+		$order_items            = $this->resources->get( \WC_Order::class )->get_items();
 		$related_products_id    = $this->get_related_products_id( $order_items );
 		$related_products       = [];
 		$related_products_names = [];

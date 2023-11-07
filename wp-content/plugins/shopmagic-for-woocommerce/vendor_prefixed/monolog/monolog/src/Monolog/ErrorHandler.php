@@ -11,8 +11,8 @@ declare (strict_types=1);
  */
 namespace ShopMagicVendor\Monolog;
 
-use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LogLevel;
 /**
  * Monolog error handler
  *

@@ -3,7 +3,7 @@
 declare (strict_types=1);
 namespace ShopMagicVendor\WPDesk\Migrations\Version;
 
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use ShopMagicVendor\WPDesk\Migrations\AbstractMigration;
 class WpdbMigrationFactory implements MigrationFactory
 {

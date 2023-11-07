@@ -16,6 +16,10 @@ final class OrderShippingLastName extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->get_order()->get_shipping_last_name();
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			return $this->resources->get( \WC_Order::class )->get_shipping_last_name();
+		}
+
+		return '';
 	}
 }

@@ -3,7 +3,7 @@ import { h } from "vue";
 import { RouterLink } from "vue-router";
 import type { Queue } from "@/app/logs/types";
 import { DateTime } from "luxon";
-import { __ } from "@wordpress/i18n";
+import { __ } from "@/plugins/i18n";
 
 const automationColumn: DataTableColumn<Queue> = {
   key: "automation",
@@ -14,7 +14,7 @@ const automationColumn: DataTableColumn<Queue> = {
       ? h(
           RouterLink,
           { to: { name: "automation", params: { id: automation.id } } },
-          () => automation.name || __("(Unnamed)", "shopmagic-for-woocommerce")
+          () => automation.name || __("(Unnamed)", "shopmagic-for-woocommerce"),
         )
       : __("Automation does not exists", "shopmagic-for-woocommerce"),
 };
@@ -24,7 +24,7 @@ const customerColumn: DataTableColumn<Queue> = {
   title: "Customer",
   render: ({ customer }) =>
     customer?.email ||
-    __("A customer does not exist", "shopmagic-for-woocommerce"),
+    __("No customer is associated with this automation.", "shopmagic-for-woocommerce"),
 };
 
 export const queueTableColumns: DataTableColumns<Queue> = [
@@ -37,8 +37,7 @@ export const queueTableColumns: DataTableColumns<Queue> = [
     key: "action",
     title: () => __("Action", "shopmagic-for-woocommerce"),
     render: ({ automation }) => {
-      if (!automation)
-        return __("Action does not exist", "shopmagic-for-woocommerce");
+      if (!automation) return __("Action does not exist", "shopmagic-for-woocommerce");
 
       return (
         Object.values(automation.actions)[0] ||
@@ -50,8 +49,6 @@ export const queueTableColumns: DataTableColumns<Queue> = [
     key: "timestamp",
     title: () => __("Run date", "shopmagic-for-woocommerce"),
     render: ({ schedule }) =>
-      DateTime.fromISO(schedule, { setZone: true }).toFormat(
-        "dd LLL, yyyy HH:mm"
-      ),
+      DateTime.fromISO(schedule, { setZone: true }).toFormat("dd LLL, yyyy HH:mm"),
   },
 ];

@@ -17,7 +17,7 @@ final class OrderPaymentUrl extends WooCommerceOrderBasedPlaceholder {
 
 	public function get_description(): string {
 		return esc_html__( 'Display payment link for current order.', 'shopmagic-for-woocommerce' ) . '<br>' .
-			   $this->utm_builder->get_description();
+		       $this->utm_builder->get_description();
 	}
 
 	public function get_slug(): string {
@@ -33,7 +33,7 @@ final class OrderPaymentUrl extends WooCommerceOrderBasedPlaceholder {
 
 	public function value( array $parameters ): string {
 		if ( $this->resources->has( \WC_Order::class ) ) {
-			$checkout_payment_url = $this->get_order()->get_checkout_payment_url();
+			$checkout_payment_url = $this->resources->get( \WC_Order::class )->get_checkout_payment_url();
 
 			return $this->utm_builder->append_utm_parameters_to_uri( $parameters, $checkout_payment_url );
 		}

@@ -3,8 +3,8 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Placeholder;
 
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use ShopMagicVendor\Psr\Log\LoggerAwareInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareTrait;
 use WPDesk\ShopMagic\DataSharing\DataReceiver;
 use WPDesk\ShopMagic\DataSharing\Traits\DataReceiverAsProtectedField;
 use WPDesk\ShopMagic\DataSharing\Traits\StandardWooCommerceDataProviderAccessors;

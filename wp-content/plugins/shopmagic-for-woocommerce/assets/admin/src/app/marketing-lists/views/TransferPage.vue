@@ -4,7 +4,7 @@ import { computed, ref } from "vue";
 import { NButton, NSelect } from "naive-ui";
 import { useMarketingStore } from "@/app/marketing-lists/store";
 import { storeToRefs } from "pinia";
-import { sprintf } from "@wordpress/i18n";
+import { sprintf } from "@/plugins/i18n";
 
 const store = useMarketingStore();
 const { lists } = storeToRefs(store);
@@ -15,9 +15,7 @@ const importList = ref<number | null>(null);
 const importResult = ref(null);
 const exportList = ref<number | null>(null);
 
-const l = computed(() =>
-  lists.value?.map((i) => ({ label: i.name, value: i.id }))
-);
+const l = computed(() => lists.value?.map((i) => ({ label: i.name, value: i.id })));
 
 const importFile = ref<File | null>(null);
 
@@ -54,9 +52,7 @@ async function exportSubscribers() {
 async function importAutomation() {
   const form = new FormData();
   form.append("file", importFile.value);
-  const { data } = await useWpFetch(`/lists/${importList.value}/subscribers`)
-    .post(form)
-    .json();
+  const { data } = await useWpFetch(`/lists/${importList.value}/subscribers`).post(form);
   importResult.value = data.value;
 }
 </script>
@@ -66,9 +62,7 @@ async function importAutomation() {
       <h2>{{ __("Import", "shopmagic-for-woocommerce") }}</h2>
       <form class="flex flex-col gap-4">
         <NFormItem class="bg-gray-50 p-4">
-          <label class="sr-only" for="automation-file">{{
-            __("Import file")
-          }}</label>
+          <label class="sr-only" for="automation-file">{{ __("Import file") }}</label>
           <input id="automation-file" type="file" @change="selectFile" />
         </NFormItem>
         <NFormItem>
@@ -82,22 +76,16 @@ async function importAutomation() {
           <span v-if="importResult.imported">
             {{
               sprintf(
-                __(
-                  "Successfully imported %d contacts.",
-                  "shopmagic-for-woocommerce"
-                ),
-                importResult.imported
+                __("Successfully imported %d contacts.", "shopmagic-for-woocommerce"),
+                importResult.imported,
               )
             }}
           </span>
           <span v-if="importResult.errors">
             {{
               sprintf(
-                __(
-                  "Errors in %d imported contacts.",
-                  "shopmagic-for-woocommerce"
-                ),
-                importResult.errors
+                __("Errors in %d imported contacts.", "shopmagic-for-woocommerce"),
+                importResult.errors,
               )
             }}
           </span>

@@ -39,7 +39,7 @@ class WPDesk_Basic_Requirement_Checker_Factory
      */
     public function create_from_requirement_array($plugin_file, $plugin_name, $requirements, $text_domain = null)
     {
-        $requirements_checker = new WPDesk_Basic_Requirement_Checker_With_Update_Disable($plugin_file, $plugin_name, $text_domain, $requirements['php'], $requirements['wp']);
+        $requirements_checker = new WPDesk_Basic_Requirement_Checker_With_Update_Disable($plugin_file, $plugin_name, $text_domain, $requirements['php'], $requirements['wp'], (bool) wp_using_ext_object_cache());
         if (isset($requirements['plugins'])) {
             foreach ($requirements['plugins'] as $requirement) {
                 $version = isset($requirement['version']) ? $requirement['version'] : null;

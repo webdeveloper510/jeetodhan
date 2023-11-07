@@ -42,6 +42,10 @@ final class CustomerLanguageValidator extends WorkflowValidator {
 			return false;
 		}
 
+		if ( ! $resources->has( Customer::class ) || ! $resources->has( Automation::class ) ) {
+			return parent::valid( $resources );
+		}
+
 		$customer   = $resources->get( Customer::class );
 		$automation = $resources->get( Automation::class );
 

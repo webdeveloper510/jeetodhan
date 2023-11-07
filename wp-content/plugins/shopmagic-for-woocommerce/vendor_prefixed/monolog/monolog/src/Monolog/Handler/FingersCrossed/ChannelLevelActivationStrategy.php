@@ -12,7 +12,7 @@ declare (strict_types=1);
 namespace ShopMagicVendor\Monolog\Handler\FingersCrossed;
 
 use ShopMagicVendor\Monolog\Logger;
-use Psr\Log\LogLevel;
+use ShopMagicVendor\Psr\Log\LogLevel;
 /**
  * Channel and Error level based monolog activation strategy. Allows to trigger activation
  * based on level per channel. e.g. trigger activation on level 'ERROR' by default, except

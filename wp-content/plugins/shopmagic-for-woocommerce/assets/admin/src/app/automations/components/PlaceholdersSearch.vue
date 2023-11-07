@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import {NButton, NInput, NModal, NSkeleton, NSpace, NTag} from "naive-ui";
-import {computed, ref, unref} from "vue";
-import type {PlaceholderConfig} from "@/types/automationConfig";
-import {storeToRefs} from "pinia";
-import {useAutomationResourcesStore} from "../resourceStore";
-import {useAutomationEvent} from "@/composables/useAutomationEvent";
-import {useSingleAutomation} from "@/app/automations/singleAutomation";
+import { NButton, NInput, NModal, NSkeleton, NSpace, NTag } from "naive-ui";
+import { computed, ref, unref } from "vue";
+import type { PlaceholderConfig } from "@/types/automationConfig";
+import { storeToRefs } from "pinia";
+import { useAutomationResourcesStore } from "../resourceStore";
+import { useAutomationEvent } from "@/composables/useAutomationEvent";
+import { useSingleAutomation } from "@/app/automations/singleAutomation";
 import JsonForm from "@/components/JsonForm.vue";
 
 const { placeholders } = storeToRefs(useAutomationResourcesStore());
@@ -31,7 +31,7 @@ function showModal(placeholder: PlaceholderConfig) {
 const filteredPlaceholders = computed(() => {
   if (searchString.value !== null) {
     return placeholders.value.filter((placeholder) =>
-      placeholder.label.includes(searchString.value)
+      placeholder.label.includes(searchString.value),
     );
   }
   return placeholders.value;
@@ -56,8 +56,7 @@ const labelWithParams = computed(() => {
     .map(([key, value]) => `${key}: '${value}'`)
     .join(", ");
 
-  if (paramsString.length === 0)
-    return `{{ ${currentPlaceholder.value?.label} }}`;
+  if (paramsString.length === 0) return `{{ ${currentPlaceholder.value?.label} }}`;
 
   return `{{ ${currentPlaceholder.value?.label} | ${paramsString} }}`;
 });
@@ -72,9 +71,7 @@ function updateParameters({ data }) {
     :placeholder="__('Search for placeholders...', 'shopmagic-for-woocommerce')"
     class="mb-4"
   />
-  <div
-    class="flex flex-wrap gap-2 max-h-[65vh] overflow-clip overflow-y-scroll"
-  >
+  <div class="flex flex-wrap gap-2 max-h-[65vh] overflow-clip overflow-y-scroll">
     <NSpace v-if="!placeholders || placeholders.length === 0" vertical>
       <NSkeleton
         v-for="n in 6"

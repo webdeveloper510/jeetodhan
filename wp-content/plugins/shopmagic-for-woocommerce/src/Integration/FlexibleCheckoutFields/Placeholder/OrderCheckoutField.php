@@ -3,10 +3,9 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Integration\FlexibleCheckoutFields\Placeholder;
 
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use WPDesk\FCF\Free\Integration\FieldInterface;
 use WPDesk\ShopMagic\FormField\Field\SelectField;
-use WPDesk\ShopMagic\Workflow\Components\Groups;
 use WPDesk\ShopMagic\Workflow\Placeholder\Builtin\WooCommerceOrderBasedPlaceholder;
 
 final class OrderCheckoutField extends WooCommerceOrderBasedPlaceholder {
@@ -78,7 +77,7 @@ final class OrderCheckoutField extends WooCommerceOrderBasedPlaceholder {
 				}
 			);
 			if ( $field instanceof FieldInterface ) {
-				$value = $this->integrator->get_field_value( $field_key, $this->get_order()->get_id() );
+				$value = $this->integrator->get_field_value( $field_key, $this->resources->get( \WC_Order::class )->get_id() );
 				$type  = $field->get_field_type();
 				switch ( $type ) {
 					case 'wpdeskmultiselect':

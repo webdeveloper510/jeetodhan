@@ -4,9 +4,9 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Event;
 
-use Psr\Container\ContainerInterface;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareTrait;
 use WPDesk\ShopMagic\DataSharing\DataProvider;
 use WPDesk\ShopMagic\Exception\ReferenceNoLongerAvailableException;
 use WPDesk\ShopMagic\Workflow\Automation\Automation;

@@ -1,0 +1,1338 @@
+# Copyright (C) 2023 WPInstitut
+# This file is distributed under the same license as the Competitions for WooCommerce plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Competitions for WooCommerce 1.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/competitions-for-woocommerce\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-04-17T08:41:31+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: competitions_for_woocommerce\n"
+
+#. Plugin Name of the plugin
+msgid "Competitions for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://woocommerce.com/products/competitions-for-woocommerce/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Competitions for WooCommerce implements competitions (lucky draws / lotteries) product type in your WooCommerce webshop"
+msgstr ""
+
+#. Author of the plugin
+msgid "WPInstitut"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://woocommerce.com/vendor/wpinstitut-com/"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:23
+msgid "Competitions"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:41
+msgid "WC competitions options"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:46
+msgid "Past competitions"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:47
+msgid "Show finished lotteries"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:53
+#: public/widgets/class-competition-for-woocommerce-widget-future-competitions.php:30
+msgid "Future competitions"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:54
+msgid "Show lotteries that did not start yet"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:60
+msgid "Do not show competitions on shop page"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:61
+msgid "Do not mix competitions and regular products on shop page. Just show competitions on the competitions page (competitions base page)"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:67
+msgid "Do not show competitions on product search page"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:68
+msgid "Do not mix competitions and regular products on product search page (show lotteries only when using competitions search)"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:74
+msgid "Do not show competitions on product category page"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:75
+msgid "Do not mix competitions and regular products on product category page. Just show competitions on the competitions page (competitions base page)"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:81
+msgid "Do not show competitions on product tag page"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:82
+msgid "Do not mix competitions and regular products on product tag page. Just show competitions on the competitions page (competitions base page)"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:88
+msgid "Countdown format"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:89
+msgid "The format for the countdown display. Default is yowdHMS"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:90
+msgid "Use the following characters (in order) to indicate which periods you want to display: \"Y\" for years, \"O\" for months, \"W\" for weeks, \"D\" for days, \"H\" for hours, \"M\" for minutes, \"S\" for seconds. Use upper-case characters for mandatory periods, or the corresponding lower-case characters for optional periods, i.e. only display if non-zero. Once one optional period is shown, all the ones after that are also shown."
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:96
+msgid "Use compact countdown "
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:97
+msgid "Indicate whether or not the countdown should be displayed in a compact format."
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:103
+msgid "WC competitions Base Page"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:104
+msgid "Set the base page for your competitions - this is where your competitions archive page will be."
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:113
+msgid "WC competitions Entry Page"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:114
+msgid "Set the entry page for your competitions"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:123
+msgid "Competitions history tab"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:124
+msgid "Show competitions history tab on single product page (competitions details page)"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:131
+msgid "Show progress bar"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:132
+msgid "Show competitions progress bar on single product page (competitions details page)"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:138
+msgid "Progress bar type"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:139
+msgid "This controls progres bar type."
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:145
+msgid "Tickets available"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:146
+msgid "Tickets sold"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:151
+msgid "Competitions badge"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:152
+msgid "Show competitions badge in loop"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:158
+msgid "Close competitions when maximum ticket was sold"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:159
+msgid "Option to instantly finish competitions when maximum number  of tickets was sold"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:165
+msgid "Show competitions history in admin product page"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:166
+msgid "Option to show history table in admin page"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:172
+msgid "Show answers in history tab"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:178
+msgid "Show answers in history only when competitions is finished"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:184
+msgid "Allow log in at later stage of checkout (guest checkout)"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:190
+msgid "Reserve ticket number when user puts it in cart"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:196
+msgid "Hold reserve tickets for n minutes"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:202
+msgid "Show notice for reserving tickets"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:208
+msgid "Remove ticket numbers from orders with wrong answer."
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:214
+msgid "Show notice for wrong answer in user order email"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:220
+msgid "Show lucky dip button"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:226
+msgid "Use qty with lucky dip button"
+msgstr ""
+
+#: admin/class-competitions-for-woocommerce-settings.php:232
+msgid "Use dropdown for answers"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:96
+msgid "Please enter in a value greater than the min tickets."
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:97
+msgid "You must set at least one competition winner"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:101
+msgid "Remove this answer?"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:103
+msgid "No data available in table"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:104
+msgid "Showing _START_ to _END_ of _TOTAL_ entries"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:105
+msgid "Showing 0 to 0 of 0 entries"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:106
+msgid "(filtered from _MAX_ total entries)"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:107
+msgid "Show _MENU_ entries"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:108
+msgid "Loading..."
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:109
+msgid "Processing..."
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:110
+msgid "Search:"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:111
+msgid "No matching records found"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:113
+msgid "First"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:114
+msgid "Last"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:115
+msgid "Next"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:116
+msgid "Previous"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:119
+msgid ": activate to sort column ascending"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:120
+msgid ": activate to sort column descending"
+msgstr ""
+
+#. translators: 1) int version 2) int version
+#: admin/class-competitions_for_woocommerce-admin.php:243
+msgid "Competitions for WooCommerce - The minimum PHP version required for this plugin is %1$s. You are running %2$s."
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:249
+msgid "Competitions for WooCommerce requires WooCommerce to be activated to work."
+msgstr ""
+
+#. translators: 1) int version 2) int version
+#: admin/class-competitions_for_woocommerce-admin.php:254
+msgid "Competitions for WooCommerce - The minimum WooCommerce version required for this plugin is %1$s. You are running %2$s."
+msgstr ""
+
+#. translators: 1) blog url
+#: admin/class-competitions_for_woocommerce-admin.php:281
+msgid "Competitions for WooCommerce recommends that you set up a cron job to check finished competitions: <strong>%1$s/?competitions-cron=check</strong>. Set it to every minute. See <a href=\"%2$s\">documentation</a> for this!"
+msgstr ""
+
+#. translators: 1) blog url
+#: admin/class-competitions_for_woocommerce-admin.php:294
+msgid "For automated relisting feature, please setup cron job every 1 hour: <strong>%1$s/?competitions-cron=relist</strong>. See <a href=\"%2$s\">documentation</a> for this!"
+msgstr ""
+
+#. translators: 1) blog url
+#: admin/class-competitions_for_woocommerce-admin.php:307
+msgid "Competitions for WooCommerce can not work with enabled option \"Allow customers to place orders without an account\", please turn it off. <a href=\"%1$s\">Accounts & Privacy settings</a>"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:337
+#: admin/class-competitions_for_woocommerce-admin.php:352
+#: admin/class-competitions_for_woocommerce-admin.php:1125
+#: public/shortcodes/class-shortcode-competition.php:436
+msgid "Competition"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:404
+msgid "Price"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:407
+msgid "competition Price, put 0 for free competition."
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:414
+msgid "Sale Price"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:417
+msgid "competition Sale Price"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:426
+msgid "Min tickets"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:433
+msgid "Minimum tickets to be sold"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:442
+msgid "Max tickets"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:449
+msgid "Maximum tickets to be sold"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:457
+msgid "Max tickets per user"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:464
+msgid "Maximum tickets sold per user"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:473
+msgid "Number of winners"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:480
+msgid "Number of possible winners"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:487
+msgid "Multiple prizes per user?"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:488
+msgid "Allow multiple prizes for single user if there are multiple competition winners"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:496
+msgid "Manual winner picking"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:497
+msgid "Pick winners manually when competition has finished."
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:506
+msgid "Competition from date"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:507
+msgctxt "placeholder"
+msgid "From&hellip;"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:510
+msgid "Competition to date"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:511
+msgctxt "placeholder"
+msgid "To&hellip;"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:516
+msgid "Extend competition"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:518
+msgid "Extend Date"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:519
+#: admin/class-competitions_for_woocommerce-admin.php:530
+msgctxt "placeholder"
+msgid "To&hellip; YYYY-MM-DD HH:MM"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:524
+msgid "Relist"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:526
+msgid "Relist Dates"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:527
+msgctxt "placeholder"
+msgid "From&hellip; YYYY-MM-DD HH:MM"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:537
+msgid "Delete logs on relist?"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:538
+msgid "Delete all logs for this competition on relist. It can't be undone!"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:551
+msgid "Allow ticket numbers?"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:552
+msgid "Allow customer to pick ticket number(s) "
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:560
+msgid "Use alphabet?"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:567
+msgid "Randomly assign ticket number(s) without ticket number picking"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:568
+msgid "Customer gets random assing ticket number"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:576
+msgid "Sort tickets in tabs?"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:585
+msgid "Number of tickets per tab"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:598
+msgid "Force user to answer a question?"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:599
+msgid "Force user to answer a question before adding competition number to cart"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:607
+msgid "Only allow true answers."
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:608
+msgid "Only allow users to pick correct answers"
+msgstr ""
+
+#. translators: 1) ticket number
+#: admin/class-competitions_for_woocommerce-admin.php:628
+msgid "Enter number of winning ticket. Fom 1-%d"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:629
+msgid "Winning ticket"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:649
+msgid "Manual pick text"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:650
+msgid "Some text explaining how mmanual winner picking is done."
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1021
+msgid "Active"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1022
+msgid "Finished"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1023
+msgid "Fail"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1027
+msgid "Competition filter By "
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1212
+#: admin/class-competitions_for_woocommerce-admin.php:1286
+#: admin/class-competitions_for_woocommerce-admin.php:2086
+#: admin/class-competitions_for_woocommerce-admin.php:2128
+#: admin/class-competitions_for_woocommerce-admin.php:2257
+#: admin/class-competitions_for_woocommerce-admin.php:2305
+#: admin/class-competitions_for_woocommerce-admin.php:2359
+#: admin/class-competitions_for_woocommerce-admin.php:2577
+#: admin/class-competitions_for_woocommerce-admin.php:2636
+#: public/class-competitions_for_woocommerce-entry-list-tables.php:108
+#: public/class-competitions_for_woocommerce-public.php:1193
+#: templates/single-product/tabs/competition-history.php:72
+msgid "Ticket number"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1213
+#: admin/class-competitions_for_woocommerce-admin.php:2092
+#: admin/class-competitions_for_woocommerce-admin.php:2131
+#: admin/class-competitions_for_woocommerce-admin.php:2260
+#: admin/class-competitions_for_woocommerce-admin.php:2648
+#: admin/partials/html-product-competition-answers.php:7
+#: public/class-competitions_for_woocommerce-entry-list-tables.php:112
+#: public/class-competitions_for_woocommerce-public.php:1228
+#: templates/single-product/tabs/competition-history.php:77
+msgid "Answer"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1218
+#: admin/class-competitions_for_woocommerce-admin.php:2369
+msgid "Order is on-hold because of duplicate ticket number."
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1220
+#: admin/class-competitions_for_woocommerce-admin.php:2371
+msgid "Duplicate ticket number in order"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1646
+msgid "Competition failed. No minimum ticket sold"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1657
+msgid "Competition amount allready returned"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1700
+msgid "Invalid refund amount"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1717
+msgid "Refund failed"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1753
+msgid "Payment gateway does not support refunds"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1984
+msgid "Some on hold orders are preventing this competition to end. Can you please check it! "
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:1990
+msgid "Clear all on hold orders! "
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2001
+msgid "competition has been relisted on:"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2006
+#: templates/single-product/tabs/competition-history.php:28
+msgid "Competition has finished"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2010
+msgid "Competition failed because there were no participants"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2014
+msgid "Competition failed because there was not enough participants"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2016
+msgid "Refund "
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2028
+#: templates/emails/competition_finish.php:25
+msgid "Competition winner is"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2030
+#: admin/class-competitions_for_woocommerce-admin.php:2047
+msgid "Ticket"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2032
+#: admin/class-competitions_for_woocommerce-admin.php:2049
+#: admin/class-competitions_for_woocommerce-admin.php:2095
+#: admin/class-competitions_for_woocommerce-admin.php:2133
+#: admin/class-competitions_for_woocommerce-admin.php:2582
+#: public/class-competitions_for_woocommerce-entry-list-tables.php:105
+msgid "Order"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2038
+#: templates/emails/competition_finish.php:30
+msgid "Competition winners are"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2045
+msgid "competition winner is"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2069
+#: includes/elementor/widgets/competition_history.php:20
+#: templates/single-product/tabs/competition-history.php:23
+msgid "Competition History"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2075
+#: admin/class-competitions_for_woocommerce-admin.php:2120
+#: admin/class-competitions_for_woocommerce-admin.php:2202
+#: admin/class-competitions_for_woocommerce-admin.php:2568
+#: public/class-competitions_for_woocommerce-entry-list-tables.php:103
+#: public/shortcodes/class-shortcode-competition.php:435
+#: templates/single-product/tabs/competition-history.php:69
+msgid "Date"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2076
+#: admin/class-competitions_for_woocommerce-admin.php:2121
+#: admin/class-competitions_for_woocommerce-admin.php:2569
+#: public/class-competitions_for_woocommerce-entry-list-tables.php:104
+#: templates/single-product/tabs/competition-history.php:70
+msgid "User"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2077
+#: admin/class-competitions_for_woocommerce-admin.php:2122
+#: admin/class-competitions_for_woocommerce-admin.php:2570
+msgid "Email"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2078
+#: admin/class-competitions_for_woocommerce-admin.php:2123
+#: admin/class-competitions_for_woocommerce-admin.php:2571
+msgid "First name"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2079
+#: admin/class-competitions_for_woocommerce-admin.php:2124
+#: admin/class-competitions_for_woocommerce-admin.php:2572
+msgid "Last name"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2080
+#: admin/class-competitions_for_woocommerce-admin.php:2125
+#: admin/class-competitions_for_woocommerce-admin.php:2573
+msgid "Address"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2081
+#: admin/class-competitions_for_woocommerce-admin.php:2126
+#: admin/class-competitions_for_woocommerce-admin.php:2574
+msgid "Phone"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2096
+#: admin/class-competitions_for_woocommerce-admin.php:2134
+#: admin/class-competitions_for_woocommerce-admin.php:2205
+msgid "Actions"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2109
+msgid "Competition relisted"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2116
+msgid "competition Data Prior Relist"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2166
+#: admin/class-competitions_for_woocommerce-admin.php:2233
+msgid "Delete"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2179
+msgid "competition started"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2184
+msgid "competition starting"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2198
+msgid "Exported csv files"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2203
+msgid "File"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2204
+msgid "Winners"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2215
+msgid "Ticket number: "
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2221
+msgid "Answer: "
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2312
+msgid "Order cancelled because of duplicate ticket number."
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2316
+msgid "Order cancelled because someone has reserved that ticket number."
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2428
+#: admin/class-competitions_for_woocommerce-admin.php:2447
+msgid "Automatic relist competition"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2440
+msgid "competition automatic relist"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2448
+msgid "Enable automatic relisting"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2458
+#: admin/class-competitions_for_woocommerce-admin.php:2459
+msgid "Relist competition only if failed"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2469
+#: admin/class-competitions_for_woocommerce-admin.php:2470
+msgid "Save competition participants to csv file for export"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2480
+msgid "Relist after n hours"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2493
+msgid "Relist competition duration in h"
+msgstr ""
+
+#: admin/class-competitions_for_woocommerce-admin.php:2580
+msgid "Answer number"
+msgstr ""
+
+#. translators: 1) product name 2) stock number remaining
+#: admin/class-competitions_for_woocommerce-admin.php:2628
+msgid "You cannot add that amount of &quot;%1$s&quot; to the cart because there is not enough stock (%2$s remaining)."
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-extended.php:33
+msgid "Competition Extended"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-extended.php:34
+msgid "Competition extended emails are sent to users when competition is extended and user is participating in it."
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-extended.php:39
+msgid "competition extended on {blogname}"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-extended.php:40
+msgid "competition has been extended!"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-failed-users.php:35
+msgid "Competition Fail For Customers"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-failed-users.php:36
+msgid "Competition Fail emails are sent when competition fails to users that participated."
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-failed-users.php:41
+#: admin/emails/class-wc-email-competition-failed.php:48
+msgid "competition Failed on {blogname}"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-failed-users.php:42
+#: admin/emails/class-wc-email-competition-no-luck.php:39
+msgid "Better luck next time!"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-failed.php:43
+msgid "Competition Fail"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-failed.php:44
+msgid "Competition Fail emails are sent when competition fails."
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-failed.php:49
+msgid "No interest in this competition!"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-finished.php:43
+msgid "Competition Finish"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-finished.php:44
+msgid "Competition finish emails are sent to admin when competition has finished."
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-finished.php:48
+msgid "Competition Finished on {blogname}"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-finished.php:49
+msgid "Competition Finished!"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-no-luck.php:32
+msgid "Competition No Luck"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-no-luck.php:33
+msgid "Competition no luck emails are sent to users that did not win competition but are participating in it."
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-no-luck.php:38
+msgid "No luck on {blogname}"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-win.php:32
+msgid "Competition Win"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-win.php:33
+msgid "Competition won emails are sent when a user wins the competition."
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-win.php:38
+msgid "competition won on {blogname}"
+msgstr ""
+
+#: admin/emails/class-wc-email-competition-win.php:39
+msgid "You have won the competition!"
+msgstr ""
+
+#: admin/partials/html-meta-box-answers.php:9
+msgid "Question"
+msgstr ""
+
+#: admin/partials/html-meta-box-answers.php:11
+msgid "Ask user a question."
+msgstr ""
+
+#: admin/partials/html-meta-box-answers.php:37
+msgid "Add Answer"
+msgstr ""
+
+#: admin/partials/html-product-competition-answers.php:13
+msgid "True"
+msgstr ""
+
+#: admin/partials/html-product-competition-answers.php:16
+msgid "Remove"
+msgstr ""
+
+#: includes/class-wc-product-competition.php:201
+msgid "There were no participants"
+msgstr ""
+
+#: includes/class-wc-product-competition.php:212
+msgid "The item did not make it to minimum participants"
+msgstr ""
+
+#: includes/class-wc-product-competition.php:566
+msgid "View winners"
+msgstr ""
+
+#: includes/class-wc-product-competition.php:570
+msgid "Read more"
+msgstr ""
+
+#: includes/class-wc-product-competition.php:574
+msgid "Participate"
+msgstr ""
+
+#. translators: 1) data-price 2) data-id 3) price
+#: includes/class-wc-product-competition.php:909
+msgid "Participate now for <span class=\"atct-price\" data-price=\"%1$s\" data-id=\"%2$d\">%3$s</span>"
+msgstr ""
+
+#: includes/elementor/widgets/competition_answers.php:20
+msgid "Competition Answers"
+msgstr ""
+
+#: includes/elementor/widgets/competition_countdown.php:20
+msgid "Competition Countdown"
+msgstr ""
+
+#: includes/elementor/widgets/competition_info.php:20
+msgid "Competition Info"
+msgstr ""
+
+#: includes/elementor/widgets/competition_pick_numbers.php:20
+msgid "Competition Tickets Numbers"
+msgstr ""
+
+#: includes/elementor/widgets/competition_progressbar.php:20
+msgid "Competition Progressbar"
+msgstr ""
+
+#: includes/elementor/widgets/competition_winners.php:20
+msgid "Competition Winner"
+msgstr ""
+
+#: includes/elementor/widgets/participate_qty.php:19
+msgid "Competition Lucky Dip Qty"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:83
+msgid "Years"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:84
+msgid "Months"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:85
+msgid "Weeks"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:86
+msgid "Days"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:87
+msgid "Hours"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:88
+msgid "Minutes"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:89
+msgid "Seconds"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:92
+msgid "Year"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:93
+msgid "Month"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:94
+msgid "Week"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:95
+msgid "Day"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:96
+msgid "Hour"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:97
+msgid "Minute"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:98
+msgid "Second"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:101
+msgid "y"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:102
+msgid "m"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:103
+msgid "w"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:104
+msgid "d"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:105
+msgid "h"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:106
+msgid "min"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:107
+msgid "s"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:114
+msgid "Competition hCs finished! Please refresh page to see winners."
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:116
+msgid "Competition hCs started! Please refresh page."
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:121
+msgid "You already have selected maximum number of tickets!"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:122
+msgid "Max tickets qty is:"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:123
+msgid "Ticket sold!"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:124
+msgid "You have already this ticket in your cart!"
+msgstr ""
+
+#. translators: 1) my account link
+#: public/class-competitions_for_woocommerce-public.php:126
+msgid "Sorry, you must be logged in to participate in competition. <a href=\"%s\" class=\"button\">Login &rarr;</a>"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:127
+msgid "Please pick a number. "
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:128
+msgid "Please answer the question."
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:129
+msgid "You must pick correct answer."
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:615
+msgid "View participants"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:651
+msgid "Competition history"
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:1196
+msgid "Invalid ticket number."
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:1233
+msgid "Your answer is not correct. In order to participate you will need to select right answer, pick your ticket(s) and checkout again."
+msgstr ""
+
+#: public/class-competitions_for_woocommerce-public.php:1351
+msgid "My Tickets"
+msgstr ""
+
+#: public/shortcodes/class-competitions_for_woocommerce-shortcodes.php:219
+msgid "You don't have any active competition."
+msgstr ""
+
+#: public/shortcodes/class-competitions_for_woocommerce-shortcodes.php:265
+msgid "Active competition"
+msgstr ""
+
+#: public/shortcodes/class-competitions_for_woocommerce-shortcodes.php:267
+msgid "Won competitions"
+msgstr ""
+
+#: public/shortcodes/class-competitions_for_woocommerce-shortcodes.php:273
+msgid "Please log in to see your competitions."
+msgstr ""
+
+#: public/shortcodes/class-shortcode-competition.php:437
+msgid "Winner"
+msgstr ""
+
+#: public/shortcodes/class-shortcode-competition.php:475
+msgid "None"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-ending-soon-competitions.php:23
+msgid "Display a list of your ending soon competitions on your site."
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-ending-soon-competitions.php:25
+msgid "Competitions Ending Soon"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-ending-soon-competitions.php:30
+msgid "Ending soon competitions"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-ending-soon-competitions.php:39
+#: public/widgets/class-competition-for-woocommerce-widget-featured-competitions.php:43
+#: public/widgets/class-competition-for-woocommerce-widget-future-competitions.php:39
+#: public/widgets/class-competition-for-woocommerce-widget-random-competitions.php:39
+#: public/widgets/class-competition-for-woocommerce-widget-recent-competitions.php:41
+#: public/widgets/class-competition-for-woocommerce-widget-recently-competitions.php:41
+msgid "Number of competitions to show:"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-ending-soon-competitions.php:44
+#: public/widgets/class-competition-for-woocommerce-widget-featured-competitions.php:48
+#: public/widgets/class-competition-for-woocommerce-widget-future-competitions.php:44
+#: public/widgets/class-competition-for-woocommerce-widget-random-competitions.php:44
+#: public/widgets/class-competition-for-woocommerce-widget-recent-competitions.php:46
+#: public/widgets/class-competition-for-woocommerce-widget-recently-competitions.php:46
+msgid "Hide time left"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-ending-soon-competitions.php:49
+#: public/widgets/class-competition-for-woocommerce-widget-featured-competitions.php:53
+#: public/widgets/class-competition-for-woocommerce-widget-random-competitions.php:49
+#: public/widgets/class-competition-for-woocommerce-widget-recent-competitions.php:51
+#: public/widgets/class-competition-for-woocommerce-widget-recently-competitions.php:51
+msgid "Show future competitions"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-featured-competitions.php:27
+msgid "Display a list of featured competitions on your site."
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-featured-competitions.php:29
+msgid "Competitions Featured Competitions"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-featured-competitions.php:34
+msgid "Featured competitions"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-future-competitions.php:23
+msgid "Display a list of your future competitions on your site."
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-future-competitions.php:25
+msgid "Competitions Future Competitions"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-random-competitions.php:23
+msgid "Display a list of random competitions on your site."
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-random-competitions.php:25
+msgid "Competitions Random Competitions"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-random-competitions.php:30
+msgid "Random competitions"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-recent-competitions.php:25
+msgid "Display a list of your most recent competitions on your site."
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-recent-competitions.php:27
+msgid "Competitions Recent Competitions"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-recent-competitions.php:32
+msgid "Recent competitions"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-recently-competitions.php:25
+msgid "Display a list of recently viewed competitions."
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-recently-competitions.php:27
+msgid "Competitions Recently Viewed Competitions"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-recently-competitions.php:32
+msgid "Recently Viewed Competitions"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-search.php:19
+msgid "A Search box for competitions only."
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-search.php:21
+msgid "Competitions Search"
+msgstr ""
+
+#: public/widgets/class-competition-for-woocommerce-widget-search.php:26
+msgid "Title"
+msgstr ""
+
+#: templates/competitions-searchform.php:3
+msgctxt "placeholder"
+msgid "Search competitions&hellip;"
+msgstr ""
+
+#. translators: 1) order id 2) order id 3)ticket number
+#: templates/emails/competition_duplicate_ticket_admin.php:15
+msgid "Sorry. Order <a href=\""
+msgstr ""
+
+#. translators: 1) product link 2) product title
+#: templates/emails/competition_extended.php:16
+msgid "Competition <a href='%1$s'>%2%s</a> has been extended and you still have chance to win it. Good luck!"
+msgstr ""
+
+#. translators: 1) product link 2) product title
+#: templates/emails/competition_fail.php:15
+msgid "Sorry. Competition <a href='%1$s'>%2$s</a> has failed."
+msgstr ""
+
+#. translators: 1) product link 2) product title
+#: templates/emails/competition_fail_users.php:15
+msgid "We are sorry. Competition <a href='%1$s'>%2$s</a> has failed. Better luck next time."
+msgstr ""
+
+#. translators: 1) product link 2) product title
+#: templates/emails/competition_finish.php:16
+msgid "Competition <a href='%1$s'>%2$s</a> has finished."
+msgstr ""
+
+#. translators: 1) product link 2) product title
+#: templates/emails/competition_no_luck.php:14
+msgid "We are sorry. You have not been picked in competition <a href='%1$s'>%2$s</a>. Better luck next time."
+msgstr ""
+
+#. translators: 1) product link 2) product title
+#: templates/emails/competition_win.php:13
+msgid "Congratulations. You are picked as winner of <a href='%1$s'>%2$s</a>."
+msgstr ""
+
+#. translators: 1) oredre id 2) ticket number
+#: templates/emails/plain/competition_duplicate_ticket_admin.php:13
+msgid "Sorry. Order %1\\$s has duplicate ticket number %2\\$%s. Order has been put on hold please check it!"
+msgstr ""
+
+#. translators: 1) product title
+#: templates/emails/plain/competition_extended.php:13
+msgid "Competition %s  has been extended and you still have chance to win it. Good luck!"
+msgstr ""
+
+#. translators: 1) product title 2) feail reason
+#: templates/emails/plain/competition_fail.php:14
+msgid "Sorry competition for %1\\$s has failed. %2\\$s"
+msgstr ""
+
+#. translators: 1) product title
+#: templates/emails/plain/competition_fail_users.php:13
+msgid "We are sorry. Competition has failed %s.  Better luck next time."
+msgstr ""
+
+#. translators: 1) product title
+#: templates/emails/plain/competition_finish.php:14
+msgid "Competition %s has finished."
+msgstr ""
+
+#. translators: 1) product title
+#: templates/emails/plain/competition_no_luck.php:14
+msgid "We are sorry. You are not picked as winner of %s.  Better luck next time."
+msgstr ""
+
+#. translators: 1) product title
+#: templates/emails/plain/competition_win.php:14
+msgid "Congratulations! You are picked as winner of %s."
+msgstr ""
+
+#: templates/loop/no-competition-winners-found.php:12
+msgid "There are no competition winners right now."
+msgstr ""
+
+#: templates/single-product/add-to-cart/answers.php:19
+msgid "Answer the question:"
+msgstr ""
+
+#: templates/single-product/add-to-cart/answers.php:25
+msgid "Select answer from dropdown"
+msgstr ""
+
+#: templates/single-product/tabs/competition-history.php:31
+msgid "Competition failed because there were no minimal number of participants"
+msgstr ""
+
+#: templates/single-product/tabs/competition-history.php:37
+msgid "Competition winners are: "
+msgstr ""
+
+#: templates/single-product/tabs/competition-history.php:57
+msgid "Competition winner is: "
+msgstr ""
+
+#: templates/single-product/tabs/competition-history.php:122
+msgid "Competition started"
+msgstr ""
+
+#: templates/single-product/tabs/competition-history.php:128
+msgid "Competition starting"
+msgstr ""

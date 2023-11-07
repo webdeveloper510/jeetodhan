@@ -7,9 +7,7 @@ import FieldWrapper from "./FieldWrapper.vue";
 
 const props = defineProps(rendererProps<ControlElement>());
 
-const { control, controlWrapper, onChange } = useVanillaControl(
-  useJsonFormsControl(props)
-);
+const { control, controlWrapper, onChange } = useVanillaControl(useJsonFormsControl(props));
 </script>
 <template>
   <FieldWrapper v-bind="controlWrapper">

@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Components\Routing\Controller\ArgumentResolver;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use WPDesk\ShopMagic\Components\Routing\Controller\ArgumentValueResolver;
 
 class ContainerValueResolver implements ArgumentValueResolver {

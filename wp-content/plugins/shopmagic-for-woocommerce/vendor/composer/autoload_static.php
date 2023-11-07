@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitafc8742ceb4d23457502f143e34c9716
+class ComposerStaticInit39fb1bed2c28b80eb15dc3976c804a5d
 {
     public static $files = array (
         '2f769eff9e3ec7d1b58db8138f040e6e' => __DIR__ . '/../..' . '/inc/compat.php',
@@ -17,11 +17,6 @@ class ComposerStaticInitafc8742ceb4d23457502f143e34c9716
             'WPDesk\\ShopMagic\\' => 17,
             'WPDesk\\Dashboard\\' => 17,
         ),
-        'P' => 
-        array (
-            'Psr\\Log\\' => 8,
-            'Psr\\Container\\' => 14,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -33,32 +28,10 @@ class ComposerStaticInitafc8742ceb4d23457502f143e34c9716
         array (
             0 => __DIR__ . '/..' . '/wpdesk/ltv-dashboard-widget/src',
         ),
-        'Psr\\Log\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
-        ),
-        'Psr\\Container\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/container/src',
-        ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
-        'Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
-        'Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/NotFoundExceptionInterface.php',
-        'Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/AbstractLogger.php',
-        'Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/Psr/Log/InvalidArgumentException.php',
-        'Psr\\Log\\LogLevel' => __DIR__ . '/..' . '/psr/log/Psr/Log/LogLevel.php',
-        'Psr\\Log\\LoggerAwareInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareInterface.php',
-        'Psr\\Log\\LoggerAwareTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareTrait.php',
-        'Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerInterface.php',
-        'Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerTrait.php',
-        'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
-        'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/DummyTest.php',
-        'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
-        'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
         'ShopMagicVendor\\Attribute' => __DIR__ . '/../..' . '/vendor_prefixed/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'ShopMagicVendor\\Brick\\Math\\BigDecimal' => __DIR__ . '/../..' . '/vendor_prefixed/brick/math/src/BigDecimal.php',
         'ShopMagicVendor\\Brick\\Math\\BigInteger' => __DIR__ . '/../..' . '/vendor_prefixed/brick/math/src/BigInteger.php',
@@ -307,6 +280,44 @@ class ComposerStaticInitafc8742ceb4d23457502f143e34c9716
         'ShopMagicVendor\\PhpDocReader\\PhpParser\\TokenParser' => __DIR__ . '/../..' . '/vendor_prefixed/php-di/phpdoc-reader/src/PhpDocReader/PhpParser/TokenParser.php',
         'ShopMagicVendor\\PhpDocReader\\PhpParser\\UseStatementParser' => __DIR__ . '/../..' . '/vendor_prefixed/php-di/phpdoc-reader/src/PhpDocReader/PhpParser/UseStatementParser.php',
         'ShopMagicVendor\\PhpToken' => __DIR__ . '/../..' . '/vendor_prefixed/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
+        'ShopMagicVendor\\Psr\\Clock\\ClockInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/clock/src/ClockInterface.php',
+        'ShopMagicVendor\\Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/container/src/ContainerExceptionInterface.php',
+        'ShopMagicVendor\\Psr\\Container\\ContainerInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/container/src/ContainerInterface.php',
+        'ShopMagicVendor\\Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/container/src/NotFoundExceptionInterface.php',
+        'ShopMagicVendor\\Psr\\EventDispatcher\\EventDispatcherInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/event-dispatcher/src/EventDispatcherInterface.php',
+        'ShopMagicVendor\\Psr\\EventDispatcher\\ListenerProviderInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/event-dispatcher/src/ListenerProviderInterface.php',
+        'ShopMagicVendor\\Psr\\EventDispatcher\\StoppableEventInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/event-dispatcher/src/StoppableEventInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Client\\ClientExceptionInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-client/src/ClientExceptionInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Client\\ClientInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-client/src/ClientInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Client\\NetworkExceptionInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-client/src/NetworkExceptionInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Client\\RequestExceptionInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-client/src/RequestExceptionInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Message\\MessageInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-message/src/MessageInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Message\\RequestFactoryInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-factory/src/RequestFactoryInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Message\\RequestInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-message/src/RequestInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Message\\ResponseFactoryInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-factory/src/ResponseFactoryInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Message\\ResponseInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-message/src/ResponseInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Message\\ServerRequestFactoryInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-factory/src/ServerRequestFactoryInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Message\\ServerRequestInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-message/src/ServerRequestInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Message\\StreamFactoryInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-factory/src/StreamFactoryInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Message\\StreamInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-message/src/StreamInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Message\\UploadedFileFactoryInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-factory/src/UploadedFileFactoryInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Message\\UploadedFileInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-message/src/UploadedFileInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Message\\UriFactoryInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-factory/src/UriFactoryInterface.php',
+        'ShopMagicVendor\\Psr\\Http\\Message\\UriInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/http-message/src/UriInterface.php',
+        'ShopMagicVendor\\Psr\\Log\\AbstractLogger' => __DIR__ . '/../..' . '/vendor_prefixed/psr/log/Psr/Log/AbstractLogger.php',
+        'ShopMagicVendor\\Psr\\Log\\InvalidArgumentException' => __DIR__ . '/../..' . '/vendor_prefixed/psr/log/Psr/Log/InvalidArgumentException.php',
+        'ShopMagicVendor\\Psr\\Log\\LogLevel' => __DIR__ . '/../..' . '/vendor_prefixed/psr/log/Psr/Log/LogLevel.php',
+        'ShopMagicVendor\\Psr\\Log\\LoggerAwareInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/log/Psr/Log/LoggerAwareInterface.php',
+        'ShopMagicVendor\\Psr\\Log\\LoggerAwareTrait' => __DIR__ . '/../..' . '/vendor_prefixed/psr/log/Psr/Log/LoggerAwareTrait.php',
+        'ShopMagicVendor\\Psr\\Log\\LoggerInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/log/Psr/Log/LoggerInterface.php',
+        'ShopMagicVendor\\Psr\\Log\\LoggerTrait' => __DIR__ . '/../..' . '/vendor_prefixed/psr/log/Psr/Log/LoggerTrait.php',
+        'ShopMagicVendor\\Psr\\Log\\NullLogger' => __DIR__ . '/../..' . '/vendor_prefixed/psr/log/Psr/Log/NullLogger.php',
+        'ShopMagicVendor\\Psr\\Log\\Test\\DummyTest' => __DIR__ . '/../..' . '/vendor_prefixed/psr/log/Psr/Log/Test/DummyTest.php',
+        'ShopMagicVendor\\Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/../..' . '/vendor_prefixed/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'ShopMagicVendor\\Psr\\Log\\Test\\TestLogger' => __DIR__ . '/../..' . '/vendor_prefixed/psr/log/Psr/Log/Test/TestLogger.php',
+        'ShopMagicVendor\\Psr\\SimpleCache\\CacheException' => __DIR__ . '/../..' . '/vendor_prefixed/psr/simple-cache/src/CacheException.php',
+        'ShopMagicVendor\\Psr\\SimpleCache\\CacheInterface' => __DIR__ . '/../..' . '/vendor_prefixed/psr/simple-cache/src/CacheInterface.php',
+        'ShopMagicVendor\\Psr\\SimpleCache\\InvalidArgumentException' => __DIR__ . '/../..' . '/vendor_prefixed/psr/simple-cache/src/InvalidArgumentException.php',
         'ShopMagicVendor\\Ramsey\\Collection\\AbstractArray' => __DIR__ . '/../..' . '/vendor_prefixed/ramsey/collection/src/AbstractArray.php',
         'ShopMagicVendor\\Ramsey\\Collection\\AbstractCollection' => __DIR__ . '/../..' . '/vendor_prefixed/ramsey/collection/src/AbstractCollection.php',
         'ShopMagicVendor\\Ramsey\\Collection\\AbstractSet' => __DIR__ . '/../..' . '/vendor_prefixed/ramsey/collection/src/AbstractSet.php',
@@ -743,6 +754,7 @@ class ComposerStaticInitafc8742ceb4d23457502f143e34c9716
         'WPDesk\\ShopMagic\\Admin\\Welcome\\Welcome' => __DIR__ . '/../..' . '/src/Admin/Welcome/Welcome.php',
         'WPDesk\\ShopMagic\\Api\\Controller\\AutomationController' => __DIR__ . '/../..' . '/src/Api/Controller/AutomationController.php',
         'WPDesk\\ShopMagic\\Api\\Controller\\CustomerController' => __DIR__ . '/../..' . '/src/Api/Controller/CustomerController.php',
+        'WPDesk\\ShopMagic\\Api\\Controller\\LogController' => __DIR__ . '/../..' . '/src/Api/Controller/LogController.php',
         'WPDesk\\ShopMagic\\Api\\Controller\\MailTrackingController' => __DIR__ . '/../..' . '/src/Api/Controller/MailTrackingController.php',
         'WPDesk\\ShopMagic\\Api\\Controller\\MarketingListsController' => __DIR__ . '/../..' . '/src/Api/Controller/MarketingListsController.php',
         'WPDesk\\ShopMagic\\Api\\Controller\\OutcomesController' => __DIR__ . '/../..' . '/src/Api/Controller/OutcomesController.php',
@@ -914,7 +926,6 @@ class ComposerStaticInitafc8742ceb4d23457502f143e34c9716
         'WPDesk\\ShopMagic\\Helper\\PostMetaBag' => __DIR__ . '/../..' . '/src/Helper/PostMetaBag.php',
         'WPDesk\\ShopMagic\\Helper\\PostMetaContainer' => __DIR__ . '/../..' . '/src/Helper/PostMetaContainer.php',
         'WPDesk\\ShopMagic\\Helper\\RestRequestUtil' => __DIR__ . '/../..' . '/src/Helper/RestRequestUtil.php',
-        'WPDesk\\ShopMagic\\Helper\\Sql' => __DIR__ . '/../..' . '/src/Helper/Sql.php',
         'WPDesk\\ShopMagic\\Helper\\StableSort' => __DIR__ . '/../..' . '/src/Helper/StableSort.php',
         'WPDesk\\ShopMagic\\Helper\\TemplateResolver' => __DIR__ . '/../..' . '/src/Helper/TemplateResolver.php',
         'WPDesk\\ShopMagic\\Helper\\WooCommerceCookies' => __DIR__ . '/../..' . '/src/Helper/WooCommerceCookies.php',
@@ -1010,6 +1021,7 @@ class ComposerStaticInitafc8742ceb4d23457502f143e34c9716
         'WPDesk\\ShopMagic\\Workflow\\ActionExecution\\ExecuteQueueScheduled' => __DIR__ . '/../..' . '/src/Workflow/ActionExecution/ExecuteQueueScheduled.php',
         'WPDesk\\ShopMagic\\Workflow\\ActionExecution\\ExecutionCreator\\ExecutionCreator' => __DIR__ . '/../..' . '/src/Workflow/ActionExecution/ExecutionCreator/ExecutionCreator.php',
         'WPDesk\\ShopMagic\\Workflow\\ActionExecution\\ExecutionCreator\\ExecutionCreatorContainer' => __DIR__ . '/../..' . '/src/Workflow/ActionExecution/ExecutionCreator/ExecutionCreatorContainer.php',
+        'WPDesk\\ShopMagic\\Workflow\\ActionExecution\\ExecutionCreator\\FailingDelayExecution' => __DIR__ . '/../..' . '/src/Workflow/ActionExecution/ExecutionCreator/FailingDelayExecution.php',
         'WPDesk\\ShopMagic\\Workflow\\ActionExecution\\ExecutionCreator\\QueueExecutionCreator' => __DIR__ . '/../..' . '/src/Workflow/ActionExecution/ExecutionCreator/QueueExecutionCreator.php',
         'WPDesk\\ShopMagic\\Workflow\\ActionExecution\\ExecutionStrategy' => __DIR__ . '/../..' . '/src/Workflow/ActionExecution/ExecutionStrategy.php',
         'WPDesk\\ShopMagic\\Workflow\\ActionExecution\\QueueActionRunner' => __DIR__ . '/../..' . '/src/Workflow/ActionExecution/QueueActionRunner.php',
@@ -1158,6 +1170,7 @@ class ComposerStaticInitafc8742ceb4d23457502f143e34c9716
         'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderBillingFirstName' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderBillingFirstName.php',
         'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderBillingFormattedAddress' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderBillingFormattedAddress.php',
         'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderBillingLastName' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderBillingLastName.php',
+        'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderBillingPhone' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderBillingPhone.php',
         'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderBillingPostCode' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderBillingPostCode.php',
         'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderBillingState' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderBillingState.php',
         'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderCrossSells' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderCrossSells.php',
@@ -1187,6 +1200,7 @@ class ComposerStaticInitafc8742ceb4d23457502f143e34c9716
         'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderShippingFormattedAddress' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderShippingFormattedAddress.php',
         'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderShippingLastName' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderShippingLastName.php',
         'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderShippingMethod' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderShippingMethod.php',
+        'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderShippingPhone' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderShippingPhone.php',
         'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderShippingPostCode' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderShippingPostCode.php',
         'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderShippingState' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderShippingState.php',
         'WPDesk\\ShopMagic\\Workflow\\Placeholder\\Builtin\\Order\\OrderTotal' => __DIR__ . '/../..' . '/src/Workflow/Placeholder/Builtin/Order/OrderTotal.php',
@@ -1214,8 +1228,10 @@ class ComposerStaticInitafc8742ceb4d23457502f143e34c9716
         'WPDesk\\ShopMagic\\Workflow\\Queue\\ActionSchedulerQueue' => __DIR__ . '/../..' . '/src/Workflow/Queue/ActionSchedulerQueue.php',
         'WPDesk\\ShopMagic\\Workflow\\Queue\\Queue' => __DIR__ . '/../..' . '/src/Workflow/Queue/Queue.php',
         'WPDesk\\ShopMagic\\Workflow\\Runner' => __DIR__ . '/../..' . '/src/Workflow/Runner.php',
+        'WPDesk\\ShopMagic\\Workflow\\Validator\\FailingLanguageValidator' => __DIR__ . '/../..' . '/src/Workflow/Validator/FailingLanguageValidator.php',
         'WPDesk\\ShopMagic\\Workflow\\Validator\\FiltersValidator' => __DIR__ . '/../..' . '/src/Workflow/Validator/FiltersValidator.php',
         'WPDesk\\ShopMagic\\Workflow\\Validator\\FullyConfiguredValidator' => __DIR__ . '/../..' . '/src/Workflow/Validator/FullyConfiguredValidator.php',
+        'WPDesk\\ShopMagic\\Workflow\\Validator\\NonExistingFilterFailure' => __DIR__ . '/../..' . '/src/Workflow/Validator/NonExistingFilterFailure.php',
         'WPDesk\\ShopMagic\\Workflow\\Validator\\WorkflowValidator' => __DIR__ . '/../..' . '/src/Workflow/Validator/WorkflowValidator.php',
         'WPDesk\\ShopMagic\\Workflow\\ValueNotFound' => __DIR__ . '/../..' . '/src/Workflow/ValueNotFound.php',
         'WPDesk\\ShopMagic\\Workflow\\Workflow' => __DIR__ . '/../..' . '/src/Workflow/Workflow.php',
@@ -1229,9 +1245,9 @@ class ComposerStaticInitafc8742ceb4d23457502f143e34c9716
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitafc8742ceb4d23457502f143e34c9716::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitafc8742ceb4d23457502f143e34c9716::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitafc8742ceb4d23457502f143e34c9716::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit39fb1bed2c28b80eb15dc3976c804a5d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit39fb1bed2c28b80eb15dc3976c804a5d::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit39fb1bed2c28b80eb15dc3976c804a5d::$classMap;
 
         }, null, ClassLoader::class);
     }

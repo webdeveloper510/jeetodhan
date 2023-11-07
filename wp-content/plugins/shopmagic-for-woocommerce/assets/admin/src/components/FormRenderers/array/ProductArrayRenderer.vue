@@ -10,25 +10,18 @@ import { useWpFetch } from "@/composables/useWpFetch";
 
 const props = defineProps(rendererProps<ControlElement>());
 
-const { controlWrapper, control, onChange } = useVanillaControl(
-  useJsonFormsControl(props)
-);
+const { controlWrapper, control, onChange } = useVanillaControl(useJsonFormsControl(props));
 
 const selectOptions = ref([]);
 const loading = ref(false);
 const initialized = ref(false);
 
 watchEffect(() => {
-  if (
-    Array.isArray(control.value.data) &&
-    control.value.data.length !== 0 &&
-    !initialized.value
-  ) {
+  if (Array.isArray(control.value.data) && control.value.data.length !== 0 && !initialized.value) {
     initialized.value = true;
     loading.value = true;
     useWpFetch(`/products?include=${control.value.data.join(",")}`)
       .get()
-      .json()
       .then(({ data }) => {
         selectOptions.value = data.value;
         loading.value = false;
@@ -46,14 +39,13 @@ const debouncedSearch = useDebounceFn(
     }
     useWpFetch(`/products/search?s=${query}`)
       .get()
-      .json()
       .then(({ data }) => {
         selectOptions.value = data.value;
         loading.value = false;
       });
   },
   350,
-  { maxWait: 5000 }
+  { maxWait: 5000 },
 );
 
 const showEmpty = ref(false);
@@ -91,7 +83,7 @@ const search = (query: string) => {
           {{
             __(
               "You must enter at least 3 characters to search for product.",
-              "shopmagic-for-woocommerce"
+              "shopmagic-for-woocommerce",
             )
           }}
         </NText>

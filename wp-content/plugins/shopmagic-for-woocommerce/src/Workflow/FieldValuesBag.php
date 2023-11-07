@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use ShopMagicVendor\WPDesk\Persistence\Adapter\ArrayContainer;
 use WPDesk\ShopMagic\Helper\ParameterBag;
 
@@ -40,7 +40,7 @@ class FieldValuesBag extends ParameterBag implements ContainerInterface {
 	public function get( $key, $default = null ) {
 		$value = parent::get( $key, $default );
 
-		if ( isset( $value ) ) {
+		if ( $this->has( $key ) ) {
 			return $value;
 		}
 

@@ -8,7 +8,6 @@ use ShopMagicVendor\WPDesk\View\Renderer\SimplePhpRenderer;
 use WPDesk\ShopMagic\FormField\Field\SelectField;
 use WPDesk\ShopMagic\Helper\TemplateResolver;
 
-
 /**
  * Enable placeholders to render template from file.
  */
@@ -21,8 +20,11 @@ final class TemplateRendererForPlaceholders {
 		$this->renderer = $renderer;
 	}
 
+	/**
+	 * @deprecated 3.0.16
+	 */
 	public static function with_template_dir( string $template_dir ): TemplateRendererForPlaceholders {
-		return new self( new SimplePhpRenderer( TemplateResolver::for_placeholder( $template_dir ) ) );
+		return new self( new SimplePhpRenderer( TemplateResolver::for_public( 'placeholder/' . $template_dir ) ) );
 	}
 
 	/** @return \ShopMagicVendor\WPDesk\Forms\Field[] */
@@ -51,10 +53,10 @@ final class TemplateRendererForPlaceholders {
 
 	/**
 	 * @param string|null $template Array key passed may be empty. If so, take first template.
-	 * @param array $array Data injected into template.
+	 * @param array $parameters Data injected into template.
 	 */
-	public function render( ?string $template, array $array ): string {
+	public function render( ?string $template, array $parameters ): string {
 		$template = $template ?? array_keys( $this->get_possible_templates() )[0];
-		return $this->renderer->render( $template, $array );
+		return $this->renderer->render( $template, $parameters );
 	}
 }

@@ -3,15 +3,15 @@
 Plugin Name: ShopMagic for WooCommerce
 Plugin URI: https://shopmagic.app/
 Description: Marketing Automation and Custom Email Designer for WooCommerce
-Version: 3.0.13
 Author: WP Desk
+Version: 4.2.1
 Author URI: https://shopmagic.app/
 Text Domain: shopmagic-for-woocommerce
 Domain Path: /lang/
 Requires at least: 5.0
-Tested up to: 6.2
+Tested up to: 6.3
 WC requires at least: 4.8
-WC tested up to: 7.6
+WC tested up to: 8.1
 Requires PHP: 7.2
 
 Copyright 2023 WP Desk Ltd.
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 /* THESE VARIABLES CAN BE CHANGED AUTOMATICALLY */
-$plugin_version = '3.0.13';
+$plugin_version = '4.2.1';
 
 if ( ! defined( 'SHOPMAGIC_VERSION' ) ) {
 	define( 'SHOPMAGIC_VERSION', $plugin_version );
@@ -54,7 +54,7 @@ $requirements = [
 	'wp'      => '5.0',
 ];
 
-require __DIR__ . '/vendor_prefixed/php-di/php-di/src/functions.php';
-require __DIR__ . '/vendor_prefixed/wpdesk/wp-plugin-flow-common/src/plugin-init-php52-free.php';
-require __DIR__ . '/vendor_prefixed/league/csv/src/functions.php';
 require __DIR__ . '/vendor/woocommerce/action-scheduler/action-scheduler.php';
+require __DIR__ . '/vendor_prefixed/wpdesk/wp-plugin-flow-common/src/plugin-init-php52-free.php';
+require __DIR__ . '/vendor_prefixed/php-di/php-di/src/functions.php';
+require __DIR__ . '/vendor_prefixed/league/csv/src/functions.php';

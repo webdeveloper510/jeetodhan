@@ -2,9 +2,9 @@
 
 namespace WPDesk\ShopMagic\Components\Routing;
 
-use Psr\Container\ContainerInterface;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareTrait;
 use WPDesk\ShopMagic\Components\Routing\Controller\ArgumentResolver;
 use WPDesk\ShopMagic\Components\Routing\Controller\ContainerControllerResolver;
 use WPDesk\ShopMagic\Components\Routing\Controller\ControllerResolver;
@@ -64,14 +64,8 @@ class RestRoutesRegistry implements LoggerAwareInterface {
 
 	public function hooks(): void {
 		$this->register_routes();
-		add_filter( 'rest_pre_serve_request', function (
-			bool $_,
-			\WP_REST_Response $response,
-			\WP_REST_Request $request,
-			\WP_REST_Server $server
-		) {
-			return $this->serve_request( $response, $request );
-		}, 10, 4 );
+		add_filter( 'rest_pre_dispatch', [ $this, 'set_language_from_header' ], 10, 3 );
+		add_filter( 'rest_pre_serve_request', [ $this, 'serve_request' ], 10, 3 );
 	}
 
 	private function register_routes(): void {
@@ -98,10 +92,19 @@ class RestRoutesRegistry implements LoggerAwareInterface {
 						// Additionally, think about displaying to user generic
 						// error message, to keep internals uncovered.
 						if ( $this->logger ) {
-							$this->logger->critical( $e->getMessage() );
+							$this->logger->critical(
+								'Controller `{controller}` failed to process request. Error message: {message}',
+								[
+									'controller' => get_class( $controller[0] ) . '::' . $controller[1],
+									'path'       => $route->path,
+									'message'    => $e->getMessage(),
+									'file'       => $e->getFile(),
+									'line'       => $e->getLine(),
+								]
+							);
 						}
 						return HttpProblemException::from_throwable( $e )
-						                           ->to_http_response();
+													->to_http_response();
 					}
 
 					if ( ! $response instanceof \WP_HTTP_Response ) {
@@ -124,10 +127,33 @@ class RestRoutesRegistry implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @return bool True if request have been served. False otherwise.
-	 *              Returning false will restore WordPress processing of REST route.
+	 * @template T of mixed
+	 *
+	 * @param T $result
+	 * @param \WP_REST_Request<mixed[]> $request
+	 *
+	 * @return T
 	 */
-	private function serve_request(
+	public function set_language_from_header(
+		$result,
+		\WP_REST_Server $server,
+		\WP_REST_Request $request
+	) {
+		if ( $lang = $request->get_header( 'Accept-Language' ) ) {
+			switch_to_locale( $lang );
+		}
+
+		return $result;
+	}
+
+	/**
+	 * @param bool $_ Unused. We either return own value or exit immediately, so we don't need to respect filter parameter.
+	 * @param \WP_REST_Request<mixed[]> $request
+	 *
+	 * @return bool True if request have been served. False otherwise. Returning false will restore WordPress processing of REST route.
+	 */
+	public function serve_request(
+		$_,
 		\WP_REST_Response $response,
 		\WP_REST_Request $request
 	): bool {
@@ -135,7 +161,6 @@ class RestRoutesRegistry implements LoggerAwareInterface {
 		if ( ! str_starts_with( $request->get_route(), '/shopmagic/' ) ) {
 			return false;
 		}
-
 
 		if (
 			'HEAD' === $request->get_method() ||
@@ -152,22 +177,21 @@ class RestRoutesRegistry implements LoggerAwareInterface {
 			$result = json_encode( $response->get_data(), JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
 		}
 
-		//$json_error_message = $this->get_json_last_error();
+		// $json_error_message = $this->get_json_last_error();
 		//
-		//if ( $json_error_message ) {
-		//	$this->set_status( 500 );
-		//	$json_error_obj = new WP_Error(
-		//		'rest_encode_error',
-		//		$json_error_message,
-		//		[ 'status' => 500 ]
-		//	);
+		// if ( $json_error_message ) {
+		// $this->set_status( 500 );
+		// $json_error_obj = new WP_Error(
+		// 'rest_encode_error',
+		// $json_error_message,
+		// [ 'status' => 500 ]
+		// );
 		//
-		//	$result = $this->error_to_response( $json_error_obj );
-		//	$result = wp_json_encode( $result->data );
-		//}
+		// $result = $this->error_to_response( $json_error_obj );
+		// $result = wp_json_encode( $result->data );
+		// }
 
-		echo $result;
+		echo $result; // phpcs:ignore WordPress.Security.EscapeOutput
 		die; // As response is served, quit immediately. Don't allow other hooks to run.
 	}
-
 }

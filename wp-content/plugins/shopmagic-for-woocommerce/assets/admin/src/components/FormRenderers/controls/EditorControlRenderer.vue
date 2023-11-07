@@ -17,8 +17,7 @@
         menu: {
           edit: {
             title: 'Edit',
-            items:
-              'undo redo | cut copy paste pastetext | selectall | searchreplace',
+            items: 'undo redo | cut copy paste pastetext | selectall | searchreplace',
           },
           view: {
             title: 'View',
@@ -37,13 +36,11 @@
           },
           tools: {
             title: 'Tools',
-            items:
-              'spellchecker spellcheckerlanguage | a11ycheck code wordcount',
+            items: 'spellchecker spellcheckerlanguage | a11ycheck code wordcount',
           },
           table: {
             title: 'Table',
-            items:
-              'inserttable | cell row column | advtablesort | tableprops deletetable',
+            items: 'inserttable | cell row column | advtablesort | tableprops deletetable',
           },
         },
         menubar: 'edit insert view format table tools',
@@ -78,16 +75,12 @@
 import Editor from "@tinymce/tinymce-vue";
 import type { ControlElement } from "@jsonforms/core";
 import { defineComponent } from "vue";
-import {
-  rendererProps,
-  type RendererProps,
-  useJsonFormsControl,
-} from "@jsonforms/vue";
+import { rendererProps, type RendererProps, useJsonFormsControl } from "@jsonforms/vue";
 import { useVanillaControl } from "../util";
 import FieldWrapper from "./FieldWrapper.vue";
 
 export default defineComponent({
-  name: "editor-control-renderer",
+  name: "EditorControlRenderer",
   components: {
     FieldWrapper,
     Editor,
@@ -107,11 +100,7 @@ export default defineComponent({
         multiple: false,
       });
       media.on("select", () => {
-        const { sizes, alt, url } = media
-          .state()
-          .get("selection")
-          .first()
-          .toJSON();
+        const { /* sizes ,*/ alt, url } = media.state().get("selection").first().toJSON();
         cb(url, { alt });
       });
 

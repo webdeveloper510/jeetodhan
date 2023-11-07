@@ -16,6 +16,10 @@ final class ProductId extends WooCommerceProductBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return (string) $this->get_product()->get_id();
+		if ( $this->resources->has( \WC_Product::class ) ) {
+			return (string) $this->resources->get( \WC_Product::class )->get_id();
+		}
+
+		return '';
 	}
 }

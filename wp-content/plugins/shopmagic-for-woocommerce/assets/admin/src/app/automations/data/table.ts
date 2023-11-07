@@ -1,15 +1,13 @@
 import type { DataTableColumns } from "naive-ui";
-import { NButton, NPopover, NSpace, NTag } from "naive-ui";
+import { NButton, NIcon, NPopover, NSpace, NTag } from "naive-ui";
 import type { AutomationData } from "@/types/automation";
 import { h } from "vue";
 import { RouterLink } from "vue-router";
-import { DownloadOutline, TrashOutline } from "@vicons/ionicons5";
-import { __ } from "@wordpress/i18n";
+import { DownloadOutline } from "@vicons/ionicons5";
+import { __ } from "@/plugins/i18n";
 import DuplicationMessage from "../components/DuplicationMessage.vue";
-import {
-  downloadAutomation,
-  removeAutomation,
-} from "@/app/automations/singleAutomation";
+import DeleteButtonWithNotification from "../components/DeleteButtonWithNotification.vue";
+import { downloadAutomation } from "@/app/automations/singleAutomation";
 import AutomationSubTable from "@/app/automations/components/AutomationSubTable.vue";
 
 export const automationTableColumns: DataTableColumns<AutomationData> = [
@@ -33,8 +31,9 @@ export const automationTableColumns: DataTableColumns<AutomationData> = [
       h(
         RouterLink,
         { to: { name: "automation", params: { id } } },
-        () => name || __("(Unnamed)", "shopmagic-for-woocommerce")
+        () => name || __("(Unnamed)", "shopmagic-for-woocommerce"),
       ),
+    sorter: (a, b) => a.name.localeCompare(b.name),
   },
   {
     key: "actionable",
@@ -44,9 +43,7 @@ export const automationTableColumns: DataTableColumns<AutomationData> = [
         h(DuplicationMessage, { id }),
         h(
           NPopover,
-          {
-            trigger: "hover",
-          },
+          { trigger: "hover" },
           {
             trigger: () =>
               h(
@@ -55,34 +52,22 @@ export const automationTableColumns: DataTableColumns<AutomationData> = [
                   tertiary: true,
                   type: "info",
                   size: "small",
-                  onClick: () => downloadAutomation(id),
+                  onClick: () => void downloadAutomation(id),
                 },
                 {
-                  icon: () => h(DownloadOutline),
-                }
+                  icon: () => h(NIcon, () => h(DownloadOutline)),
+                },
               ),
             default: () => __("Export", "shopmagic-for-woocommerce"),
-          }
+          },
         ),
         h(
           NPopover,
+          { trigger: "hover" },
           {
-            trigger: "hover",
-          },
-          {
-            trigger: () =>
-              h(
-                NButton,
-                {
-                  tertiary: true,
-                  type: "error",
-                  size: "small",
-                  onClick: () => removeAutomation(id),
-                },
-                { icon: () => h(TrashOutline) }
-              ),
+            trigger: () => h(DeleteButtonWithNotification, { id }),
             default: () => __("Delete", "shopmagic-for-woocommerce"),
-          }
+          },
         ),
       ]),
   },
@@ -125,7 +110,7 @@ export const automationTableColumns: DataTableColumns<AutomationData> = [
               return __("unknown", "shopmagic-for-woocommerce");
             }
           },
-        }
+        },
       ),
   },
 ];

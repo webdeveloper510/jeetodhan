@@ -3,34 +3,22 @@ import EventsPicker from "../components/EventsPicker.vue";
 import ActionEditor from "../components/ActionEditor.vue";
 import EditGroup from "../components/EditGroup.vue";
 import AutomationSidebar from "../components/AutomationSidebar.vue";
-import {
-  NLayout,
-  NLayoutContent,
-  NLayoutHeader,
-  NLayoutSider,
-  useMessage,
-} from "naive-ui";
+import { NLayout, NLayoutContent, NLayoutHeader, NLayoutSider, useMessage } from "naive-ui";
 import FilterEditor from "../components/FilterEditor.vue";
+import NotificationMessage from "@/components/NotificationMessage.vue";
 import { useAutomationResourcesStore } from "../resourceStore";
 import { storeToRefs } from "pinia";
 import { useSingleAutomation } from "../singleAutomation";
 import { onBeforeRouteLeave, useRoute, useRouter } from "vue-router";
 import EditBar from "@/components/EditBar.vue";
-import { __ } from "@wordpress/i18n";
+import { __ } from "@/plugins/i18n";
 import { h } from "vue";
 
 const message = useMessage();
 
 const { events } = storeToRefs(useAutomationResourcesStore());
 
-const {
-  get,
-  save,
-  update,
-  remove,
-  addAutomation,
-  $patch: patchAutomation,
-} = useSingleAutomation();
+const { get, save, update, remove, addAutomation, $patch: patchAutomation } = useSingleAutomation();
 const { automation } = storeToRefs(useSingleAutomation());
 
 onBeforeRouteLeave(() => {
@@ -49,12 +37,10 @@ if (route.params.id === "new" && automation.value === null) {
 }
 
 async function saveAutomation() {
-  const m = message.loading(
-    __("Saving automation", "shopmagic-for-woocommerce"),
-    {
-      duration: 0,
-    }
-  );
+  const m = message.loading(__("Saving automation", "shopmagic-for-woocommerce"), {
+    duration: 0,
+    keepAliveOnHover: true,
+  });
   try {
     if (!isNaN(parseInt(route.params.id))) {
       await update();
@@ -69,17 +55,19 @@ async function saveAutomation() {
         });
       }
     }
-    m.content = __("Automation saved", "shopmagic-for-woocommerce");
+    m.content = () =>
+      h(NotificationMessage, { title: __("Automation saved", "shopmagic-for-woocommerce") });
     m.type = "success";
   } catch (e) {
-    let message = e.message;
-    if (e.cause) {
-      message = () => h("div", {}, e.cause.replace("\\n", "\n"));
-    }
-    m.content = message;
+    m.content = () =>
+      h(NotificationMessage, {
+        title: e.message,
+        message: typeof e.cause === "string" ? e.cause : undefined,
+      });
     m.type = "error";
   } finally {
-    setTimeout(m.destroy, 3500);
+    m.closable = true;
+    setTimeout(m.destroy, 4500);
   }
 }
 
@@ -116,13 +104,31 @@ function updateParent(value: string) {
   });
 }
 
-function deleteAutomation() {
+async function deleteAutomation() {
+  const m = message.loading(__("Deleting automation", "shopmagic-for-woocommerce"), {
+    duration: 0,
+    keepAliveOnHover: true,
+  });
   if (automation.value?.id) {
-    remove(automation.value.id).then(() => {
+    try {
+      await remove(automation.value.id);
       router.push({
         name: "automations",
       });
-    });
+      m.content = () =>
+        h(NotificationMessage, { title: __("Automation removed", "shopmagic-for-woocommerce") });
+      m.type = "success";
+    } catch (e) {
+      m.content = () =>
+        h(NotificationMessage, {
+          title: e.message,
+          message: typeof e.cause === "string" ? e.cause : undefined,
+        });
+      m.type = "error";
+    } finally {
+      m.closable = true;
+      setTimeout(m.destroy, 4500);
+    }
   }
 }
 </script>
@@ -131,9 +137,7 @@ function deleteAutomation() {
     <NLayoutHeader bordered class="drop-shadow-lg py-3 px-4">
       <EditBar
         :name="automation?.name"
-        :name-placeholder="
-          __('My awesome automation', 'shopmagic-for-woocommerce')
-        "
+        :name-placeholder="__('My awesome automation', 'shopmagic-for-woocommerce')"
         :publish="automation?.status === 'publish'"
         @save="saveAutomation"
         @update:publish="updatePublish"

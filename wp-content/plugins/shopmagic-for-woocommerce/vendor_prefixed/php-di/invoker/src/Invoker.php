@@ -10,7 +10,7 @@ use ShopMagicVendor\Invoker\ParameterResolver\NumericArrayResolver;
 use ShopMagicVendor\Invoker\ParameterResolver\ParameterResolver;
 use ShopMagicVendor\Invoker\ParameterResolver\ResolverChain;
 use ShopMagicVendor\Invoker\Reflection\CallableReflection;
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 /**
  * Invoke a callable.
  *

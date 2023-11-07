@@ -59,7 +59,7 @@ html,body {
     width: 100%; 
 }
 body{
-  font-family: 'Poppins';
+  font-family: 'Roboto';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden; 
@@ -10936,7 +10936,7 @@ button.vc_btn{
 
 /* 26. FALLBACK CSS */
 #navbar .menu-item > a {
-    font-family: "Poppins";
+    font-family: "Roboto";
     font-weight: 600;
 }
 .single article .article-content p {
@@ -10960,7 +10960,7 @@ td,
 dt,
 dd,
 address{
-     font-family: Poppins;
+     font-family: Roboto;
 }
  h1, h1 span {
      font-family: "Jost";
@@ -10989,10 +10989,10 @@ address{
      font-size: 20px;
 }
  input, textarea {
-     font-family: Poppins;
+     font-family: Roboto;
 }
  input[type="submit"] {
-     font-family: Poppins;
+     font-family: Roboto;
 }
  @media only screen and (max-width: 767px) {
      body h1, body h1 span{
@@ -12008,4 +12008,15 @@ body #wcfm-main-content {
 .wcfm-dashboard-page .pomana-field-lottery_multiple_winner_per_user {
     margin-top: 35px;
 }
+
+@font-face {
+    font-family: 'EA Font';
+    src: url('/public_html/lottery/wp-content/themes/pomana/css') format('woff2'),
+        url('/public_html/lottery/wp-content/themes/pomana/css') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {font-family: 'Roboto' !important;}
 

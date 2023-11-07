@@ -60,4 +60,12 @@ class GuestManager extends \WPDesk\ShopMagic\Components\Database\Abstraction\Obj
 	protected function get_name(): string {
 		return DatabaseTable::guest();
 	}
+
+	/**
+	 * Guest has two types of ID: public and private, and here we need
+	 * the private one, without safe prefix.
+	 */
+	protected function get_primary_key_from_object( object $item ): array {
+		return [ 'id' => $item->get_raw_id() ];
+	}
 }

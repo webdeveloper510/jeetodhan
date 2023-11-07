@@ -1,12 +1,5 @@
 <script lang="ts" setup>
-import {
-  NButton,
-  NCollapse,
-  NCollapseItem,
-  NFormItem,
-  NInput,
-  NSwitch,
-} from "naive-ui";
+import { NButton, NCollapse, NCollapseItem, NFormItem, NInput, NSwitch } from "naive-ui";
 import PlaceholdersSearch from "./PlaceholdersSearch.vue";
 import HelpSearch from "@/app/automations/components/HelpSearch.vue";
 import { inject, ref, toRef, watch } from "vue";
@@ -35,11 +28,12 @@ watch(
         parentAutomationRef.value = a;
       });
     }
-  }
+  },
 );
 
 defineEmits<{
   (e: "save"): void;
+  (e: "delete"): void;
   (e: "update:name", value: string): void;
   (e: "update:publish", value: boolean): void;
   (e: "update:language", value: string): void;
@@ -47,15 +41,8 @@ defineEmits<{
 }>();
 </script>
 <template>
-  <NCollapse
-    accordion
-    class="max-w-[264px] pt-2 px-2"
-    default-expanded-names="placeholders"
-  >
-    <NCollapseItem
-      :title="__('Placeholders', 'shopmagic-for-woocommerce')"
-      name="placeholders"
-    >
+  <NCollapse accordion class="max-w-[264px] pt-2 px-2" default-expanded-names="placeholders">
+    <NCollapseItem :title="__('Placeholders', 'shopmagic-for-woocommerce')" name="placeholders">
       <PlaceholdersSearch />
     </NCollapseItem>
     <NCollapseItem :title="__('Guide', 'shopmagic-for-woocommerce')">
@@ -66,10 +53,7 @@ defineEmits<{
         :label="__('Automation published', 'shopmagic-for-woocommerce')"
         label-placement="left"
       >
-        <NSwitch
-          :value="publish"
-          @update:value="$emit('update:publish', $event)"
-        />
+        <NSwitch :value="publish" @update:value="$emit('update:publish', $event)" />
       </NFormItem>
       <NFormItem :label="__('Title', 'shopmagic-for-woocommerce')">
         <NInput
@@ -89,9 +73,7 @@ defineEmits<{
       </NFormItem>
       <NFormItem
         v-if="modules.includes('multilingual-module')"
-        :label="
-          __('Set a parent for this automation', 'shopmagic-for-woocommerce')
-        "
+        :label="__('Set a parent for this automation', 'shopmagic-for-woocommerce')"
       >
         <AutomationSearch
           :default-options="

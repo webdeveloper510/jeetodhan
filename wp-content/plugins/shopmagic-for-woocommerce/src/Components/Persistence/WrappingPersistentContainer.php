@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Components\Persistence;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use ShopMagicVendor\WPDesk\Persistence\ElementNotExistsException;
 use ShopMagicVendor\WPDesk\Persistence\PersistentContainer;
 

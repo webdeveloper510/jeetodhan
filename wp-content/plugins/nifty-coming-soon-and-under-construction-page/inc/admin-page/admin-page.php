@@ -28,12 +28,12 @@ add_action(
 			array(
 				array(
 					'text' => 'View Details',
-					'url'  => 'https://wpconcern.com/plugins/nifty-coming-soon-and-under-construction-page/',
+					'url'  => 'https://wphait.com/plugins/nifty-coming-soon-and-under-construction-page/',
 					'type' => 'primary',
 				),
 				array(
 					'text' => 'View Demo',
-					'url'  => 'https://ncsucp.wpconcern.net/free/',
+					'url'  => 'https://dandure.com/ncsucp/free/',
 					'type' => 'secondary',
 				),
 				array(
@@ -72,7 +72,7 @@ add_action(
 						'icon'        => 'dashicons dashicons-admin-page',
 						'description' => 'Please check the plugin documentation for detailed information on how to setup and customize it.',
 						'button_text' => 'Documentation',
-						'button_url'  => 'https://wpconcern.com/documentation/nifty-coming-soon-and-under-construction-page/',
+						'button_url'  => 'https://dandure.com/documentation/nifty-coming-soon-and-under-construction-page/',
 						'button_type' => 'secondary',
 						'is_new_tab'  => true,
 					),
@@ -81,7 +81,7 @@ add_action(
 						'icon'        => 'dashicons dashicons-desktop',
 						'description' => 'Several premade themes are available in the premium version. You can check those out using following link.',
 						'button_text' => 'View Demos',
-						'button_url'  => 'https://ncsucp.wpconcern.net/',
+						'button_url'  => 'https://dandure.com/ncsucp',
 						'button_type' => 'secondary',
 						'is_new_tab'  => true,
 					),
@@ -125,10 +125,10 @@ add_action(
  *
  * @since 3.0.2
  *
- * @param Welcome $object Instance of Welcome class.
+ * @param Welcome $welcome_object Instance of Welcome class.
  */
-function nifty_cs_render_welcome_sidebar( $object ) {
-	$object->render_sidebar_box(
+function nifty_cs_render_welcome_sidebar( $welcome_object ) {
+	$welcome_object->render_sidebar_box(
 		array(
 			'title'        => 'Upgrade to Premium',
 			'content'      => 'Buy pro plugin for additional blocks and beautiful premade themes.',
@@ -137,26 +137,28 @@ function nifty_cs_render_welcome_sidebar( $object ) {
 			'button_url'   => NCSUCP_UPGRADE_URL,
 			'button_class' => 'button button-primary button-upgrade',
 		),
-		$object
+		$welcome_object
 	);
 
-	$object->render_sidebar_box(
+	$welcome_object->render_sidebar_box(
 		array(
 			'title'        => 'Leave a Review',
-			'content'      => $object->get_stars() . sprintf( 'Are you are enjoying %1$s? We would appreciate a review.', $object->get_name() ),
+			'content'      => $welcome_object->get_stars() . sprintf( 'Are you enjoying %1$s? We would appreciate a review.', $welcome_object->get_name() ),
 			'button_text'  => 'Submit Review',
 			'button_url'   => 'https://wordpress.org/support/plugin/nifty-coming-soon-and-under-construction-page/reviews/#new-post',
 			'button_class' => 'button',
 		),
-		$object
+		$welcome_object
 	);
 
-	$object->render_sidebar_box(
+	$welcome_object->render_sidebar_box(
 		array(
 			'title'   => 'Our Plugins',
-			'content' => '<div class="wpc-plugins-list"></div>',
+			'content' => '<div class="wpc-plugins-list"><ol><li><a href="https://wphait.com/plugins/nifty-coming-soon-and-under-construction-page/" target="_blank">Coming Soon & Maintenance Mode Page</a></li>
+			<li><a href="https://wphait.com/plugins/post-grid-elementor-addon/" target="_blank">Post Grid Elementor Addon</a></li>
+			</ol></div>',
 		),
-		$object
+		$welcome_object
 	);
 }
 
@@ -216,67 +218,6 @@ function nifty_cs_load_admin_page_assets( $hook ) {
 	$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 	wp_enqueue_style( 'nifty-cs-admin-page', NCSUCP_URL . '/assets/css/admin-page' . $min . '.css', array(), NCSUCP_VERSION );
-	wp_enqueue_script( 'nifty-cs-plugins-list', NCSUCP_URL . '/assets/js/plugins-list' . $min . '.js', array( 'jquery' ), NCSUCP_VERSION, true );
 }
 
 add_action( 'admin_enqueue_scripts', 'nifty_cs_load_admin_page_assets' );
-
-/**
- * AJAX callback for plugins list.
- *
- * @since 3.0.1
- */
-function nifty_cs_ajax_callback_plugins_list() {
-	$output = array();
-
-	$posts = nifty_cs_get_plugins_list();
-
-	if ( ! empty( $posts ) ) {
-		$output = $posts;
-	}
-
-	if ( ! empty( $output ) ) {
-		wp_send_json_success( $output, 200 );
-	} else {
-		wp_send_json_error( $output, 404 );
-	}
-}
-
-add_action( 'wp_ajax_nopriv_wpc_ncsucp_get_plugins_list', 'nifty_cs_ajax_callback_plugins_list' );
-add_action( 'wp_ajax_wpc_ncsucp_get_plugins_list', 'nifty_cs_ajax_callback_plugins_list' );
-
-/**
- * Return plugins list.
- *
- * @since 3.0.1
- *
- * @return array Plugins list array.
- */
-function nifty_cs_get_plugins_list() {
-	$transient_key = 'wpc_ncsucp_plugins_list';
-
-	$transient_period = 7 * DAY_IN_SECONDS;
-
-	$output = get_transient( $transient_key );
-
-	if ( false === $output ) {
-		$output = array();
-
-		$request = wp_safe_remote_get( 'https://wpconcern.com/wpc-api/plugins-list' );
-
-		if ( is_wp_error( $request ) ) {
-				return $output;
-		}
-
-		$body = wp_remote_retrieve_body( $request );
-		$json = json_decode( $body, true );
-
-		if ( isset( $json['plugins'] ) && ! empty( $json['plugins'] ) ) {
-			$output = $json['plugins'];
-		}
-
-		set_transient( $transient_key, $output, $transient_period );
-	}
-
-	return $output;
-}

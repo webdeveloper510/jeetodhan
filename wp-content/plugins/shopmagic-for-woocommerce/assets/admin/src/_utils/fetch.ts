@@ -4,7 +4,7 @@ import { useWpFetch } from "@/composables/useWpFetch";
 
 type MaybeRef<T> = Ref<T> | T;
 
-export function get<T>(url: MaybeRef<string>): Promise<T> {
+export async function get<T>(url: MaybeRef<string>): Promise<T> {
   const { data, error } = useWpFetch<T>(url).json();
   if (error.value) {
     throw new Error(error.value);

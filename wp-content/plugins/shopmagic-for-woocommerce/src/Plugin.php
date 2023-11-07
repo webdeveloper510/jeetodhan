@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use ShopMagicVendor\DI\ContainerBuilder;
 use ShopMagicVendor\WPDesk\Migrations\Migrator;
 use ShopMagicVendor\WPDesk\PluginBuilder\Plugin\AbstractPlugin;
@@ -46,6 +46,7 @@ use WPDesk\ShopMagic\Workflow\Filter\ComparisonType\ComparisonType;
 use WPDesk\ShopMagic\Workflow\Filter\Filter;
 use WPDesk\ShopMagic\Workflow\Placeholder\Placeholder;
 use WPDesk\ShopMagic\Workflow\Queue\Queue;
+use WPDesk\ShopMagic\Workflow\Validator\FailingLanguageValidator;
 use WPDesk\ShopMagic\Workflow\WorkflowInitializer;
 
 /**
@@ -67,12 +68,14 @@ final class Plugin extends AbstractPlugin implements HookableCollection, Activat
 		'shopmagic-woocommerce-subscriptions/shopmagic-woocommerce-subscriptions.php',
 	];
 
+	/** @var array<int, class-string<Module>> */
 	private const MODULES = [
 		MultilingualModule::class,
 	];
 
 	/** @var WPDesk_Plugin_Info */
 	protected $plugin_info;
+
 	/** @var ContainerInterface */
 	private $container;
 
@@ -233,7 +236,7 @@ final class Plugin extends AbstractPlugin implements HookableCollection, Activat
 				}
 
 				$this->container->get( BackgroundOrderInterceptor::class )
-				                ->start_guest_extraction_if_needed();
+						->start_guest_extraction_if_needed();
 			}
 		);
 
@@ -255,6 +258,12 @@ final class Plugin extends AbstractPlugin implements HookableCollection, Activat
 				$extensions_set = $this->container->get( ExtensionsSet::class );
 				$this->register_extensions( $extensions_set );
 
+				// FIXME: this should belong to services definition as
+				// it is the default behavior, but due to stateful
+				// nature of WorkflowValidator we have to do this as
+				// a trick, until fixed.
+				$this->container->get( WorkflowInitializer::class )->add_validator( $this->container->get( FailingLanguageValidator::class ) );
+
 				/**
 				 * If you want to write an integration with ShopMagic you should use this action.
 				 * This action is executed when the ShopMagic core is ready to be used and provides a ExternalPluginsAccess object to facilitate integration.
@@ -267,6 +276,9 @@ final class Plugin extends AbstractPlugin implements HookableCollection, Activat
 					'shopmagic/core/initialized/v2',
 					$this->container->get( ExternalPluginsAccess::class )
 				);
+
+				$resolver = $this->container->get( TemplateResolver::class );
+				$resolver->add_resolver( $this->container->get( 'resolver.default' ) );
 
 				$extensions_set->init_extensions();
 
@@ -285,7 +297,7 @@ final class Plugin extends AbstractPlugin implements HookableCollection, Activat
 				);
 
 				$automations = $this->container->get( WorkflowInitializer::class )
-				                               ->initialize_active_automations();
+						->initialize_active_automations();
 
 				if ( is_admin() ) {
 					// FIXME: This should land in DI container. BTW, it doesn't work either, as
@@ -332,7 +344,7 @@ final class Plugin extends AbstractPlugin implements HookableCollection, Activat
 		$extensions->add_extension( new StagingExtension() );
 	}
 
-	private function register_public_routes() {
+	private function register_public_routes(): void {
 		$routes   = require $this->plugin_info->get_plugin_dir() . '/config/routes/public.php';
 		$registry = $this->container->get( WpRoutesRegistry::class );
 		$routes( $this->container->get( 'routesConfigurator.public' ) );
@@ -351,23 +363,23 @@ final class Plugin extends AbstractPlugin implements HookableCollection, Activat
 		$plugin_links = [];
 
 		$plugin_links[] = '<a href="' . admin_url( 'admin.php?page=shopmagic-admin#/settings' ) . '">' . __(
-				'Settings',
-				'shopmagic-for-woocommerce'
-			) . '</a>';
+			'Settings',
+			'shopmagic-for-woocommerce'
+		) . '</a>';
 		$plugin_links[] = '<a href="https://shopmagic.app/docs/" target="_blank">' . __(
-				'Docs',
-				'shopmagic-for-woocommerce'
-			) . '</a>';
+			'Docs',
+			'shopmagic-for-woocommerce'
+		) . '</a>';
 		$plugin_links[] = '<a href="https://wordpress.org/support/plugin/shopmagic-for-woocommerce/" target="_blank">' . __(
-				'Support',
-				'shopmagic-for-woocommerce'
-			) . '</a>';
+			'Support',
+			'shopmagic-for-woocommerce'
+		) . '</a>';
 
 		if ( ! $this->is_pro_active() ) {
 			$plugin_links[] = '<a href="https://shopmagic.app/pricing/?utm_source=user-site&utm_medium=quick-link&utm_campaign=shopmagic-upgrade" target="_blank" style="color:#d64e07;font-weight:bold;">' . __(
-					'Buy PRO',
-					'shopmagic-for-woocommerce'
-				) . '</a>';
+				'Buy PRO',
+				'shopmagic-for-woocommerce'
+			) . '</a>';
 		}
 
 		return array_merge( $plugin_links, $links );
@@ -396,9 +408,9 @@ final class Plugin extends AbstractPlugin implements HookableCollection, Activat
 
 		// Compilation is disabled for now because new implementation of modules requires us to.
 		// We cannot compile container ahead as modules are conditionally included.
-// 		if ( ! getenv( 'DEVELOPMENT' ) ) {
-// 			$builder->enableCompilation( __DIR__ . '/../cache' );
-// 		}
+		// if ( ! getenv( 'DEVELOPMENT' ) ) {
+		// $builder->enableCompilation( __DIR__ . '/../cache' );
+		// }
 
 		$this->prepare_container( $builder );
 

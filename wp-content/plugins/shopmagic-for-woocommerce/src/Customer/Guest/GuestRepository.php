@@ -36,7 +36,7 @@ class GuestRepository extends ObjectRepository {
 	public function find_one_by( array $criteria, ?array $order = null ): object {
 		/** @var Guest $guest */
 		$guest = parent::find_one_by( $criteria, $order );
-		$guest->set_meta( $this->meta_repository->find_by( [ 'guest_id' => $guest->get_id() ] ) );
+		$guest->set_meta( $this->meta_repository->find_by( [ 'guest_id' => $guest->get_raw_id() ] ) );
 
 		return $guest;
 	}
@@ -47,7 +47,7 @@ class GuestRepository extends ObjectRepository {
 		return $guest_collection->map( function ( Guest $guest ) {
 			$guest->set_meta(
 				$this->meta_repository->find_by(
-					[ 'guest_id' => $guest->get_id() ]
+					[ 'guest_id' => $guest->get_raw_id() ]
 				)
 			);
 

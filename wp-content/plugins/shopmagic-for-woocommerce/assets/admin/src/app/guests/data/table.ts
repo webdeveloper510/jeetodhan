@@ -1,9 +1,9 @@
 import type { DataTableColumns } from "naive-ui";
 import GuestPreview from "../components/GuestPreview.vue";
 import type { Client } from "@/stores/clients";
-import { __ } from "@wordpress/i18n";
+import { __ } from "@/plugins/i18n";
 import { h } from "vue";
-import dayjs from "dayjs";
+import SimpleTime from "@/components/SimpleTime.vue";
 
 export const guestsTableColumns: DataTableColumns<Client> = [
   {
@@ -16,13 +16,12 @@ export const guestsTableColumns: DataTableColumns<Client> = [
   {
     key: "lastActive",
     title: __("Last active", "shopmagic-for-woocommerce"),
-    render: ({ lastActive }) =>
-      dayjs(lastActive).format("D MMM, YYYY HH:mm:ss"),
+    render: ({ lastActive }) => h(SimpleTime, { time: lastActive }),
   },
   {
     key: "created",
     title: __("Created", "shopmagic-for-woocommerce"),
-    render: ({ created }) => dayjs(created).format("D MMM, YYYY HH:mm:ss"),
+    render: ({ created }) => h(SimpleTime, { time: created }),
   },
   {
     key: "details",

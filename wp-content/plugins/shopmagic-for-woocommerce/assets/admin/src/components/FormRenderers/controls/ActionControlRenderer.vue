@@ -16,18 +16,14 @@
 import type { ControlElement } from "@jsonforms/core";
 import { NButton } from "naive-ui";
 import { defineComponent } from "vue";
-import {
-  rendererProps,
-  type RendererProps,
-  useJsonFormsControl,
-} from "@jsonforms/vue";
+import { rendererProps, type RendererProps, useJsonFormsControl } from "@jsonforms/vue";
 import { useVanillaControl } from "../util";
 import FieldWrapper from "./FieldWrapper.vue";
 import { fetchOptions } from "@/composables/useWpFetch";
 import { useFetch } from "@vueuse/core";
 
 export default defineComponent({
-  name: "action-control-renderer",
+  name: "ActionControlRenderer",
   components: {
     FieldWrapper,
     NButton,
@@ -36,16 +32,13 @@ export default defineComponent({
     ...rendererProps<ControlElement>(),
   },
   setup(props: RendererProps<ControlElement>) {
-    return useVanillaControl(
-      useJsonFormsControl(props),
-      (target) => target || undefined
-    );
+    return useVanillaControl(useJsonFormsControl(props), (target) => target || undefined);
   },
   methods: {
     callback() {
       const callbackUrl = this.control.schema.presentation.callback;
 
-      const { data, error } = useFetch(callbackUrl, {
+      useFetch(callbackUrl, {
         beforeFetch: ({ options }) => {
           options.headers = {
             ...options.headers,

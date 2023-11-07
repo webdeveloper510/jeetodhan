@@ -1,7 +1,7 @@
 <template>
   <control-wrapper
-    :appliedOptions="appliedOptions"
-    :isFocused="isFocused"
+    :applied-options="appliedOptions"
+    :is-focused="isFocused"
     :styles="styles"
     v-bind="controlWrapper"
   >
@@ -23,16 +23,12 @@
 <script lang="ts">
 import type { ControlElement } from "@jsonforms/core";
 import { defineComponent } from "vue";
-import {
-  rendererProps,
-  type RendererProps,
-  useJsonFormsControl,
-} from "@jsonforms/vue";
+import { rendererProps, type RendererProps, useJsonFormsControl } from "@jsonforms/vue";
 import { default as ControlWrapper } from "./ControlWrapper.vue";
 import { useVanillaControl } from "../util";
 
 export default defineComponent({
-  name: "date-control-renderer",
+  name: "DateControlRenderer",
   components: {
     ControlWrapper,
   },
@@ -40,10 +36,7 @@ export default defineComponent({
     ...rendererProps<ControlElement>(),
   },
   setup(props: RendererProps<ControlElement>) {
-    return useVanillaControl(
-      useJsonFormsControl(props),
-      (target) => target.value || undefined
-    );
+    return useVanillaControl(useJsonFormsControl(props), (target) => target.value || undefined);
   },
 });
 </script>

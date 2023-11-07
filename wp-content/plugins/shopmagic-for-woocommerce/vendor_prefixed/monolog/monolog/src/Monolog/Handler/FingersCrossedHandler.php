@@ -16,7 +16,7 @@ use ShopMagicVendor\Monolog\Handler\FingersCrossed\ActivationStrategyInterface;
 use ShopMagicVendor\Monolog\Logger;
 use ShopMagicVendor\Monolog\ResettableInterface;
 use ShopMagicVendor\Monolog\Formatter\FormatterInterface;
-use Psr\Log\LogLevel;
+use ShopMagicVendor\Psr\Log\LogLevel;
 /**
  * Buffers all records until a certain level is reached
  *

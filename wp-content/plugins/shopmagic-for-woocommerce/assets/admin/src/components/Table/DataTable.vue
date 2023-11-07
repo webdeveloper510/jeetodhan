@@ -4,7 +4,7 @@ import { computed, reactive, ref, unref, type VNodeChild, watch } from "vue";
 import type { Filters } from "@/composables/useFilter";
 import type { SortOptions } from "@/composables/useSorter";
 import type { Query, SortQuery } from "@/_utils";
-import { __, sprintf } from "@wordpress/i18n";
+import { __, sprintf } from "@/plugins/i18n";
 
 const emit = defineEmits<{
   (e: "update:data", query: Query): void;
@@ -27,6 +27,8 @@ const props = withDefaults(defineProps<TableProps>(), {
   showPagination: true,
   loading: false,
   totalCount: 0,
+  checkedRowKeys: () => [],
+  error: null
 });
 
 const pageSize = ref(20);
@@ -39,8 +41,7 @@ const pagination = reactive({
   pageCount: computed(() => (props.totalCount || 0) / pageSize.value),
   showSizePicker: true,
   pageSizes: [20, 60, 100],
-  prefix: ({ itemCount }) =>
-    sprintf(__("Total items %s", "shopmagic-for-woocommerce"), itemCount),
+  prefix: ({ itemCount }) => sprintf(__("Total items %s", "shopmagic-for-woocommerce"), itemCount),
 });
 
 const tableSorter = ref<SortQuery | null>(null);

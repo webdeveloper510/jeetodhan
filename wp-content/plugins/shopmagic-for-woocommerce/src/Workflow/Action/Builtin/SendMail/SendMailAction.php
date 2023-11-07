@@ -4,18 +4,34 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Action\Builtin\SendMail;
 
-use Psr\Container\NotFoundExceptionInterface;
+use ShopMagicVendor\WPDesk\View\Renderer\Renderer;
+use ShopMagicVendor\Psr\Container\NotFoundExceptionInterface;
 use WPDesk\ShopMagic\Admin\Form\Fields\ProItemInfoField;
+use WPDesk\ShopMagic\Components\Mailer\Mailer;
 use WPDesk\ShopMagic\FormField\Field\InputTextField;
 use WPDesk\ShopMagic\FormField\Field\SelectField;
 use WPDesk\ShopMagic\FormField\Field\WyswigField;
 use WPDesk\ShopMagic\Helper\WordPressPluggableHelper;
-
+use WPDesk\ShopMagic\Integration\Postmark;
+use WPDesk\ShopMagic\Marketing\Subscribers\PreferencesRoute;
 
 /**
  * Action to send emails.
  */
 final class SendMailAction extends AbstractSendMailAction {
+
+	/** @var Renderer */
+	private $renderer;
+
+	public function __construct(
+		Mailer $mailer,
+		PreferencesRoute $preferences_route,
+		Renderer $renderer,
+		?Postmark $postmark = null
+	) {
+		$this->renderer = $renderer;
+		parent::__construct( $mailer, $preferences_route, $postmark );
+	}
 
 	public function get_id(): string {
 		return 'shopmagic_sendemail_action';
@@ -48,9 +64,11 @@ final class SendMailAction extends AbstractSendMailAction {
 					$template_options
 				),
 		];
-		$time_dismissed   = get_user_meta( get_current_user_id(),
+		$time_dismissed   = get_user_meta(
+			get_current_user_id(),
 			'shopmagic_ignore_notice_' . self::NOTICE_NAME,
-			true );
+			true
+		);
 		$show_after       = ( $time_dismissed ) ? $time_dismissed + MONTH_IN_SECONDS : ''; // Will show again after 1 month.
 		if ( ( ! WordPressPluggableHelper::is_plugin_active( 'shopmagic-reviews/shopmagic-reviews.php' ) ) && ( time() > $show_after ) ) {
 			$product_link = ( get_locale() === 'pl_PL' )
@@ -113,7 +131,7 @@ final class SendMailAction extends AbstractSendMailAction {
 			} else {
 				$template_type = PlainMailTemplate::NAME;
 			}
-		} catch ( NotFoundExceptionInterface $notFoundException ) {
+		} catch ( NotFoundExceptionInterface $e ) {
 			$template_type = PlainMailTemplate::NAME;
 		}
 
@@ -123,8 +141,10 @@ final class SendMailAction extends AbstractSendMailAction {
 
 		if ( $template_type === PlainMailTemplate::NAME && $this->should_append_unsubscribe() ) {
 			$unsubscribe_url = $this->get_unsubscribe_url();
-			$message         .= sprintf( "<br /><br /><a href='%s'>", $unsubscribe_url ) . __( 'Click to unsubscribe',
-					'shopmagic-for-woocommerce' ) . '</a>';
+			$message        .= sprintf( "<br /><br /><a href='%s'>", $unsubscribe_url ) . __(
+				'Click to unsubscribe',
+				'shopmagic-for-woocommerce'
+			) . '</a>';
 		}
 
 		return $message;
@@ -143,7 +163,7 @@ final class SendMailAction extends AbstractSendMailAction {
 				: null;
 
 			/** @var string $heading */
-			return new WooCommerceMailTemplate( $heading, $unsubscribe_url );
+			return new WooCommerceMailTemplate( $heading, $unsubscribe_url, $this->renderer );
 		}
 
 		return new PlainMailTemplate();

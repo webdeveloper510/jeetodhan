@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow;
 
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use WPDesk\ShopMagic\Workflow\ActionExecution\ExecutionCreator\ExecutionCreator;
 use WPDesk\ShopMagic\Workflow\Automation\Automation;
 use WPDesk\ShopMagic\Workflow\Automation\AutomationRepository;
@@ -12,6 +12,7 @@ use WPDesk\ShopMagic\Workflow\Outcome\OutcomeManager;
 use WPDesk\ShopMagic\Workflow\Outcome\OutcomeSaver;
 use WPDesk\ShopMagic\Workflow\Validator\FiltersValidator;
 use WPDesk\ShopMagic\Workflow\Validator\FullyConfiguredValidator;
+use WPDesk\ShopMagic\Workflow\Validator\NonExistingFilterFailure;
 use WPDesk\ShopMagic\Workflow\Validator\WorkflowValidator;
 
 final class WorkflowInitializer {
@@ -53,6 +54,7 @@ final class WorkflowInitializer {
 
 		$this->validator
 			->push( new FullyConfiguredValidator() )
+			->push( new NonExistingFilterFailure( $this->logger ) )
 			->push( new FiltersValidator() );
 	}
 

@@ -6,15 +6,11 @@
 import type { ControlElement } from "@jsonforms/core";
 import { NText } from "naive-ui";
 import { defineComponent } from "vue";
-import {
-  rendererProps,
-  type RendererProps,
-  useJsonFormsControl,
-} from "@jsonforms/vue";
+import { rendererProps, type RendererProps, useJsonFormsControl } from "@jsonforms/vue";
 import { useVanillaControl } from "../util";
 
 export default defineComponent({
-  name: "text-control-renderer",
+  name: "TextControlRenderer",
   components: {
     NText,
   },
@@ -22,10 +18,7 @@ export default defineComponent({
     ...rendererProps<ControlElement>(),
   },
   setup(props: RendererProps<ControlElement>) {
-    return useVanillaControl(
-      useJsonFormsControl(props),
-      (target) => target || undefined
-    );
+    return useVanillaControl(useJsonFormsControl(props), (target) => target || undefined);
   },
 });
 </script>

@@ -4,9 +4,9 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Workflow\Action;
 
-use Psr\Container\ContainerInterface;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareTrait;
 use ShopMagicVendor\WPDesk\Forms\Field\InputTextField;
 use WPDesk\ShopMagic\DataSharing\DataReceiver;
 use WPDesk\ShopMagic\DataSharing\Traits\StandardWooCommerceDataProviderAccessors;

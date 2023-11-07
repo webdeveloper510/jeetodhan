@@ -7,17 +7,17 @@ import LocalStorageCache from "../../swrv/cache/adapters/localStorage";
 export default function <Data = unknown, Error = unknown>(
   url: IKey | Ref<string | false | null>,
   fn: fetcherFn<Data> = get,
-  config?: IConfig
+  config?: IConfig,
 ) {
   return useSWRV<Data, Error>(
     url,
     fn,
     Object.assign(
       {
-        revalidateOnFocus: true,
+        revalidateOnFocus: false,
       },
-      config ?? {}
-    )
+      config ?? {},
+    ),
   );
 }
 

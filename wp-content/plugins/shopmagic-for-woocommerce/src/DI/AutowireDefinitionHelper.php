@@ -4,8 +4,8 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\DI;
 
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use ShopMagicVendor\DI\Definition\Definition;
 use ShopMagicVendor\DI\Definition\ObjectDefinition\MethodInjection;
 

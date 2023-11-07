@@ -651,93 +651,6 @@ function woocommerce_add_to_cart_button_text_archives() {
     return __( 'Buy Tickets Now', 'woocommerce' );
 }
 
-// Add phone number field to registration form
-add_action( 'woocommerce_register_form', 'add_phone_number_to_registration_form' );
-function add_phone_number_to_registration_form() {
-    ?>
-    <style>
-        a#resendOtp {
-                    color: orange;
-                    text-decoration: underline;
-                }
-    </style>
-    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-        <label for="billing_phone"><?php _e( 'Phone Number', 'woocommerce' ); ?> <span class="required">*</span><span class="phoneee"></span></label>
-        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="billing_phone" id="billing_phone"  value="<?php if ( ! empty( $_POST['billing_phone'] ) ) esc_attr_e( $_POST['billing_phone'] ); ?>" />
-    </p>
-     <p class="woocommerce-form-row form-row">
-        	<button id="otpAjax" type="button" class="woocommerce-Button woocommerce-button button"><?php esc_html_e( 'Register', 'woocommerce' ); ?></button>
-        	<div id="sotpDiv"></div>
-    <div class="modal" id="registration-popup" tabindex="-1" role="dialog" style="display: none;">
-         <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Please enter the OTP sent to your number</h5>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <p>
-                        <label for="otp" class="col-form-label">OTP</label>
-                            <input class="form-control" type="text" name="otp" id="otp">
-                        </label>
-                        <span id="error-otp"></span>
-                    </p>
-                  </div>
-                  <div class="modal-footer">
-                      <div style="text-align: left;"><a href="Javascript:void(0)" id="resendOtp" >Resend Otp</a> </div>
-                         
-                    <button id="pop-up-submit" type="button" class="woocommerce-Button woocommerce-button button">Continue</button>
-                
-                    <button id="close-registration-popup" type="button" class="woocommerce-button button" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-        </div>
-    </div>
-     <script>
-    jQuery(document).ready(function($) {
-        $('.woocommerce-form-register__submit').css('display','none');
-    // Hide the pop-up when the close button is clicked
-    $('#close-registration-popup').click(function() {
-        $('#registration-popup').fadeOut();
-    });
-    
-            $('#pop-up-submit').click(function() {
-                  $('#error-otp').html('');
-                var enteredOtp = $('#otp').val();
-                var otp = $('#sOtp').val();
-
-                if(enteredOtp == otp)
-                {
-                    $('#registration-popup').fadeOut();
-                  // $('form #register').submit();
-                    $('.woocommerce-form-register__submit').prop('disabled',false).removeClass("disabled").trigger('click');
-                    //$('.register').trigger('submit_checkout');
-                     return false;
-                }
-                else if(enteredOtp == '')
-                {
-                    $('#error-otp').html('Please enter otp').css('color','red');
-                }
-                else if(enteredOtp != otp)
-                {
-                    $('#error-otp').html('Please enter correct otp').css('color','red');
-                }
-            });
-            
-});
-    </script>
-    <?php
-}
-
-
-
-// Save phone number to user meta data on registration
-add_action( 'woocommerce_created_customer', 'save_phone_number_to_user_meta_data' );
-function save_phone_number_to_user_meta_data( $customer_id ) {
-    if ( isset( $_POST['billing_phone'] ) ) {
-        update_user_meta( $customer_id, 'billing_phone', sanitize_text_field( $_POST['billing_phone'] ) );
-    }
-}
 add_filter( 'gettext', 'change_cart_totals_text', 20, 3 );
 function change_cart_totals_text( $translated, $text, $domain ) {
     if( is_cart() && $translated == 'Cart totals' ){
@@ -770,3 +683,18 @@ function action_cart_updated_quantity( $cart_updated_quantity ){
 
     // apply action with Your Quantity after updating cart.
  }
+add_filter( 'gettext', 'change_woocommerce_return_to_shop_text', 20, 3 );
+
+function change_woocommerce_return_to_shop_text( $translated_text, $text, $domain ) {
+
+        switch ( $translated_text ) {
+
+            case 'Return to shop' :
+
+                $translated_text = __( 'Return to Home', 'woocommerce' );
+                break;
+
+        }
+
+    return $translated_text;
+}

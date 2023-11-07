@@ -3,9 +3,9 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Admin\Settings;
 
-use Psr\Container\ContainerInterface;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareTrait;
 use ShopMagicVendor\WPDesk\Forms\Form\FormWithFields;
 use ShopMagicVendor\WPDesk\Persistence\Adapter\WordPress\WordpressOptionsContainer;
 use ShopMagicVendor\WPDesk\Persistence\PersistentContainer;

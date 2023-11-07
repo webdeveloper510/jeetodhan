@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import type { Query } from "@/_utils";
-import { useSearchParams } from "@/composables/useSearchParams";
+import { appendSearchParams } from "@/composables/useSearchParams";
 import { ref, watch } from "vue";
 import useSWRV from "@/_utils/swrv";
 import { useWpFetch } from "@/composables/useWpFetch";
@@ -23,10 +23,9 @@ export const useGuestsStore = defineStore("guests", () => {
     loading.value = true;
     const previousUrl = url.value;
     if (query) {
-      const searchParams = useSearchParams(query);
-      url.value = `/guests?${searchParams}`;
-      if (searchParams.includes("filters")) {
-        countUrl.value = `/guests/count?${searchParams}`;
+      url.value = appendSearchParams("/guests", query);
+      if (query.filters) {
+        countUrl.value = appendSearchParams("/guests/count", query);
       }
     } else {
       url.value = "/guests";
@@ -40,7 +39,10 @@ export const useGuestsStore = defineStore("guests", () => {
   function deleteGuests(ids: number[]) {
     loading.value = true;
     Promise.all(ids.map((id) => useWpFetch(`/guests/${id}`).delete()))
-      .then(() => mutate())
+      .then(
+        async () => mutate(),
+        () => {},
+      )
       .finally(() => (loading.value = false));
   }
 

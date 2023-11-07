@@ -13,7 +13,7 @@ namespace ShopMagicVendor\Monolog\Handler;
 
 use ShopMagicVendor\Monolog\Logger;
 use ShopMagicVendor\Monolog\ResettableInterface;
-use Psr\Log\LogLevel;
+use ShopMagicVendor\Psr\Log\LogLevel;
 /**
  * Base Handler class providing basic level/bubble support
  *

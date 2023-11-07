@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import RouterWrapper from "@/components/Layout/TabbedWrapper.vue";
-import { __ } from "@wordpress/i18n";
+import { __ } from "@/plugins/i18n";
 
 const tabs = {
   outcomes: __("Outcomes", "shopmagic-for-woocommerce"),

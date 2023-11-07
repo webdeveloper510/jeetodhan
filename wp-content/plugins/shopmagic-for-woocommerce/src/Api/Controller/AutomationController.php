@@ -4,12 +4,13 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Api\Controller;
 
-use Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
 use WPDesk\ShopMagic\Api\Normalizer\Denormalizer;
 use WPDesk\ShopMagic\Api\Normalizer\InvalidArgumentException;
 use WPDesk\ShopMagic\Api\Normalizer\Normalizer;
 use WPDesk\ShopMagic\Components\Database\Abstraction\DAO\ObjectRepository;
 use WPDesk\ShopMagic\Components\Database\Abstraction\PersisterException;
+use WPDesk\ShopMagic\Components\Database\Abstraction\RequestToCriteria;
 use WPDesk\ShopMagic\Components\Routing\HttpProblemException;
 use WPDesk\ShopMagic\Components\UrlGenerator\RestUrlGenerator;
 use WPDesk\ShopMagic\Exception\AutomationNotFound;
@@ -62,8 +63,8 @@ class AutomationController {
 	public function index( \WP_REST_Request $request ): \WP_REST_Response {
 		return new \WP_REST_Response(
 			$this->repository->find_by( ...$this->parse_params( $request ) )
-			                 ->map( \Closure::fromCallable( [ $this->normalizer, 'normalize' ] ) )
-			                 ->to_array()
+					->map( \Closure::fromCallable( [ $this->normalizer, 'normalize' ] ) )
+						->to_array()
 		);
 	}
 
@@ -79,42 +80,57 @@ class AutomationController {
 
 		return new \WP_REST_Response(
 			$this->repository->find_by( $criteria, $order, $offset, $limit )
-			                 ->map( \Closure::fromCallable( [ $this->normalizer, 'normalize' ] ) )
-			                 ->to_array()
+					->map( \Closure::fromCallable( [ $this->normalizer, 'normalize' ] ) )
+						->to_array()
 		);
 	}
 
 	private function parse_params( \WP_REST_Request $request ): array {
-		$page      = $request->get_param( 'page' );
-		$page_size = $request->get_param( 'pageSize' );
-		$filters   = $request->get_param( 'filters' );
+		$criteria = ( new RequestToCriteria() )
+			->set_order_keys( [ 'name' ] );
+
+		[ $_, $raw_order, $offset, $limit ] = $criteria->parse_request( $request );
+
+		$filters = $request->get_param( 'filters' );
 		if ( ! is_array( $filters ) ) {
 			$filters = [];
 		}
 
-		$criteria = [];
-		if ( isset( $filters['status'] ) && in_array( $filters['status'],
-				[ 'publish', 'draft', 'trash' ],
-				true ) ) {
-			$criteria['post_status'] = $filters['status'];
+		$where = [];
+		$order = [];
+
+		if ( isset( $filters['status'] ) && in_array(
+			$filters['status'],
+			[ 'publish', 'draft', 'trash' ],
+			true
+		) ) {
+			$where['post_status'] = $filters['status'];
 		} else {
-			$criteria['post_status'] = 'any';
+			$where['post_status'] = 'any';
 		}
 
 		if ( isset( $filters['event'] ) ) {
-			$criteria['meta_key']   = '_event';
-			$criteria['meta_value'] = sanitize_text_field( $filters['event'] );
+			$where['meta_key']   = '_event';
+			$where['meta_value'] = sanitize_text_field( $filters['event'] );
 		}
 
 		if ( isset( $filters['name'] ) ) {
-			$criteria['s'] = sanitize_text_field( $filters['name'] );
+			$where['s'] = sanitize_text_field( $filters['name'] );
 		}
 
 		if ( isset( $filters['parent'] ) ) {
-			$criteria['post_parent'] = abs( (int) $filters['parent'] );
+			$where['post_parent'] = abs( (int) $filters['parent'] );
 		}
 
-		return [ $criteria, [], ( ( $page - 1 ) * $page_size ), $page_size ];
+		if ( isset( $filters['ids'] ) ) {
+			$where['post__in'] = array_map( 'absint', (array) $filters['ids'] );
+		}
+
+		if ( isset( $raw_order['name'] ) ) {
+			$order['title'] = $raw_order['name'];
+		}
+
+		return [ $where, $order, $offset, $limit ];
 	}
 
 	/**
@@ -151,21 +167,31 @@ class AutomationController {
 		try {
 			$automation = $repository->find( $id );
 		} catch ( AutomationNotFound $e ) {
-			throw new HttpProblemException( [
-				'title' => $e->getMessage(),
-			], \WP_Http::NOT_FOUND );
+			throw new HttpProblemException(
+				[
+					'title' => $e->getMessage(),
+				],
+				\WP_Http::NOT_FOUND
+			);
 		} catch ( \Exception $e ) {
-			throw new HttpProblemException( [
-				'title' => 'You want to delete resource which is not automation.',
-			], \WP_Http::FORBIDDEN );
+			throw new HttpProblemException(
+				[
+					'title' => 'You want to delete resource which is not automation.',
+				],
+				\WP_Http::FORBIDDEN
+			);
 		}
 		try {
 			$success = $manager->delete( $automation );
 		} catch ( PersisterException $e ) {
-			throw new HttpProblemException( [
-				'title'  => esc_html__( 'You are forbidden to delete this automation.', 'shopmagic-for-woocommerce' ),
-				'detail' => $e->getMessage(),
-			], \WP_Http::FORBIDDEN, $e );
+			throw new HttpProblemException(
+				[
+					'title'  => esc_html__( 'You are forbidden to delete this automation.', 'shopmagic-for-woocommerce' ),
+					'detail' => $e->getMessage(),
+				],
+				\WP_Http::FORBIDDEN,
+				$e
+			);
 		}
 
 		if ( $success === false ) {
@@ -203,30 +229,42 @@ class AutomationController {
 			$manager->save( $automation );
 			$wpdb->query( 'COMMIT' );
 			$this->logger->debug( sprintf( 'Automation successfully saved with ID %d', $automation->get_id() ) );
-		} catch ( AutomationNotSaved|InvalidArgumentException $e ) {
+		} catch ( AutomationNotSaved | InvalidArgumentException $e ) {
 			$wpdb->query( 'ROLLBACK' );
 			$this->logger->error( sprintf( 'Automation could not be created. Reason: %s', $e->getMessage() ) );
 
-			throw new HttpProblemException( [
-				'title'  => __( 'There are some issues with automation configuration', 'shopmagic-for-woocommerce' ),
-				'detail' => $e->getMessage(),
-			], \WP_Http::UNPROCESSABLE_ENTITY, $e );
+			throw new HttpProblemException(
+				[
+					'title'  => __( 'There are some issues with automation configuration', 'shopmagic-for-woocommerce' ),
+					'detail' => $e->getMessage(),
+				],
+				\WP_Http::UNPROCESSABLE_ENTITY,
+				$e
+			);
 		} catch ( PersisterException $e ) {
 			$wpdb->query( 'ROLLBACK' );
 			$this->logger->error( sprintf( 'Automation could not be created. Reason: %s', $e->getMessage() ) );
 
-			throw new HttpProblemException( [
-				'title'  => __( 'You are not allowed to save this automation.', 'shopmagic-for-woocommerce' ),
-				'detail' => $e->getMessage(),
-			], \WP_Http::FORBIDDEN, $e );
+			throw new HttpProblemException(
+				[
+					'title'  => __( 'You are not allowed to save this automation.', 'shopmagic-for-woocommerce' ),
+					'detail' => $e->getMessage(),
+				],
+				\WP_Http::FORBIDDEN,
+				$e
+			);
 		} catch ( \Throwable $e ) {
 			$wpdb->query( 'ROLLBACK' );
 			$this->logger->error( sprintf( 'Automation could not be created. Reason: %s', $e->getMessage() ) );
 
-			throw new HttpProblemException( [
-				'title'  => __( 'Critical error during saving automation.', 'shopmagic-for-woocommerce' ),
-				'detail' => $e->getMessage(),
-			], \WP_Http::INTERNAL_SERVER_ERROR, $e );
+			throw new HttpProblemException(
+				[
+					'title'  => __( 'Critical error during saving automation.', 'shopmagic-for-woocommerce' ),
+					'detail' => $e->getMessage(),
+				],
+				\WP_Http::INTERNAL_SERVER_ERROR,
+				$e
+			);
 		}
 
 		$response = new \WP_REST_Response( $automation->get_id(), 201 );
@@ -266,19 +304,21 @@ class AutomationController {
 			$this->logger->debug( sprintf( 'Automation successfully saved with ID %d', $id ) );
 
 			return new \WP_REST_Response( $automation->get_id() );
-		} catch ( AutomationNotSaved|InvalidArgumentException $e ) {
+		} catch ( AutomationNotSaved | InvalidArgumentException $e ) {
 			$wpdb->query( 'ROLLBACK' );
 			$this->logger->error( sprintf( 'Automation could not be created. Reason: %s', $e->getMessage() ) );
 
-			throw new HttpProblemException( [
-				'title'  => 'Error occurred while saving automation',
-				'detail' => $e->getMessage(),
-			], \WP_Http::UNPROCESSABLE_ENTITY );
+			throw new HttpProblemException(
+				[
+					'title'  => 'Error occurred while saving automation',
+					'detail' => $e->getMessage(),
+				],
+				\WP_Http::UNPROCESSABLE_ENTITY
+			);
 		}
 	}
 
 	public function count( \WP_REST_Request $request ): \WP_REST_Response {
 		return new \WP_REST_Response( $this->repository->count( ...$this->parse_params( $request ) ) );
 	}
-
 }

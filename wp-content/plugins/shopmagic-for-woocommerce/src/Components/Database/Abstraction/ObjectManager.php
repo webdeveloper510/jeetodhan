@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Components\Database\Abstraction;
 
-use Psr\Log\LoggerAwareTrait;
+use ShopMagicVendor\Psr\Log\LoggerAwareTrait;
 use WPDesk\ShopMagic\Components\Database\Abstraction\DAO\ObjectPersister;
 use WPDesk\ShopMagic\Components\Database\Abstraction\DAO\ObjectRepository;
 
@@ -53,6 +53,9 @@ abstract class ObjectManager implements DAO\ObjectPersister {
 		return false;
 	}
 
+	/**
+	 * TODO: handle object identity, to update or insert
+	 */
 	public function save( object $item ): bool {
 		$saved_count = null;
 		//if ( ! $item->has_changed() ) {
@@ -73,7 +76,7 @@ abstract class ObjectManager implements DAO\ObjectPersister {
 				$item_data,
 				array_combine( $this->get_primary_key(), $this->retrieve_primary_key_value_from_item( $item_data ) )
 			);
-			if ( $saved_count === 0 ) {
+			if ( $saved_count === false || $saved_count === null ) {
 				$insert_required = true;
 			}
 		}
@@ -95,6 +98,9 @@ abstract class ObjectManager implements DAO\ObjectPersister {
 		return $saved_count > 0;
 	}
 
+	/**
+	 * @return string[]
+	 */
 	abstract protected function get_columns(): array;
 
 	protected function retrieve_primary_key_value_from_item( array $item ): array {

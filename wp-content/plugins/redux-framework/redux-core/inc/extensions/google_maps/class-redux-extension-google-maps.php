@@ -5,7 +5,7 @@
  * @package Redux Pro
  * @author  Kevin Provance <kevin.provance@gmail.com>
  * @class   Redux_Extension_Google_Maps
- * @version 2.0.0
+ * @version 4.4.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -34,10 +34,10 @@ if ( ! class_exists( 'Redux_Extension_Google_Maps' ) ) {
 		/**
 		 * ReduxFramework_extension_google_maps constructor.
 		 *
-		 * @param ReduxFramework $parent ReduxFramework object.
+		 * @param ReduxFramework $redux ReduxFramework object.
 		 */
-		public function __construct( $parent ) {
-			parent::__construct( $parent, __FILE__ );
+		public function __construct( $redux ) {
+			parent::__construct( $redux, __FILE__ );
 
 			$this->add_field( 'google_maps' );
 		}

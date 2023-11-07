@@ -1,7 +1,7 @@
 import type { DataTableColumns } from "naive-ui";
 import { h } from "vue";
 import { RouterLink } from "vue-router";
-import { __ } from "@wordpress/i18n";
+import { __ } from "@/plugins/i18n";
 
 export const trackerPerAutomation: DataTableColumns = [
   {
@@ -14,7 +14,7 @@ export const trackerPerAutomation: DataTableColumns = [
       return h(
         RouterLink,
         { to: { name: "automation", params: { id: automation.id } } },
-        () => automation.name || __("(Unnamed)", "shopmagic-for-woocommerce")
+        () => automation.name || __("(Unnamed)", "shopmagic-for-woocommerce"),
       );
     },
   },

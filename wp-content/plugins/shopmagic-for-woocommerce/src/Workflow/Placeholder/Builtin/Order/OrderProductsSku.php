@@ -43,10 +43,12 @@ final class OrderProductsSku extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		$items = $this->resources->has( \WC_Order::class ) ? $this->get_order()->get_items() : [];
+		if ( ! $this->resources->has( \WC_Order::class ) ) {
+			return '';
+		}
 
 		$skus = [];
-		foreach ( $items as $item ) {
+		foreach ( $this->resources->get( \WC_Order::class )->get_items() as $item ) {
 			if ( $item instanceof \WC_Order_Item_Product ) {
 				$product = $item->get_product();
 				if ( $product instanceof \WC_Product ) {

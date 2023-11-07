@@ -13,9 +13,9 @@ namespace ShopMagicVendor\Monolog;
 
 use DateTimeZone;
 use ShopMagicVendor\Monolog\Handler\HandlerInterface;
-use Psr\Log\LoggerInterface;
-use Psr\Log\InvalidArgumentException;
-use Psr\Log\LogLevel;
+use ShopMagicVendor\Psr\Log\LoggerInterface;
+use ShopMagicVendor\Psr\Log\InvalidArgumentException;
+use ShopMagicVendor\Psr\Log\LogLevel;
 use Throwable;
 use Stringable;
 /**

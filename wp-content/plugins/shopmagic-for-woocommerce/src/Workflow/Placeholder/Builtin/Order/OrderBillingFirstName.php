@@ -7,7 +7,6 @@ use WPDesk\ShopMagic\Workflow\Placeholder\Builtin\WooCommerceOrderBasedPlacehold
 
 final class OrderBillingFirstName extends WooCommerceOrderBasedPlaceholder {
 
-
 	public function get_slug(): string {
 		return 'billing_first_name';
 	}
@@ -17,6 +16,10 @@ final class OrderBillingFirstName extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->get_order()->get_billing_first_name();
+		if ( $this->resources->has( \WC_Order::class ) ) {
+			return $this->resources->get( \WC_Order::class )->get_billing_first_name();
+		}
+
+		return '';
 	}
 }

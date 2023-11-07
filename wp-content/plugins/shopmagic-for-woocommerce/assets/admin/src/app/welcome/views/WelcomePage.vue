@@ -6,9 +6,9 @@ const isPro = false;
 
 function getImage(name: string) {
   if (navigator.language === "pl-PL") {
-    return new URL(`../assets/${name}-pl.png`, import.meta.url).href;
+    return new URL(`../../../assets/${name}-pl.png`, import.meta.url).href;
   }
-  return new URL(`../assets/${name}.png`, import.meta.url).href;
+  return new URL(`../../../assets/${name}.png`, import.meta.url).href;
 }
 
 function getUrl() {
@@ -31,14 +31,14 @@ function getUrl() {
     <NH1>{{
       __(
         "ShopMagic - Follow-Up Emails & Marketing Automation for Your WooCommerce Store",
-        "shopmagic-for-woocommerce"
+        "shopmagic-for-woocommerce",
       )
     }}</NH1>
     <p class="about-text">
       {{
         __(
           "Start increasing your revenue, customer loyalty and satisfaction with user-friendly emails based on order status.",
-          "shopmagic-for-woocommerce"
+          "shopmagic-for-woocommerce",
         )
       }}
     </p>
@@ -48,17 +48,12 @@ function getUrl() {
         {{ __("Set up your automated email", "shopmagic-for-woocommerce") }}
       </h3>
       <p>
-        {{
-          __(
-            "Each automation may contain three elements:",
-            "shopmagic-for-woocommerce"
-          )
-        }}
+        {{ __("Each automation may contain three elements:", "shopmagic-for-woocommerce") }}
         <span
           v-html="
             __(
               '<b>Event</b> (e.g. <i>Order Completed</i>), which is a trigger.',
-              'shopmagic-for-woocommerce'
+              'shopmagic-for-woocommerce',
             )
           "
         ></span>
@@ -67,7 +62,7 @@ function getUrl() {
             __(
               `<b>Filter</b> (e.g. <i>Order - Items</i>), which you can use if
         you want to send email to selected group of customers.`,
-              'shopmagic-for-woocommerce'
+              'shopmagic-for-woocommerce',
             )
           "
         ></span>
@@ -76,7 +71,7 @@ function getUrl() {
             __(
               `Finally, <b>Action</b> (e.g. <i>Send Email</i>),
               in which you can create your message to the recipient.`,
-              'shopmagic-for-woocommerce'
+              'shopmagic-for-woocommerce',
             )
           "
         ></span>
@@ -99,7 +94,7 @@ function getUrl() {
                 __(
                   `If you decide to create an automation from scratch, select
             an <b>Event</b>, which will be a trigger for your automation.`,
-                  'shopmagic-for-woocommerce'
+                  'shopmagic-for-woocommerce',
                 )
               "
             ></span>
@@ -109,14 +104,14 @@ function getUrl() {
                   `You can select from a
             variety of events, from <i>New Order</i>, through
             <i>Order Pending</i> to <i>Order Completed</i>`,
-                  'shopmagic-for-woocommerce'
+                  'shopmagic-for-woocommerce',
                 )
               "
             ></span>
             {{
               __(
                 "We have covered all of the WooCommerce order statuses.",
-                "shopmagic-for-woocommerce"
+                "shopmagic-for-woocommerce",
               )
             }}
           </p>
@@ -124,7 +119,7 @@ function getUrl() {
             :alt="
               __(
                 'Event setter for automation with Order Completed selected',
-                'shopmagic-for-woocommerce'
+                'shopmagic-for-woocommerce',
               )
             "
             :src="getImage('event')"
@@ -139,7 +134,7 @@ function getUrl() {
               __(
                 `Optionally - assign a <b>Filter</b>. Use it if you want to send
             your automation to the selected group of customers only.`,
-                'shopmagic-for-woocommerce'
+                'shopmagic-for-woocommerce',
               )
             "
           ></p>
@@ -147,7 +142,7 @@ function getUrl() {
             :alt="
               __(
                 'Filter setter for automation with Order Items selected',
-                'shopmagic-for-woocommerce'
+                'shopmagic-for-woocommerce',
               )
             "
             :src="getImage('filter')"
@@ -163,7 +158,7 @@ function getUrl() {
                 `Choose an <b>Action</b>. Select an Action type and enter data
             in action fields, as described. Do not forget to Publish your
             automation.`,
-                'shopmagic-for-woocommerce'
+                'shopmagic-for-woocommerce',
               )
             "
           ></p>
@@ -171,7 +166,7 @@ function getUrl() {
             :alt="
               __(
                 'Action setter for automation with Send Email selected',
-                'shopmagic-for-woocommerce'
+                'shopmagic-for-woocommerce',
               )
             "
             :src="getImage('action')"
@@ -186,7 +181,7 @@ function getUrl() {
         {{
           __(
             'After you hit "Publish" your automated emails will start flying to your customers\' inboxes.',
-            "shopmagic-for-woocommerce"
+            "shopmagic-for-woocommerce",
           )
         }}
       </p>
@@ -206,16 +201,14 @@ function getUrl() {
     <div v-if="!isPro">
       <div class="has-1-columns">
         <h2>
-          {{
-            __("Achieve more with ShopMagic PRO", "shopmagic-for-woocommerce")
-          }}
+          {{ __("Achieve more with ShopMagic PRO", "shopmagic-for-woocommerce") }}
         </h2>
 
         <p class="lead-description">
           {{
             __(
               "Sell more in less time and increase your conversion rate with ShopMagic PRO. These add-ons will get you more happy and loyal customers:",
-              "shopmagic-for-woocommerce"
+              "shopmagic-for-woocommerce",
             )
           }}
         </p>
@@ -231,7 +224,7 @@ function getUrl() {
             {{
               __(
                 "Delay your emails by minutes, hours, days or weeks after the original event. Schedule your emails to a precise future date.",
-                "shopmagic-for-woocommerce"
+                "shopmagic-for-woocommerce",
               )
             }}
           </p>
@@ -246,7 +239,7 @@ function getUrl() {
             {{
               __(
                 "Add review requests with direct links to purchased products. Create automated responses for customers who will review your products.",
-                "shopmagic-for-woocommerce"
+                "shopmagic-for-woocommerce",
               )
             }}
           </p>
@@ -261,7 +254,7 @@ function getUrl() {
             {{
               __(
                 "Execute manual actions whenever you need them. Send one-time personalized emails to selected group of customers directly from your WordPress dashboard.",
-                "shopmagic-for-woocommerce"
+                "shopmagic-for-woocommerce",
               )
             }}
           </p>
@@ -278,7 +271,7 @@ function getUrl() {
             {{
               __(
                 "Adds ability to create personalized coupon codes for customers and send them automatically.",
-                "shopmagic-for-woocommerce"
+                "shopmagic-for-woocommerce",
               )
             }}
           </p>
@@ -293,7 +286,7 @@ function getUrl() {
             {{
               __(
                 "Segment your customers. Target a selected group of customers with emails, coupons or discounts. There are more than 20 filters available for you!",
-                "shopmagic-for-woocommerce"
+                "shopmagic-for-woocommerce",
               )
             }}
           </p>
@@ -308,7 +301,7 @@ function getUrl() {
             {{
               __(
                 "Recover abandoned carts and increase your sales. Create a set of follow-up email reminders. Ready to use, for guests and registered customers.",
-                "shopmagic-for-woocommerce"
+                "shopmagic-for-woocommerce",
               )
             }}
           </p>

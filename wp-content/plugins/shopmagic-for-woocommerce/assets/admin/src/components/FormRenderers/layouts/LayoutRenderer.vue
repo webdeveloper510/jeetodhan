@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="layout.visible"
-    :class="[layoutClassObject, 'flex gap-4', 'renderer-container']"
-  >
+  <div v-if="layout.visible" :class="[layoutClassObject, 'flex gap-4', 'renderer-container']">
     <dispatch-renderer
       v-for="(element, index) in layout.uischema.elements"
       :key="`${layout.path}-${index}`"
@@ -36,7 +33,7 @@ import {
 import { useVanillaLayout } from "../util";
 
 export default defineComponent({
-  name: "layout-renderer",
+  name: "LayoutRenderer",
   components: {
     DispatchRenderer,
   },

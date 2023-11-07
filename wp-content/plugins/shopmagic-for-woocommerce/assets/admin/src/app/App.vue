@@ -34,10 +34,7 @@ const themeOverrides: GlobalThemeOverrides = {
   <NConfigProvider :theme-overrides="themeOverrides">
     <NMessageProvider :max="2" placement="bottom-right">
       <NLayout class="bg-transparent">
-        <NLayoutHeader
-          bordered
-          class="flex justify-between items-center px-4 shadow-sm"
-        >
+        <NLayoutHeader bordered class="flex justify-between items-center px-4 shadow-sm">
           <RouterLink :to="{ name: 'dashboard' }" class="w-[175px] py-1.5">
             <ShopMagicIcon />
           </RouterLink>

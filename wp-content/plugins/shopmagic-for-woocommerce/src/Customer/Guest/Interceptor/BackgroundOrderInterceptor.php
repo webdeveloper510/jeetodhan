@@ -3,8 +3,8 @@ declare( strict_types=1 );
 
 namespace WPDesk\ShopMagic\Customer\Guest\Interceptor;
 
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use ShopMagicVendor\Psr\Log\LoggerAwareInterface;
+use ShopMagicVendor\Psr\Log\LoggerAwareTrait;
 use WPDesk\ShopMagic\Components\HookProvider\HookProvider;
 use WPDesk\ShopMagic\Components\HookProvider\HookTrait;
 use WPDesk\ShopMagic\Customer\Guest\GuestInOrderContextTrait;

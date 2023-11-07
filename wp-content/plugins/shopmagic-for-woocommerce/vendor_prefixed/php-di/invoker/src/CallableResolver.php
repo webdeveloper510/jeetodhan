@@ -3,8 +3,8 @@
 namespace ShopMagicVendor\Invoker;
 
 use ShopMagicVendor\Invoker\Exception\NotCallableException;
-use Psr\Container\ContainerInterface;
-use Psr\Container\NotFoundExceptionInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\NotFoundExceptionInterface;
 /**
  * Resolves a callable from a container.
  *

@@ -35,7 +35,7 @@ const defaultConfig: IConfig = {
   ttl: 0,
   serverTTL: 1000,
   dedupingInterval: 2000,
-  revalidateOnFocus: true,
+  revalidateOnFocus: false,
   revalidateDebounce: 0,
   shouldRetryOnError: true,
   errorRetryInterval: 5000,

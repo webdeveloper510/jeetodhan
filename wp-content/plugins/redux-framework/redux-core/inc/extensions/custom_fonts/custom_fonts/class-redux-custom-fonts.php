@@ -52,7 +52,7 @@ if ( ! class_exists( 'Redux_Custom_Fonts' ) ) {
                     data-id="' . esc_attr( $this->field['id'] ) . '"
                   >';
 
-			$can_convert = true; // has_filter( 'redux/' . $this->parent->args['opt_name'] . '/extensions/custom_fonts/api_url' );
+			$can_convert = true;
 
 			$nonce = wp_create_nonce( 'redux_custom_fonts' );
 
@@ -60,7 +60,7 @@ if ( ! class_exists( 'Redux_Custom_Fonts' ) ) {
 
 			if ( $can_convert ) {
 				echo '<div class="">';
-				echo '<label>';
+				echo '<label for="custom-font-convert">';
 				echo '<input type="hidden" class="checkbox-check" data-val="1" name="' . esc_attr( $this->field['name'] ) . '[convert]" value="' . esc_attr( $this->value['convert'] ) . '"/>';
 				echo '<input type="checkbox" class="checkbox" id="custom-font-convert" value="1"' . checked( $this->value['convert'], '1', false ) . '">';
 				echo 'Enable font conversion';
@@ -152,24 +152,18 @@ if ( ! class_exists( 'Redux_Custom_Fonts' ) ) {
 		public function enqueue() {
 			$min = Redux_Functions::isMin();
 
-			wp_enqueue_script(
-				'redux-blockUI',
-				$this->url . '/jquery.blockUI' . $min . '.js',
-				array( 'jquery' ),
-				'2.70.0',
-				true
-			);
+			wp_enqueue_script( 'redux-block-ui' );
 
 			wp_enqueue_script(
-				'redux-field-custom_fonts-js',
+				'redux-field-custom_fonts',
 				$this->url . '/redux-custom-fonts' . $min . '.js',
-				array( 'jquery', 'redux-blockUI' ),
-				Redux_Extension_Custom_Fonts::$version,
+				array( 'jquery', 'redux-block-ui' ),
+				Redux_Core::$version,
 				true
 			);
 
 			wp_localize_script(
-				'redux-field-custom_fonts-js',
+				'redux-field-custom_fonts',
 				'redux_custom_fonts_l10',
 				apply_filters(
 					'redux_custom_fonts_localized_data',
@@ -187,7 +181,7 @@ if ( ! class_exists( 'Redux_Custom_Fonts' ) ) {
 			);
 
 			wp_enqueue_style(
-				'redux-field-custom_fonts-css',
+				'redux-field-custom_fonts',
 				$this->url . 'redux-custom-fonts.css',
 				array(),
 				time()
@@ -198,7 +192,7 @@ if ( ! class_exists( 'Redux_Custom_Fonts' ) ) {
 			if ( ! empty( $class->custom_fonts ) ) {
 				if ( file_exists( $class->upload_dir . 'fonts.css' ) ) {
 					wp_enqueue_style(
-						'redux-custom_fonts-css',
+						'redux-custom_fonts',
 						$class->upload_url . 'fonts.css',
 						array(),
 						time()

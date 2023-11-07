@@ -1,3 +1,6 @@
+2023-04-17 - version 1.3
+* Fix: POT file
+
 2023-02-17 - version 1.2
 * Fix: couple minor errors
 * Fix: cart verification bug

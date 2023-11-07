@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore } from "pinia";
 import { ref, unref, watch } from "vue";
 import type { Query } from "@/_utils";
-import { useSearchParams } from "@/composables/useSearchParams";
+import { appendSearchParams } from "@/composables/useSearchParams";
 import { useWpFetch } from "@/composables/useWpFetch";
 import useSWRV from "@/_utils/swrv";
 
@@ -22,10 +22,9 @@ export const useQueueStore = defineStore("queue", () => {
     loading.value = true;
     const previousUrl = unref(url);
     if (query) {
-      const queryString = useSearchParams(query);
-      url.value = `/queue/?${queryString}`;
-      if (queryString.includes("filters")) {
-        countUrl.value = `/queue/count/?${queryString}`;
+      url.value = appendSearchParams("/queue", query);
+      if (query.filters) {
+        countUrl.value = appendSearchParams("/queue/count", query);
       }
     } else {
       url.value = `/queue`;
@@ -38,7 +37,7 @@ export const useQueueStore = defineStore("queue", () => {
 
   async function cancelQueue(id: number) {
     loading.value = true;
-    const { data, error } = await useWpFetch(`/queue/${id}`).delete().json();
+    const { data /** error */ } = await useWpFetch(`/queue/${id}`).delete();
     await mutate();
     loading.value = false;
 

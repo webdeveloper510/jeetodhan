@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import {NA, NButton, NIcon, NProgress, NSkeleton, NSpace, NSpin, NTable,} from "naive-ui";
-import {Checkmark, CloseOutline} from "@vicons/ionicons5";
-import {get} from "@/_utils";
-import {useRoute} from "vue-router";
-import {computed, ref, watch, watchEffect} from "vue";
+import { NA, NButton, NIcon, NProgress, NSkeleton, NSpace, NSpin, NTable } from "naive-ui";
+import { Checkmark, CloseOutline } from "@vicons/ionicons5";
+import { get } from "@/_utils";
+import { useRoute } from "vue-router";
+import { computed, ref, watch, watchEffect } from "vue";
 import ShadyCard from "@/components/ShadyCard.vue";
 import EditGroup from "../components/EditGroup.vue";
-import {useAutomationResourcesStore} from "../resourceStore";
-import {useWpFetch} from "@/composables/useWpFetch";
-import {useSingleAutomation} from "@/app/automations/singleAutomation";
-import {storeToRefs} from "pinia";
+import { useAutomationResourcesStore } from "../resourceStore";
+import { useWpFetch } from "@/composables/useWpFetch";
+import { useSingleAutomation } from "@/app/automations/singleAutomation";
+import { storeToRefs } from "pinia";
 
 const { get: getAutomation } = useSingleAutomation();
 const { automation } = storeToRefs(useSingleAutomation());
@@ -47,9 +47,7 @@ const automationActions = computed(() => {
   });
 });
 const processed = ref(0);
-const processing = computed(() =>
-  Math.ceil((processed.value / maxPages.value) * 100)
-);
+const processing = computed(() => Math.ceil((processed.value / maxPages.value) * 100));
 
 watch(currentFetched, (items) => {
   if (items !== 0) {
@@ -60,7 +58,7 @@ watch(currentFetched, (items) => {
 function* getAllPreviewRuns() {
   for (; page.value <= maxPages.value; page.value++) {
     yield get(
-      `/automations/${routeParams.id}/manual/matches?page_size=${BATCH_SIZE}&page=${page.value}`
+      `/automations/${routeParams.id}/manual/matches?page_size=${BATCH_SIZE}&page=${page.value}`,
     )
       .then((matches) => data.value.push(...matches))
       .finally(() => processed.value++);
@@ -81,14 +79,14 @@ async function dispatchAutomations() {
   }
   queueDispatched.value = STATES.LOADING;
   const { data: response, error: responseError } = useWpFetch(
-    `/automations/${routeParams.id}/manual/run`
+    `/automations/${routeParams.id}/manual/run`,
   ).post(
     {
       resources: data.value.map(({ id, object }) => {
         return { id, object };
       }),
     },
-    "json"
+    "json",
   );
 
   watchEffect(() => {
@@ -120,11 +118,7 @@ async function dispatchAutomations() {
       </template>
       <NSpin :show="loading">
         <ul class="h-[300px] overflow-y-scroll shadow-inner p-1">
-          <li
-            v-for="item in data"
-            :key="item.id"
-            class="p-1 rounded [&:nth-child(2n)]:bg-gray-50"
-          >
+          <li v-for="item in data" :key="item.id" class="p-1 rounded [&:nth-child(2n)]:bg-gray-50">
             <NA v-if="item.link" :href="item.link" target="_blank">
               {{ item.name }} #{{ item.id }}
             </NA>
@@ -169,14 +163,8 @@ async function dispatchAutomations() {
     </ShadyCard>
     <NSpace>
       <NButton type="primary" @click="dispatchAutomations">
-        <NSpin
-          :show="queueDispatched === STATES.LOADING"
-          :size="12"
-          stroke="#eaeaea"
-        >
-          <span v-if="queueDispatched === STATES.NOT_INITIALIZED"
-            >Run actions</span
-          >
+        <NSpin :show="queueDispatched === STATES.LOADING" :size="12" stroke="#eaeaea">
+          <span v-if="queueDispatched === STATES.NOT_INITIALIZED">Run actions</span>
           <span v-else-if="queueDispatched === STATES.SUCCESS">
             <NIcon><Checkmark /> </NIcon>
           </span>
@@ -186,9 +174,7 @@ async function dispatchAutomations() {
         </NSpin>
       </NButton>
       <RouterLink :to="{ name: 'automation', params: routeParams }">
-        <NButton>{{
-          __("Return to automation editor", "shopmagic-for-woocommerce")
-        }}</NButton>
+        <NButton>{{ __("Return to automation editor", "shopmagic-for-woocommerce") }}</NButton>
       </RouterLink>
     </NSpace>
   </EditGroup>

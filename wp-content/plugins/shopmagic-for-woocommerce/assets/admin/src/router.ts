@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { __ } from "@wordpress/i18n";
+import { __ } from "@/plugins/i18n";
 
 import automation from "@/app/automations/routes";
 import dashboard from "@/app/dashboard/routes";

@@ -9,10 +9,13 @@ declare(strict_types=1);
 
 namespace WooCommerce\PayPalCommerce\ApiClient\Factory;
 
+use WC_Session_Handler;
 use WooCommerce\PayPalCommerce\ApiClient\Entity\Item;
 use WooCommerce\PayPalCommerce\ApiClient\Entity\PurchaseUnit;
 use WooCommerce\PayPalCommerce\ApiClient\Exception\RuntimeException;
+use WooCommerce\PayPalCommerce\ApiClient\Helper\PurchaseUnitSanitizer;
 use WooCommerce\PayPalCommerce\ApiClient\Repository\PayeeRepository;
+use WooCommerce\PayPalCommerce\Webhooks\CustomIds;
 
 /**
  * Class PurchaseUnitFactory
@@ -69,15 +72,31 @@ class PurchaseUnitFactory {
 	private $prefix;
 
 	/**
+	 * The Soft Descriptor.
+	 *
+	 * @var string
+	 */
+	private $soft_descriptor;
+
+	/**
+	 * The sanitizer for purchase unit output data.
+	 *
+	 * @var PurchaseUnitSanitizer|null
+	 */
+	private $sanitizer;
+
+	/**
 	 * PurchaseUnitFactory constructor.
 	 *
-	 * @param AmountFactory   $amount_factory The amount factory.
-	 * @param PayeeRepository $payee_repository The Payee repository.
-	 * @param PayeeFactory    $payee_factory The Payee factory.
-	 * @param ItemFactory     $item_factory The item factory.
-	 * @param ShippingFactory $shipping_factory The shipping factory.
-	 * @param PaymentsFactory $payments_factory The payments factory.
-	 * @param string          $prefix The prefix.
+	 * @param AmountFactory          $amount_factory The amount factory.
+	 * @param PayeeRepository        $payee_repository The Payee repository.
+	 * @param PayeeFactory           $payee_factory The Payee factory.
+	 * @param ItemFactory            $item_factory The item factory.
+	 * @param ShippingFactory        $shipping_factory The shipping factory.
+	 * @param PaymentsFactory        $payments_factory The payments factory.
+	 * @param string                 $prefix The prefix.
+	 * @param string                 $soft_descriptor The soft descriptor.
+	 * @param ?PurchaseUnitSanitizer $sanitizer The purchase unit to_array sanitizer.
 	 */
 	public function __construct(
 		AmountFactory $amount_factory,
@@ -86,7 +105,9 @@ class PurchaseUnitFactory {
 		ItemFactory $item_factory,
 		ShippingFactory $shipping_factory,
 		PaymentsFactory $payments_factory,
-		string $prefix = 'WC-'
+		string $prefix = 'WC-',
+		string $soft_descriptor = '',
+		PurchaseUnitSanitizer $sanitizer = null
 	) {
 
 		$this->amount_factory   = $amount_factory;
@@ -96,6 +117,8 @@ class PurchaseUnitFactory {
 		$this->shipping_factory = $shipping_factory;
 		$this->payments_factory = $payments_factory;
 		$this->prefix           = $prefix;
+		$this->soft_descriptor  = $soft_descriptor;
+		$this->sanitizer        = $sanitizer;
 	}
 
 	/**
@@ -110,7 +133,7 @@ class PurchaseUnitFactory {
 		$items    = array_filter(
 			$this->item_factory->from_wc_order( $order ),
 			function ( Item $item ): bool {
-				return $item->unit_amount()->value() > 0;
+				return $item->unit_amount()->value() >= 0;
 			}
 		);
 		$shipping = $this->shipping_factory->from_wc_order( $order );
@@ -126,7 +149,7 @@ class PurchaseUnitFactory {
 		$payee           = $this->payee_repository->payee();
 		$custom_id       = (string) $order->get_id();
 		$invoice_id      = $this->prefix . $order->get_order_number();
-		$soft_descriptor = '';
+		$soft_descriptor = $this->soft_descriptor;
 
 		$purchase_unit = new PurchaseUnit(
 			$amount,
@@ -139,6 +162,9 @@ class PurchaseUnitFactory {
 			$invoice_id,
 			$soft_descriptor
 		);
+
+		$this->init_purchase_unit( $purchase_unit );
+
 		/**
 		 * Returns PurchaseUnit for the WC order.
 		 */
@@ -153,10 +179,11 @@ class PurchaseUnitFactory {
 	 * Creates a PurchaseUnit based off a WooCommerce cart.
 	 *
 	 * @param \WC_Cart|null $cart The cart.
+	 * @param bool          $with_shipping_options Include WC shipping methods.
 	 *
 	 * @return PurchaseUnit
 	 */
-	public function from_wc_cart( ?\WC_Cart $cart = null ): PurchaseUnit {
+	public function from_wc_cart( ?\WC_Cart $cart = null, bool $with_shipping_options = false ): PurchaseUnit {
 		if ( ! $cart ) {
 			$cart = WC()->cart ?? new \WC_Cart();
 		}
@@ -165,14 +192,14 @@ class PurchaseUnitFactory {
 		$items  = array_filter(
 			$this->item_factory->from_wc_cart( $cart ),
 			function ( Item $item ): bool {
-				return $item->unit_amount()->value() > 0;
+				return $item->unit_amount()->value() >= 0;
 			}
 		);
 
 		$shipping = null;
 		$customer = \WC()->customer;
 		if ( $this->shipping_needed( ... array_values( $items ) ) && is_a( $customer, \WC_Customer::class ) ) {
-			$shipping = $this->shipping_factory->from_wc_customer( \WC()->customer );
+			$shipping = $this->shipping_factory->from_wc_customer( \WC()->customer, $with_shipping_options );
 			if (
 				2 !== strlen( $shipping->address()->country_code() ) ||
 				( ! $shipping->address()->postal_code() && ! $this->country_without_postal_code( $shipping->address()->country_code() ) )
@@ -186,9 +213,16 @@ class PurchaseUnitFactory {
 
 		$payee = $this->payee_repository->payee();
 
-		$custom_id       = '';
+		$custom_id = '';
+		$session   = WC()->session;
+		if ( $session instanceof WC_Session_Handler ) {
+			$session_id = $session->get_customer_unique_id();
+			if ( $session_id ) {
+				$custom_id = CustomIds::CUSTOMER_ID_PREFIX . $session_id;
+			}
+		}
 		$invoice_id      = '';
-		$soft_descriptor = '';
+		$soft_descriptor = $this->soft_descriptor;
 		$purchase_unit   = new PurchaseUnit(
 			$amount,
 			$items,
@@ -200,6 +234,8 @@ class PurchaseUnitFactory {
 			$invoice_id,
 			$soft_descriptor
 		);
+
+		$this->init_purchase_unit( $purchase_unit );
 
 		return $purchase_unit;
 	}
@@ -223,7 +259,7 @@ class PurchaseUnitFactory {
 		$description     = ( isset( $data->description ) ) ? $data->description : '';
 		$custom_id       = ( isset( $data->custom_id ) ) ? $data->custom_id : '';
 		$invoice_id      = ( isset( $data->invoice_id ) ) ? $data->invoice_id : '';
-		$soft_descriptor = ( isset( $data->soft_descriptor ) ) ? $data->soft_descriptor : '';
+		$soft_descriptor = ( isset( $data->soft_descriptor ) ) ? $data->soft_descriptor : $this->soft_descriptor;
 		$items           = array();
 		if ( isset( $data->items ) && is_array( $data->items ) ) {
 			$items = array_map(
@@ -263,6 +299,9 @@ class PurchaseUnitFactory {
 			$soft_descriptor,
 			$payments
 		);
+
+		$this->init_purchase_unit( $purchase_unit );
+
 		return $purchase_unit;
 	}
 
@@ -292,5 +331,17 @@ class PurchaseUnitFactory {
 	private function country_without_postal_code( string $country_code ): bool {
 		$countries = array( 'AE', 'AF', 'AG', 'AI', 'AL', 'AN', 'AO', 'AW', 'BB', 'BF', 'BH', 'BI', 'BJ', 'BM', 'BO', 'BS', 'BT', 'BW', 'BZ', 'CD', 'CF', 'CG', 'CI', 'CK', 'CL', 'CM', 'CO', 'CR', 'CV', 'DJ', 'DM', 'DO', 'EC', 'EG', 'ER', 'ET', 'FJ', 'FK', 'GA', 'GD', 'GH', 'GI', 'GM', 'GN', 'GQ', 'GT', 'GW', 'GY', 'HK', 'HN', 'HT', 'IE', 'IQ', 'IR', 'JM', 'JO', 'KE', 'KH', 'KI', 'KM', 'KN', 'KP', 'KW', 'KY', 'LA', 'LB', 'LC', 'LK', 'LR', 'LS', 'LY', 'ML', 'MM', 'MO', 'MR', 'MS', 'MT', 'MU', 'MW', 'MZ', 'NA', 'NE', 'NG', 'NI', 'NP', 'NR', 'NU', 'OM', 'PA', 'PE', 'PF', 'PY', 'QA', 'RW', 'SA', 'SB', 'SC', 'SD', 'SL', 'SN', 'SO', 'SR', 'SS', 'ST', 'SV', 'SY', 'TC', 'TD', 'TG', 'TL', 'TO', 'TT', 'TV', 'TZ', 'UG', 'UY', 'VC', 'VE', 'VG', 'VN', 'VU', 'WS', 'XA', 'XB', 'XC', 'XE', 'XL', 'XM', 'XN', 'XS', 'YE', 'ZM', 'ZW' );
 		return in_array( $country_code, $countries, true );
+	}
+
+	/**
+	 * Initializes a purchase unit object.
+	 *
+	 * @param PurchaseUnit $purchase_unit The purchase unit.
+	 * @return void
+	 */
+	private function init_purchase_unit( PurchaseUnit $purchase_unit ): void {
+		if ( $this->sanitizer instanceof PurchaseUnitSanitizer ) {
+			$purchase_unit->set_sanitizer( $this->sanitizer );
+		}
 	}
 }

@@ -235,4 +235,3 @@ $wp_customize->add_control(
 		)
 	)
 );
-

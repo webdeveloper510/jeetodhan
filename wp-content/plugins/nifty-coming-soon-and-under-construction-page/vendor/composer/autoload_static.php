@@ -4,17 +4,13 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit389db99febd8bfecdfebd808129a5b95
+class ComposerStaticInita8a602483740418547ac3dec2279322d
 {
     public static $prefixLengthsPsr4 = array (
         'N' => 
         array (
             'Nilambar\\CustomizerUtils\\' => 25,
             'Nilambar\\AdminNotice\\' => 21,
-        ),
-        'K' => 
-        array (
-            'Kirki\\' => 6,
         ),
     );
 
@@ -27,15 +23,10 @@ class ComposerStaticInit389db99febd8bfecdfebd808129a5b95
         array (
             0 => __DIR__ . '/..' . '/ernilambar/wp-admin-notice/src',
         ),
-        'Kirki\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/kirki-framework/url-getter/src',
-        ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Kirki\\URL' => __DIR__ . '/..' . '/kirki-framework/url-getter/src/URL.php',
         'Nilambar\\AdminNotice\\Notice' => __DIR__ . '/..' . '/ernilambar/wp-admin-notice/src/Notice.php',
         'Nilambar\\CustomizerUtils\\Control\\Accordion' => __DIR__ . '/..' . '/ernilambar/ns-customizer-utilities/src/Control/Accordion.php',
         'Nilambar\\CustomizerUtils\\Control\\Base' => __DIR__ . '/..' . '/ernilambar/ns-customizer-utilities/src/Control/Base.php',
@@ -79,9 +70,9 @@ class ComposerStaticInit389db99febd8bfecdfebd808129a5b95
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit389db99febd8bfecdfebd808129a5b95::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit389db99febd8bfecdfebd808129a5b95::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit389db99febd8bfecdfebd808129a5b95::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInita8a602483740418547ac3dec2279322d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInita8a602483740418547ac3dec2279322d::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInita8a602483740418547ac3dec2279322d::$classMap;
 
         }, null, ClassLoader::class);
     }

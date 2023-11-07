@@ -15,7 +15,7 @@
  * Plugin Name:       Competitions for WooCommerce
  * Plugin URI:        https://woocommerce.com/products/competitions-for-woocommerce/
  * Description:       Competitions for WooCommerce implements competitions (lucky draws / lotteries) product type in your WooCommerce webshop
- * Version:           1.2
+ * Version:           1.3
  * Author:            WPInstitut
  * Author URI:        https://woocommerce.com/vendor/wpinstitut-com/
  * License:           GPL-2.0+
@@ -38,7 +38,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Rename this for your plugin and update it as you release new versions.
  */
 if ( ! defined( 'COMPETITIONS_FOR_WOOCOMMERCE_VERSION' ) ) {
-	define( 'COMPETITIONS_FOR_WOOCOMMERCE_VERSION', '1.2' );
+	define( 'COMPETITIONS_FOR_WOOCOMMERCE_VERSION', '1.3' );
 }
 if ( ! defined( 'COMPETITIONS_FOR_WOOCOMMERCE_DB_VERSION' ) ) {
 	define( 'COMPETITIONS_FOR_WOOCOMMERCE_DB_VERSION', '1.0.0' );

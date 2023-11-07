@@ -1,15 +1,30 @@
 <script lang="ts" setup>
-import {NH1, NSelect, NSkeleton, NStatistic} from "naive-ui";
+import { NButton, NH1, NSelect, NSkeleton, NStatistic } from "naive-ui";
 import ShadyCard from "@/components/ShadyCard.vue";
-import {cartColumns} from "@/app/carts/data/table";
+import { cartColumns } from "@/app/carts/data/table";
 import DataTable from "@/components/Table/DataTable.vue";
-import {useCartsStore} from "@/app/carts/store";
+import { useCartsStore } from "@/app/carts/store";
 import useSWRV from "@/_utils/swrv";
-import {reactive} from "vue";
+import { reactive, ref } from "vue";
 
 const store = useCartsStore();
 
 const { data: cartStats } = useSWRV("/analytics/carts/top-stats");
+
+const bulkAction = ref<string | null>(null);
+const checkedRows = ref([]);
+
+function executeBulkAction() {
+  if (bulkAction.value === "delete") {
+    try {
+      store.delete(checkedRows.value);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      checkedRows.value = [];
+    }
+  }
+}
 
 const tableFilters = reactive({
   status: null,
@@ -34,6 +49,7 @@ const tableFilters = reactive({
     </ShadyCard>
   </div>
   <DataTable
+    v-model:checked-row-keys="checkedRows"
     :columns="cartColumns"
     :data="store.carts"
     :error="null"
@@ -67,6 +83,21 @@ const tableFilters = reactive({
         clearable
         @update:value="tableFilters.status = $event"
       />
+    </template>
+    <template #bulkActions>
+      <NSelect
+        v-model:value="bulkAction"
+        :options="[
+          {
+            label: __('Delete', 'shopmagic-for-woocommerce'),
+            value: 'delete',
+          },
+        ]"
+        class="w-[320px]"
+      />
+      <NButton @click="executeBulkAction">
+        {{ __("Execute", "shopmagic-for-woocommerce") }}
+      </NButton>
     </template>
   </DataTable>
 </template>

@@ -3,7 +3,7 @@
 declare (strict_types=1);
 namespace ShopMagicVendor\DI\Definition;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 /**
  * Describes a definition that can resolve itself.
  *

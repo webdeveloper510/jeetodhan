@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Nifty Coming Soon & Maintenance Page
- * Plugin URI: https://wpconcern.com/plugins/nifty-coming-soon-and-under-construction-page/
+ * Plugin URI: https://wphait.com/plugins/nifty-coming-soon-and-under-construction-page/
  * Description: Easy to set up Coming Soon, Maintenance and Under Construction page. It features Responsive design, Countdown timer, Animations, Live Preview, Background Slider, Subscription form and more.
- * Version: 3.0.4
- * Author: WP Concern
- * Author URI: https://wpconcern.com/
+ * Version: 3.0.7
+ * Author: WP Hait
+ * Author URI: https://wphait.com/
  * Text Domain: nifty-coming-soon-and-under-construction-page
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -15,9 +15,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'NCSUCP_VERSION', '3.0.4' );
+define( 'NCSUCP_VERSION', '3.0.7' );
 define( 'NCSUCP_SLUG', 'nifty-coming-soon-and-under-construction-page' );
-define( 'NCSUCP_BASE_NAME', basename( dirname( __FILE__ ) ) );
+define( 'NCSUCP_BASE_NAME', basename( __DIR__ ) );
 define( 'NCSUCP_BASE_FILEPATH', __FILE__ );
 define( 'NCSUCP_BASE_FILENAME', plugin_basename( __FILE__ ) );
 define( 'NCSUCP_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
@@ -30,6 +30,10 @@ if ( ! defined( 'WP_WELCOME_DIR' ) ) {
 
 if ( ! defined( 'WP_WELCOME_URL' ) ) {
 	define( 'WP_WELCOME_URL', NCSUCP_URL . '/vendor/ernilambar/wp-welcome' );
+}
+
+if ( ! defined( 'NSCU_URL' ) ) {
+	define( 'NSCU_URL', NCSUCP_URL . '/vendor/ernilambar/ns-customizer-utilities' );
 }
 
 // Init autoload.

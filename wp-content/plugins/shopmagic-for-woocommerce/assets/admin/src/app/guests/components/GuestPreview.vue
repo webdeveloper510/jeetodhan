@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { NButton, NModal } from "naive-ui";
+import SimpleTime from "@/components/SimpleTime.vue";
 import { ref } from "vue";
-import dayjs from "dayjs";
 
 type Guest = {
   email: string;
@@ -18,13 +18,7 @@ const showModal = ref(false);
   <NButton @click="showModal = true">
     {{ __("View details", "shopmagic-for-woocommerce") }}
   </NButton>
-  <NModal
-    v-model:show="showModal"
-    aria-modal="true"
-    class="w-[600px]"
-    preset="card"
-    title="Guest"
-  >
+  <NModal v-model:show="showModal" aria-modal="true" class="w-[600px]" preset="card" title="Guest">
     <NTable>
       <tr>
         <th>{{ __("Email", "shopmagic-for-woocommerce") }}</th>
@@ -56,11 +50,11 @@ const showModal = ref(false);
       </tr>
       <tr>
         <th>{{ __("Created", "shopmagic-for-woocommerce") }}</th>
-        <td>{{ dayjs(guest.created).format("D MMM, YYYY HH:mm:ss") }}</td>
+        <td><SimpleTime :time="guest.created" /></td>
       </tr>
       <tr>
         <th>{{ __("Last active", "shopmagic-for-woocommerce") }}</th>
-        <td>{{ dayjs(guest.lastActive).format("D MMM, YYYY HH:mm:ss") }}</td>
+        <td><SimpleTime :time="guest.lastActive" /></td>
       </tr>
     </NTable>
   </NModal>

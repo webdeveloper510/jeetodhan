@@ -20,8 +20,10 @@ final class OrderPending extends OrderCommonEvent {
 	private const QUEUE_GROUP_NAME = 'shopmagic-automation-internal';
 	/** @var string */
 	private const STATUS_TO_CHECK = 'pending';
+
 	/** @var Queue */
 	private static $queue_client;
+
 	/** @var EventMutex */
 	private $event_mutex;
 
@@ -126,10 +128,8 @@ final class OrderPending extends OrderCommonEvent {
 	public function process_event( $order_id, $order ): void {
 		if ( $this->event_mutex->check_uniqueness_once( spl_object_hash( $this ), [ 'order_id' => $order_id ] ) ) {
 			$this->resources->set( \WC_Order::class, $order );
-			$this->resources->set(
-				Customer::class,
-				$this->customer_repository->find_by_email( $this->get_order()->get_billing_email() )
-			);
+			$this->resources->set( Customer::class, $this->get_customer( $order ) );
+
 			$this->trigger_automation();
 		}
 	}

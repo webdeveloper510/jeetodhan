@@ -2,7 +2,7 @@ import { acceptHMRUpdate, defineStore } from "pinia";
 import { ref, unref, watch } from "vue";
 import type { Subscriber } from "./types";
 import type { Query } from "@/_utils";
-import { useSearchParams } from "@/composables/useSearchParams";
+import { appendSearchParams } from "@/composables/useSearchParams";
 import useSWRV from "@/_utils/swrv";
 import { useWpFetch } from "@/composables/useWpFetch";
 
@@ -24,10 +24,9 @@ export const useSubscribersStore = defineStore("subscribersStore", () => {
     loading.value = true;
     const previousUrl = unref(url);
     if (query) {
-      const searchQuery = useSearchParams(query);
-      url.value = `/subscribers?${searchQuery}`;
-      if (searchQuery.includes("filters")) {
-        countUrl.value = `/subscribers/count?${searchQuery}`;
+      url.value = appendSearchParams("/subscribers", query);
+      if (query.filters) {
+        countUrl.value = appendSearchParams("/subscribers/count", query);
       }
     } else {
       url.value = "/subscribers";
@@ -41,7 +40,10 @@ export const useSubscribersStore = defineStore("subscribersStore", () => {
   function deleteSubscribers(ids: number[]) {
     loading.value = true;
     Promise.all(ids.map((id) => useWpFetch(`/subscribers/${id}`).delete()))
-      .then(() => mutate())
+      .then(
+        async () => mutate(),
+        () => {},
+      )
       .finally(() => (loading.value = false));
   }
 

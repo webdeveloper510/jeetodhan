@@ -12,7 +12,7 @@ declare (strict_types=1);
 namespace ShopMagicVendor\Monolog\Handler\FingersCrossed;
 
 use ShopMagicVendor\Monolog\Logger;
-use Psr\Log\LogLevel;
+use ShopMagicVendor\Psr\Log\LogLevel;
 /**
  * Error level based activation strategy.
  *

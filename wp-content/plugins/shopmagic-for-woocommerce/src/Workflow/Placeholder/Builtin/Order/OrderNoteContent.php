@@ -16,6 +16,10 @@ final class OrderNoteContent extends WooCommerceOrderNoteBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		return $this->get_order_note()->comment_content;
+		if ( $this->resources->has( \WP_Comment::class ) ) {
+			return $this->resources->get( \WP_Comment::class )->comment_content;
+		}
+
+		return '';
 	}
 }

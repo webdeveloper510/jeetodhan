@@ -16,7 +16,11 @@ final class OrderTotal extends WooCommerceOrderBasedPlaceholder {
 	}
 
 	public function value( array $parameters ): string {
-		$total = $this->get_order()->get_total();
+		if ( ! $this->resources->has( \WC_Order::class ) ) {
+			return '';
+		}
+
+		$total = $this->resources->get( \WC_Order::class )->get_total();
 		$price = number_format(
 			abs( (float) $total ),
 			wc_get_price_decimals(),

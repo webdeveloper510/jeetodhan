@@ -9,7 +9,9 @@ declare(strict_types=1);
 
 namespace WooCommerce\PayPalCommerce\Button;
 
+use WooCommerce\PayPalCommerce\Button\Endpoint\ApproveSubscriptionEndpoint;
 use WooCommerce\PayPalCommerce\Button\Endpoint\CartScriptParamsEndpoint;
+use WooCommerce\PayPalCommerce\Button\Endpoint\SimulateCartEndpoint;
 use WooCommerce\PayPalCommerce\Button\Helper\CheckoutFormSaver;
 use WooCommerce\PayPalCommerce\Button\Endpoint\SaveCheckoutFormEndpoint;
 use WooCommerce\PayPalCommerce\Button\Validation\CheckoutFormValidator;
@@ -66,24 +68,19 @@ return array(
 		return $dummy_ids[ $shop_country ] ?? $container->get( 'button.client_id' );
 	},
 	'button.smart-button'                         => static function ( ContainerInterface $container ): SmartButtonInterface {
-
 		$state = $container->get( 'onboarding.state' );
-		/**
-		 * The state.
-		 *
-		 * @var State $state
-		 */
 		if ( $state->current_state() !== State::STATE_ONBOARDED ) {
 			return new DisabledSmartButton();
 		}
+
 		$settings           = $container->get( 'wcgateway.settings' );
 		$paypal_disabled     = ! $settings->has( 'enabled' ) || ! $settings->get( 'enabled' );
 		if ( $paypal_disabled ) {
 			return new DisabledSmartButton();
 		}
+
 		$payer_factory    = $container->get( 'api.factory.payer' );
 		$request_data     = $container->get( 'button.request-data' );
-
 		$client_id           = $container->get( 'button.client_id' );
 		$dcc_applies         = $container->get( 'api.helpers.dccapplies' );
 		$subscription_helper = $container->get( 'subscription.helper' );
@@ -110,6 +107,8 @@ return array(
 			$container->get( 'wcgateway.all-funding-sources' ),
 			$container->get( 'button.basic-checkout-validation-enabled' ),
 			$container->get( 'button.early-wc-checkout-validation-enabled' ),
+			$container->get( 'button.pay-now-contexts' ),
+			$container->get( 'wcgateway.funding-sources-without-redirect' ),
 			$container->get( 'woocommerce.logger.woocommerce' )
 		);
 	},
@@ -119,8 +118,22 @@ return array(
 			dirname( realpath( __FILE__ ), 3 ) . '/woocommerce-paypal-payments.php'
 		);
 	},
+	'button.pay-now-contexts'                     => static function ( ContainerInterface $container ): array {
+		return array( 'checkout', 'pay-now' );
+	},
 	'button.request-data'                         => static function ( ContainerInterface $container ): RequestData {
 		return new RequestData();
+	},
+	'button.endpoint.simulate-cart'               => static function ( ContainerInterface $container ): SimulateCartEndpoint {
+		if ( ! \WC()->cart ) {
+			throw new RuntimeException( 'cant initialize endpoint at this moment' );
+		}
+		$smart_button = $container->get( 'button.smart-button' );
+		$cart         = WC()->cart;
+		$request_data = $container->get( 'button.request-data' );
+		$data_store   = \WC_Data_Store::load( 'product' );
+		$logger       = $container->get( 'woocommerce.logger.woocommerce' );
+		return new SimulateCartEndpoint( $smart_button, $cart, $request_data, $data_store, $logger );
 	},
 	'button.endpoint.change-cart'                 => static function ( ContainerInterface $container ): ChangeCartEndpoint {
 		if ( ! \WC()->cart ) {
@@ -142,7 +155,7 @@ return array(
 		$session_handler       = $container->get( 'session.handler' );
 		$settings              = $container->get( 'wcgateway.settings' );
 		$early_order_handler   = $container->get( 'button.helper.early-order-handler' );
-		$registration_needed    = $container->get( 'button.current-user-must-register' );
+		$registration_needed   = $container->get( 'button.current-user-must-register' );
 		$logger                = $container->get( 'woocommerce.logger.woocommerce' );
 		return new CreateOrderEndpoint(
 			$request_data,
@@ -156,6 +169,9 @@ return array(
 			$registration_needed,
 			$container->get( 'wcgateway.settings.card_billing_data_mode' ),
 			$container->get( 'button.early-wc-checkout-validation-enabled' ),
+			$container->get( 'button.pay-now-contexts' ),
+			$container->get( 'button.handle-shipping-in-paypal' ),
+			$container->get( 'wcgateway.funding-sources-without-redirect' ),
 			$logger
 		);
 	},
@@ -164,8 +180,7 @@ return array(
 		$state          = $container->get( 'onboarding.state' );
 		$order_processor = $container->get( 'wcgateway.order-processor' );
 		$session_handler = $container->get( 'session.handler' );
-		$prefix         = $container->get( 'api.prefix' );
-		return new EarlyOrderHandler( $state, $order_processor, $session_handler, $prefix );
+		return new EarlyOrderHandler( $state, $order_processor, $session_handler );
 	},
 	'button.endpoint.approve-order'               => static function ( ContainerInterface $container ): ApproveOrderEndpoint {
 		$request_data    = $container->get( 'button.request-data' );
@@ -187,8 +202,17 @@ return array(
 			$logger
 		);
 	},
+	'button.endpoint.approve-subscription'        => static function( ContainerInterface $container ): ApproveSubscriptionEndpoint {
+		return new ApproveSubscriptionEndpoint(
+			$container->get( 'button.request-data' ),
+			$container->get( 'api.endpoint.order' ),
+			$container->get( 'session.handler' )
+		);
+	},
 	'button.checkout-form-saver'                  => static function ( ContainerInterface $container ): CheckoutFormSaver {
-		return new CheckoutFormSaver();
+		return new CheckoutFormSaver(
+			$container->get( 'session.handler' )
+		);
 	},
 	'button.endpoint.save-checkout-form'          => static function ( ContainerInterface $container ): SaveCheckoutFormEndpoint {
 		return new SaveCheckoutFormEndpoint(
@@ -265,5 +289,13 @@ return array(
 	},
 	'button.validation.wc-checkout-validator'     => static function ( ContainerInterface $container ): CheckoutFormValidator {
 		return new CheckoutFormValidator();
+	},
+
+	/**
+	 * If true, the shipping methods are sent to PayPal allowing the customer to select it inside the popup.
+	 * May result in slower popup performance, additional loading.
+	 */
+	'button.handle-shipping-in-paypal'            => static function ( ContainerInterface $container ): bool {
+		return false;
 	},
 );

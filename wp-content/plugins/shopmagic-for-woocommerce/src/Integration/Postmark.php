@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace WPDesk\ShopMagic\Integration;
 
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 use ShopMagicVendor\WPDesk\Forms\Field;
 use WPDesk\ShopMagic\FormField\Field\InputTextField;
 

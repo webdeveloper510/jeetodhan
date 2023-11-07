@@ -13,7 +13,7 @@ use ShopMagicVendor\DI\Definition\InstanceDefinition;
 use ShopMagicVendor\DI\Definition\ObjectDefinition;
 use ShopMagicVendor\DI\Definition\SelfResolvingDefinition;
 use ShopMagicVendor\DI\Proxy\ProxyFactory;
-use Psr\Container\ContainerInterface;
+use ShopMagicVendor\Psr\Container\ContainerInterface;
 /**
  * Dispatches to more specific resolvers.
  *
